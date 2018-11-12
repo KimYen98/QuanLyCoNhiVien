@@ -120,3 +120,101 @@ alter table CT_NguoiNhanTre_Tre add constraint fk_CT_NguoiNhanTre_Tre foreign ke
 go
 alter table CT_NguoiNhanTre_Tre add constraint fk_CT_NguoiNhanTre_NguoiNhan foreign key(MaNguoiNhan) references NguoiNhanTre(MaNguoiNhan)
 go
+select * from Tre
+--Thêm loại nhân viên
+create proc sp_ThemLoaiNhanVien
+@TenLoaiNV nvarchar(100)
+as
+begin
+	declare @MaLoaiNV int, @MaLoaiNV_Max int ,@i int 
+	set @i=1
+	select @MaLoaiNV_max=(max(MaLoaiNV))
+	from LoaiNhanVien
+	if(@MaLoaiNV_Max is null)
+		set @MaLoaiNV=@i
+	else
+		begin
+			while(@i<=@MaLoaiNV_Max+1)
+				begin
+					if(select count(*)
+						from LoaiNhanVien
+						where MaLoaiNV=@i)=0
+						begin
+							set @MaLoaiNV=@i
+							break
+						end
+					set @i=@i+1
+				end
+		end
+	insert into LoaiNhanVien values(@MaLoaiNV,@TenLoaiNV)
+end
+go
+--Cập nhật loại nhân viên
+create proc sp_CapNhatLoaiNhanVien
+@MaLoaiNV int, @TenLoaiNV nvarchar(100)
+as
+begin
+	update LoaiNhanVien
+	set TenLoaiNV=@TenLoaiNV
+	where MaLoaiNV=@MaLoaiNV
+end
+go
+--Xóa loại nhân viên
+create proc sp_XoaLoaiNhanVien
+@MaLoaiNV int
+as
+begin
+	delete from LoaiNhanVien
+	where MaLoaiNV=@MaLoaiNV
+end
+go
+-- Hàm chuyển sang tiếng Việt k dấu để tìm gần đúng
+CREATE FUNCTION [dbo].[GetUnsignString](@strInput NVARCHAR(4000)) 
+RETURNS NVARCHAR(4000)
+AS
+BEGIN     
+    IF @strInput IS NULL RETURN @strInput
+    IF @strInput = '' RETURN @strInput
+    DECLARE @RT NVARCHAR(4000)
+    DECLARE @SIGN_CHARS NCHAR(136)
+    DECLARE @UNSIGN_CHARS NCHAR (136)
+
+    SET @SIGN_CHARS = N'ăâđêôơưàảãạáằẳẵặắầẩẫậấèẻẽẹéềểễệếìỉĩịíòỏõọóồổỗộốờởỡợớùủũụúừửữựứỳỷỹỵýĂÂĐÊÔƠƯÀẢÃẠÁẰẲẴẶẮẦẨẪẬẤÈẺẼẸÉỀỂỄỆẾÌỈĨỊÍÒỎÕỌÓỒỔỖỘỐỜỞỠỢỚÙỦŨỤÚỪỬỮỰỨỲỶỸỴÝ'+NCHAR(272)+ NCHAR(208)
+    SET @UNSIGN_CHARS = N'aadeoouaaaaaaaaaaaaaaaeeeeeeeeeeiiiiiooooooooooooooouuuuuuuuuuyyyyyAADEOOUAAAAAAAAAAAAAAAEEEEEEEEEEIIIIIOOOOOOOOOOOOOOOUUUUUUUUUUYYYYYDD'
+
+    DECLARE @COUNTER int
+    DECLARE @COUNTER1 int
+    SET @COUNTER = 1
+ 
+    WHILE (@COUNTER <=LEN(@strInput))
+    BEGIN   
+      SET @COUNTER1 = 1
+      --Tim trong chuoi mau
+       WHILE (@COUNTER1 <=LEN(@SIGN_CHARS)+1)
+       BEGIN
+     IF UNICODE(SUBSTRING(@SIGN_CHARS, @COUNTER1,1)) = UNICODE(SUBSTRING(@strInput,@COUNTER ,1) )
+     BEGIN           
+          IF @COUNTER=1
+              SET @strInput = SUBSTRING(@UNSIGN_CHARS, @COUNTER1,1) + SUBSTRING(@strInput, @COUNTER+1,LEN(@strInput)-1)                   
+          ELSE
+              SET @strInput = SUBSTRING(@strInput, 1, @COUNTER-1) +SUBSTRING(@UNSIGN_CHARS, @COUNTER1,1) + SUBSTRING(@strInput, @COUNTER+1,LEN(@strInput)- @COUNTER)    
+              BREAK         
+               END
+             SET @COUNTER1 = @COUNTER1 +1
+       END
+      --Tim tiep
+       SET @COUNTER = @COUNTER +1
+    END
+    RETURN @strInput
+END
+go
+--Tìm loại nhân viên
+create proc sp_TimLoaiNhanVien
+@key nvarchar(100)
+as
+begin
+	select * from LoaiNhanVien WHERE [dbo].[GetUnsignString](TenLoaiNV) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
+end
+go
+exec sp_ThemLoaiNhanVien N'Bảo mẫu'
+exec sp_XoaLoaiNhanVien 1
