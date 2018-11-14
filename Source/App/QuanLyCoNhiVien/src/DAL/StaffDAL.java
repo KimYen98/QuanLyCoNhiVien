@@ -15,11 +15,11 @@ import java.util.ArrayList;
  * @author Bui Thi Huyen Tran
  */
 public class StaffDAL extends  DataAccessHelper{
-    //Load nhân viên
+   //Load nhân viên
     public ArrayList <Staff> LoadStaff()
     {
         ArrayList<Staff> temp =new ArrayList<>();
-        String SQL="";
+        String SQL="exec sp_HienThiDanhSachNhanVien";
         try {
             getConnect();
             Statement st =conn.createStatement();
@@ -44,9 +44,9 @@ public class StaffDAL extends  DataAccessHelper{
         return temp;
     }
     //Thêm nhân viên
-    public boolean InertStaff(String name , String sex ,String birthday ,String address ,String phonenumber , String startwork ,String namestaffcategogy )
+    public boolean InertStaff(String name , String sex ,String birthday ,String address ,String phonenumber , String startwork ,int idstaffcategogy )
     {
-        String SQL="";
+        String SQL="exec sp_ThemNhanVien N'"+name+"',N'"+sex+"',N'"+birthday+"','"+address+"',N'"+phonenumber+"',N'"+startwork+"','"+idstaffcategogy+"'";
         try {
             getConnect();
             Statement st =conn.createStatement();
@@ -59,9 +59,9 @@ public class StaffDAL extends  DataAccessHelper{
         return false;
     }
     //Cập nhật nhân viên
-    public boolean  UpdateStaff(int id,String name , String sex ,String birthday ,String address ,String phonenumber , String startwork ,String namestaffcategogy)
+    public boolean  UpdateStaff(int id,String name , String sex ,String birthday ,String address ,String phonenumber , String startwork ,int idstaffcategogy)
     {
-        String SQL="";
+        String SQL="exec sp_CapNhatNhanVien '"+id+"', N'"+name+"',N'"+sex+"',N'"+birthday+"','"+address+"',N'"+phonenumber+"',N'"+startwork+"','"+idstaffcategogy+"'";
         try {
             getConnect();
             Statement st =conn.createStatement();
@@ -73,9 +73,10 @@ public class StaffDAL extends  DataAccessHelper{
         }
         return false;
     }
+    //Xóa nhân viên
     public boolean  DeleteStaff(int id)
     {
-        String SQL="";
+        String SQL="exec sp_XoaNhanVien '"+id+"'";
         try {
             getConnect();
             Statement st =conn.createStatement();
@@ -86,5 +87,33 @@ public class StaffDAL extends  DataAccessHelper{
         } catch (Exception e) {
         }
         return false;
+    }
+    //Tìm nhân viên
+    public ArrayList <Staff> SearchStaff(String key)
+    {
+        ArrayList<Staff> temp =new ArrayList<>();
+        String SQL="exec sp_TimNhanVien N'"+key+"'";
+        try {
+            getConnect();
+            Statement st =conn.createStatement();
+            ResultSet rs =st.executeQuery(SQL);
+            if(rs!=null)
+                while(rs.next())
+                {
+                    Staff staff =new Staff();
+                    staff.setID(rs.getInt("MaNV"));
+                    staff.setName(rs.getString("TenNV"));
+                    staff.setSex(rs.getString("GioiTinh"));
+                    staff.setBirthday(rs.getDate("NgaySinh"));
+                    staff.setAddress(rs.getString("DiaChi"));
+                    staff.setPhoneNumber(rs.getString("SoDT"));
+                    staff.setStartWork(rs.getDate("NgayVL"));
+                    staff.setNameStaffCategogy(rs.getString("TenLoaiNV"));
+                    temp.add(staff);
+                }
+            getClose();
+        } catch (Exception e) {
+        }
+        return temp;
     }
 }

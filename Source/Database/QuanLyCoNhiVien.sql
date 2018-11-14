@@ -120,9 +120,8 @@ alter table CT_NguoiNhanTre_Tre add constraint fk_CT_NguoiNhanTre_Tre foreign ke
 go
 alter table CT_NguoiNhanTre_Tre add constraint fk_CT_NguoiNhanTre_NguoiNhan foreign key(MaNguoiNhan) references NguoiNhanTre(MaNguoiNhan)
 go
-select * from Tre
 --Thêm loại nhân viên
-create proc sp_ThemLoaiNhanVien
+alter proc sp_ThemLoaiNhanVien
 @TenLoaiNV nvarchar(100)
 as
 begin
@@ -130,23 +129,32 @@ begin
 	set @i=1
 	select @MaLoaiNV_max=(max(MaLoaiNV))
 	from LoaiNhanVien
-	if(@MaLoaiNV_Max is null)
-		set @MaLoaiNV=@i
+	if(select count(*)
+		from LoaiNhanVien
+		where TenLoaiNV=@TenLoaiNV)>0
+		begin
+			print N'Tên loại nhân viên không được phép trùng'
+		end
 	else
 		begin
-			while(@i<=@MaLoaiNV_Max+1)
+			if(@MaLoaiNV_Max is null)
+				set @MaLoaiNV=@i
+			else
 				begin
-					if(select count(*)
-						from LoaiNhanVien
-						where MaLoaiNV=@i)=0
+					while(@i<=@MaLoaiNV_Max+1)
 						begin
-							set @MaLoaiNV=@i
-							break
+							if(select count(*)
+								from LoaiNhanVien
+								where MaLoaiNV=@i)=0
+								begin
+									set @MaLoaiNV=@i
+									break
+								end
+							set @i=@i+1
 						end
-					set @i=@i+1
 				end
+			insert into LoaiNhanVien values(@MaLoaiNV,@TenLoaiNV)
 		end
-	insert into LoaiNhanVien values(@MaLoaiNV,@TenLoaiNV)
 end
 go
 --Cập nhật loại nhân viên
@@ -216,5 +224,71 @@ begin
 	select * from LoaiNhanVien WHERE [dbo].[GetUnsignString](TenLoaiNV) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
 end
 go
-exec sp_ThemLoaiNhanVien N'Bảo mẫu'
-exec sp_XoaLoaiNhanVien 1
+--Thêm nhân viên
+create proc sp_ThemNhanVien
+@TenNV nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19), @DiaChi nvarchar(100), @SoDT nvarchar(10), @NgayVL nvarchar(19), @MaLoaiNV int
+as
+begin
+	declare @NgaySinh_ smalldatetime,@NgayVL_ smalldatetime, @MaNV int, @MaNV_Max int,@i int =1
+	set @NgaySinh_=CONVERT(smalldatetime,@NgaySinh,103)
+	set @NgayVL_=CONVERT(smalldatetime,@NgayVL,103)
+	select @MaNV_Max=max(MaNV)
+	from NhanVien
+	if(@MaNV_Max is null)
+		set @MaNV=@i
+	else
+		while(@i <=@MaNV_Max+1)
+			begin
+				if(select count(*)
+					from NhanVien
+					where MaNV=@i)=0
+					begin 
+						set @MaNV=@i
+						break
+					end
+				set @i=@i+1
+			end
+	insert into NhanVien values (@MaNV,@TenNV,@GioiTinh,@NgaySinh_,@DiaChi,@SoDT,@NgayVL_,@MaLoaiNV)
+end
+go
+--Cập nhật nhân viên
+create proc sp_CapNhatNhanVien
+@MaNV int,@TenNV nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19), @DiaChi nvarchar(100), @SoDT nvarchar(10), @NgayVL nvarchar(19), @MaLoaiNV int
+as
+begin
+	 declare @NgaySinh_ smalldatetime,@NgayVL_ smalldatetime
+	set @NgaySinh_=CONVERT(smalldatetime,@NgaySinh,103)
+	set @NgayVL_=CONVERT(smalldatetime,@NgayVL,103)
+	update NhanVien
+	set TenNV=@TenNV, GioiTinh=@GioiTinh,NgaySinh=@NgaySinh_,DiaChi=@DiaChi,SoDT=@SoDT,NgayVL=@NgayVL_,MaLoaiNV=@MaLoaiNV
+	where MaNV=@MaNV
+end
+go
+--Xóa nhân viên
+create proc sp_XoaNhanVien
+@MaNV int
+as
+begin
+	delete from NhanVien
+	where MaNV=@MaNV
+end
+go
+--Hiện thi danh sách nhân viên
+create proc sp_HienThiDanhSachNhanVien
+as
+begin
+	select MaNV,TenNV,GioiTinh,NgaySinh,DiaChi,SoDT,NgayVL,TenLoaiNV
+	from NhanVien,LoaiNhanVien
+	where NhanVien.MaLoaiNV=LoaiNhanVien.MaLoaiNV
+end
+go
+--Tìm nhân viên
+create proc sp_TimNhanVien
+@key nvarchar(100)
+as
+begin
+	select MaNV,TenNV,GioiTinh,NgaySinh,DiaChi,SoDT,NgayVL,TenLoaiNV
+	from NhanVien ,LoaiNhanVien
+	WHERE NhanVien.MaLoaiNV=LoaiNhanVien.MaLoaiNV and [dbo].[GetUnsignString](TenNV) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
+end
+go

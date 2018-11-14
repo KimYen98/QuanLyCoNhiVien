@@ -5,6 +5,14 @@
  */
 package GUI;
 
+import BLL.StaffCategogyBLL;
+import BLL.StaffBLL;
+import Entity.StaffCategogy;
+import Utilities.ControlFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author STIREN
@@ -14,8 +22,19 @@ public class fStaff extends javax.swing.JInternalFrame {
     /**
      * Creates new form fStaff
      */
+    StaffCategogyBLL staffCategogyBLL =new StaffCategogyBLL();
+    StaffBLL staffBLL=new StaffBLL();
+    ControlFormat control =new ControlFormat();
+    private int flag=0;
     public fStaff() {
         initComponents();
+        cbStaffCategogy.removeAllItems();
+        control.bindingStaff(jTableStaff, staffBLL.LoadStaff());
+        for(StaffCategogy   staffCategogy: staffCategogyBLL.LoadStaffCategogy())
+        {
+            cbStaffCategogy.addItem(staffCategogy.getName());
+        }
+        jDChStartStaff.setDate(new Date());
     }
 
     /**
@@ -27,6 +46,7 @@ public class fStaff extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -42,7 +62,10 @@ public class fStaff extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jDChStartStaff = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
-        cbStaffCategogy = new javax.swing.JComboBox<>();
+        cbStaffCategogy = new javax.swing.JComboBox<String>();
+        jLabel9 = new javax.swing.JLabel();
+        rbtnMale = new javax.swing.JRadioButton();
+        rbtnFemale = new javax.swing.JRadioButton();
         jPanel4 = new javax.swing.JPanel();
         btnAddStaff = new javax.swing.JButton();
         btnEditStaff = new javax.swing.JButton();
@@ -94,7 +117,23 @@ public class fStaff extends javax.swing.JInternalFrame {
         jLabel5.setText("Loại nhân viên");
 
         cbStaffCategogy.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        cbStaffCategogy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbStaffCategogy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel9.setText("Ngày sinh");
+
+        buttonGroup1.add(rbtnMale);
+        rbtnMale.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbtnMale.setText("Nam");
+        rbtnMale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnMaleActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(rbtnFemale);
+        rbtnFemale.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbtnFemale.setText("Nữ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -103,22 +142,32 @@ public class fStaff extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
-                .addGap(49, 49, 49)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cbStaffCategogy, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txfIDStaff)
-                    .addComponent(txfNameStaff)
-                    .addComponent(txfAddressStaff)
-                    .addComponent(txfPhoneStaff)
-                    .addComponent(jDChStartStaff, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                    .addComponent(jDChBirthdayStaff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                            .addComponent(txfPhoneStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel8)
+                                .addComponent(jLabel9))
+                            .addGap(49, 49, 49)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(cbStaffCategogy, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txfIDStaff)
+                                .addComponent(txfNameStaff)
+                                .addComponent(txfAddressStaff)
+                                .addComponent(jDChStartStaff, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                                .addComponent(jDChBirthdayStaff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(rbtnMale)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(rbtnFemale)))))
+                    .addComponent(jLabel4))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -138,34 +187,64 @@ public class fStaff extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jDChBirthdayStaff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txfAddressStaff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txfPhoneStaff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(rbtnFemale))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(rbtnMale))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jDChStartStaff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jDChBirthdayStaff, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txfAddressStaff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txfPhoneStaff, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDChStartStaff, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(26, 26, 26))
         );
 
         btnAddStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnAddStaff.setText("THÊM");
+        btnAddStaff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddStaffActionPerformed(evt);
+            }
+        });
 
         btnEditStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnEditStaff.setText("CẬP NHẬT");
+        btnEditStaff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditStaffActionPerformed(evt);
+            }
+        });
 
         btnDelStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnDelStaff.setText("XÓA");
+        btnDelStaff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelStaffActionPerformed(evt);
+            }
+        });
 
         btnSaveStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnSaveStaff.setText("LƯU");
+        btnSaveStaff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveStaffActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -207,12 +286,22 @@ public class fStaff extends javax.swing.JInternalFrame {
             }
         ));
         jTableStaff.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTableStaff.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableStaffMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableStaff);
 
         txfSearchStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         btnSearchStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnSearchStaff.setText("TÌM KIẾM");
+        btnSearchStaff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchStaffActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -266,14 +355,209 @@ public class fStaff extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSearchStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchStaffActionPerformed
+        // TODO add your handling code here:
+        String key =txfSearchStaff.getText().toString();
+        control.bindingStaff(jTableStaff, staffBLL.SearchStaff(key));
+        txfSearchStaff.setText("");
+    }//GEN-LAST:event_btnSearchStaffActionPerformed
+
+    private void btnAddStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddStaffActionPerformed
+        // TODO add your handling code here:
+        ClearText();
+        btnAddStaff.setEnabled(false);
+        btnEditStaff.setEnabled(false);
+        btnDelStaff.setEnabled(false);
+        btnSaveStaff.setEnabled(true);
+        flag=1;
+    }//GEN-LAST:event_btnAddStaffActionPerformed
+
+    private void btnEditStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditStaffActionPerformed
+        // TODO add your handling code here:
+        btnAddStaff.setEnabled(false);
+        btnEditStaff.setEnabled(false);
+        btnDelStaff.setEnabled(false);
+        btnSaveStaff.setEnabled(true);
+        flag=2;
+    }//GEN-LAST:event_btnEditStaffActionPerformed
+
+    private void btnDelStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelStaffActionPerformed
+        // TODO add your handling code here:
+        btnAddStaff.setEnabled(false);
+        btnEditStaff.setEnabled(false);
+        btnDelStaff.setEnabled(false);
+        btnSaveStaff.setEnabled(true);
+        flag=3;
+    }//GEN-LAST:event_btnDelStaffActionPerformed
+
+    private void btnSaveStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveStaffActionPerformed
+        // TODO add your handling code here:
+        if(flag==1)
+        {
+            if(Insert())
+            {
+                btnSaveStaff.setEnabled(false);
+                control.bindingStaff(jTableStaff, staffBLL.LoadStaff());
+                ClearText();
+            }
+            btnAddStaff.setEnabled(true);
+            btnEditStaff.setEnabled(true);
+            btnDelStaff.setEnabled(true);
+        }
+        if(flag==2)
+        {
+            if(Update())
+            {
+                btnSaveStaff.setEnabled(false);
+                control.bindingStaff(jTableStaff, staffBLL.LoadStaff());
+                ClearText();
+            }
+            btnAddStaff.setEnabled(true);
+            btnEditStaff.setEnabled(true);
+            btnDelStaff.setEnabled(true);
+        }
+        if(flag==3)
+        {
+            if(Delete())
+            {
+                btnSaveStaff.setEnabled(false);
+                control.bindingStaff(jTableStaff, staffBLL.LoadStaff());
+                ClearText();
+            }
+            btnAddStaff.setEnabled(true);
+            btnEditStaff.setEnabled(true);
+            btnDelStaff.setEnabled(true);
+        }
+    }//GEN-LAST:event_btnSaveStaffActionPerformed
+
+    private void jTableStaffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableStaffMouseClicked
+        // TODO add your handling code here:
+        int row =jTableStaff.getSelectedRow();
+        txfIDStaff.setText(jTableStaff.getValueAt(row, 0).toString());
+        txfNameStaff.setText(jTableStaff.getValueAt(row, 1).toString());
+        if(jTableStaff.getValueAt(row, 2).toString().equals("Nam"))
+            rbtnMale.setSelected(true);
+        if(jTableStaff.getValueAt(row, 2).toString().equals("Nữ"))
+            rbtnFemale.setSelected(true);
+        jDChBirthdayStaff.setDate((Date)jTableStaff.getModel().getValueAt(row, 3));
+        txfAddressStaff.setText(jTableStaff.getValueAt(row, 4).toString());
+        txfPhoneStaff.setText(jTableStaff.getValueAt(row, 5).toString());
+        jDChStartStaff.setDate((Date)jTableStaff.getModel().getValueAt(row, 6));
+        String categogy =jTableStaff.getValueAt(row, 7).toString();
+        if(jTableStaff.getValueAt(row, 1).toString().equals(categogy))
+        cbStaffCategogy.setSelectedItem(categogy);
+    }//GEN-LAST:event_jTableStaffMouseClicked
+     public void ClearText()
+    {
+        txfIDStaff.setText("");
+        txfNameStaff.setText("");
+        txfAddressStaff.setText("");
+        txfPhoneStaff.setText("");
+        jDChBirthdayStaff.setDate(null);
+        jDChStartStaff.setDate(new Date());
+        rbtnMale.setSelected(true);
+    }
+    public boolean  Insert()
+    {
+        String name =txfNameStaff.getText().toString();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date birthday =jDChBirthdayStaff.getDate();
+        String strbirthday =formatter.format(birthday);
+        String address =txfAddressStaff.getText().toString();
+        String phonenumber =txfPhoneStaff.getText().toString();
+        Date startwork =jDChStartStaff.getDate();
+        String strstartwork =formatter.format(startwork);
+        String namecategogy =cbStaffCategogy.getSelectedItem().toString();
+        int idcategogy =staffCategogyBLL.getID(namecategogy);
+        String sex="" ;
+        if(rbtnMale.isSelected())
+            sex="Nam";
+        if(rbtnFemale.isSelected())
+            sex="Nữ";
+        if(name.equals("")|| strbirthday.equals("")|| strstartwork.equals("")||address.equals("")||phonenumber.equals("")||namecategogy.equals("") || sex.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Bạn chưa nhập đầy đủ thông tin");
+            return false;
+        }
+        else
+        {
+            if(staffBLL.InsertStaff(name, sex, strbirthday, address, phonenumber, strstartwork, idcategogy))
+            {
+                JOptionPane.showMessageDialog(this, "Thêm thành công nhân viên");
+                return true;
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Thêm thất bại nhân viên");
+                return false;
+            }
+        }
+    }
+    public boolean  Update()
+    {
+        int id= Integer.parseInt(txfIDStaff.getText());
+        String name =txfNameStaff.getText().toString();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date birthday =jDChBirthdayStaff.getDate();
+        String strbirthday =formatter.format(birthday);
+        String address =txfAddressStaff.getText().toString();
+        String phonenumber =txfPhoneStaff.getText().toString();
+        Date startwork =jDChStartStaff.getDate();
+        String strstartwork =formatter.format(startwork);
+        String namecategogy =cbStaffCategogy.getSelectedItem().toString();
+        int idcategogy =staffCategogyBLL.getID(namecategogy);
+        String sex="" ;
+        if(rbtnMale.isSelected())
+            sex="Nam";
+        if(rbtnFemale.isSelected())
+            sex="Nữ";
+        if(name.equals("")|| strbirthday.equals("")|| strstartwork.equals("")||address.equals("")||phonenumber.equals("")||namecategogy.equals("") || sex.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Bạn chưa nhập đầy đủ thông tin");
+            return false;
+        }
+        else
+        {
+            if(staffBLL.UpdateStaff(id, name, sex, strbirthday, address, phonenumber, strstartwork, idcategogy))
+            {
+                JOptionPane.showMessageDialog(this, "Cập nhật thành công nhân viên");
+                return true;
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Cập nhật thất bại nhân viên");
+                return false;
+            }
+        }
+    }
+    public boolean Delete()
+    {
+        int id =Integer.parseInt(txfIDStaff.getText());
+        if(staffBLL.DeleteStaff(id))
+        {
+            JOptionPane.showMessageDialog(this, "Xóa thành công nhân viên");
+            return true;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Xóa thất bại nhân viên");
+            return false;
+        }
+       
+    }
+
+    private void rbtnMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMaleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtnMaleActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -282,6 +566,7 @@ public class fStaff extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEditStaff;
     private javax.swing.JButton btnSaveStaff;
     private javax.swing.JButton btnSearchStaff;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbStaffCategogy;
     private com.toedter.calendar.JDateChooser jDChBirthdayStaff;
     private com.toedter.calendar.JDateChooser jDChStartStaff;
@@ -293,11 +578,14 @@ public class fStaff extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableStaff;
+    private javax.swing.JRadioButton rbtnFemale;
+    private javax.swing.JRadioButton rbtnMale;
     private javax.swing.JTextField txfAddressStaff;
     private javax.swing.JTextField txfIDStaff;
     private javax.swing.JTextField txfNameStaff;

@@ -5,6 +5,7 @@
  */
 package Utilities;
 
+import Entity.Staff;
 import Entity.StaffCategogy;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -28,6 +29,41 @@ public class ControlFormat {
             Vector row=new Vector();
             row.add(staffCategogy.getID());
             row.add(staffCategogy.getName());
+            data.add(row);
+        }
+        //DefaultTableModel
+        DefaultTableModel dtm = new DefaultTableModel(data,header){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        name.setModel(dtm); 
+    }
+     //Lấy dữ liệu bảng nhân viên
+    public void bindingStaff(JTable name , ArrayList<Staff> arr)
+    {
+        Vector header =new Vector();
+        header.add("Mã nhân viên");
+        header.add("Tên nhân viên");
+        header.add("Giới tính");
+        header.add("Ngày sinh");
+        header.add("Địa chỉ");
+        header.add("Số điện thoại");
+        header.add("Ngày vào làm");
+        header.add("Loại nhân viên");
+        Vector data =new Vector();
+        for(Staff staff : arr)
+        {
+            Vector row = new Vector();
+            row.add(staff.getID());
+            row.add(staff.getName());
+            row.add(staff.getSex());
+            row.add(staff.getBirthday());
+            row.add(staff.getAddress());
+            row.add(staff.getPhoneNumber());
+            row.add(staff.getStartWork());
+            row.add(staff.getNameStaffCategogy());
             data.add(row);
         }
         //DefaultTableModel

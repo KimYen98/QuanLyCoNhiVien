@@ -5,6 +5,10 @@
  */
 package GUI;
 
+import BLL.StaffCategogyBLL;
+import Utilities.ControlFormat;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author STIREN
@@ -14,8 +18,12 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
     /**
      * Creates new form fStaffCategogy
      */
+    StaffCategogyBLL staffCategogyBLL =new StaffCategogyBLL();
+    ControlFormat control =new ControlFormat();
+    private int flag=0;
     public fStaffCategogy() {
         initComponents();
+        control.bindingStaffCategogy(jTableStaffCategogy, staffCategogyBLL.LoadStaffCategogy());
     }
 
     /**
@@ -63,6 +71,11 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
 
         btnSearchStaffCategogy.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnSearchStaffCategogy.setText("TÌM KIẾM");
+        btnSearchStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchStaffCategogyActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -106,15 +119,35 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
 
         btnAddStaffCategogy.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnAddStaffCategogy.setText("THÊM");
+        btnAddStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddStaffCategogyActionPerformed(evt);
+            }
+        });
 
         btnEditStaffCategogy.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnEditStaffCategogy.setText("CẬP NHẬT");
+        btnEditStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditStaffCategogyActionPerformed(evt);
+            }
+        });
 
         btnDelStaffCategogy.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnDelStaffCategogy.setText("XÓA");
+        btnDelStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelStaffCategogyActionPerformed(evt);
+            }
+        });
 
         btnSaveStaffCategogy.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnSaveStaffCategogy.setText("LƯU");
+        btnSaveStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveStaffCategogyActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -155,6 +188,11 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableStaffCategogy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableStaffCategogyMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableStaffCategogy);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -192,6 +230,154 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTableStaffCategogyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableStaffCategogyMouseClicked
+        // TODO add your handling code here:
+        int row=jTableStaffCategogy.getSelectedRow();
+        txfIDStaffCategogy.setText(jTableStaffCategogy.getValueAt(row, 0).toString());
+        txfNameStaffCategogy.setText(jTableStaffCategogy.getValueAt(row, 1).toString());
+    }//GEN-LAST:event_jTableStaffCategogyMouseClicked
+
+    private void btnAddStaffCategogyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddStaffCategogyActionPerformed
+        // TODO add your handling code here:
+        ClearText();
+        btnAddStaffCategogy.setEnabled(false);
+        btnEditStaffCategogy.setEnabled(false);
+        btnDelStaffCategogy.setEnabled(false);
+        btnSaveStaffCategogy.setEnabled(true);
+        flag=1;
+    }//GEN-LAST:event_btnAddStaffCategogyActionPerformed
+
+    private void btnEditStaffCategogyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditStaffCategogyActionPerformed
+        // TODO add your handling code here:
+        btnAddStaffCategogy.setEnabled(false);
+        btnEditStaffCategogy.setEnabled(false);
+        btnDelStaffCategogy.setEnabled(false);
+        btnSaveStaffCategogy.setEnabled(true);
+        flag=2;
+    }//GEN-LAST:event_btnEditStaffCategogyActionPerformed
+
+    private void btnDelStaffCategogyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelStaffCategogyActionPerformed
+        // TODO add your handling code here:
+        btnAddStaffCategogy.setEnabled(false);
+        btnEditStaffCategogy.setEnabled(false);
+        btnDelStaffCategogy.setEnabled(false);
+        btnSaveStaffCategogy.setEnabled(true);
+        flag=3;
+    }//GEN-LAST:event_btnDelStaffCategogyActionPerformed
+
+    private void btnSaveStaffCategogyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveStaffCategogyActionPerformed
+        // TODO add your handling code here:
+        if(flag==1)
+        {
+            if(Insert())
+            {
+                btnSaveStaffCategogy.setEnabled(false);
+                control.bindingStaffCategogy(jTableStaffCategogy, staffCategogyBLL.LoadStaffCategogy());
+                ClearText();
+            }
+            btnAddStaffCategogy.setEnabled(true);
+            btnEditStaffCategogy.setEnabled(true);
+            btnDelStaffCategogy.setEnabled(true);
+        }
+        if(flag==2)
+        {
+            if(Update())
+            {
+                btnSaveStaffCategogy.setEnabled(false);
+                control.bindingStaffCategogy(jTableStaffCategogy, staffCategogyBLL.LoadStaffCategogy());
+                ClearText();
+            }
+            btnAddStaffCategogy.setEnabled(true);
+            btnEditStaffCategogy.setEnabled(true);
+            btnDelStaffCategogy.setEnabled(true);
+        }
+        if(flag==3)
+        {
+            if(Delete()==true)
+            {
+                btnSaveStaffCategogy.setEnabled(false);
+                control.bindingStaffCategogy(jTableStaffCategogy, staffCategogyBLL.LoadStaffCategogy());
+                ClearText();
+            }
+            btnAddStaffCategogy.setEnabled(true);
+            btnEditStaffCategogy.setEnabled(true);
+            btnDelStaffCategogy.setEnabled(true);
+        }
+    }//GEN-LAST:event_btnSaveStaffCategogyActionPerformed
+
+    private void btnSearchStaffCategogyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchStaffCategogyActionPerformed
+        // TODO add your handling code here:
+        control.bindingStaffCategogy(jTableStaffCategogy, staffCategogyBLL.SearchStaffCategogy(txfSearchStaffCategogy.getText().toString()));
+        txfSearchStaffCategogy.setText("");
+    }//GEN-LAST:event_btnSearchStaffCategogyActionPerformed
+    //Thêm loại nhân viên
+    public boolean  Insert()
+    {
+        String name =txfNameStaffCategogy.getText().toString();
+        if(name.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Bạn chưa nhập tên loại nhân viên");
+            return false;
+        }
+        else{
+            if(staffCategogyBLL.InsertStaffCategogy(name))
+            {
+                JOptionPane.showMessageDialog(this,"Thêm loại nhân viên thành công");
+                return true;
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Thêm loại nhân viên thất bại");
+                return false;
+            }
+        }
+    }
+    //Cập nhật loại nhân viên
+    public boolean  Update()
+    {
+        int id=Integer.parseInt(txfIDStaffCategogy.getText());
+        String name =txfNameStaffCategogy.getText().toString();
+        if(name.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Bạn chưa nhập tên loại nhân viên");
+            return false;
+        }
+        else{
+            if(staffCategogyBLL.UpdateStaffCategogy(id, name))
+            {
+                JOptionPane.showMessageDialog(this,"Cập nhật loại nhân viên thành công");
+                return true;
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Cập nhật loại nhân viên thất bại");
+                return false;
+            }
+        }
+    }
+    //Xóa loại nhân viên
+    public boolean  Delete()
+    {
+        int id=Integer.parseInt(txfIDStaffCategogy.getText());
+        if(staffCategogyBLL.DeleteStaffCategogy(id))
+       {
+           JOptionPane.showMessageDialog(this,"Xóa loại nhân viên thành công");
+           return true;
+       }
+       else
+       {
+           JOptionPane.showMessageDialog(this, "Xóa loại nhân viên thất bại");
+           return false;
+       }
+
+   }
+   
+    //Xóa text
+    public void ClearText()
+    {
+        txfIDStaffCategogy.setText("");
+        txfNameStaffCategogy.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddStaffCategogy;

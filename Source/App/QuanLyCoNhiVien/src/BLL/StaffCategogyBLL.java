@@ -40,4 +40,9 @@ public class StaffCategogyBLL {
     {
         return DAL.SearchStaffCategogy(key);
     }
+    //Lấy mã loại nhân viên theo loại nhân viên
+    public int getID(String name)
+    {
+        return DAL.getID(name);
+    }
 }

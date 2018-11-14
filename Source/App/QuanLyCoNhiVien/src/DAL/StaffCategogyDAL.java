@@ -6,6 +6,7 @@
 package DAL;
 
 import Entity.StaffCategogy;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -104,5 +105,20 @@ public class StaffCategogyDAL extends  DataAccessHelper{
         } catch (Exception e) {
         }
         return temp;
+    }
+    //Lấy mã loại nhân viên theo tên loại nhân viên
+    public int getID(String name)
+    {
+        String SQL="SELECT MaLoaiNV FROM LoaiNhanVien WHERE TenLoaiNV=N'"+name+"'";
+        try {
+            getConnect();
+            PreparedStatement ps=conn.prepareStatement(SQL);
+            ResultSet rs =ps.executeQuery();
+            if(rs!=null && rs.next())
+                return rs.getInt("MaLoaiNV");
+            getClose();
+        } catch (Exception e) {
+        }
+        return 0;
     }
 }
