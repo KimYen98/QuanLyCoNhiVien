@@ -5,6 +5,7 @@
  */
 package Utilities;
 
+import Entity.Child;
 import Entity.Staff;
 import Entity.StaffCategogy;
 import java.util.ArrayList;
@@ -64,6 +65,43 @@ public class ControlFormat {
             row.add(staff.getPhoneNumber());
             row.add(staff.getStartWork());
             row.add(staff.getNameStaffCategogy());
+            data.add(row);
+        }
+        //DefaultTableModel
+        DefaultTableModel dtm = new DefaultTableModel(data,header){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        name.setModel(dtm); 
+    }
+    //Lấy dữ liệu ở bảng trẻ
+    public void bindingChild(JTable name ,ArrayList<Child> arr)
+    {
+        Vector header =new Vector();
+        header.add("Mã trẻ");
+        header.add("Tên trẻ");
+        header.add("Giới tính");
+        header.add("Ngày sinh");
+        header.add("Ngày vào");
+        header.add("Hoàn cảnh");
+        header.add("Người đưa trẻ vào");
+        header.add("Trạng thái");
+        header.add("Tên bảo mẫu");
+        Vector data =new Vector();
+        for(Child child : arr)
+        {
+            Vector row =new Vector();
+            row.add(child.getID());
+            row.add(child.getName());
+            row.add(child.getSex());
+            row.add(child.getBirthday());
+            row.add(child.getJoinDate());
+            row.add(child.getSituation());
+            row.add(child.getWhoBring());
+            row.add(child.getStatus());
+            row.add(child.getNameStaff());
             data.add(row);
         }
         //DefaultTableModel

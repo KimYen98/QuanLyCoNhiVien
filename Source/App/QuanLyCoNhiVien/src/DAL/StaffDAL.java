@@ -6,6 +6,7 @@
 package DAL;
 
 import Entity.Staff;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -116,4 +117,47 @@ public class StaffDAL extends  DataAccessHelper{
         }
         return temp;
     }
+    //Hiện thi danh sách nhân viên là bảo mẫu
+    public ArrayList <Staff> LoadNanny()
+    {
+        ArrayList<Staff> temp =new ArrayList<>();
+        String SQL="exec sp_HienThiDanhSachBaoMau";
+        try {
+            getConnect();
+            Statement st =conn.createStatement();
+            ResultSet rs =st.executeQuery(SQL);
+            if(rs!=null)
+                while(rs.next())
+                {
+                    Staff staff =new Staff();
+                    staff.setID(rs.getInt("MaNV"));
+                    staff.setName(rs.getString("TenNV"));
+                    staff.setSex(rs.getString("GioiTinh"));
+                    staff.setBirthday(rs.getDate("NgaySinh"));
+                    staff.setAddress(rs.getString("DiaChi"));
+                    staff.setPhoneNumber(rs.getString("SoDT"));
+                    staff.setStartWork(rs.getDate("NgayVL"));
+                    staff.setNameStaffCategogy(rs.getString("TenLoaiNV"));
+                    temp.add(staff);
+                }
+            getClose();
+        } catch (Exception e) {
+        }
+        return temp;
+    }
+    //Lấy mã nhân viên theo tên nhân viên
+    public int getID(String name)
+    {
+        String SQL="SELECT MaNV FROM NhanVien WHERE TenNV=N'"+name+"'";
+        try {
+            getConnect();
+            PreparedStatement ps=conn.prepareStatement(SQL);
+            ResultSet rs =ps.executeQuery();
+            if(rs!=null && rs.next())
+                return rs.getInt("MaNV");
+            getClose();
+        } catch (Exception e) {
+        }
+        return 0;
+    }   
 }

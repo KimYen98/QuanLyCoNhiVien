@@ -40,4 +40,14 @@ public class StaffBLL {
     {
         return DAL.SearchStaff(key);
     }
+    //Hiện thi danh sách bảo mẫu
+    public ArrayList<Staff> LoadAnny()
+    {
+        return DAL.LoadNanny();
+    }
+    //Lấy mã nhân viên theo tên nhân viên
+    public int getID(String key )
+    {
+        return DAL.getID(key);
+    }
 }

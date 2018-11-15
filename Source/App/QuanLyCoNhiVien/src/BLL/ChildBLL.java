@@ -21,13 +21,18 @@ public class ChildBLL {
         return DAL.LoadChild();
     }
     //Thêm trẻ
-    public boolean  InsertChild(String name , String sex , String birthday , String joindate , String situation ,String whobring ,String status , String namestaff  )
+    public boolean  InsertChild(String name , String sex , String birthday , String joindate , String situation ,String whobring ,int status , int idstaff  )
     {
-        return DAL.InsertChild(name, sex, birthday, joindate, situation, whobring, status, namestaff);
+        return DAL.InsertChild(name, sex, birthday, joindate, situation, whobring, status, idstaff);
     }
     //Cập nhật trẻ
-    public boolean UpdateChild(int id,String name , String sex , String birthday , String joindate , String situation ,String whobring ,String status , String namestaff  )
+    public boolean UpdateChild(int id,String name , String sex , String birthday , String joindate , String situation ,String whobring ,int status , int idstaff  )
     {
-        return DAL.UpdateChild(id, name, sex, birthday, joindate, situation, whobring, status, namestaff);
+        return DAL.UpdateChild(id, name, sex, birthday, joindate, situation, whobring, status, idstaff);
+    }
+    //Tìm trẻ
+    public ArrayList<Child> SearchChild(String key)
+    {
+        return DAL.SearchChild(key);
     }
 }

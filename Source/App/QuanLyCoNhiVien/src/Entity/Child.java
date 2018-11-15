@@ -19,7 +19,7 @@ public class Child {
     private Date JoinDate ;
     private String Situation ;
     private String WhoBring;
-    private String Status ;
+    private int Status ;
     private String NameStaff;
 
     /**
@@ -123,14 +123,14 @@ public class Child {
     /**
      * @return the Status
      */
-    public String getStatus() {
+    public int getStatus() {
         return Status;
     }
 
     /**
      * @param Status the Status to set
      */
-    public void setStatus(String Status) {
+    public void setStatus(int Status) {
         this.Status = Status;
     }
 

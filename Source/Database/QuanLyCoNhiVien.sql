@@ -256,7 +256,7 @@ create proc sp_CapNhatNhanVien
 @MaNV int,@TenNV nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19), @DiaChi nvarchar(100), @SoDT nvarchar(10), @NgayVL nvarchar(19), @MaLoaiNV int
 as
 begin
-	 declare @NgaySinh_ smalldatetime,@NgayVL_ smalldatetime
+	declare @NgaySinh_ smalldatetime,@NgayVL_ smalldatetime
 	set @NgaySinh_=CONVERT(smalldatetime,@NgaySinh,103)
 	set @NgayVL_=CONVERT(smalldatetime,@NgayVL,103)
 	update NhanVien
@@ -290,5 +290,77 @@ begin
 	select MaNV,TenNV,GioiTinh,NgaySinh,DiaChi,SoDT,NgayVL,TenLoaiNV
 	from NhanVien ,LoaiNhanVien
 	WHERE NhanVien.MaLoaiNV=LoaiNhanVien.MaLoaiNV and [dbo].[GetUnsignString](TenNV) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
+end
+go
+--Hiện thị danh sách trẻ
+create proc sp_HienThiDanhSachTre
+as 
+begin
+	select MaTre,TenTre,Tre.GioiTinh,Tre.NgaySinh,NgayVao,HoanCanh,NguoiDuaTreVao,TrangThai,TenNV
+	from Tre,NhanVien
+	where Tre.MaNV=NhanVien.MaNV
+end
+go
+--Thêm trẻ
+create proc sp_ThemTre
+@TenTre nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19),@NgayVao nvarchar(19), @HoanCanh nvarchar(4000),@NguoiDuaTreVao nvarchar(100), @TrangThai int,@MaNV int
+as
+begin
+	declare @MaTre int, @MaTre_Max int, @i int =1
+	declare @NgaySinh_ smalldatetime,@NgayVao_ smalldatetime
+	set @NgaySinh_=CONVERT(smalldatetime,@NgaySinh,103)
+	set @NgayVao_=CONVERT(smalldatetime,@NgayVao,103)
+	set @MaTre_Max=(select max(MaTre)
+					from Tre)
+	if(@MaTre_Max is null)
+		set @MaTre=@i
+	else
+	begin
+		while(@i<=@MaTre_Max+1)
+			begin
+				if(select count(*)
+					from Tre
+					where MaTre=@i)=0
+					begin
+						set @MaTre=@i
+						break
+					end
+			set @i=@i+1
+			end
+	end
+	insert into Tre values(@MaTre,@TenTre,@GioiTinh,@NgaySinh_,@NgayVao_,@HoanCanh,@NguoiDuaTreVao,@TrangThai,@MaNV)
+end
+go
+exec sp_ThemTre 'a','Nam','11/5/2015','2/5/2016','a','a','0',1
+ --Cập nhật trẻ
+ create proc sp_CapNhatTre
+@MaTre int, @TenTre nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19),@NgayVao nvarchar(19), @HoanCanh nvarchar(4000),@NguoiDuaTreVao nvarchar(100), @TrangThai int,@MaNV int
+as
+begin
+	declare @NgaySinh_ smalldatetime,@NgayVao_ smalldatetime
+	set @NgaySinh_=CONVERT(smalldatetime,@NgaySinh,103)
+	set @NgayVao_=CONVERT(smalldatetime,@NgayVao,103)
+	update Tre
+	set TenTre=@TenTre,GioiTinh=@GioiTinh,NgaySinh=@NgaySinh_,NgayVao=@NgayVao_,HoanCanh=@HoanCanh,NguoiDuaTreVao=@NguoiDuaTreVao,TrangThai=@TrangThai,MaNV=@MaNV
+	where MaTre=@MaTre
+	end
+go
+--Tìm trẻ
+create proc sp_TimTre
+@key nvarchar(100)
+as
+begin
+	select MaTre,TenTre,Tre.GioiTinh,Tre.NgaySinh,NgayVao,HoanCanh,NguoiDuaTreVao,TrangThai,TenNV
+	from Tre,NhanVien
+	where Tre.MaNV=NhanVien.MaNV and [dbo].[GetUnsignString](TenTre) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
+end
+go
+--Hiện thi danh sách nhân viên là bảo mẫu
+create proc sp_HienThiDanhSachBaoMau
+as
+begin
+	select MaNV,TenNV,GioiTinh,NgaySinh,DiaChi,SoDT,NgayVL,TenLoaiNV
+	from NhanVien,LoaiNhanVien
+	where NhanVien.MaLoaiNV=LoaiNhanVien.MaLoaiNV and TenLoaiNV=N'Bảo mẫu'
 end
 go
