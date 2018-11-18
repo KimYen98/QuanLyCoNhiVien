@@ -364,3 +364,57 @@ begin
 	where NhanVien.MaLoaiNV=LoaiNhanVien.MaLoaiNV and TenLoaiNV=N'Bảo mẫu'
 end
 go
+--Hiện thi danh sách nhà tài trợ
+create proc sp_HienThiDanhSachNhaTaiTro
+as
+begin
+	select * from NhaTaiTro
+end
+go
+--Thêm nhà tại trợ
+create proc sp_ThemNhaTaiTro
+@TenNhaTaiTro nvarchar(100),@SoDT nvarchar(10), @DiaChi nvarchar(100)
+as
+begin
+	declare @MaNhaTaiTro int, @MaNhaTaiTro_Max int ,@i int=1
+	set @MaNhaTaiTro_Max=(select Max(MaNhaTaiTro)
+							from NhaTaiTro)
+	if(@MaNhaTaiTro_Max is null)
+		set @MaNhaTaiTro=@i
+	else
+		begin
+		while(@i<=@MaNhaTaiTro_Max+1)
+			begin
+				if(select count(*)
+					from NhaTaiTro
+					where MaNhaTaiTro=@i)=0
+					begin
+						set @MaNhaTaiTro=@i
+						break
+					end
+					set @i=@i+1
+			end
+
+		end
+	insert into NhaTaiTro values(@MaNhaTaiTro,@TenNhaTaiTro,@SoDT,@DiaChi)
+end
+go
+--Cập nhật nhà tài trợ
+create proc sp_CapNhatNhaTaiTro
+@MaNhaTaiTro int,@TenNhaTaiTro nvarchar(100),@SoDT nvarchar(10),@DiaChi nvarchar(100)
+as 
+begin
+	update NhaTaiTro 
+	set TenNhaTaiTro=@TenNhaTaiTro,SoDT=@SoDT,DiaChi=@DiaChi
+	where MaNhaTaiTro=@MaNhaTaiTro
+end
+go
+--Xóa nhà tài trợ
+create proc sp_XoaNhaTaiTro
+@MaNhaTaiTro int
+as 
+begin
+	delete from NhaTaiTro
+	where MaNhaTaiTro=@MaNhaTaiTro
+end
+go
