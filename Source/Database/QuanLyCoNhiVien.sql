@@ -418,3 +418,83 @@ begin
 	where MaNhaTaiTro=@MaNhaTaiTro
 end
 go
+--Tìm nhà tài trợ
+create proc sp_TimNhaTaiTro
+@key nvarchar(100)
+as
+begin
+	select *
+	from NhaTaiTro
+	where  [dbo].[GetUnsignString](TenNhaTaiTro) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
+end
+go
+--Hiện thị danh sách tài trợ
+create proc sp_HienThiDanhSachTaiTro
+as
+begin
+	select MaTaiTro, TenNhaTaiTro,NgayTaiTro,HinhThucTaiTro,SoTien
+	from TaiTro,NhaTaiTro
+	where TaiTro.MaNhaTaiTro=NhaTaiTro.MaNhaTaiTro
+end
+go
+--Thêm tài trợ
+create proc sp_ThemTaiTro
+@MaNhaTaiTro int, @NgayTaiTro nvarchar(19),@HinhThuc nvarchar(100), @SoTien money
+as
+begin
+	declare @MaTaiTro int,@MaTaiTro_Max int,@i int=1, @NgayTaiTro_ smalldatetime
+	set @MaTaiTro_Max=(select max(MaTaiTro)
+						from TaiTro)
+	if(@MaTaiTro_Max is null)
+		set @MaTaiTro=@i
+	else
+		begin
+		while(@i<=@MaTaiTro_Max+1)
+			begin
+				if(select count(*)
+					from TaiTro
+					where MaTaiTro=@i)=0
+					begin
+						set @MaTaiTro=@i
+						break
+					end
+				set @i=@i+1
+			end
+		end
+	set @NgayTaiTro_=CONVERT(smalldatetime,@NgayTaiTro,103)
+	insert into TaiTro values(@MaTaiTro,@MaNhaTaiTro,@NgayTaiTro_,@HinhThuc,@SoTien)
+end
+go
+--Cập nhật tài trợ
+create proc sp_CapNhatTaiTro
+@MaTaiTro int,@MaNhaTaiTro int, @NgayTaiTro nvarchar(19),@HinhThuc nvarchar(100), @SoTien money
+as
+begin
+	declare @NgayTaiTro_ smalldatetime
+	set @NgayTaiTro_=CONVERT(smalldatetime,@NgayTaiTro,103)
+	update TaiTro
+	set MaNhaTaiTro=@MaNhaTaiTro,NgayTaiTro=@NgayTaiTro_,HinhThucTaiTro=@HinhThuc,SoTien=@SoTien
+	where MaTaiTro=@MaTaiTro
+end
+go
+--Xóa tài trợ
+create proc sp_XoaTaiTro
+@MaTaiTro int
+as
+begin
+	delete from TaiTro
+	where MaTaiTro=@MaTaiTro
+end
+go
+--Tìm tài trợ
+create proc sp_TimTaiTro
+@key nvarchar(100)
+as
+begin
+	select MaTaiTro, TenNhaTaiTro,NgayTaiTro,HinhThucTaiTro,SoTien
+	from TaiTro,NhaTaiTro
+	where TaiTro.MaNhaTaiTro=NhaTaiTro.MaNhaTaiTro and   [dbo].[GetUnsignString](TenNhaTaiTro) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
+end
+go
+select MaNhaTaiTro from NhaTaiTro where TenNhaTaiTro=N'Công ty TNHH Hồng Hà'
+select * from NhaTaiTro
