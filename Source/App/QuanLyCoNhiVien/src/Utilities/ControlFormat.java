@@ -6,6 +6,8 @@
 package Utilities;
 
 import Entity.Child;
+import Entity.Sponsor;
+import Entity.Sponsorship;
 import Entity.Staff;
 import Entity.StaffCategogy;
 import java.util.ArrayList;
@@ -41,7 +43,7 @@ public class ControlFormat {
         };
         name.setModel(dtm); 
     }
-     //Lấy dữ liệu bảng nhân viên
+    //Lấy dữ liệu bảng nhân viên
     public void bindingStaff(JTable name , ArrayList<Staff> arr)
     {
         Vector header =new Vector();
@@ -112,5 +114,62 @@ public class ControlFormat {
             }
         };
         name.setModel(dtm); 
+    }
+    
+    //Lấy dữ liệu ở bàng nhà tài trợ
+    public void bindingSponsor(JTable name ,ArrayList<Sponsor> arr)        
+    {
+       Vector header =new Vector();
+       header.add("Mã nhà tài trợ");
+       header.add("Tên nhà tài trợ");
+       header.add("Số điện thoại");
+       header.add("Địa chỉ");
+       Vector data =new Vector();
+       for(Sponsor sponsor:arr)
+       {
+           Vector row =new Vector();
+           row.add(sponsor.getID());
+           row.add(sponsor.getName());
+           row.add(sponsor.getPhoneNumber());
+           row.add(sponsor.getAddress());
+           data.add(row);
+       }
+          //DefaultTableModel
+        DefaultTableModel dtm = new DefaultTableModel(data,header){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        name.setModel(dtm);      
+    }
+    //Lấy dữ liệu ở bảng
+    public void bindingSponsorship(JTable name , ArrayList<Sponsorship> arr)
+    {
+        Vector header =new Vector();
+        header.add("Mã tài trợ");
+        header.add("Tên nhà tài trợ");
+        header.add("Ngày tài trợ");
+        header.add("Hình thức tài trợ");
+        header.add("Số tiền");
+        Vector data =new Vector();
+        for(Sponsorship sponsorship :arr)
+        {
+            Vector row =new Vector();
+            row.add(sponsorship.getIDSponsorShip());
+            row.add(sponsorship.getNameSponsor());
+            row.add(sponsorship.getSponsorshipDate());
+            row.add(sponsorship.getFormSponsorship());
+            row.add(sponsorship.getMoney());
+            data.add(row);
+        }
+         //DefaultTableModel
+        DefaultTableModel dtm = new DefaultTableModel(data,header){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        name.setModel(dtm);      
     }
 }

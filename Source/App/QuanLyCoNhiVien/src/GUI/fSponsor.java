@@ -5,6 +5,10 @@
  */
 package GUI;
 
+import BLL.SponsorBLL;
+import Utilities.ControlFormat;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author STIREN
@@ -14,8 +18,12 @@ public class fSponsor extends javax.swing.JInternalFrame {
     /**
      * Creates new form fDonor
      */
+    SponsorBLL sponsorBLL =new SponsorBLL();
+    ControlFormat control=new ControlFormat();
+    private int flag=0;
     public fSponsor() {
         initComponents();
+        control.bindingSponsor(jTableSponsor, sponsorBLL.LoadSponsor());
     }
 
     /**
@@ -57,6 +65,11 @@ public class fSponsor extends javax.swing.JInternalFrame {
 
         btnSearchSponsor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnSearchSponsor.setText("TÌM KIẾM");
+        btnSearchSponsor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchSponsorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -143,15 +156,35 @@ public class fSponsor extends javax.swing.JInternalFrame {
 
         btnAddSponsor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnAddSponsor.setText("THÊM");
+        btnAddSponsor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddSponsorActionPerformed(evt);
+            }
+        });
 
         btnEditSponsor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnEditSponsor.setText("CẬP NHẬT");
+        btnEditSponsor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditSponsorActionPerformed(evt);
+            }
+        });
 
         btnDelSponsor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnDelSponsor.setText("XÓA");
+        btnDelSponsor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelSponsorActionPerformed(evt);
+            }
+        });
 
         btnSaveSponsor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnSaveSponsor.setText("LƯU");
+        btnSaveSponsor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveSponsorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -191,6 +224,11 @@ public class fSponsor extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableSponsor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableSponsorMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableSponsor);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -231,6 +269,156 @@ public class fSponsor extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public boolean  Insert()
+    {
+        String name =txfNameSponsor.getText().toString();
+        String phonenumber =txfPhoneSponsor.getText().toString();
+        String address =txfAddressSponsor.getText().toString();
+        if( name.equals("")|| phonenumber.equals("")|| address.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Bạn nhập thông tin chưa đầy đủ");
+            return false;
+        }
+        else{
+            if(sponsorBLL.InsertSponsor(name, phonenumber, address))
+            {
+                JOptionPane.showMessageDialog(this, "Thêm thành công nhà tài trợ");
+                return true;
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Thêm thất bại nhà tài trợ");
+                return false;
+            }
+        }
+    }
+    public boolean Update()
+    {
+        int id =Integer.parseInt(txfIDSponsor.getText().toString());
+        String name =txfNameSponsor.getText().toString();
+        String phonenumber =txfPhoneSponsor.getText().toString();
+        String address =txfAddressSponsor.getText().toString();
+        if(name.equals("")||phonenumber.equals("")||address.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Bạn nhập thông tin chưa đầy đủ");
+            return false;
+        }
+        else{
+            if(sponsorBLL.UpdateSponsor(id, name, phonenumber, address))
+            {
+                JOptionPane.showMessageDialog(this, "Cập nhật thành công nhà tài trợ");
+                return true;
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Cập nhật thất bại nhà tài trợ");
+                return false;
+            }
+        }
+    }
+    public boolean Delete()
+    {
+        int id=Integer.parseInt(txfIDSponsor.getText().toString());
+        if(sponsorBLL.DeleteSponsor(id))
+        {
+            JOptionPane.showMessageDialog(this, "Xóa thành công nhà tài trợ");
+            return true;
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Xóa thất bại nhà tài trợ");
+            return false;
+        }
+    }
+    public void ClearText()
+    {
+        txfIDSponsor.setText("");
+        txfNameSponsor.setText("");
+        txfPhoneSponsor.setText("");
+        txfAddressSponsor.setText("");
+    }
+    private void btnAddSponsorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSponsorActionPerformed
+        // TODO add your handling code here:
+        ClearText();
+        btnAddSponsor.setEnabled(false);
+        btnEditSponsor.setEnabled(false);
+        btnDelSponsor.setEnabled(false);
+        btnSaveSponsor.setEnabled(true);
+        flag=1;
+    }//GEN-LAST:event_btnAddSponsorActionPerformed
+    
+    private void btnEditSponsorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditSponsorActionPerformed
+        // TODO add your handling code here:
+        btnAddSponsor.setEnabled(false);
+        btnEditSponsor.setEnabled(false);
+        btnDelSponsor.setEnabled(false);
+        btnSaveSponsor.setEnabled(true);
+        flag=2;
+    }//GEN-LAST:event_btnEditSponsorActionPerformed
+
+    private void btnDelSponsorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelSponsorActionPerformed
+        // TODO add your handling code here:
+        btnAddSponsor.setEnabled(false);
+        btnEditSponsor.setEnabled(false);
+        btnDelSponsor.setEnabled(false);
+        btnSaveSponsor.setEnabled(true);
+        flag=3;
+    }//GEN-LAST:event_btnDelSponsorActionPerformed
+
+    private void btnSaveSponsorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveSponsorActionPerformed
+        // TODO add your handling code here:
+        if(flag==1)
+        {
+            if(Insert())
+            {
+                btnSaveSponsor.setEnabled(false);
+                control.bindingSponsor(jTableSponsor, sponsorBLL.LoadSponsor());
+                ClearText();
+            }
+            btnAddSponsor.setEnabled(true);
+            btnEditSponsor.setEnabled(true);
+            btnDelSponsor.setEnabled(true);
+            
+        }
+        if(flag==2)
+        {
+            if(Update())
+            {
+                 btnSaveSponsor.setEnabled(false);
+                control.bindingSponsor(jTableSponsor, sponsorBLL.LoadSponsor());
+                ClearText();
+            }
+            btnAddSponsor.setEnabled(true);
+            btnEditSponsor.setEnabled(true);
+            btnDelSponsor.setEnabled(true);
+        }
+         if(flag==3)
+        {
+            if(Delete())
+            {
+                 btnSaveSponsor.setEnabled(false);
+                control.bindingSponsor(jTableSponsor, sponsorBLL.LoadSponsor());
+                ClearText();
+            }
+            btnAddSponsor.setEnabled(true);
+            btnEditSponsor.setEnabled(true);
+            btnDelSponsor.setEnabled(true);
+        }
+    }//GEN-LAST:event_btnSaveSponsorActionPerformed
+
+    private void btnSearchSponsorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchSponsorActionPerformed
+        // TODO add your handling code here:
+        String key =txfSearchSponsor.getText().toString();
+        control.bindingSponsor(jTableSponsor, sponsorBLL.SearchSponsor(key));
+        txfSearchSponsor.setText("");
+    }//GEN-LAST:event_btnSearchSponsorActionPerformed
+
+    private void jTableSponsorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableSponsorMouseClicked
+        // TODO add your handling code here:
+        int row=jTableSponsor.getSelectedRow();
+        txfIDSponsor.setText(jTableSponsor.getValueAt(row, 0).toString());
+        txfNameSponsor.setText(jTableSponsor.getValueAt(row, 1).toString());
+        txfPhoneSponsor.setText(jTableSponsor.getValueAt(row, 2).toString());
+        txfAddressSponsor.setText(jTableSponsor.getValueAt(row, 3).toString());
+    }//GEN-LAST:event_jTableSponsorMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

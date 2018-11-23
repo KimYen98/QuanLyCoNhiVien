@@ -364,6 +364,7 @@ begin
 	where NhanVien.MaLoaiNV=LoaiNhanVien.MaLoaiNV and TenLoaiNV=N'Bảo mẫu'
 end
 go
+<<<<<<< HEAD
 --LẤY THÔNG TIN CHI TIÊU
 CREATE PROC SP_LOADEXPENSE
 AS
@@ -536,3 +537,139 @@ BEGIN
 	SET TongSoTien = @TongSoTien_Moi
 	WHERE MaChiTieu = @MaChiTieu
 END
+=======
+--Hiện thi danh sách nhà tài trợ
+create proc sp_HienThiDanhSachNhaTaiTro
+as
+begin
+	select * from NhaTaiTro
+end
+go
+--Thêm nhà tại trợ
+create proc sp_ThemNhaTaiTro
+@TenNhaTaiTro nvarchar(100),@SoDT nvarchar(10), @DiaChi nvarchar(100)
+as
+begin
+	declare @MaNhaTaiTro int, @MaNhaTaiTro_Max int ,@i int=1
+	set @MaNhaTaiTro_Max=(select Max(MaNhaTaiTro)
+							from NhaTaiTro)
+	if(@MaNhaTaiTro_Max is null)
+		set @MaNhaTaiTro=@i
+	else
+		begin
+		while(@i<=@MaNhaTaiTro_Max+1)
+			begin
+				if(select count(*)
+					from NhaTaiTro
+					where MaNhaTaiTro=@i)=0
+					begin
+						set @MaNhaTaiTro=@i
+						break
+					end
+					set @i=@i+1
+			end
+
+		end
+	insert into NhaTaiTro values(@MaNhaTaiTro,@TenNhaTaiTro,@SoDT,@DiaChi)
+end
+go
+--Cập nhật nhà tài trợ
+create proc sp_CapNhatNhaTaiTro
+@MaNhaTaiTro int,@TenNhaTaiTro nvarchar(100),@SoDT nvarchar(10),@DiaChi nvarchar(100)
+as 
+begin
+	update NhaTaiTro 
+	set TenNhaTaiTro=@TenNhaTaiTro,SoDT=@SoDT,DiaChi=@DiaChi
+	where MaNhaTaiTro=@MaNhaTaiTro
+end
+go
+--Xóa nhà tài trợ
+create proc sp_XoaNhaTaiTro
+@MaNhaTaiTro int
+as 
+begin
+	delete from NhaTaiTro
+	where MaNhaTaiTro=@MaNhaTaiTro
+end
+go
+--Tìm nhà tài trợ
+create proc sp_TimNhaTaiTro
+@key nvarchar(100)
+as
+begin
+	select *
+	from NhaTaiTro
+	where  [dbo].[GetUnsignString](TenNhaTaiTro) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
+end
+go
+--Hiện thị danh sách tài trợ
+create proc sp_HienThiDanhSachTaiTro
+as
+begin
+	select MaTaiTro, TenNhaTaiTro,NgayTaiTro,HinhThucTaiTro,SoTien
+	from TaiTro,NhaTaiTro
+	where TaiTro.MaNhaTaiTro=NhaTaiTro.MaNhaTaiTro
+end
+go
+--Thêm tài trợ
+create proc sp_ThemTaiTro
+@MaNhaTaiTro int, @NgayTaiTro nvarchar(19),@HinhThuc nvarchar(100), @SoTien money
+as
+begin
+	declare @MaTaiTro int,@MaTaiTro_Max int,@i int=1, @NgayTaiTro_ smalldatetime
+	set @MaTaiTro_Max=(select max(MaTaiTro)
+						from TaiTro)
+	if(@MaTaiTro_Max is null)
+		set @MaTaiTro=@i
+	else
+		begin
+		while(@i<=@MaTaiTro_Max+1)
+			begin
+				if(select count(*)
+					from TaiTro
+					where MaTaiTro=@i)=0
+					begin
+						set @MaTaiTro=@i
+						break
+					end
+				set @i=@i+1
+			end
+		end
+	set @NgayTaiTro_=CONVERT(smalldatetime,@NgayTaiTro,103)
+	insert into TaiTro values(@MaTaiTro,@MaNhaTaiTro,@NgayTaiTro_,@HinhThuc,@SoTien)
+end
+go
+--Cập nhật tài trợ
+create proc sp_CapNhatTaiTro
+@MaTaiTro int,@MaNhaTaiTro int, @NgayTaiTro nvarchar(19),@HinhThuc nvarchar(100), @SoTien money
+as
+begin
+	declare @NgayTaiTro_ smalldatetime
+	set @NgayTaiTro_=CONVERT(smalldatetime,@NgayTaiTro,103)
+	update TaiTro
+	set MaNhaTaiTro=@MaNhaTaiTro,NgayTaiTro=@NgayTaiTro_,HinhThucTaiTro=@HinhThuc,SoTien=@SoTien
+	where MaTaiTro=@MaTaiTro
+end
+go
+--Xóa tài trợ
+create proc sp_XoaTaiTro
+@MaTaiTro int
+as
+begin
+	delete from TaiTro
+	where MaTaiTro=@MaTaiTro
+end
+go
+--Tìm tài trợ
+create proc sp_TimTaiTro
+@key nvarchar(100)
+as
+begin
+	select MaTaiTro, TenNhaTaiTro,NgayTaiTro,HinhThucTaiTro,SoTien
+	from TaiTro,NhaTaiTro
+	where TaiTro.MaNhaTaiTro=NhaTaiTro.MaNhaTaiTro and   [dbo].[GetUnsignString](TenNhaTaiTro) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
+end
+go
+select MaNhaTaiTro from NhaTaiTro where TenNhaTaiTro=N'Công ty TNHH Hồng Hà'
+select * from NhaTaiTro
+>>>>>>> 33da1c7067d4c32639b384ed049409ce6d5a8bd2
