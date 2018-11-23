@@ -364,3 +364,175 @@ begin
 	where NhanVien.MaLoaiNV=LoaiNhanVien.MaLoaiNV and TenLoaiNV=N'Bảo mẫu'
 end
 go
+--LẤY THÔNG TIN CHI TIÊU
+CREATE PROC SP_LOADEXPENSE
+AS
+BEGIN
+	SELECT * FROM ChiTieu
+END
+GO
+--THÊM CHI TIÊU
+ALTER PROC SP_INSERTEXPENSE
+@TenChiTieu nvarchar(100), @NgayChi nvarchar(19)
+AS
+BEGIN
+	DECLARE @NgayChi_ smalldatetime, @Max_MaChiTieu int, @i int
+
+	SET @NgayChi_ = CONVERT(smalldatetime, @NgayChi, 103)
+	SET @i = 1
+
+	SELECT @Max_MaChiTieu = MAX(MaChiTieu)
+	FROM CHITIEU
+
+	IF(@Max_MaChiTieu IS NULL)
+		INSERT INTO ChiTieu VALUES(@i, @TenChiTieu, @NgayChi_, 0)
+	ELSE
+	BEGIN
+		WHILE(@I <= @Max_MaChiTieu + 1)
+		BEGIN
+			IF((SELECT COUNT(*) FROM CHITIEU WHERE MaChiTieu = @i) < 1)
+			BEGIN
+				INSERT INTO ChiTieu VALUES(@i, @TenChiTieu, @NgayChi_, 0)
+				BREAK
+			END
+			SET @i = @i + 1
+		END
+	END
+END
+GO
+--CẬP NHẬT CHI TIÊU
+CREATE PROC SP_UPDATEEXPENSE
+ @MaChiTieu int, @TenChiTieu nvarchar(100), @NgayChi nvarchar(19)
+AS
+BEGIN
+	DECLARE @NgayChi_ smalldatetime
+	SET @NgayChi_ = CONVERT(smalldatetime, @NgayChi, 103)
+
+	UPDATE ChiTieu
+	SET TenChiTieu = @TenChiTieu, NgayChi = @NgayChi_
+	WHERE MaChiTieu = @MaChiTieu 
+END
+GO
+-- XOÁ CHI TIÊU
+CREATE PROC SP_DELETEEXPENSE
+@MaChiTieu int
+AS
+BEGIN
+	DELETE FROM ChiTieu 
+	WHERE MaChiTieu = @MaChiTieu
+END
+GO
+--TÌM KIẾM CHI TIÊU THEO THỜI GIAN
+CREATE PROC SP_SEARCHEXPENSE
+@Month int, @Year int
+AS
+BEGIN
+	SELECT * 
+	FROM ChiTieu
+	WHERE MONTH(NgayChi) = @Month AND YEAR(NgayChi) = @Year
+END
+GO
+-- LẤY THÔNG TIN CHI TIẾT CHI TIÊU
+CREATE PROC SP_LOADEXPENSEINFO
+@MaChiTieu int
+AS
+BEGIN
+	SELECT MaChiTieu, MaCT_ChiTieu, TenCTChiTieu, SoTien
+	FROM CT_ChiTieu
+	WHERE MaChiTieu = @MaChiTieu
+END
+GO
+-- THÊM CHI TIẾT CHI TIÊU
+CREATE PROC SP_INSERTEXPENSEINFO
+@MaChiTieu int, @TenCTChiTieu nvarchar(100), @SoTien float
+AS
+BEGIN
+	DECLARE @Max_MaCT_ChiTieu int, @i int
+
+	SELECT @Max_MaCT_ChiTieu = MAX(MaCT_ChiTieu)
+	FROM CT_ChiTieu
+	SET @i = 1
+
+	IF(@Max_MaCT_ChiTieu IS NULL)
+		INSERT INTO CT_ChiTieu VALUES(@i, @TenCTChiTieu, @SoTien, @MaChiTieu)
+	ELSE
+	BEGIN
+		WHILE(@i <= @Max_MaCT_ChiTieu + 1)
+		BEGIN
+			IF((SELECT COUNT(*) FROM CT_ChiTieu WHERE MaCT_ChiTieu = @i) < 1)
+			BEGIN
+				INSERT INTO CT_ChiTieu VALUES(@i, @TenCTChiTieu, @SoTien, @MaChiTieu)
+				BREAK
+			END
+			SET @i = @i + 1
+		END
+	END
+END
+-- CẬP NHẬT CT_CHITIEU
+CREATE PROC SP_UPDATEEXPENSEINFO
+@MaCT_ChiTieu int, @TenCTChiTieu nvarchar(100), @SoTien float
+AS
+BEGIN
+	UPDATE CT_ChiTieu
+	SET TenCTChiTieu = @TenCTChiTieu, SoTien = @SoTien
+	WHERE MaCT_ChiTieu = @MaCT_ChiTieu
+END
+GO
+-- XOÁ CT_CHITIEU
+CREATE PROC SP_DELETEEXPENSEINFO
+@MaCT_ChiTieu int
+AS
+BEGIN
+	DELETE FROM CT_ChiTieu
+	WHERE MaCT_ChiTieu = @MaCT_ChiTieu
+END
+-- TÌM KIẾM CT_CHITIEU THEO NGÀY
+ALTER PROC SP_SEARCHEXPENSEINFO
+@Day nvarchar(19)
+AS
+BEGIN
+	DECLARE @Day_ smalldatetime
+	SET @Day_ = CONVERT(smalldatetime, @Day, 103)
+
+	SELECT CT_ChiTieu.MaChiTieu, MaCT_ChiTieu, TenCTChiTieu, SoTien
+	FROM CT_ChiTieu, ChiTieu
+	WHERE CT_ChiTieu.MaChiTieu = ChiTieu.MaChiTieu AND NgayChi = @Day_
+END
+exec SP_SEARCHEXPENSEINFO N'12/11/2018'
+--TRIGGER KHI THÊM, SỬA CT_CHITIEU
+ALTER TRIGGER TRG_INSUP_CT_CHITIEU ON CT_CHITIEU
+FOR INSERT, UPDATE
+AS
+BEGIN
+	DECLARE @MaChiTieu int, @TongSoTien float
+
+	SELECT @MaChiTieu = MaChiTieu
+	FROM inserted
+
+	SET @TongSoTien = (SELECT SUM(SoTien) 
+					  FROM CT_ChiTieu 
+					  WHERE MaChiTieu = @MaChiTieu )
+
+	UPDATE ChiTieu
+	SET TongSoTien = @TongSoTien
+	WHERE MaChiTieu = @MaChiTieu
+END
+--TRIGGER KHI XOÁ CT_CHITIEU
+create TRIGGER TRG_DELETE_CT_CHITIEU ON CT_CHITIEU
+FOR DELETE
+AS
+BEGIN
+	DECLARE @MaChiTieu int, @SoTien float, @TongSoTien_Moi float, @TongSoTien float
+
+	SELECT @MaChiTieu = MaChiTieu, @SoTien = SoTien
+	FROM deleted
+
+	SET @TongSoTien = (SELECT TongSoTien 
+					  FROM ChiTieu 
+					  WHERE MaChiTieu = @MaChiTieu)
+	SET @TongSoTien_Moi = @TongSoTien - @SoTien
+
+	UPDATE ChiTieu
+	SET TongSoTien = @TongSoTien_Moi
+	WHERE MaChiTieu = @MaChiTieu
+END
