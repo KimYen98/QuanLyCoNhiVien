@@ -5,6 +5,13 @@
  */
 package GUI;
 
+import BLL.ChildBLL;
+import BLL.StaffBLL;
+import Entity.Staff;
+import Utilities.ControlFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author STIREN
@@ -14,8 +21,19 @@ public class fChild extends javax.swing.JInternalFrame {
     /**
      * Creates new form fChild
      */
+    ChildBLL childBLL=new ChildBLL();
+    ControlFormat control =new ControlFormat();
+    StaffBLL staffBLL=new StaffBLL();
+    private int flag=0;
     public fChild() {
         initComponents();
+        control.bindingChild(jTableChild, childBLL.LoadChild());
+        cbNameStaffChild.removeAllItems();
+        for(Staff staff: staffBLL.LoadAnny())
+        {
+            cbNameStaffChild.addItem(staff.getName());
+        }
+        jDChJoinDateChild.setDate(new Date());
     }
 
     /**
@@ -37,7 +55,6 @@ public class fChild extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         txfIDChild = new javax.swing.JTextField();
         txfNameChild = new javax.swing.JTextField();
         jDChBirthdayChild = new com.toedter.calendar.JDateChooser();
@@ -49,10 +66,9 @@ public class fChild extends javax.swing.JInternalFrame {
         txaSituation = new javax.swing.JTextArea();
         txfWhoBring = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        cbIDStaffChild = new javax.swing.JComboBox<>();
+        cbNameStaffChild = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
-        txfNameStaffChild = new javax.swing.JTextField();
-        txfStatus = new javax.swing.JTextField();
+        cbStatus = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         btnAddChild = new javax.swing.JButton();
         btnEditChild = new javax.swing.JButton();
@@ -89,9 +105,6 @@ public class fChild extends javax.swing.JInternalFrame {
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel8.setText("Người đưa trẻ vào");
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel10.setText("Mã bảo mẫu quản lý");
 
         txfIDChild.setEditable(false);
         txfIDChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -143,18 +156,14 @@ public class fChild extends javax.swing.JInternalFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel9.setText("Trạng thái");
 
-        cbIDStaffChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        cbIDStaffChild.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbNameStaffChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        cbNameStaffChild.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel11.setText("Tên bảo mẫu");
 
-        txfNameStaffChild.setEditable(false);
-        txfNameStaffChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-
-        txfStatus.setEditable(false);
-        txfStatus.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        txfStatus.setText("0");
+        cbStatus.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -179,20 +188,18 @@ public class fChild extends javax.swing.JInternalFrame {
                             .addComponent(txfNameChild)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
                             .addComponent(jLabel9)
                             .addComponent(jLabel8)
                             .addComponent(jLabel7))
-                        .addGap(30, 30, 30)
+                        .addGap(45, 45, 45)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(txfWhoBring, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cbIDStaffChild, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txfStatus)))
+                            .addComponent(cbStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                        .addComponent(txfNameStaffChild, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbNameStaffChild, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -211,8 +218,8 @@ public class fChild extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4))
                     .addComponent(jDChBirthdayChild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
@@ -233,29 +240,45 @@ public class fChild extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(txfStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbIDStaffChild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(txfNameStaffChild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(cbNameStaffChild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         btnAddChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnAddChild.setText("THÊM");
+        btnAddChild.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddChildActionPerformed(evt);
+            }
+        });
 
         btnEditChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnEditChild.setText("CẬP NHẬT");
+        btnEditChild.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditChildActionPerformed(evt);
+            }
+        });
 
         btnDelChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnDelChild.setText("XÓA");
+        btnDelChild.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelChildActionPerformed(evt);
+            }
+        });
 
         btnSaveChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnSaveChild.setText("LƯU");
+        btnSaveChild.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveChildActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -297,12 +320,22 @@ public class fChild extends javax.swing.JInternalFrame {
             }
         ));
         jTableChild.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTableChild.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableChildMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableChild);
 
         txfSearchChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         btnSearchChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnSearchChild.setText("TÌM KIẾM");
+        btnSearchChild.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchChildActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -356,7 +389,7 @@ public class fChild extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
@@ -368,6 +401,125 @@ public class fChild extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public void ClearText()
+    {
+        txaSituation.setText("");
+        txfNameChild.setText("");
+        txfIDChild.setText("");
+        jDChJoinDateChild.setDate(new Date());
+        cbStatus.setSelectedItem("Đang ở cô nhi viện");
+        cbNameStaffChild.setSelectedIndex(0);
+        rbFeMale.setSelected(true);
+        jDChBirthdayChild.setDate(null);
+    }
+    public boolean  Insert()
+    {
+        String name =txfNameChild.getText().toString();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date birthday =jDChBirthdayChild.getDate();
+        String strbirthday =formatter.format(birthday);
+        return false;
+    }
+    public boolean Update ()
+    {
+        return false;
+    }
+    public boolean Delete()
+    {
+        return false;
+    }
+    private void btnAddChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddChildActionPerformed
+        // TODO add your handling code here:
+        btnAddChild.setEnabled(false);
+        btnEditChild.setEnabled(false);
+        btnDelChild.setEnabled(false);
+        btnSaveChild.setEnabled(true);
+        flag=1;
+    }//GEN-LAST:event_btnAddChildActionPerformed
+
+    private void btnEditChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditChildActionPerformed
+        // TODO add your handling code here:
+        btnAddChild.setEnabled(false);
+        btnEditChild.setEnabled(false);
+        btnDelChild.setEnabled(false);
+        btnSaveChild.setEnabled(true);
+        flag=2;
+    }//GEN-LAST:event_btnEditChildActionPerformed
+
+    private void btnDelChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelChildActionPerformed
+        // TODO add your handling code here:
+        btnAddChild.setEnabled(false);
+        btnEditChild.setEnabled(false);
+        btnDelChild.setEnabled(false);
+        btnSaveChild.setEnabled(true);
+        flag=3;
+    }//GEN-LAST:event_btnDelChildActionPerformed
+
+    private void btnSaveChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveChildActionPerformed
+        // TODO add your handling code here:
+        if(flag==1)
+        {
+            if(Insert())
+            {
+                btnSaveChild.setEnabled(false);
+                control.bindingChild(jTableChild, childBLL.LoadChild());
+            }
+            btnAddChild.setEnabled(true);
+            btnEditChild.setEnabled(true);
+            btnDelChild.setEnabled(true);
+        }
+        if(flag==2)
+        {
+            if(Update())
+            {
+                btnSaveChild.setEnabled(false);
+                control.bindingChild(jTableChild, childBLL.LoadChild());
+            }
+            btnAddChild.setEnabled(true);
+            btnEditChild.setEnabled(true);
+            btnDelChild.setEnabled(true);
+        }
+        if(flag==3)
+        {
+            if(Delete())
+            {
+                btnSaveChild.setEnabled(false);
+                control.bindingChild(jTableChild, childBLL.LoadChild());
+            }
+            btnAddChild.setEnabled(true);
+            btnEditChild.setEnabled(true);
+            btnDelChild.setEnabled(true);
+        }
+    }//GEN-LAST:event_btnSaveChildActionPerformed
+
+    private void btnSearchChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchChildActionPerformed
+        // TODO add your handling code here:
+        String key =txfSearchChild.getText().toString();
+        control.bindingChild(jTableChild, childBLL.SearchChild(key));
+        txfSearchChild.setText("");
+    }//GEN-LAST:event_btnSearchChildActionPerformed
+
+    private void jTableChildMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableChildMouseClicked
+        // TODO add your handling code here:
+        int row= jTableChild.getSelectedRow();
+        txfIDChild.setText(jTableChild.getValueAt(row, 0).toString());
+        txfNameChild.setText(jTableChild.getValueAt(row, 1).toString());
+        jDChBirthdayChild.setDate((Date)jTableChild.getModel().getValueAt(row, 2));
+        String sex =jTableChild.getValueAt(row, 3).toString();
+        if(sex.equals("Nam"))
+            rbMale.setSelected(true);
+        if(sex.equals("Nữ"))
+            rbFeMale.setSelected(true);
+        txaSituation.setText(jTableChild.getValueAt(row, 4).toString());
+        txfWhoBring.setText(jTableChild.getValueAt(row, 5).toString());
+        String status =jTableChild.getValueAt(row, 6).toString();
+        if(status.equals("Ở cô nhi viện"))
+            cbStatus.setSelectedItem("Ở cô nhi viện");
+        if(status.equals("Không còn ở cô nhi viện"))
+            cbStatus.setSelectedItem("Không còn ở cô nhi viên");
+        String namestaff =jTableChild.getValueAt(row, 7).toString();
+        cbNameStaffChild.setSelectedItem(namestaff);
+    }//GEN-LAST:event_jTableChildMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -377,11 +529,11 @@ public class fChild extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnSaveChild;
     private javax.swing.JButton btnSearchChild;
     private javax.swing.ButtonGroup buttonGroupSex;
-    private javax.swing.JComboBox<String> cbIDStaffChild;
+    private javax.swing.JComboBox<String> cbNameStaffChild;
+    private javax.swing.JComboBox<String> cbStatus;
     private com.toedter.calendar.JDateChooser jDChBirthdayChild;
     private com.toedter.calendar.JDateChooser jDChJoinDateChild;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -403,9 +555,7 @@ public class fChild extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea txaSituation;
     private javax.swing.JTextField txfIDChild;
     private javax.swing.JTextField txfNameChild;
-    private javax.swing.JTextField txfNameStaffChild;
     private javax.swing.JTextField txfSearchChild;
-    private javax.swing.JTextField txfStatus;
     private javax.swing.JTextField txfWhoBring;
     // End of variables declaration//GEN-END:variables
 }

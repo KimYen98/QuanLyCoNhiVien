@@ -20,6 +20,8 @@ public class Staff {
     private String PhoneNumber ;
     private Date StartWork ;
     private String NameStaffCategogy ;
+    private int Status ;
+    
 
     /**
      * @return the ID
@@ -131,5 +133,19 @@ public class Staff {
      */
     public void setNameStaffCategogy(String NameStaffCategogy) {
         this.NameStaffCategogy = NameStaffCategogy;
+    }
+
+    /**
+     * @return the Status
+     */
+    public int getStatus() {
+        return Status;
+    }
+
+    /**
+     * @param Status the Status to set
+     */
+    public void setStatus(int Status) {
+        this.Status = Status;
     }
 }

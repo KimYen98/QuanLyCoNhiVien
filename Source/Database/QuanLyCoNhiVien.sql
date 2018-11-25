@@ -13,7 +13,7 @@ create table Tre
 	HoanCanh nvarchar(4000),
 	NguoiDuaTreVao nvarchar(100),
 	TrangThai int not null default 0,
-	MaNV int not null default 0,
+	MaNV int not null ,
 	primary key(MaTre)
 )
 go
@@ -28,6 +28,7 @@ create table NhanVien
 	SoDT nvarchar(10),
 	NgayVL smalldatetime not null,
 	MaLoaiNV int not null,
+	TrangThai int not null default 0,
 	primary key(MaNV)
 )
 go
@@ -121,7 +122,7 @@ go
 alter table CT_NguoiNhanTre_Tre add constraint fk_CT_NguoiNhanTre_NguoiNhan foreign key(MaNguoiNhan) references NguoiNhanTre(MaNguoiNhan)
 go
 --Thêm loại nhân viên
-alter proc sp_ThemLoaiNhanVien
+create proc sp_ThemLoaiNhanVien
 @TenLoaiNV nvarchar(100)
 as
 begin
@@ -226,7 +227,7 @@ end
 go
 --Thêm nhân viên
 create proc sp_ThemNhanVien
-@TenNV nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19), @DiaChi nvarchar(100), @SoDT nvarchar(10), @NgayVL nvarchar(19), @MaLoaiNV int
+@TenNV nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19), @DiaChi nvarchar(100), @SoDT nvarchar(10), @NgayVL nvarchar(19), @MaLoaiNV int,@TrangThai int
 as
 begin
 	declare @NgaySinh_ smalldatetime,@NgayVL_ smalldatetime, @MaNV int, @MaNV_Max int,@i int =1
@@ -248,19 +249,19 @@ begin
 					end
 				set @i=@i+1
 			end
-	insert into NhanVien values (@MaNV,@TenNV,@GioiTinh,@NgaySinh_,@DiaChi,@SoDT,@NgayVL_,@MaLoaiNV)
+	insert into NhanVien values (@MaNV,@TenNV,@GioiTinh,@NgaySinh_,@DiaChi,@SoDT,@NgayVL_,@MaLoaiNV,@TrangThai)
 end
 go
 --Cập nhật nhân viên
 create proc sp_CapNhatNhanVien
-@MaNV int,@TenNV nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19), @DiaChi nvarchar(100), @SoDT nvarchar(10), @NgayVL nvarchar(19), @MaLoaiNV int
+@MaNV int,@TenNV nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19), @DiaChi nvarchar(100), @SoDT nvarchar(10), @NgayVL nvarchar(19), @MaLoaiNV int,@TrangThai int
 as
 begin
 	declare @NgaySinh_ smalldatetime,@NgayVL_ smalldatetime
 	set @NgaySinh_=CONVERT(smalldatetime,@NgaySinh,103)
 	set @NgayVL_=CONVERT(smalldatetime,@NgayVL,103)
 	update NhanVien
-	set TenNV=@TenNV, GioiTinh=@GioiTinh,NgaySinh=@NgaySinh_,DiaChi=@DiaChi,SoDT=@SoDT,NgayVL=@NgayVL_,MaLoaiNV=@MaLoaiNV
+	set TenNV=@TenNV, GioiTinh=@GioiTinh,NgaySinh=@NgaySinh_,DiaChi=@DiaChi,SoDT=@SoDT,NgayVL=@NgayVL_,MaLoaiNV=@MaLoaiNV,TrangThai=@TrangThai
 	where MaNV=@MaNV
 end
 go
@@ -277,7 +278,7 @@ go
 create proc sp_HienThiDanhSachNhanVien
 as
 begin
-	select MaNV,TenNV,GioiTinh,NgaySinh,DiaChi,SoDT,NgayVL,TenLoaiNV
+	select MaNV,TenNV,GioiTinh,NgaySinh,DiaChi,SoDT,NgayVL,TenLoaiNV,TrangThai
 	from NhanVien,LoaiNhanVien
 	where NhanVien.MaLoaiNV=LoaiNhanVien.MaLoaiNV
 end
@@ -287,7 +288,7 @@ create proc sp_TimNhanVien
 @key nvarchar(100)
 as
 begin
-	select MaNV,TenNV,GioiTinh,NgaySinh,DiaChi,SoDT,NgayVL,TenLoaiNV
+	select MaNV,TenNV,GioiTinh,NgaySinh,DiaChi,SoDT,NgayVL,TenLoaiNV, TrangThai
 	from NhanVien ,LoaiNhanVien
 	WHERE NhanVien.MaLoaiNV=LoaiNhanVien.MaLoaiNV and [dbo].[GetUnsignString](TenNV) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
 end
@@ -296,7 +297,7 @@ go
 create proc sp_HienThiDanhSachTre
 as 
 begin
-	select MaTre,TenTre,Tre.GioiTinh,Tre.NgaySinh,NgayVao,HoanCanh,NguoiDuaTreVao,TrangThai,TenNV
+	select MaTre,TenTre,Tre.GioiTinh,Tre.NgaySinh,NgayVao,HoanCanh,NguoiDuaTreVao,Tre.TrangThai,TenNV
 	from Tre,NhanVien
 	where Tre.MaNV=NhanVien.MaNV
 end
@@ -331,7 +332,6 @@ begin
 	insert into Tre values(@MaTre,@TenTre,@GioiTinh,@NgaySinh_,@NgayVao_,@HoanCanh,@NguoiDuaTreVao,@TrangThai,@MaNV)
 end
 go
-exec sp_ThemTre 'a','Nam','11/5/2015','2/5/2016','a','a','0',1
  --Cập nhật trẻ
  create proc sp_CapNhatTre
 @MaTre int, @TenTre nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19),@NgayVao nvarchar(19), @HoanCanh nvarchar(4000),@NguoiDuaTreVao nvarchar(100), @TrangThai int,@MaNV int
@@ -350,7 +350,7 @@ create proc sp_TimTre
 @key nvarchar(100)
 as
 begin
-	select MaTre,TenTre,Tre.GioiTinh,Tre.NgaySinh,NgayVao,HoanCanh,NguoiDuaTreVao,TrangThai,TenNV
+	select MaTre,TenTre,Tre.GioiTinh,Tre.NgaySinh,NgayVao,HoanCanh,NguoiDuaTreVao,Tre.TrangThai,TenNV
 	from Tre,NhanVien
 	where Tre.MaNV=NhanVien.MaNV and [dbo].[GetUnsignString](TenTre) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
 end
@@ -361,10 +361,10 @@ as
 begin
 	select MaNV,TenNV,GioiTinh,NgaySinh,DiaChi,SoDT,NgayVL,TenLoaiNV
 	from NhanVien,LoaiNhanVien
-	where NhanVien.MaLoaiNV=LoaiNhanVien.MaLoaiNV and TenLoaiNV=N'Bảo mẫu'
+	where NhanVien.MaLoaiNV=LoaiNhanVien.MaLoaiNV and TenLoaiNV=N'Bảo mẫu' and TrangThai=1
 end
 go
-<<<<<<< HEAD
+
 --LẤY THÔNG TIN CHI TIÊU
 CREATE PROC SP_LOADEXPENSE
 AS
@@ -373,7 +373,7 @@ BEGIN
 END
 GO
 --THÊM CHI TIÊU
-ALTER PROC SP_INSERTEXPENSE
+create PROC SP_INSERTEXPENSE
 @TenChiTieu nvarchar(100), @NgayChi nvarchar(19)
 AS
 BEGIN
@@ -469,6 +469,7 @@ BEGIN
 		END
 	END
 END
+go
 -- CẬP NHẬT CT_CHITIEU
 CREATE PROC SP_UPDATEEXPENSEINFO
 @MaCT_ChiTieu int, @TenCTChiTieu nvarchar(100), @SoTien float
@@ -487,8 +488,9 @@ BEGIN
 	DELETE FROM CT_ChiTieu
 	WHERE MaCT_ChiTieu = @MaCT_ChiTieu
 END
+go
 -- TÌM KIẾM CT_CHITIEU THEO NGÀY
-ALTER PROC SP_SEARCHEXPENSEINFO
+create PROC SP_SEARCHEXPENSEINFO
 @Day nvarchar(19)
 AS
 BEGIN
@@ -500,8 +502,9 @@ BEGIN
 	WHERE CT_ChiTieu.MaChiTieu = ChiTieu.MaChiTieu AND NgayChi = @Day_
 END
 exec SP_SEARCHEXPENSEINFO N'12/11/2018'
+go
 --TRIGGER KHI THÊM, SỬA CT_CHITIEU
-ALTER TRIGGER TRG_INSUP_CT_CHITIEU ON CT_CHITIEU
+create TRIGGER TRG_INSUP_CT_CHITIEU ON CT_CHITIEU
 FOR INSERT, UPDATE
 AS
 BEGIN
@@ -537,7 +540,7 @@ BEGIN
 	SET TongSoTien = @TongSoTien_Moi
 	WHERE MaChiTieu = @MaChiTieu
 END
-=======
+go
 --Hiện thi danh sách nhà tài trợ
 create proc sp_HienThiDanhSachNhaTaiTro
 as
@@ -670,6 +673,3 @@ begin
 	where TaiTro.MaNhaTaiTro=NhaTaiTro.MaNhaTaiTro and   [dbo].[GetUnsignString](TenNhaTaiTro) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
 end
 go
-select MaNhaTaiTro from NhaTaiTro where TenNhaTaiTro=N'Công ty TNHH Hồng Hà'
-select * from NhaTaiTro
->>>>>>> 33da1c7067d4c32639b384ed049409ce6d5a8bd2

@@ -37,6 +37,7 @@ public class StaffDAL extends  DataAccessHelper{
                     staff.setPhoneNumber(rs.getString("SoDT"));
                     staff.setStartWork(rs.getDate("NgayVL"));
                     staff.setNameStaffCategogy(rs.getString("TenLoaiNV"));
+                    staff.setStatus(rs.getInt("TrangThai"));
                     temp.add(staff);
                 }
             getClose();
@@ -45,9 +46,9 @@ public class StaffDAL extends  DataAccessHelper{
         return temp;
     }
     //Thêm nhân viên
-    public boolean InertStaff(String name , String sex ,String birthday ,String address ,String phonenumber , String startwork ,int idstaffcategogy )
+    public boolean InertStaff(String name , String sex ,String birthday ,String address ,String phonenumber , String startwork ,int idstaffcategogy ,int status)
     {
-        String SQL="exec sp_ThemNhanVien N'"+name+"',N'"+sex+"',N'"+birthday+"','"+address+"',N'"+phonenumber+"',N'"+startwork+"','"+idstaffcategogy+"'";
+        String SQL="exec sp_ThemNhanVien N'"+name+"',N'"+sex+"',N'"+birthday+"','"+address+"',N'"+phonenumber+"',N'"+startwork+"','"+idstaffcategogy+"','"+status+"'";
         try {
             getConnect();
             Statement st =conn.createStatement();
@@ -60,9 +61,9 @@ public class StaffDAL extends  DataAccessHelper{
         return false;
     }
     //Cập nhật nhân viên
-    public boolean  UpdateStaff(int id,String name , String sex ,String birthday ,String address ,String phonenumber , String startwork ,int idstaffcategogy)
+    public boolean  UpdateStaff(int id,String name , String sex ,String birthday ,String address ,String phonenumber , String startwork ,int idstaffcategogy, int status)
     {
-        String SQL="exec sp_CapNhatNhanVien '"+id+"', N'"+name+"',N'"+sex+"',N'"+birthday+"','"+address+"',N'"+phonenumber+"',N'"+startwork+"','"+idstaffcategogy+"'";
+        String SQL="exec sp_CapNhatNhanVien '"+id+"', N'"+name+"',N'"+sex+"',N'"+birthday+"','"+address+"',N'"+phonenumber+"',N'"+startwork+"','"+idstaffcategogy+"','"+status+"'";
         try {
             getConnect();
             Statement st =conn.createStatement();
@@ -110,6 +111,7 @@ public class StaffDAL extends  DataAccessHelper{
                     staff.setPhoneNumber(rs.getString("SoDT"));
                     staff.setStartWork(rs.getDate("NgayVL"));
                     staff.setNameStaffCategogy(rs.getString("TenLoaiNV"));
+                    staff.setStatus(rs.getInt("TrangThai"));
                     temp.add(staff);
                 }
             getClose();
@@ -138,6 +140,7 @@ public class StaffDAL extends  DataAccessHelper{
                     staff.setPhoneNumber(rs.getString("SoDT"));
                     staff.setStartWork(rs.getDate("NgayVL"));
                     staff.setNameStaffCategogy(rs.getString("TenLoaiNV"));
+                    staff.setStatus(rs.getInt("TrangThai"));
                     temp.add(staff);
                 }
             getClose();

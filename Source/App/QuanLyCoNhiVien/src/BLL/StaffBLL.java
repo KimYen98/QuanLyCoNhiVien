@@ -21,14 +21,14 @@ public class StaffBLL {
         return DAL.LoadStaff();
     }
     //thêm nhân viên
-    public boolean InsertStaff(String name , String sex ,String birthday ,String address ,String phonenumber , String startwork ,int idstaffcategogy)
+    public boolean InsertStaff(String name , String sex ,String birthday ,String address ,String phonenumber , String startwork ,int idstaffcategogy,int status)
     {
-        return DAL.InertStaff(name, sex, birthday, address, phonenumber, startwork, idstaffcategogy);
+        return DAL.InertStaff(name, sex, birthday, address, phonenumber, startwork, idstaffcategogy,status);
     }
     //cập nhật nhân viên
-    public boolean UpdateStaff(int id,String name , String sex ,String birthday ,String address ,String phonenumber , String startwork ,int idstaffcategogy)
+    public boolean UpdateStaff(int id,String name , String sex ,String birthday ,String address ,String phonenumber , String startwork ,int idstaffcategogy,int status)
     {
-        return DAL.UpdateStaff(id, name, sex, birthday, address, phonenumber, startwork, idstaffcategogy);
+        return DAL.UpdateStaff(id, name, sex, birthday, address, phonenumber, startwork, idstaffcategogy,status);
     }
     //Xóa nhân viên
     public boolean  DeleteStaff(int id)
