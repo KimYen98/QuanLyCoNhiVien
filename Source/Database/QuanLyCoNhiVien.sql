@@ -294,14 +294,15 @@ begin
 end
 go
 --Hiện thị danh sách trẻ
-create proc sp_HienThiDanhSachTre
+alter proc sp_HienThiDanhSachTre
 as 
 begin
-	select MaTre,TenTre,Tre.GioiTinh,Tre.NgaySinh,NgayVao,HoanCanh,NguoiDuaTreVao,Tre.TrangThai,TenNV
+	select MaTre,TenTre,Tre.NgaySinh,Tre.GioiTinh,NgayVao,HoanCanh,NguoiDuaTreVao,Tre.TrangThai,TenNV
 	from Tre,NhanVien
-	where Tre.MaNV=NhanVien.MaNV
+	where Tre.MaNV=NhanVien.MaNV 
 end
 go
+exec sp_HienThiDanhSachTre
 --Thêm trẻ
 create proc sp_ThemTre
 @TenTre nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19),@NgayVao nvarchar(19), @HoanCanh nvarchar(4000),@NguoiDuaTreVao nvarchar(100), @TrangThai int,@MaNV int
@@ -332,6 +333,9 @@ begin
 	insert into Tre values(@MaTre,@TenTre,@GioiTinh,@NgaySinh_,@NgayVao_,@HoanCanh,@NguoiDuaTreVao,@TrangThai,@MaNV)
 end
 go
+exec sp_ThemTre 'a','Nam','1/1/2018','25/11/2018','a','a',1,1
+go
+select * from Tre
  --Cập nhật trẻ
  create proc sp_CapNhatTre
 @MaTre int, @TenTre nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19),@NgayVao nvarchar(19), @HoanCanh nvarchar(4000),@NguoiDuaTreVao nvarchar(100), @TrangThai int,@MaNV int
@@ -356,10 +360,10 @@ begin
 end
 go
 --Hiện thi danh sách nhân viên là bảo mẫu
-create proc sp_HienThiDanhSachBaoMau
+alter proc sp_HienThiDanhSachBaoMau
 as
 begin
-	select MaNV,TenNV,GioiTinh,NgaySinh,DiaChi,SoDT,NgayVL,TenLoaiNV
+	select MaNV,TenNV,GioiTinh,NgaySinh,DiaChi,SoDT,NgayVL,TenLoaiNV,TrangThai
 	from NhanVien,LoaiNhanVien
 	where NhanVien.MaLoaiNV=LoaiNhanVien.MaLoaiNV and TenLoaiNV=N'Bảo mẫu' and TrangThai=1
 end

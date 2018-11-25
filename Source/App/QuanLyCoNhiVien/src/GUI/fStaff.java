@@ -141,7 +141,7 @@ public class fStaff extends javax.swing.JInternalFrame {
         jLabel10.setText("Trạng thái");
 
         cbStatus.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đang làm việc", "Đã nghỉ việc" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

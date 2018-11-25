@@ -30,16 +30,17 @@ public class ChildDAL extends  DataAccessHelper{
                     Child child =new Child();
                     child.setID(rs.getInt("MaTre"));
                     child.setName(rs.getString("TenTre"));
+                     child.setBirthday(rs.getDate("NgaySinh"));
                     child.setSex(rs.getString("GioiTinh"));
-                    child.setBirthday(rs.getDate("NgaySinh"));
                     child.setJoinDate(rs.getDate("NgayVao"));
                     child.setSituation(rs.getString("HoanCanh"));
                     child.setWhoBring(rs.getString("NguoiDuaTreVao"));
                     child.setStatus(rs.getInt("TrangThai"));
                     child.setNameStaff(rs.getString("TenNV"));
                     temp.add(child);
-                    getClose();
+                   
                 }
+             getClose();
         } catch (Exception e) {
         }
         return temp;
@@ -47,7 +48,7 @@ public class ChildDAL extends  DataAccessHelper{
     //Thêm trẻ
     public boolean InsertChild(String name , String sex , String birthday , String joindate , String situation ,String whobring ,int status , int idstaff  )
     {
-        String SQL="exec sp_ThemTre N'"+name+"',N'"+sex+"',N'"+birthday+"',N'"+joindate+"',N'"+situation+"',N'"+whobring+"','"+status+"',N'"+idstaff+"'";
+        String SQL="exec sp_ThemTre N'"+name+"',N'"+sex+"',N'"+birthday+"',N'"+joindate+"',N'"+situation+"',N'"+whobring+"','"+status+"','"+idstaff+"'";
         try {
             getConnect();
             Statement st =conn.createStatement();
@@ -62,7 +63,7 @@ public class ChildDAL extends  DataAccessHelper{
     //Cập nhật trẻ
     public boolean UpdateChild(int id,String name , String sex , String birthday , String joindate , String situation ,String whobring ,int status , int idstaff  )
     {
-        String SQL="exec sp_CapNhatTre '"+id+"',N'"+name+"',N'"+sex+"',N'"+birthday+"',N'"+joindate+"',N'"+situation+"',N'"+whobring+"','"+status+"',N'"+idstaff+"'";
+        String SQL="exec sp_CapNhatTre '"+id+"',N'"+name+"',N'"+sex+"',N'"+birthday+"',N'"+joindate+"',N'"+situation+"',N'"+whobring+"','"+status+"','"+idstaff+"'";
         try {
             getConnect();
             Statement st =conn.createStatement();

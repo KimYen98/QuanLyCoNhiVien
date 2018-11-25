@@ -84,8 +84,8 @@ public class ControlFormat {
         Vector header =new Vector();
         header.add("Mã trẻ");
         header.add("Tên trẻ");
-        header.add("Giới tính");
         header.add("Ngày sinh");
+        header.add("Giới tính");
         header.add("Ngày vào");
         header.add("Hoàn cảnh");
         header.add("Người đưa trẻ vào");
@@ -97,8 +97,8 @@ public class ControlFormat {
             Vector row =new Vector();
             row.add(child.getID());
             row.add(child.getName());
+             row.add(child.getBirthday());
             row.add(child.getSex());
-            row.add(child.getBirthday());
             row.add(child.getJoinDate());
             row.add(child.getSituation());
             row.add(child.getWhoBring());

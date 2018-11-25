@@ -11,6 +11,7 @@ import Entity.Staff;
 import Utilities.ControlFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,8 +28,8 @@ public class fChild extends javax.swing.JInternalFrame {
     private int flag=0;
     public fChild() {
         initComponents();
-        control.bindingChild(jTableChild, childBLL.LoadChild());
         cbNameStaffChild.removeAllItems();
+        control.bindingChild(jTableChild, childBLL.LoadChild());
         for(Staff staff: staffBLL.LoadAnny())
         {
             cbNameStaffChild.addItem(staff.getName());
@@ -72,7 +73,6 @@ public class fChild extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         btnAddChild = new javax.swing.JButton();
         btnEditChild = new javax.swing.JButton();
-        btnDelChild = new javax.swing.JButton();
         btnSaveChild = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableChild = new javax.swing.JTable();
@@ -163,7 +163,7 @@ public class fChild extends javax.swing.JInternalFrame {
         jLabel11.setText("Tên bảo mẫu");
 
         cbStatus.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ở cô nhi viện", "Không còn ở cô nhi viện" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -264,14 +264,6 @@ public class fChild extends javax.swing.JInternalFrame {
             }
         });
 
-        btnDelChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        btnDelChild.setText("XÓA");
-        btnDelChild.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDelChildActionPerformed(evt);
-            }
-        });
-
         btnSaveChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnSaveChild.setText("LƯU");
         btnSaveChild.addActionListener(new java.awt.event.ActionListener() {
@@ -285,13 +277,11 @@ public class fChild extends javax.swing.JInternalFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(71, 71, 71)
                 .addComponent(btnAddChild, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(51, 51, 51)
                 .addComponent(btnEditChild)
-                .addGap(26, 26, 26)
-                .addComponent(btnDelChild, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(51, 51, 51)
                 .addComponent(btnSaveChild, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(38, Short.MAX_VALUE))
         );
@@ -302,7 +292,6 @@ public class fChild extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddChild)
                     .addComponent(btnEditChild)
-                    .addComponent(btnDelChild)
                     .addComponent(btnSaveChild))
                 .addContainerGap())
         );
@@ -411,6 +400,8 @@ public class fChild extends javax.swing.JInternalFrame {
         cbNameStaffChild.setSelectedIndex(0);
         rbFeMale.setSelected(true);
         jDChBirthdayChild.setDate(null);
+        txfWhoBring.setText("");
+        jDChJoinDateChild.setDate(new Date());
     }
     public boolean  Insert()
     {
@@ -418,21 +409,91 @@ public class fChild extends javax.swing.JInternalFrame {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date birthday =jDChBirthdayChild.getDate();
         String strbirthday =formatter.format(birthday);
-        return false;
+        String sex ="";
+        if(rbMale.isSelected())
+            sex="Nam";
+        if(rbFeMale.isSelected())
+            sex="Nữ";
+        Date joindate =jDChJoinDateChild.getDate();
+        String strjoindate =formatter.format(joindate);
+        String situation =txaSituation.getText().toString();
+        String whobring =txfWhoBring.getText().toString();
+        String status =cbStatus.getSelectedItem().toString();
+        int status_;
+        if(status.equals("Ở cô nhi viện"))
+            status_=1;
+        else
+            status_=0;
+        String namestaff =cbNameStaffChild.getSelectedItem().toString();
+        int id=staffBLL.getID(namestaff);
+        if(name.equals("")|| strbirthday.equals("")|| sex.equals("")|| strjoindate.equals("")|| situation.equals("") || whobring.equals("")||
+                status.equals("")|| namestaff.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Bạn chưa nhập đầy đủ thông tin");
+            return false;
+        }
+        else{
+            if(childBLL.InsertChild(name, sex, strbirthday, strjoindate, situation, whobring, status_, id))
+            {
+                JOptionPane.showMessageDialog(this, "Thêm trẻ thành công");
+                return true;
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Thêm trẻ thất bại");
+                return false;
+            }
+        }
     }
     public boolean Update ()
     {
-        return false;
+        int id =Integer.parseInt(txfIDChild.getText().toString());
+        String name =txfNameChild.getText().toString();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date birthday =jDChBirthdayChild.getDate();
+        String strbirthday =formatter.format(birthday);
+        String sex ="";
+        if(rbMale.isSelected())
+            sex="Nam";
+        if(rbFeMale.isSelected())
+            sex="Nữ";
+        Date joindate =jDChJoinDateChild.getDate();
+        String strjoindate =formatter.format(joindate);
+        String situation =txaSituation.getText().toString();
+        String whobring =txfWhoBring.getText().toString();
+        String status =cbStatus.getSelectedItem().toString();
+        int status_;
+        if(status.equals("Ở cô nhi viện"))
+            status_=1;
+        else
+            status_=0;
+        String namestaff =cbNameStaffChild.getSelectedItem().toString();
+        int idstaff=staffBLL.getID(namestaff);
+        if(name.equals("")|| strbirthday.equals("")|| sex.equals("")|| strjoindate.equals("")|| situation.equals("") || whobring.equals("")||
+                status.equals("")|| namestaff.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Bạn chưa nhập đầy đủ thông tin");
+            return false;
+        }
+        else{
+            if(childBLL.UpdateChild(id, name, sex, strbirthday, strjoindate, situation, whobring, status_, idstaff))
+            {
+                JOptionPane.showMessageDialog(this, "Cập nhật trẻ thành công");
+                return true;
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Cập nhật trẻ thất bại");
+                return false;
+            }
+        }
     }
-    public boolean Delete()
-    {
-        return false;
-    }
+    
     private void btnAddChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddChildActionPerformed
         // TODO add your handling code here:
+        ClearText();
         btnAddChild.setEnabled(false);
         btnEditChild.setEnabled(false);
-        btnDelChild.setEnabled(false);
         btnSaveChild.setEnabled(true);
         flag=1;
     }//GEN-LAST:event_btnAddChildActionPerformed
@@ -441,19 +502,9 @@ public class fChild extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         btnAddChild.setEnabled(false);
         btnEditChild.setEnabled(false);
-        btnDelChild.setEnabled(false);
         btnSaveChild.setEnabled(true);
         flag=2;
     }//GEN-LAST:event_btnEditChildActionPerformed
-
-    private void btnDelChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelChildActionPerformed
-        // TODO add your handling code here:
-        btnAddChild.setEnabled(false);
-        btnEditChild.setEnabled(false);
-        btnDelChild.setEnabled(false);
-        btnSaveChild.setEnabled(true);
-        flag=3;
-    }//GEN-LAST:event_btnDelChildActionPerformed
 
     private void btnSaveChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveChildActionPerformed
         // TODO add your handling code here:
@@ -463,10 +514,11 @@ public class fChild extends javax.swing.JInternalFrame {
             {
                 btnSaveChild.setEnabled(false);
                 control.bindingChild(jTableChild, childBLL.LoadChild());
+                ClearText();
+               
             }
             btnAddChild.setEnabled(true);
             btnEditChild.setEnabled(true);
-            btnDelChild.setEnabled(true);
         }
         if(flag==2)
         {
@@ -474,22 +526,12 @@ public class fChild extends javax.swing.JInternalFrame {
             {
                 btnSaveChild.setEnabled(false);
                 control.bindingChild(jTableChild, childBLL.LoadChild());
+                ClearText();
             }
             btnAddChild.setEnabled(true);
             btnEditChild.setEnabled(true);
-            btnDelChild.setEnabled(true);
         }
-        if(flag==3)
-        {
-            if(Delete())
-            {
-                btnSaveChild.setEnabled(false);
-                control.bindingChild(jTableChild, childBLL.LoadChild());
-            }
-            btnAddChild.setEnabled(true);
-            btnEditChild.setEnabled(true);
-            btnDelChild.setEnabled(true);
-        }
+        
     }//GEN-LAST:event_btnSaveChildActionPerformed
 
     private void btnSearchChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchChildActionPerformed
@@ -505,26 +547,26 @@ public class fChild extends javax.swing.JInternalFrame {
         txfIDChild.setText(jTableChild.getValueAt(row, 0).toString());
         txfNameChild.setText(jTableChild.getValueAt(row, 1).toString());
         jDChBirthdayChild.setDate((Date)jTableChild.getModel().getValueAt(row, 2));
+        jDChJoinDateChild.setDate((Date) jTableChild.getModel().getValueAt(row, 4));
         String sex =jTableChild.getValueAt(row, 3).toString();
         if(sex.equals("Nam"))
             rbMale.setSelected(true);
         if(sex.equals("Nữ"))
             rbFeMale.setSelected(true);
-        txaSituation.setText(jTableChild.getValueAt(row, 4).toString());
-        txfWhoBring.setText(jTableChild.getValueAt(row, 5).toString());
-        String status =jTableChild.getValueAt(row, 6).toString();
+        txaSituation.setText(jTableChild.getValueAt(row, 5).toString());
+        txfWhoBring.setText(jTableChild.getValueAt(row, 6).toString());
+        String status =jTableChild.getValueAt(row, 7).toString();
         if(status.equals("Ở cô nhi viện"))
             cbStatus.setSelectedItem("Ở cô nhi viện");
         if(status.equals("Không còn ở cô nhi viện"))
             cbStatus.setSelectedItem("Không còn ở cô nhi viên");
-        String namestaff =jTableChild.getValueAt(row, 7).toString();
+        String namestaff =jTableChild.getValueAt(row, 8).toString();
         cbNameStaffChild.setSelectedItem(namestaff);
     }//GEN-LAST:event_jTableChildMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddChild;
-    private javax.swing.JButton btnDelChild;
     private javax.swing.JButton btnEditChild;
     private javax.swing.JButton btnSaveChild;
     private javax.swing.JButton btnSearchChild;
