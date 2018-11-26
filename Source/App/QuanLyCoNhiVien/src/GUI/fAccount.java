@@ -16,6 +16,7 @@ public class fAccount extends javax.swing.JInternalFrame {
      */
     public fAccount() {
         initComponents();
+        
     }
 
     /**

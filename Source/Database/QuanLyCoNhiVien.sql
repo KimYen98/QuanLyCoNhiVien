@@ -121,6 +121,32 @@ alter table CT_NguoiNhanTre_Tre add constraint fk_CT_NguoiNhanTre_Tre foreign ke
 go
 alter table CT_NguoiNhanTre_Tre add constraint fk_CT_NguoiNhanTre_NguoiNhan foreign key(MaNguoiNhan) references NguoiNhanTre(MaNguoiNhan)
 go
+--Ràng buộc miền giá trị
+--Giới tính của trẻ là 'Nam' hoặc 'Nữ'
+alter table Tre add constraint GioiTinh_Tre check (GioiTinh in('Nam',N'Nữ'))
+go
+--Giới tính của nhân viên là 'Nam' hoặc 'Nữ'
+alter table NhanVien add constraint GioiTinh_NhanVien check (GioiTinh in('Nam',N'Nữ'))
+go
+--Trạng thái của trẻ là 0 hoặc 1 với 0 là trẻ không còn ở cô nhi viện, 1 là trẻ đang ở cô nhi viện
+alter table Tre add constraint TrangThai_Tre check (TrangThai in(0,1))
+go
+--Trạng thái của nhân viên là 0 hoặc 1 với 0 là đã nghỉ việc, 1 là đang làm việc
+alter table NhanVien add constraint TrangThai_NhanVien check(TrangThai in(0,1))
+go
+--Tuổi nhân viên phải lớn hơn bằng 18 tuổi
+alter table NhanVien add constraint Tuoi_NhanVien check((getDate()-year(NgaySinh))>=18)
+go
+--Hình thức tài trợ trong bảng tài trợ là 'Tiền mặt', 'Chuyển khoản','Hiện vật'
+alter table TaiTro add constraint HinhThucTaiTro check (HinhThucTaiTro in(N'Tiền mặt',N'Chuyển khoản',N'Hiện vật'))
+go
+--Ràng buộc liên thuộc tính
+--Ngày sinh của trẻ phải nhỏ hơn hoặc bằng ngày trẻ vào
+alter table Tre add constraint KT_NgaySinh_NgayVao check (NgaySinh<=NgayVao)
+go
+--Ngày sinh của nhân viên phải nhỏ hơn vào ngày vào làm của nhân viên
+alter table NhanVien add constraint KT_NgaySinh_NgayVL check(NgaySinh<NgayVL)
+go
 --Thêm loại nhân viên
 create proc sp_ThemLoaiNhanVien
 @TenLoaiNV nvarchar(100)
@@ -282,7 +308,7 @@ begin
 	from NhanVien,LoaiNhanVien
 	where NhanVien.MaLoaiNV=LoaiNhanVien.MaLoaiNV
 end
-go
+go 
 --Tìm nhân viên
 create proc sp_TimNhanVien
 @key nvarchar(100)
@@ -359,7 +385,7 @@ begin
 	where Tre.MaNV=NhanVien.MaNV and [dbo].[GetUnsignString](TenTre) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
 end
 go
---Hiện thi danh sách nhân viên là bảo mẫu
+--Hiện thi danh sách nhân viên là bảo mẫu hiện đang làm việc
 alter proc sp_HienThiDanhSachBaoMau
 as
 begin
