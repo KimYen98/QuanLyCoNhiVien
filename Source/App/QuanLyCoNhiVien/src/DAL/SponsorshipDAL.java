@@ -73,9 +73,9 @@ public class SponsorshipDAL extends  DataAccessHelper{
         return false;
     }
     //Xóa tài trợ
-    public boolean  Delete (int idsponsorship )
+    public boolean  Delete (int idsponsorship, int idsponsor )
     {
-         String SQL="exec sp_XoaTaiTro '"+idsponsorship+"'";
+         String SQL="exec sp_XoaTaiTro '"+idsponsorship+"','"+idsponsor+"'";
         try {
             getConnect();
             Statement st =conn.createStatement();

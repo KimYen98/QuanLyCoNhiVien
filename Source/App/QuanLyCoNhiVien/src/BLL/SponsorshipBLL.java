@@ -32,9 +32,9 @@ public class SponsorshipBLL {
         return DAL.Update(id, idsponsor,date, format, money);
     }
     //Xóa tài trợ
-    public boolean Delete(int id)
+    public boolean Delete(int idsponsorship,int idsponsor)
     {
-        return DAL.Delete(id);
+        return DAL.Delete(idsponsorship ,idsponsor);
     }
     //Tìm tài trợ
     public ArrayList<Sponsorship> SearchSponsorship(String key )

@@ -58,7 +58,7 @@ create table TaiTro
 	NgayTaiTro smalldatetime,
 	HinhThucTaiTro nvarchar(100) not null,
 	SoTien float not null default 0,
-	primary key(MaTaiTro)
+	primary key(MaTaiTro, MaNhaTaiTro)
 )
 go
 --Tạo bảng chi tiêu
@@ -75,11 +75,12 @@ go
 create table CT_ChiTieu
 (
 	MaCT_ChiTieu int,
+	MaChiTieu int,
 	TenCTChiTieu nvarchar(100) not null,
 	SoTien float not null default 0,
-	MaChiTieu int not null,
-	primary key(MaCT_ChiTieu)
+	primary key(MaCT_ChiTieu,MaChiTieu)
 )
+go
 --Tạo bảng người nhận trẻ
 create table NguoiNhanTre
 (
@@ -645,31 +646,39 @@ begin
 end
 go
 --Thêm tài trợ
-create proc sp_ThemTaiTro
+alter proc sp_ThemTaiTro
 @MaNhaTaiTro int, @NgayTaiTro nvarchar(19),@HinhThuc nvarchar(100), @SoTien money
 as
 begin
 	declare @MaTaiTro int,@MaTaiTro_Max int,@i int=1, @NgayTaiTro_ smalldatetime
-	set @MaTaiTro_Max=(select max(MaTaiTro)
-						from TaiTro)
-	if(@MaTaiTro_Max is null)
-		set @MaTaiTro=@i
+	if(select count(*)
+		from NhaTaiTro
+		where MaNhaTaiTro=@MaNhaTaiTro)=0
+		print N'Mã nhà tài trợ không tồn taị'
 	else
-		begin
-		while(@i<=@MaTaiTro_Max+1)
+	begin
+		set @MaTaiTro_Max=(select max(MaTaiTro)
+							from TaiTro
+							where MaNhaTaiTro=@MaNhaTaiTro)
+		if(@MaTaiTro_Max is null)
+			set @MaTaiTro=@i
+		else
 			begin
-				if(select count(*)
-					from TaiTro
-					where MaTaiTro=@i)=0
-					begin
-						set @MaTaiTro=@i
-						break
-					end
-				set @i=@i+1
+			while(@i<=@MaTaiTro_Max+1)
+				begin
+					if(select count(*)
+						from TaiTro
+						where MaTaiTro=@i)=0
+						begin
+							set @MaTaiTro=@i
+							break
+						end
+					set @i=@i+1
+				end
 			end
-		end
-	set @NgayTaiTro_=CONVERT(smalldatetime,@NgayTaiTro,103)
-	insert into TaiTro values(@MaTaiTro,@MaNhaTaiTro,@NgayTaiTro_,@HinhThuc,@SoTien)
+		set @NgayTaiTro_=CONVERT(smalldatetime,@NgayTaiTro,103)
+		insert into TaiTro values(@MaTaiTro,@MaNhaTaiTro,@NgayTaiTro_,@HinhThuc,@SoTien)
+	end
 end
 go
 --Cập nhật tài trợ
@@ -680,17 +689,17 @@ begin
 	declare @NgayTaiTro_ smalldatetime
 	set @NgayTaiTro_=CONVERT(smalldatetime,@NgayTaiTro,103)
 	update TaiTro
-	set MaNhaTaiTro=@MaNhaTaiTro,NgayTaiTro=@NgayTaiTro_,HinhThucTaiTro=@HinhThuc,SoTien=@SoTien
-	where MaTaiTro=@MaTaiTro
+	set NgayTaiTro=@NgayTaiTro_,HinhThucTaiTro=@HinhThuc,SoTien=@SoTien
+	where MaTaiTro=@MaTaiTro and MaNhaTaiTro=@MaNhaTaiTro
 end
 go
 --Xóa tài trợ
-create proc sp_XoaTaiTro
-@MaTaiTro int
+alter proc sp_XoaTaiTro
+@MaTaiTro int,@MaNhaTaiTro int
 as
 begin
 	delete from TaiTro
-	where MaTaiTro=@MaTaiTro
+	where MaTaiTro=@MaTaiTro and MaNhaTaiTro=@MaNhaTaiTro
 end
 go
 --Tìm tài trợ

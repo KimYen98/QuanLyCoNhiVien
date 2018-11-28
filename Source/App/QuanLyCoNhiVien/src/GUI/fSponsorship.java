@@ -377,8 +377,10 @@ public class fSponsorship extends javax.swing.JInternalFrame {
     }
     public boolean Delete()
     {
-        int id=Integer.parseInt(txfIDSponsorship.getText().toString());
-        if(sponsorshipBLL.Delete(id))
+        int idsponsorship=Integer.parseInt(txfIDSponsorship.getText().toString());
+        String namesponsor =cbNameSponsorSponsorship.getSelectedItem().toString();
+        int idsponsor=sponsorBLL.getIdSponsor(namesponsor);
+        if(sponsorshipBLL.Delete(idsponsorship,idsponsor))
         {
             JOptionPane.showMessageDialog(this, "Xóa tài trợ thành công");
             return true;
