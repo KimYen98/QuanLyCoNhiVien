@@ -25,7 +25,12 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         initComponents();
         control.bindingStaffCategogy(jTableStaffCategogy, staffCategogyBLL.LoadStaffCategogy());
     }
-
+    //Hàm chuẩn hóa tên
+    public String chuanHoa(String str) {
+        str = str.trim();
+        str = str.replaceAll("\\s+", " ");
+        return str;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -314,6 +319,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
     public boolean  Insert()
     {
         String name =txfNameStaffCategogy.getText().toString();
+        name=chuanHoa(name);
         if(name.equals(""))
         {
             JOptionPane.showMessageDialog(this, "Bạn chưa nhập tên loại nhân viên");
@@ -337,6 +343,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
     {
         int id=Integer.parseInt(txfIDStaffCategogy.getText());
         String name =txfNameStaffCategogy.getText().toString();
+        name=chuanHoa(name);
         if(name.equals(""))
         {
             JOptionPane.showMessageDialog(this, "Bạn chưa nhập tên loại nhân viên");

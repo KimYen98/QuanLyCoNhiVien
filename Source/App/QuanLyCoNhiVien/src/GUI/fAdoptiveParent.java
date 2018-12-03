@@ -5,6 +5,10 @@
  */
 package GUI;
 
+import BLL.AdoptiveParentBLL;
+import Utilities.ControlFormat;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author STIREN
@@ -14,10 +18,32 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
     /**
      * Creates new form fAdoptiveParent
      */
+    private int flag=0;
+    AdoptiveParentBLL adoptiveParentBLL =new AdoptiveParentBLL();
+    ControlFormat control =new ControlFormat();
     public fAdoptiveParent() {
         initComponents();
+        control.bindingAdoptiveParent(jTableAPa, adoptiveParentBLL.LoadAdoptiveParent());
+        
     }
-
+     //Hàm chuẩn hóa tên
+    public String chuanHoa(String str) {
+        str = str.trim();
+        str = str.replaceAll("\\s+", " ");
+        return str;
+    }
+ 
+    public String chuanHoaDanhTuRieng(String str) {
+        str = chuanHoa(str.toLowerCase());
+        String temp[] = str.split(" ");
+        str = ""; // ? ^-^
+        for (int i = 0; i < temp.length; i++) {
+            str += String.valueOf(temp[i].charAt(0)).toUpperCase() + temp[i].substring(1);
+            if (i < temp.length - 1) // ? ^-^
+                str += " ";
+        }
+        return str;
+    } 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,7 +69,6 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         btnAddAPa = new javax.swing.JButton();
         btnEditAPa = new javax.swing.JButton();
-        btnDelAPa = new javax.swing.JButton();
         btnSaveAPa = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableAPa = new javax.swing.JTable();
@@ -57,6 +82,11 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
 
         btnSearchAPa.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnSearchAPa.setText("TÌM KIẾM");
+        btnSearchAPa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchAPaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -99,6 +129,11 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
         txfAddressAPa.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         txfPhoneAPa.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        txfPhoneAPa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfPhoneAPaKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -143,15 +178,27 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
 
         btnAddAPa.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnAddAPa.setText("THÊM");
+        btnAddAPa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddAPaActionPerformed(evt);
+            }
+        });
 
         btnEditAPa.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnEditAPa.setText("CẬP NHẬT");
-
-        btnDelAPa.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        btnDelAPa.setText("XÓA");
+        btnEditAPa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditAPaActionPerformed(evt);
+            }
+        });
 
         btnSaveAPa.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnSaveAPa.setText("LƯU");
+        btnSaveAPa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveAPaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -160,13 +207,11 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnAddAPa, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(47, 47, 47)
                 .addComponent(btnEditAPa)
-                .addGap(26, 26, 26)
-                .addComponent(btnDelAPa, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(51, 51, 51)
                 .addComponent(btnSaveAPa, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,7 +220,6 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddAPa)
                     .addComponent(btnEditAPa)
-                    .addComponent(btnDelAPa)
                     .addComponent(btnSaveAPa))
                 .addContainerGap())
         );
@@ -191,6 +235,11 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableAPa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableAPaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableAPa);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -206,37 +255,161 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(jLabel1)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(71, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public void ClearText()
+    {
+        txfIDAPa.setText("");
+        txfNameAPa.setText("");
+        txfAddressAPa.setText("");
+        txfPhoneAPa.setText("");
+    }
+    public boolean Insert()
+    {
+        String name=txfNameAPa.getText().toString();
+        String address =txfAddressAPa.getText().toString();
+        String phonenumber =txfPhoneAPa.getText().toString();
+        name=chuanHoaDanhTuRieng(name);
+        address=chuanHoa(address);
+        if(name.equals("")|| address.equals("")||phonenumber.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Bạn nhập thông tin chưa đầy đủ.");
+            return false;
+        }
+        else
+        {
+            if(adoptiveParentBLL.InsertAdoptiveParent(name, address, phonenumber))
+            {
+                JOptionPane.showMessageDialog(this, "Thêm người nhận trẻ thành công.");
+                return true;
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Thêm người nhận trẻ thất bại.");
+                return false;
+            }
+        }
+    }
+    public boolean Update()
+    {
+        int id =Integer.parseInt(txfIDAPa.getText().toString());
+        String name=txfNameAPa.getText().toString();
+        String address =txfAddressAPa.getText().toString();
+        String phonenumber =txfPhoneAPa.getText().toString();
+         name=chuanHoaDanhTuRieng(name);
+        address=chuanHoa(address);
+        if(name.equals("")|| address.equals("")||phonenumber.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Bạn nhập thông tin chưa đầy đủ.");
+            return false;
+        }
+        else
+        {
+            if(adoptiveParentBLL.UpdateAdoptiveParent(id,name, address, phonenumber))
+            {
+                JOptionPane.showMessageDialog(this, "Cập nhật người nhận trẻ thành công.");
+                return true;
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Cập nhật người nhận trẻ thất bại.");
+                return false;
+            }
+        }
+    }
+    private void btnAddAPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddAPaActionPerformed
+        // TODO add your handling code here:
+        ClearText();
+        btnAddAPa.setEnabled(false);
+        btnEditAPa.setEnabled(false);
+        btnSaveAPa.setEnabled(true);
+        flag=1;
+    }//GEN-LAST:event_btnAddAPaActionPerformed
+
+    private void btnEditAPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditAPaActionPerformed
+        // TODO add your handling code here:
+         btnAddAPa.setEnabled(false);
+        btnEditAPa.setEnabled(false);
+        btnSaveAPa.setEnabled(true);
+        flag=2;
+    }//GEN-LAST:event_btnEditAPaActionPerformed
+
+    private void btnSaveAPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveAPaActionPerformed
+        // TODO add your handling code here:
+        if(flag==1)
+        {
+            if(Insert())
+            {
+                
+                control.bindingAdoptiveParent(jTableAPa, adoptiveParentBLL.LoadAdoptiveParent());
+                btnSaveAPa.setEnabled(false);
+                ClearText();
+            }
+            btnAddAPa.setEnabled(true);
+            btnEditAPa.setEnabled(true);
+        }
+        if(flag==2)
+        {
+            if(Update())
+            {
+                control.bindingAdoptiveParent(jTableAPa, adoptiveParentBLL.LoadAdoptiveParent());
+                btnSaveAPa.setEnabled(false);
+            }
+            btnAddAPa.setEnabled(true);
+            btnEditAPa.setEnabled(true);
+        }
+    }//GEN-LAST:event_btnSaveAPaActionPerformed
+
+    private void btnSearchAPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAPaActionPerformed
+        // TODO add your handling code here:
+        String key =txfNameAPa.getText().toString();
+        control.bindingAdoptiveParent(jTableAPa, adoptiveParentBLL.SearchAdoptiveParent(key));
+        txfSearchAPa.setText("");
+    }//GEN-LAST:event_btnSearchAPaActionPerformed
+
+    private void jTableAPaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAPaMouseClicked
+        // TODO add your handling code here:
+        int row =jTableAPa.getSelectedRow();
+        txfIDAPa.setText(jTableAPa.getValueAt(row, 0).toString());
+        txfNameAPa.setText(jTableAPa.getValueAt(row, 1).toString());
+        txfAddressAPa.setText(jTableAPa.getValueAt(row, 2).toString());
+        txfPhoneAPa.setText(jTableAPa.getValueAt(row, 3).toString());
+    }//GEN-LAST:event_jTableAPaMouseClicked
+
+    private void txfPhoneAPaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfPhoneAPaKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (((c < '0') || (c > '9')) || txfPhoneAPa.getText().length() >= 10)
+            evt.consume();
+    }//GEN-LAST:event_txfPhoneAPaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddAPa;
-    private javax.swing.JButton btnDelAPa;
     private javax.swing.JButton btnEditAPa;
     private javax.swing.JButton btnSaveAPa;
     private javax.swing.JButton btnSearchAPa;

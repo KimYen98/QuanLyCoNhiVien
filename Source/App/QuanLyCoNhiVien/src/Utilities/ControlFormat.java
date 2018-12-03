@@ -5,6 +5,7 @@
  */
 package Utilities;
 
+import Entity.AdoptInfo;
 import Entity.AdoptiveParent;
 import Entity.Child;
 import Entity.Sponsor;
@@ -110,7 +111,7 @@ public class ControlFormat {
             row.add(child.getSituation());
             row.add(child.getWhoBring());
             if(child.getStatus()==1)
-                row.add("Đang ở cô nhi viện");
+                row.add("Ở cô nhi viện");
             if(child.getStatus()==0)
                 row.add("Không còn ở cô nhi viện");
             row.add(child.getNameStaff());
@@ -186,8 +187,8 @@ public class ControlFormat {
     public void bindingAdoptiveParent(JTable name ,ArrayList<AdoptiveParent> arr)
     {
         Vector header =new Vector();
-        header.add("Mã người nhận trẻ");
-        header.add("Tên người nhận trẻ");
+        header.add("Mã người nhận");
+        header.add("Tên người nhận");
         header.add("Địa chỉ");
         header.add("Số điện thoại");
         Vector data =new Vector();
@@ -201,6 +202,31 @@ public class ControlFormat {
             data.add(row);
         }
          //DefaultTableModel
+        DefaultTableModel dtm = new DefaultTableModel(data,header){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        name.setModel(dtm);  
+    }
+    //Lấy dữ liệu ở bảng chi tiết nhận trẻ
+    public void bindingAdoptInfo(JTable name ,ArrayList<AdoptInfo> arr)
+    {
+        Vector header =new Vector();
+        header.add("Tên người nhận");
+        header.add("Tên trẻ");
+        header.add("Ngày nhận");
+        Vector data =new Vector();
+        for(AdoptInfo adoptInfo:arr)
+        {
+            Vector row =new Vector();
+            row.add(adoptInfo.getNameAdoptiveParent());
+            row.add(adoptInfo.getNameChild());
+            row.add(adoptInfo.getAdoptDate());
+            data.add(row);
+        }
+        //DefaultTableModel
         DefaultTableModel dtm = new DefaultTableModel(data,header){
             @Override
             public boolean isCellEditable(int row, int column){

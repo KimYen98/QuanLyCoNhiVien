@@ -149,7 +149,7 @@ go
 alter table NhanVien add constraint KT_NgaySinh_NgayVL check(NgaySinh<NgayVL)
 go
 -- Trigger cập nhật trạng thái của trẻ có người nhận trẻ
-create trigger trg_ins_CT_NguoiNhanTre_Tre on CT_NguoiNhanTre_Tre
+alter trigger trg_ins_CT_NguoiNhanTre_Tre on CT_NguoiNhanTre_Tre
 for insert
 as
 begin
@@ -158,6 +158,19 @@ begin
 	from inserted
 	update Tre
 	set TrangThai='0'
+	where MaTre=@MaTre
+end
+go
+-- Trigger cập nhật trạng thái của trẻ khi xóa 1 chi tiết người nhận trẻ
+alter trigger trg_del_CT_NguoiNhanTre_Tre on CT_NguoiNhanTre_Tre
+for delete
+as
+begin
+	declare @MaTre int
+	select @MaTre =MaTre
+	from deleted
+	update Tre
+	set TrangThai='1'
 	where MaTre=@MaTre
 end
 go
@@ -360,7 +373,15 @@ begin
 	where Tre.MaNV=NhanVien.MaNV 
 end
 go
-exec sp_HienThiDanhSachTre
+--Hiện thị danh sách trẻ hiện ở cô nhi viện
+create proc sp_HienThiDanhSachTreHienOCoNhiVien
+as 
+begin
+	select MaTre,TenTre,Tre.NgaySinh,Tre.GioiTinh,NgayVao,HoanCanh,NguoiDuaTreVao,Tre.TrangThai,TenNV
+	from Tre,NhanVien
+	where Tre.MaNV=NhanVien.MaNV  and Tre.TrangThai=1
+end
+go
 --Thêm trẻ
 create proc sp_ThemTre
 @TenTre nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19),@NgayVao nvarchar(19), @HoanCanh nvarchar(4000),@NguoiDuaTreVao nvarchar(100), @TrangThai int,@MaNV int
@@ -787,21 +808,46 @@ begin
 	where MaNguoiNhan=@MaNguoiNhan
 end
 go
---Thêm chi tiết người nhận trẻ
-create proc sp_ThemChiTietNhanTre
-@MaNguoiNhan int, @MaTre int, @NgayNhan smalldatetime
+--Tra cứu người nhận trẻ
+create proc sp_TraCuuNguoiNhanTre
+@key nvarchar(100)
 as
 begin
-	insert into CT_NguoiNhanTre_Tre values(@MaNguoiNhan,@MaTre,@NgayNhan)
+	select *
+	from NguoiNhanTre
+	where [dbo].[GetUnsignString](TenNguoiNhan) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
+
+end
+go
+--Hiện thị chi tiết người nhận trẻ 
+create proc sp_HienThiChiTietNguoiNhanTre
+as
+begin
+	select TenNguoiNhan ,TenTre ,NgayNhan
+	from NguoiNhanTre,CT_NguoiNhanTre_Tre,Tre
+	where NguoiNhanTre.MaNguoiNhan=CT_NguoiNhanTre_Tre.MaNguoiNhan and Tre.MaTre=CT_NguoiNhanTre_Tre.MaTre
+end
+go
+exec sp_HienThiChiTietNguoiNhanTre
+--Thêm chi tiết người nhận trẻ
+alter proc sp_ThemChiTietNhanTre
+@MaNguoiNhan int, @MaTre int, @NgayNhan nvarchar(19)
+as
+begin
+	declare @NgayNhan_ smalldatetime
+	set @NgayNhan_=CONVERT(smalldatetime,@NgayNhan,103)
+	insert into CT_NguoiNhanTre_Tre values(@MaNguoiNhan,@MaTre,@NgayNhan_)
 end
 go
 --Cập nhật chi tiết người nhận trẻ
-create proc sp_CapNhatChiTietNhanTre
-@MaNguoiNhan int, @MaTre int, @NgayNhan smalldatetime
+alter proc sp_CapNhatChiTietNhanTre
+@MaNguoiNhan int, @MaTre int, @NgayNhan nvarchar(19)
 as
 begin
+	declare @NgayNhan_ smalldatetime
+	set @NgayNhan_=CONVERT(smalldatetime,@NgayNhan,103)
 	update CT_NguoiNhanTre_Tre
-	set NgayNhan=@NgayNhan
+	set NgayNhan=@NgayNhan_
 	where MaTre=@MaTre and MaNguoiNhan=@MaNguoiNhan
 end
 go
@@ -812,5 +858,27 @@ as
 begin
 	delete from CT_NguoiNhanTre_Tre
 	where MaNguoiNhan=@MaNguoiNhan and MaTre=@MaTre
+end
+go
+--Tìm chi tiết người nhận trẻ theo tên trẻ
+create proc sp_TraCuuChiTietNguoiNhanTreTheoTenTre
+@key nvarchar(100)
+as
+begin
+	select TenNguoiNhan ,TenTre ,NgayNhan
+	from NguoiNhanTre,CT_NguoiNhanTre_Tre,Tre
+	where NguoiNhanTre.MaNguoiNhan=CT_NguoiNhanTre_Tre.MaNguoiNhan and Tre.MaTre=CT_NguoiNhanTre_Tre.MaTre
+	and [dbo].[GetUnsignString](TenTre) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
+end
+go
+--Tìm chi tiết người nhận trẻ theo tên người nhận
+create proc sp_TimChiTietNguoiNhanTreTheoTenNguoiNhan
+@key nvarchar(100)
+as
+begin
+	select TenNguoiNhan ,TenTre ,NgayNhan
+	from NguoiNhanTre,CT_NguoiNhanTre_Tre,Tre
+	where NguoiNhanTre.MaNguoiNhan=CT_NguoiNhanTre_Tre.MaNguoiNhan and Tre.MaTre=CT_NguoiNhanTre_Tre.MaTre
+	and [dbo].[GetUnsignString](TenNguoiNhan) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
 end
 go

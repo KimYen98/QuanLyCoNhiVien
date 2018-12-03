@@ -6,6 +6,7 @@
 package DAL;
 
 import Entity.AdoptiveParent;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -28,8 +29,8 @@ public class AdoptiveParentDAL extends  DataAccessHelper{
                 while(rs.next())
                 {
                     AdoptiveParent adoptiveParent=new AdoptiveParent();
-                    adoptiveParent.setID(rs.getInt("MaNguoiNhanTre"));
-                    adoptiveParent.setName(rs.getString("TenNguoiNhanTre"));
+                    adoptiveParent.setID(rs.getInt("MaNguoiNhan"));
+                    adoptiveParent.setName(rs.getString("TenNguoiNhan"));
                     adoptiveParent.setAddress(rs.getString("DiaChi"));
                     adoptiveParent.setPhoneNumber(rs.getString("SoDT"));
                     temp.add(adoptiveParent);
@@ -69,5 +70,43 @@ public class AdoptiveParentDAL extends  DataAccessHelper{
         }
         return false;
     }
-    
+    //Tra cứu người nhận trẻ
+     public ArrayList<AdoptiveParent> SeacrchAdoptiveParent(String key)
+    {
+        String SQL="exec sp_TraCuuNguoiNhanTre N'"+key+"'";
+        ArrayList<AdoptiveParent> temp =new ArrayList<>();
+        try {
+            getConnect();
+            Statement st =conn.createStatement();
+            ResultSet rs =st.executeQuery(SQL);
+            if(rs!=null)
+                while(rs.next())
+                {
+                    AdoptiveParent adoptiveParent=new AdoptiveParent();
+                    adoptiveParent.setID(rs.getInt("MaNguoiNhanTre"));
+                    adoptiveParent.setName(rs.getString("TenNguoiNhanTre"));
+                    adoptiveParent.setAddress(rs.getString("DiaChi"));
+                    adoptiveParent.setPhoneNumber(rs.getString("SoDT"));
+                    temp.add(adoptiveParent);
+                }
+            getClose();
+        } catch (Exception e) {
+        }
+        return temp;
+    }
+     //Lấy mã người nhận trẻ theo tên người nhận trẻ
+     public int getID(String name)
+     {
+         String SQL="SELECT MaNguoiNhan FROM NguoiNhanTre WHERE TenNguoiNhan=N'"+name+"'";
+        try {
+            getConnect();
+            PreparedStatement ps=conn.prepareStatement(SQL);
+            ResultSet rs =ps.executeQuery();
+            if(rs!=null && rs.next())
+                return rs.getInt("MaNguoiNhan");
+            getClose();
+        } catch (Exception e) {
+        }
+        return 0;
+     }
 }

@@ -5,6 +5,17 @@
  */
 package GUI;
 
+import BLL.AdoptInfoBLL;
+import BLL.AdoptiveParentBLL;
+import BLL.ChildBLL;
+import Entity.AdoptInfo;
+import Entity.AdoptiveParent;
+import Entity.Child;
+import Utilities.ControlFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author STIREN
@@ -14,8 +25,26 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
     /**
      * Creates new form fAdoptInfo
      */
+    private int flag=0;
+    AdoptInfoBLL adoptInfoBLL =new AdoptInfoBLL();
+    ControlFormat control =new ControlFormat();
+    ChildBLL childBLL =new ChildBLL();
+    AdoptiveParentBLL adoptiveParentBLL=new AdoptiveParentBLL();
+    ChildBLL childBLL1=new ChildBLL();
     public fAdoptInfo() {
         initComponents();
+        control.bindingAdoptInfo(jTableAdoptInfo, adoptInfoBLL.LoadAdoptInfo());
+        cbNameAPaAdoptInfo.removeAllItems();
+        cbNameChildAdoptInfo.removeAllItems();
+        for(Child child: childBLL.LoadChild())
+        {
+            cbNameChildAdoptInfo.addItem(child.getName());
+        }
+        for(AdoptiveParent adoptiveParent: adoptiveParentBLL.LoadAdoptiveParent())
+        {
+            cbNameAPaAdoptInfo.addItem(adoptiveParent.getName());
+        }
+        jDChAdoptDate.setDate(new Date());
     }
 
     /**
@@ -37,8 +66,8 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        cbIDAPaAdoptInfo = new javax.swing.JComboBox<>();
-        cbIDChildAdoptInfo = new javax.swing.JComboBox<>();
+        cbNameAPaAdoptInfo = new javax.swing.JComboBox<>();
+        cbNameChildAdoptInfo = new javax.swing.JComboBox<>();
         jDChAdoptDate = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableAdoptInfo = new javax.swing.JTable();
@@ -60,6 +89,11 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
 
         btnSearchAdoptInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnSearchAdoptInfo.setText("TÌM KIẾM");
+        btnSearchAdoptInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchAdoptInfoActionPerformed(evt);
+            }
+        });
 
         cbSearchAdoptInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         cbSearchAdoptInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trẻ", "Người nhận nuôi", " " }));
@@ -96,19 +130,19 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         );
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel3.setText("Mã người nhận nuôi");
+        jLabel3.setText("Tên người nhận nuôi");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel4.setText("Mã trẻ");
+        jLabel4.setText("Tên trẻ");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel5.setText("Ngày nhận");
 
-        cbIDAPaAdoptInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        cbIDAPaAdoptInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbNameAPaAdoptInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        cbNameAPaAdoptInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        cbIDChildAdoptInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        cbIDChildAdoptInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbNameChildAdoptInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        cbNameChildAdoptInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jDChAdoptDate.setDateFormatString("dd-MM-yyyy");
         jDChAdoptDate.setFocusable(false);
@@ -126,10 +160,10 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cbIDAPaAdoptInfo, 0, 174, Short.MAX_VALUE)
-                    .addComponent(cbIDChildAdoptInfo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jDChAdoptDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                    .addComponent(cbNameChildAdoptInfo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jDChAdoptDate, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
+                    .addComponent(cbNameAPaAdoptInfo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,11 +171,11 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(cbIDAPaAdoptInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbNameAPaAdoptInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(cbIDChildAdoptInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbNameChildAdoptInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
@@ -160,19 +194,44 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableAdoptInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableAdoptInfoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableAdoptInfo);
 
         btnAddAdoptInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnAddAdoptInfo.setText("THÊM");
+        btnAddAdoptInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddAdoptInfoActionPerformed(evt);
+            }
+        });
 
         btnEditAdoptInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnEditAdoptInfo.setText("CẬP NHẬT");
+        btnEditAdoptInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditAdoptInfoActionPerformed(evt);
+            }
+        });
 
         btnDelAdoptInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnDelAdoptInfo.setText("XÓA");
+        btnDelAdoptInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelAdoptInfoActionPerformed(evt);
+            }
+        });
 
         btnSaveAdoptInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnSaveAdoptInfo.setText("LƯU");
+        btnSaveAdoptInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveAdoptInfoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -238,6 +297,179 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public void ClearText()
+    {
+       cbNameAPaAdoptInfo.setSelectedItem(null);
+       cbNameChildAdoptInfo.setSelectedItem(null);
+       jDChAdoptDate.setDate(new Date());
+    }
+    public boolean  Insert()
+    {
+        String nameadopt =cbNameAPaAdoptInfo.getSelectedItem().toString();
+        int idadopt =adoptiveParentBLL.getID(nameadopt);
+        String namechild =cbNameChildAdoptInfo.getSelectedItem().toString();
+        int idchild=childBLL.getID(namechild);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date adoptdate =jDChAdoptDate.getDate();
+        String str_adoptdate =formatter.format(adoptdate);
+        if(nameadopt.equals("")|| namechild.equals("") ||adoptdate.equals(null))
+        {
+            JOptionPane.showMessageDialog(this, "Bạn chưa nhập thông tin đầy đủ");
+            return false;
+        }
+        else
+        {
+            if(adoptInfoBLL.InsertAdoptInfo(idadopt, idchild, str_adoptdate))
+            {
+                JOptionPane.showMessageDialog(this, "Thêm thành công chi tiết nhận trẻ");
+                return true;
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Thêm thất bại chi tiết nhận trẻ");
+                return false;
+            }
+        }
+    }
+    public boolean  Update()
+    {
+        String nameadopt =cbNameAPaAdoptInfo.getSelectedItem().toString();
+        int idadopt =adoptiveParentBLL.getID(nameadopt);
+        String namechild =cbNameChildAdoptInfo.getSelectedItem().toString();
+        int idchild=childBLL.getID(namechild);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date adoptdate =jDChAdoptDate.getDate();
+        String str_adoptdate =formatter.format(adoptdate);
+        if(nameadopt.equals("")|| namechild.equals("") ||adoptdate.equals(null))
+        {
+            JOptionPane.showMessageDialog(this, "Bạn chưa nhập thông tin đầy đủ");
+            return false;
+        }
+        else
+        {
+            if(adoptInfoBLL.UpdateAdoptInfo(idadopt, idchild, str_adoptdate))
+            {
+                JOptionPane.showMessageDialog(this, "Cập nhật thành công chi tiết nhận trẻ");
+                return true;
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Cập nhật thất bại chi tiết nhận trẻ");
+                return false;
+            }
+        }
+    }
+    public boolean Delete()
+    {
+        String nameadopt =cbNameAPaAdoptInfo.getSelectedItem().toString();
+        int idadopt =adoptiveParentBLL.getID(nameadopt);
+        String namechild =cbNameChildAdoptInfo.getSelectedItem().toString();
+        int idchild=childBLL.getID(namechild);
+        if(adoptInfoBLL.DeleteAdoptInfo(idadopt, idchild))
+            {
+                JOptionPane.showMessageDialog(this, "Xóa thành công chi tiết nhận trẻ");
+                return true;
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Xóa thất bại chi tiết nhận trẻ");
+                return false;
+            }
+    }
+    private void btnAddAdoptInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddAdoptInfoActionPerformed
+        // TODO add your handling code here:
+        ClearText();
+        btnAddAdoptInfo.setEnabled(false);
+        btnEditAdoptInfo.setEnabled(false);
+        btnDelAdoptInfo.setEnabled(false);
+        btnSaveAdoptInfo.setEnabled(true);
+        flag=1;
+    }//GEN-LAST:event_btnAddAdoptInfoActionPerformed
+
+    private void btnEditAdoptInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditAdoptInfoActionPerformed
+        // TODO add your handling code here:
+        btnAddAdoptInfo.setEnabled(false);
+        btnEditAdoptInfo.setEnabled(false);
+        btnDelAdoptInfo.setEnabled(false);
+        btnSaveAdoptInfo.setEnabled(true);
+        flag=2;
+    }//GEN-LAST:event_btnEditAdoptInfoActionPerformed
+
+    private void btnDelAdoptInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelAdoptInfoActionPerformed
+        // TODO add your handling code here:
+        btnAddAdoptInfo.setEnabled(false);
+        btnEditAdoptInfo.setEnabled(false);
+        btnDelAdoptInfo.setEnabled(false);
+        btnSaveAdoptInfo.setEnabled(true);
+        flag=3;
+    }//GEN-LAST:event_btnDelAdoptInfoActionPerformed
+
+    private void btnSaveAdoptInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveAdoptInfoActionPerformed
+        // TODO add your handling code here:
+        if(flag==1)
+        {
+            if(Insert())
+            {
+                control.bindingAdoptInfo(jTableAdoptInfo, adoptInfoBLL.LoadAdoptInfo());
+                ClearText();
+                btnSaveAdoptInfo.setEnabled(false);
+            }
+            btnEditAdoptInfo.setEnabled(true);
+            btnAddAdoptInfo.setEnabled(true);
+            btnDelAdoptInfo.setEnabled(true);
+        }
+        if(flag==2)
+        {
+            if(Update())
+            {
+                control.bindingAdoptInfo(jTableAdoptInfo, adoptInfoBLL.LoadAdoptInfo());
+                ClearText();
+                btnSaveAdoptInfo.setEnabled(false);
+            }
+            btnEditAdoptInfo.setEnabled(true);
+            btnAddAdoptInfo.setEnabled(true);
+            btnDelAdoptInfo.setEnabled(true);
+        }
+        if(flag==3)
+        {
+            if(Delete())
+            {
+                control.bindingAdoptInfo(jTableAdoptInfo, adoptInfoBLL.LoadAdoptInfo());
+                ClearText();
+                btnSaveAdoptInfo.setEnabled(false);
+            }
+            btnEditAdoptInfo.setEnabled(true);
+            btnAddAdoptInfo.setEnabled(true);
+            btnDelAdoptInfo.setEnabled(true);
+        }
+    }//GEN-LAST:event_btnSaveAdoptInfoActionPerformed
+
+    private void btnSearchAdoptInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAdoptInfoActionPerformed
+        // TODO add your handling code here:
+        String key =txfSearchAdoptInfo.getText().toString();
+        if(cbSearchAdoptInfo.getSelectedItem().toString().equals("Trẻ"))
+        {
+            control.bindingAdoptInfo(jTableAdoptInfo, adoptInfoBLL.SearchAdoptInfo_Child(key));
+        }
+        if(cbSearchAdoptInfo.getSelectedItem().equals("Người nhận nuôi"))
+        {
+            control.bindingAdoptInfo(jTableAdoptInfo, adoptInfoBLL.SearchAdoptInfo_Adopt(key));
+        }
+        txfSearchAdoptInfo.setText("");
+        cbSearchAdoptInfo.setSelectedIndex(0);
+    }//GEN-LAST:event_btnSearchAdoptInfoActionPerformed
+
+    private void jTableAdoptInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAdoptInfoMouseClicked
+        // TODO add your handling code here:
+        int row =jTableAdoptInfo.getSelectedRow();
+        String nameadopt =jTableAdoptInfo.getValueAt(row, 0).toString();
+        String namechild=jTableAdoptInfo.getValueAt(row, 1).toString();
+        if(jTableAdoptInfo.getValueAt(row, 0).toString().equals(nameadopt))
+            cbNameAPaAdoptInfo.setSelectedItem(nameadopt);
+        if(jTableAdoptInfo.getValueAt(row, 1).toString().equals(namechild))
+            cbNameChildAdoptInfo.setSelectedItem(namechild);
+        jDChAdoptDate.setDate((Date)jTableAdoptInfo.getModel().getValueAt(row, 2));
+    }//GEN-LAST:event_jTableAdoptInfoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -246,8 +478,8 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEditAdoptInfo;
     private javax.swing.JButton btnSaveAdoptInfo;
     private javax.swing.JButton btnSearchAdoptInfo;
-    private javax.swing.JComboBox<String> cbIDAPaAdoptInfo;
-    private javax.swing.JComboBox<String> cbIDChildAdoptInfo;
+    private javax.swing.JComboBox<String> cbNameAPaAdoptInfo;
+    private javax.swing.JComboBox<String> cbNameChildAdoptInfo;
     private javax.swing.JComboBox<String> cbSearchAdoptInfo;
     private com.toedter.calendar.JDateChooser jDChAdoptDate;
     private javax.swing.JLabel jLabel1;

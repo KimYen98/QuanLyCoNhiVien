@@ -36,7 +36,24 @@ public class fChild extends javax.swing.JInternalFrame {
         }
         jDChJoinDateChild.setDate(new Date());
     }
-
+     //Hàm chuẩn hóa tên
+    public String chuanHoa(String str) {
+        str = str.trim();
+        str = str.replaceAll("\\s+", " ");
+        return str;
+    }
+ 
+    public String chuanHoaDanhTuRieng(String str) {
+        str = chuanHoa(str.toLowerCase());
+        String temp[] = str.split(" ");
+        str = ""; // ? ^-^
+        for (int i = 0; i < temp.length; i++) {
+            str += String.valueOf(temp[i].charAt(0)).toUpperCase() + temp[i].substring(1);
+            if (i < temp.length - 1) // ? ^-^
+                str += " ";
+        }
+        return str;
+    } 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -360,14 +377,15 @@ public class fChild extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(231, 231, 231))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -378,14 +396,14 @@ public class fChild extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
@@ -426,6 +444,9 @@ public class fChild extends javax.swing.JInternalFrame {
             status_=0;
         String namestaff =cbNameStaffChild.getSelectedItem().toString();
         int id=staffBLL.getID(namestaff);
+        name=chuanHoaDanhTuRieng(name);
+        situation=chuanHoa(situation);
+        whobring=chuanHoaDanhTuRieng(whobring);
         if(name.equals("")|| strbirthday.equals("")|| sex.equals("")|| strjoindate.equals("")|| situation.equals("") || whobring.equals("")||
                 status.equals("")|| namestaff.equals(""))
         {
@@ -467,6 +488,9 @@ public class fChild extends javax.swing.JInternalFrame {
             status_=1;
         else
             status_=0;
+        name=chuanHoaDanhTuRieng(name);
+        situation=chuanHoa(situation);
+        whobring=chuanHoaDanhTuRieng(whobring);
         String namestaff =cbNameStaffChild.getSelectedItem().toString();
         int idstaff=staffBLL.getID(namestaff);
         if(name.equals("")|| strbirthday.equals("")|| sex.equals("")|| strjoindate.equals("")|| situation.equals("") || whobring.equals("")||
@@ -559,7 +583,7 @@ public class fChild extends javax.swing.JInternalFrame {
         if(status.equals("Ở cô nhi viện"))
             cbStatus.setSelectedItem("Ở cô nhi viện");
         if(status.equals("Không còn ở cô nhi viện"))
-            cbStatus.setSelectedItem("Không còn ở cô nhi viên");
+            cbStatus.setSelectedItem("Không còn ở cô nhi viện");
         String namestaff =jTableChild.getValueAt(row, 8).toString();
         cbNameStaffChild.setSelectedItem(namestaff);
     }//GEN-LAST:event_jTableChildMouseClicked

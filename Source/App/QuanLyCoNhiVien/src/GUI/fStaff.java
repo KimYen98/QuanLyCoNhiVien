@@ -36,6 +36,24 @@ public class fStaff extends javax.swing.JInternalFrame {
         }
         jDChStartStaff.setDate(new Date());
     }
+    //Hàm chuẩn hóa tên
+    public String chuanHoa(String str) {
+        str = str.trim();
+        str = str.replaceAll("\\s+", " ");
+        return str;
+    }
+ 
+    public String chuanHoaDanhTuRieng(String str) {
+        str = chuanHoa(str.toLowerCase());
+        String temp[] = str.split(" ");
+        str = ""; // ? ^-^
+        for (int i = 0; i < temp.length; i++) {
+            str += String.valueOf(temp[i].charAt(0)).toUpperCase() + temp[i].substring(1);
+            if (i < temp.length - 1) // ? ^-^
+                str += " ";
+        }
+        return str;
+    } 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -109,6 +127,11 @@ public class fStaff extends javax.swing.JInternalFrame {
         jLabel7.setText("Điện thoại");
 
         txfPhoneStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        txfPhoneStaff.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfPhoneStaffKeyTyped(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel8.setText("Ngày vào làm");
@@ -484,16 +507,18 @@ public class fStaff extends javax.swing.JInternalFrame {
     public boolean  Insert()
     {
         String name =txfNameStaff.getText().toString();
+        name=chuanHoaDanhTuRieng(name);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date birthday =jDChBirthdayStaff.getDate();
         String strbirthday =formatter.format(birthday);
         String address =txfAddressStaff.getText().toString();
+        address=chuanHoa(address);
         String phonenumber =txfPhoneStaff.getText().toString();
         Date startwork =jDChStartStaff.getDate();
         String strstartwork =formatter.format(startwork);
         String namecategogy =cbStaffCategogy.getSelectedItem().toString();
         String  status=cbStatus.getSelectedItem().toString();
-        int status_ = 0;
+        int status_ = 1;
         if(status.equals("Đang làm việc"))
             status_=1;
         if(status.equals("Đã nghỉ việc"))
@@ -527,17 +552,19 @@ public class fStaff extends javax.swing.JInternalFrame {
     {
         int id= Integer.parseInt(txfIDStaff.getText());
         String name =txfNameStaff.getText().toString();
+        name=chuanHoaDanhTuRieng(name);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date birthday =jDChBirthdayStaff.getDate();
         String strbirthday =formatter.format(birthday);
         String address =txfAddressStaff.getText().toString();
+        address=chuanHoa(address);
         String phonenumber =txfPhoneStaff.getText().toString();
         Date startwork =jDChStartStaff.getDate();
         String strstartwork =formatter.format(startwork);
         String namecategogy =cbStaffCategogy.getSelectedItem().toString();
         int idcategogy =staffCategogyBLL.getID(namecategogy);
          String  status=cbStatus.getSelectedItem().toString();
-        int status_ = 0;
+        int status_ = 1;
         if(status.equals("Đang làm việc"))
             status_=1;
         if(status.equals("Đã nghỉ việc"))
@@ -585,6 +612,13 @@ public class fStaff extends javax.swing.JInternalFrame {
     private void rbtnMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMaleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbtnMaleActionPerformed
+
+    private void txfPhoneStaffKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfPhoneStaffKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (((c < '0') || (c > '9')) || txfPhoneStaff.getText().length() >= 10)
+            evt.consume();
+    }//GEN-LAST:event_txfPhoneStaffKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

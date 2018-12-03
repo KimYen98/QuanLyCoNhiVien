@@ -134,6 +134,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="T&#xcc;M KI&#x1ebe;M"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchAdoptInfoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="cbSearchAdoptInfo">
           <Properties>
@@ -168,11 +171,11 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="cbIDAPaAdoptInfo" pref="174" max="32767" attributes="0"/>
-                      <Component id="cbIDChildAdoptInfo" max="32767" attributes="0"/>
-                      <Component id="jDChAdoptDate" max="32767" attributes="0"/>
+                      <Component id="cbNameChildAdoptInfo" max="32767" attributes="0"/>
+                      <Component id="jDChAdoptDate" pref="358" max="32767" attributes="0"/>
+                      <Component id="cbNameAPaAdoptInfo" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -182,12 +185,12 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbIDAPaAdoptInfo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbNameAPaAdoptInfo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbIDChildAdoptInfo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbNameChildAdoptInfo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -205,7 +208,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="15" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="M&#xe3; ng&#x1b0;&#x1edd;i nh&#x1ead;n nu&#xf4;i"/>
+            <Property name="text" type="java.lang.String" value="T&#xea;n ng&#x1b0;&#x1edd;i nh&#x1ead;n nu&#xf4;i"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
@@ -213,7 +216,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="15" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="M&#xe3; tr&#x1ebb;"/>
+            <Property name="text" type="java.lang.String" value="T&#xea;n tr&#x1ebb;"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
@@ -224,7 +227,7 @@
             <Property name="text" type="java.lang.String" value="Ng&#xe0;y nh&#x1ead;n"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cbIDAPaAdoptInfo">
+        <Component class="javax.swing.JComboBox" name="cbNameAPaAdoptInfo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="15" style="0"/>
@@ -242,7 +245,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cbIDChildAdoptInfo">
+        <Component class="javax.swing.JComboBox" name="cbNameChildAdoptInfo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="15" style="0"/>
@@ -289,6 +292,9 @@
               </Table>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableAdoptInfoMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -333,6 +339,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="TH&#xca;M"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddAdoptInfoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnEditAdoptInfo">
           <Properties>
@@ -341,6 +350,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="C&#x1eac;P NH&#x1eac;T"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditAdoptInfoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnDelAdoptInfo">
           <Properties>
@@ -349,6 +361,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="X&#xd3;A"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDelAdoptInfoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnSaveAdoptInfo">
           <Properties>
@@ -357,6 +372,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="L&#x1af;U"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveAdoptInfoActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

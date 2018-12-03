@@ -6,6 +6,7 @@
 package DAL;
 
 import Entity.Child;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -104,5 +105,49 @@ public class ChildDAL extends  DataAccessHelper{
         }
         return temp;
     }
-    
+    //Load trẻ hiện đang ở cô nhi viện
+    public ArrayList< Child> LoadChildNow ()
+    {
+        ArrayList <Child> temp =new ArrayList<>();
+        String SQL="exec sp_HienThiDanhSachTreHienOCoNhiVien";
+        try {
+            getConnect();
+            Statement st = conn.createStatement();
+            ResultSet rs=st.executeQuery(SQL);
+            if(rs!=null)
+                while(rs.next())
+                {
+                    Child child =new Child();
+                    child.setID(rs.getInt("MaTre"));
+                    child.setName(rs.getString("TenTre"));
+                     child.setBirthday(rs.getDate("NgaySinh"));
+                    child.setSex(rs.getString("GioiTinh"));
+                    child.setJoinDate(rs.getDate("NgayVao"));
+                    child.setSituation(rs.getString("HoanCanh"));
+                    child.setWhoBring(rs.getString("NguoiDuaTreVao"));
+                    child.setStatus(rs.getInt("TrangThai"));
+                    child.setNameStaff(rs.getString("TenNV"));
+                    temp.add(child);
+                   
+                }
+             getClose();
+        } catch (Exception e) {
+        }
+        return temp;
+    }
+    //Lấy mã trẻ theo tên trẻ
+    public int getID(String name)    
+    {
+        String SQL="SELECT MaTre FROM Tre WHERE TenTre=N'"+name+"'";
+        try {
+            getConnect();
+            PreparedStatement ps=conn.prepareStatement(SQL);
+            ResultSet rs =ps.executeQuery();
+            if(rs!=null && rs.next())
+                return rs.getInt("MaTre");
+            getClose();
+        } catch (Exception e) {
+        }
+        return 0;
+    }
 }

@@ -30,5 +30,14 @@ public class AdoptiveParentBLL {
     {
         return DAL.UpdateAdoptiveParent(id, name, address, phonenumber);
     }
-    
+    //Tra cứu người nhận trẻ
+    public ArrayList<AdoptiveParent> SearchAdoptiveParent(String key)
+    {
+        return DAL.SeacrchAdoptiveParent(key);
+    }
+    //Lấy mã người nhận trẻ theo tên người nhận
+    public int getID(String name)
+    {
+        return DAL.getID(name);
+    }
 }

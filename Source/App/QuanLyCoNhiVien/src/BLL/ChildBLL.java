@@ -35,4 +35,14 @@ public class ChildBLL {
     {
         return DAL.SearchChild(key);
     }
+    //Load trẻ hiện đang ở cô nhi viện
+    public ArrayList <Child> LoadChildNow()
+    {
+        return DAL.LoadChildNow();
+    }
+    //Lấy mã trẻ theo tên trẻ
+    public int getID(String name)
+    {
+        return DAL.getID(name);
+    }
 }

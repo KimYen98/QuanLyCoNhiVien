@@ -474,11 +474,11 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         int row=jTableSponsorship.getSelectedRow();
         txfIDSponsorship.setText(jTableSponsorship.getValueAt(row, 0).toString());
-        String namesponsor=cbNameSponsorSponsorship.getSelectedItem().toString();
+        String namesponsor=jTableSponsorship.getValueAt(row, 1).toString();
         if(jTableSponsorship.getValueAt(row, 1).toString().equals(namesponsor))
             cbNameSponsorSponsorship.setSelectedItem(namesponsor);
         jDChSponsorshipDate.setDate((Date)jTableSponsorship.getModel().getValueAt(row, 2));
-        String format =cbFormSponsorship.getSelectedItem().toString();
+        String format =jTableSponsorship.getValueAt(row, 3).toString();
         if(jTableSponsorship.getValueAt(row,3).toString().equals(format))
             cbFormSponsorship.setSelectedItem(format);
         txfMoneySponsorship.setText(jTableSponsorship.getValueAt(row, 4).toString());
