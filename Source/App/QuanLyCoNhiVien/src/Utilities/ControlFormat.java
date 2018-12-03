@@ -5,6 +5,7 @@
  */
 package Utilities;
 
+import Entity.AdoptiveParent;
 import Entity.Child;
 import Entity.Sponsor;
 import Entity.Sponsorship;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import sun.security.rsa.RSACore;
 
 /**
  *
@@ -55,6 +57,7 @@ public class ControlFormat {
         header.add("Số điện thoại");
         header.add("Ngày vào làm");
         header.add("Loại nhân viên");
+        header.add("Trạng thái");
         Vector data =new Vector();
         for(Staff staff : arr)
         {
@@ -67,6 +70,10 @@ public class ControlFormat {
             row.add(staff.getPhoneNumber());
             row.add(staff.getStartWork());
             row.add(staff.getNameStaffCategogy());
+            if(staff.getStatus()==1)
+                row.add("Đang làm việc");
+            if(staff.getStatus()==0)
+                row.add("Đã nghỉ việc");
             data.add(row);
         }
         //DefaultTableModel
@@ -102,7 +109,10 @@ public class ControlFormat {
             row.add(child.getJoinDate());
             row.add(child.getSituation());
             row.add(child.getWhoBring());
-            row.add(child.getStatus());
+            if(child.getStatus()==1)
+                row.add("Đang ở cô nhi viện");
+            if(child.getStatus()==0)
+                row.add("Không còn ở cô nhi viện");
             row.add(child.getNameStaff());
             data.add(row);
         }
@@ -143,7 +153,7 @@ public class ControlFormat {
         };
         name.setModel(dtm);      
     }
-    //Lấy dữ liệu ở bảng
+    //Lấy dữ liệu ở bảng tài trợ
     public void bindingSponsorship(JTable name , ArrayList<Sponsorship> arr)
     {
         Vector header =new Vector();
@@ -171,5 +181,32 @@ public class ControlFormat {
             }
         };
         name.setModel(dtm);      
+    }
+    //Lấy dữ liệu ở bảng người nhận trẻ
+    public void bindingAdoptiveParent(JTable name ,ArrayList<AdoptiveParent> arr)
+    {
+        Vector header =new Vector();
+        header.add("Mã người nhận trẻ");
+        header.add("Tên người nhận trẻ");
+        header.add("Địa chỉ");
+        header.add("Số điện thoại");
+        Vector data =new Vector();
+        for(AdoptiveParent adoptiveParent :arr)
+        {
+            Vector row=new Vector();
+            row.add(adoptiveParent.getID());
+            row.add(adoptiveParent.getName());
+            row.add(adoptiveParent.getAddress());
+            row.add(adoptiveParent.getPhoneNumber());
+            data.add(row);
+        }
+         //DefaultTableModel
+        DefaultTableModel dtm = new DefaultTableModel(data,header){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        name.setModel(dtm);  
     }
 }

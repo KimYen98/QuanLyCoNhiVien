@@ -47,6 +47,8 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         btnPrintRPNumOfChild = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
+        setClosable(true);
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         jLabel1.setText("BÁO CÁO SỈ SỐ TRẺ");
 

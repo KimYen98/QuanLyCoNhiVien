@@ -5,6 +5,9 @@
  */
 package GUI;
 
+import java.awt.Toolkit;
+import javax.swing.JFrame;
+
 /**
  *
  * @author STIREN
@@ -14,8 +17,25 @@ public class fManagement extends javax.swing.JFrame {
     /**
      * Creates new form fManagement
      */
+    Toolkit tk =Toolkit.getDefaultToolkit();
+    public int getSizeX()
+    {
+        return (int)jDesktopPane1.getSize().getWidth();
+    }
+    public int getSizeY()
+    {
+        return (int)jDesktopPane1.getSize().getHeight();
+    }
     public fManagement() {
         initComponents();
+        setResizable(false);
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
+        int x=(int) tk.getScreenSize().getWidth();
+        int y=(int)tk.getScreenSize().getHeight();  
+        setSize(x, y);
+        jDesktopPane1.setSize(x, y);
+        jLabel1.setSize(x,y);
     }
 
     /**
@@ -28,6 +48,7 @@ public class fManagement extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemChild = new javax.swing.JMenuItem();
@@ -52,23 +73,18 @@ public class fManagement extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("PHẦN MỀM QUẢN LÝ CÔ NHI VIỆN");
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 880, Short.MAX_VALUE)
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 457, Short.MAX_VALUE)
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/anhbia.jpg"))); // NOI18N
+        jDesktopPane1.add(jLabel1);
+        jLabel1.setBounds(0, 0, 880, 470);
 
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
 
+        jMenu1.setForeground(new java.awt.Color(0, 0, 204));
         jMenu1.setText("Trẻ");
-        jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
         jMenuItemChild.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jMenuItemChild.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemChild.setText("Trẻ");
         jMenuItemChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,10 +95,12 @@ public class fManagement extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setForeground(new java.awt.Color(0, 0, 204));
         jMenu2.setText("Nhân viên");
-        jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
         jMenuItemStaffCategogy.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jMenuItemStaffCategogy.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemStaffCategogy.setText("Loại nhân viên");
         jMenuItemStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,6 +110,7 @@ public class fManagement extends javax.swing.JFrame {
         jMenu2.add(jMenuItemStaffCategogy);
 
         jMenuItemStaff.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jMenuItemStaff.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemStaff.setText("Nhân viên");
         jMenuItemStaff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,10 +121,12 @@ public class fManagement extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setForeground(new java.awt.Color(0, 0, 204));
         jMenu3.setText("Tài trợ");
-        jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
         jMenuItemSponsor.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jMenuItemSponsor.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemSponsor.setText("Nhà tài trợ");
         jMenuItemSponsor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,6 +136,7 @@ public class fManagement extends javax.swing.JFrame {
         jMenu3.add(jMenuItemSponsor);
 
         jMenuItemSponsorship.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jMenuItemSponsorship.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemSponsorship.setText("Chương trình tài trợ");
         jMenuItemSponsorship.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,10 +147,12 @@ public class fManagement extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        jMenu4.setForeground(new java.awt.Color(0, 0, 204));
         jMenu4.setText("Chi tiêu");
-        jMenu4.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jMenu4.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
         jMenuItemExpense.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jMenuItemExpense.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemExpense.setText("Chi tiêu");
         jMenuItemExpense.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,6 +162,7 @@ public class fManagement extends javax.swing.JFrame {
         jMenu4.add(jMenuItemExpense);
 
         jMenuItemExpenseInfo.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jMenuItemExpenseInfo.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemExpenseInfo.setText("Chi tiết chi tiêu");
         jMenuItemExpenseInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,10 +173,12 @@ public class fManagement extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
+        jMenu5.setForeground(new java.awt.Color(0, 0, 204));
         jMenu5.setText("Nhận trẻ");
-        jMenu5.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jMenu5.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
         jMenuItemAdoptiveParent.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jMenuItemAdoptiveParent.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemAdoptiveParent.setText("Người nhận trẻ");
         jMenuItemAdoptiveParent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,6 +188,7 @@ public class fManagement extends javax.swing.JFrame {
         jMenu5.add(jMenuItemAdoptiveParent);
 
         jMenuItemAdoptInfo.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jMenuItemAdoptInfo.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemAdoptInfo.setText("Chi tiết việc nhận trẻ");
         jMenuItemAdoptInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,10 +199,12 @@ public class fManagement extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
+        jMenu7.setForeground(new java.awt.Color(0, 0, 204));
         jMenu7.setText("Báo cáo");
-        jMenu7.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jMenu7.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
         jMenuItemReportNumOfChild.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jMenuItemReportNumOfChild.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemReportNumOfChild.setText("Báo cáo sỉ số trẻ");
         jMenuItemReportNumOfChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,6 +214,7 @@ public class fManagement extends javax.swing.JFrame {
         jMenu7.add(jMenuItemReportNumOfChild);
 
         jMenuItemReportFinance.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jMenuItemReportFinance.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemReportFinance.setText("Báo cáo tài chính");
         jMenuItemReportFinance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,10 +225,12 @@ public class fManagement extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu7);
 
+        jMenu6.setForeground(new java.awt.Color(0, 0, 204));
         jMenu6.setText("Tài khoản");
-        jMenu6.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jMenu6.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
         jMenuItemAccount.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jMenuItemAccount.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemAccount.setText("Tài khoản");
         jMenuItemAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,6 +260,7 @@ public class fManagement extends javax.swing.JFrame {
     private void jMenuItemChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemChildActionPerformed
         // TODO add your handling code here:
         fChild f = new fChild();
+         f.setSize(this.getSizeX(), this.getSizeY());
         this.jDesktopPane1.add(f);
         f.setVisible(true);
     }//GEN-LAST:event_jMenuItemChildActionPerformed
@@ -234,6 +268,7 @@ public class fManagement extends javax.swing.JFrame {
     private void jMenuItemStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStaffActionPerformed
         // TODO add your handling code here:
         fStaff f = new fStaff();
+         f.setSize(this.getSizeX(), this.getSizeY());
         this.jDesktopPane1.add(f);
         f.setVisible(true);
     }//GEN-LAST:event_jMenuItemStaffActionPerformed
@@ -241,6 +276,7 @@ public class fManagement extends javax.swing.JFrame {
     private void jMenuItemStaffCategogyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStaffCategogyActionPerformed
         // TODO add your handling code here:
         fStaffCategogy f = new fStaffCategogy();
+         f.setSize(this.getSizeX(), this.getSizeY());
         this.jDesktopPane1.add(f);
         f.setVisible(true);
     }//GEN-LAST:event_jMenuItemStaffCategogyActionPerformed
@@ -248,6 +284,7 @@ public class fManagement extends javax.swing.JFrame {
     private void jMenuItemSponsorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSponsorActionPerformed
         // TODO add your handling code here:
         fSponsor f = new fSponsor();
+         f.setSize(this.getSizeX(), this.getSizeY());
         this.jDesktopPane1.add(f);
         f.setVisible(true);
     }//GEN-LAST:event_jMenuItemSponsorActionPerformed
@@ -255,6 +292,7 @@ public class fManagement extends javax.swing.JFrame {
     private void jMenuItemSponsorshipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSponsorshipActionPerformed
         // TODO add your handling code here:
         fSponsorship f = new fSponsorship();
+         f.setSize(this.getSizeX(), this.getSizeY());
         this.jDesktopPane1.add(f);
         f.setVisible(true);
     }//GEN-LAST:event_jMenuItemSponsorshipActionPerformed
@@ -262,6 +300,7 @@ public class fManagement extends javax.swing.JFrame {
     private void jMenuItemExpenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExpenseActionPerformed
         // TODO add your handling code here:
         fExpense f = new fExpense();
+         f.setSize(this.getSizeX(), this.getSizeY());
         this.jDesktopPane1.add(f);
         f.setVisible(true);
     }//GEN-LAST:event_jMenuItemExpenseActionPerformed
@@ -269,6 +308,7 @@ public class fManagement extends javax.swing.JFrame {
     private void jMenuItemExpenseInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExpenseInfoActionPerformed
         // TODO add your handling code here:
         fExpenseInfo f = new fExpenseInfo();
+         f.setSize(this.getSizeX(), this.getSizeY());
         this.jDesktopPane1.add(f);
         f.setVisible(true);
     }//GEN-LAST:event_jMenuItemExpenseInfoActionPerformed
@@ -276,6 +316,7 @@ public class fManagement extends javax.swing.JFrame {
     private void jMenuItemAdoptiveParentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAdoptiveParentActionPerformed
         // TODO add your handling code here:
         fAdoptiveParent f = new fAdoptiveParent();
+         f.setSize(this.getSizeX(), this.getSizeY());
         this.jDesktopPane1.add(f);
         f.setVisible(true);
     }//GEN-LAST:event_jMenuItemAdoptiveParentActionPerformed
@@ -283,6 +324,7 @@ public class fManagement extends javax.swing.JFrame {
     private void jMenuItemAdoptInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAdoptInfoActionPerformed
         // TODO add your handling code here:
         fAdoptInfo f = new fAdoptInfo();
+         f.setSize(this.getSizeX(), this.getSizeY());
         this.jDesktopPane1.add(f);
         f.setVisible(true);
     }//GEN-LAST:event_jMenuItemAdoptInfoActionPerformed
@@ -290,6 +332,7 @@ public class fManagement extends javax.swing.JFrame {
     private void jMenuItemReportNumOfChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemReportNumOfChildActionPerformed
         // TODO add your handling code here:
         fReportNumOfChild f = new fReportNumOfChild();
+         f.setSize(this.getSizeX(), this.getSizeY());
         this.jDesktopPane1.add(f);
         f.setVisible(true);
     }//GEN-LAST:event_jMenuItemReportNumOfChildActionPerformed
@@ -297,6 +340,7 @@ public class fManagement extends javax.swing.JFrame {
     private void jMenuItemReportFinanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemReportFinanceActionPerformed
         // TODO add your handling code here:
         fReportFinance f = new fReportFinance();
+         f.setSize(this.getSizeX(), this.getSizeY());
         this.jDesktopPane1.add(f);
         f.setVisible(true);
     }//GEN-LAST:event_jMenuItemReportFinanceActionPerformed
@@ -304,6 +348,7 @@ public class fManagement extends javax.swing.JFrame {
     private void jMenuItemAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAccountActionPerformed
         // TODO add your handling code here:
         fAccount f = new fAccount();
+         f.setSize(this.getSizeX(), this.getSizeY());
         this.jDesktopPane1.add(f);
         f.setVisible(true);
     }//GEN-LAST:event_jMenuItemAccountActionPerformed
@@ -345,6 +390,7 @@ public class fManagement extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

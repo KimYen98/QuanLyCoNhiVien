@@ -58,9 +58,9 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txfIDSponsorship = new javax.swing.JTextField();
-        cbNameSponsorSponsorship = new javax.swing.JComboBox<String>();
+        cbNameSponsorSponsorship = new javax.swing.JComboBox<>();
         jDChSponsorshipDate = new com.toedter.calendar.JDateChooser();
-        cbFormSponsorship = new javax.swing.JComboBox<String>();
+        cbFormSponsorship = new javax.swing.JComboBox<>();
         txfMoneySponsorship = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         btnAddSponsorship = new javax.swing.JButton();
@@ -69,6 +69,8 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         btnSaveSponsorship = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableSponsorship = new javax.swing.JTable();
+
+        setClosable(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         jLabel1.setText("QUẢN LÝ CHƯƠNG TRÌNH TÀI TRỢ");
@@ -123,12 +125,12 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         txfIDSponsorship.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         cbNameSponsorSponsorship.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        cbNameSponsorSponsorship.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbNameSponsorSponsorship.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jDChSponsorshipDate.setDateFormatString("dd-MM-yyyy");
 
         cbFormSponsorship.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        cbFormSponsorship.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tiền mặt", "Chuyển khoản", "Hiện vật" }));
+        cbFormSponsorship.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tiền mặt", "Chuyển khoản", "Hiện vật" }));
 
         txfMoneySponsorship.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         txfMoneySponsorship.setText("0");

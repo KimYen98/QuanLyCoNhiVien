@@ -148,6 +148,37 @@ go
 --Ngày sinh của nhân viên phải nhỏ hơn vào ngày vào làm của nhân viên
 alter table NhanVien add constraint KT_NgaySinh_NgayVL check(NgaySinh<NgayVL)
 go
+-- Trigger cập nhật trạng thái của trẻ có người nhận trẻ
+create trigger trg_ins_CT_NguoiNhanTre_Tre on CT_NguoiNhanTre_Tre
+for insert
+as
+begin
+	declare @MaTre int
+	select @MaTre =MaTre
+	from inserted
+	update Tre
+	set TrangThai='0'
+	where MaTre=@MaTre
+end
+go
+--Trigger kiểm tra xem nhân viên chăm sóc trẻ phải là nhân viên thuộc loại nhân viên bảo mẫu và hiện đang làm việc
+create trigger trg_ins_up_Tre on Tre
+for insert, update
+as
+begin
+	declare @MaNV int
+	select @MaNV=MaNV
+	from inserted
+	if(select count(*)
+		from NhanVien,LoaiNhanVien
+		where NhanVien.MaLoaiNV=LoaiNhanVien.MaLoaiNV and MaNV=@MaNV and TenLoaiNV=N'Bảo mẫu' and TrangThai=1)=0
+		begin
+			print N'Nhân viên chăm sóc trẻ phải là nhân viên bảo mẫu và hiện đang làm việc'
+			rollback tran
+		end
+end
+go
+
 --Thêm loại nhân viên
 create proc sp_ThemLoaiNhanVien
 @TenLoaiNV nvarchar(100)
@@ -710,5 +741,76 @@ begin
 	select MaTaiTro, TenNhaTaiTro,NgayTaiTro,HinhThucTaiTro,SoTien
 	from TaiTro,NhaTaiTro
 	where TaiTro.MaNhaTaiTro=NhaTaiTro.MaNhaTaiTro and   [dbo].[GetUnsignString](TenNhaTaiTro) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
+end
+go
+--Hiện thị danh sách người nhận trẻ
+create proc sp_HienThiDanhSachNguoiNhanTre
+as
+begin
+	select * from NguoiNhanTre
+end
+go
+-- Thêm người nhân nuôi trẻ
+create proc sp_ThemNguoiNhanTre
+@TenNguoiNhan nvarchar(100), @DiaChi nvarchar(100), @SoDT nvarchar(10)
+as
+begin
+	declare @MaNguoiNhan int, @MaNguoiNhan_Max int,@i int =1
+	set @MaNguoiNhan_Max=(select max(MaNguoiNhan)
+							from NguoiNhanTre)
+	if(@MaNguoiNhan_Max is null)
+		set @MaNguoiNhan=@i
+	else
+		begin
+			while(@i<=@MaNguoiNhan_Max+1)
+				begin
+					if(select count(*)
+						from NguoiNhanTre
+						where MaNguoiNhan=@i)=0
+						begin
+							set @MaNguoiNhan=@i
+							break
+						end
+					set @i=@i+1
+				end
+		end
+	insert into NguoiNhanTre values(@MaNguoiNhan,@TenNguoiNhan,@DiaChi,@SoDT)
+end
+go
+--Cập nhật người nhận trẻ
+create proc sp_CapNhatNguoiNhanTre
+@MaNguoiNhan int, @TenNguoiNhan nvarchar(100), @DiaChi nvarchar(100), @SoDT nvarchar(10)
+as
+begin
+	update NguoiNhanTre
+	set TenNguoiNhan=@TenNguoiNhan,DiaChi=@DiaChi,SoDT=@SoDT
+	where MaNguoiNhan=@MaNguoiNhan
+end
+go
+--Thêm chi tiết người nhận trẻ
+create proc sp_ThemChiTietNhanTre
+@MaNguoiNhan int, @MaTre int, @NgayNhan smalldatetime
+as
+begin
+	insert into CT_NguoiNhanTre_Tre values(@MaNguoiNhan,@MaTre,@NgayNhan)
+end
+go
+--Cập nhật chi tiết người nhận trẻ
+create proc sp_CapNhatChiTietNhanTre
+@MaNguoiNhan int, @MaTre int, @NgayNhan smalldatetime
+as
+begin
+	update CT_NguoiNhanTre_Tre
+	set NgayNhan=@NgayNhan
+	where MaTre=@MaTre and MaNguoiNhan=@MaNguoiNhan
+end
+go
+--Xóa chi tiết người nhận trẻ
+create proc sp_XoaChiTietNhanTre
+@MaNguoiNhan int, @MaTre int
+as
+begin
+	delete from CT_NguoiNhanTre_Tre
+	where MaNguoiNhan=@MaNguoiNhan and MaTre=@MaTre
 end
 go

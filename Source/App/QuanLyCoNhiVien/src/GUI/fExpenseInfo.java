@@ -47,6 +47,8 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableExpenseInfo = new javax.swing.JTable();
 
+        setClosable(true);
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         jLabel1.setText("QUẢN LÝ CHI TIẾT CHI TIÊU");
 

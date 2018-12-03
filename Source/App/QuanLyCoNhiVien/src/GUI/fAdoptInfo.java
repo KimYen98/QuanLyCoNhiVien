@@ -48,6 +48,8 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         btnDelAdoptInfo = new javax.swing.JButton();
         btnSaveAdoptInfo = new javax.swing.JButton();
 
+        setClosable(true);
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         jLabel1.setText("QUẢN LÝ VIỆC NHẬN NUÔI TRẺ");
 
