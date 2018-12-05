@@ -5,6 +5,14 @@
  */
 package GUI;
 
+import BLL.ExpenseBLL;
+import BLL.SponsorshipBLL;
+import java.awt.print.PrinterException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author STIREN
@@ -14,8 +22,13 @@ public class fReportFinance extends javax.swing.JInternalFrame {
     /**
      * Creates new form fReportFinance
      */
+    ExpenseBLL expenseBLL = new ExpenseBLL();
+    SponsorshipBLL sponsorshipBLL = new SponsorshipBLL();
+    
     public fReportFinance() {
         initComponents();
+        jDChFromDateRPFinance.setDate(new Date());
+        jDChToDateRPFinance.setDate(new Date());
     }
 
     /**
@@ -36,6 +49,8 @@ public class fReportFinance extends javax.swing.JInternalFrame {
         jDChToDateRPFinance = new com.toedter.calendar.JDateChooser();
         btnRPFinance = new javax.swing.JButton();
         btnPrintRPFinance = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txaRPFinance = new javax.swing.JTextArea();
 
         setClosable(true);
 
@@ -95,9 +110,24 @@ public class fReportFinance extends javax.swing.JInternalFrame {
 
         btnRPFinance.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnRPFinance.setText("THỐNG KÊ");
+        btnRPFinance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRPFinanceActionPerformed(evt);
+            }
+        });
 
         btnPrintRPFinance.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnPrintRPFinance.setText("IN BÁO CÁO");
+        btnPrintRPFinance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintRPFinanceActionPerformed(evt);
+            }
+        });
+
+        txaRPFinance.setEditable(false);
+        txaRPFinance.setColumns(20);
+        txaRPFinance.setRows(5);
+        jScrollPane1.setViewportView(txaRPFinance);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -108,12 +138,17 @@ public class fReportFinance extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addGap(232, 232, 232))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(btnRPFinance)
-                .addGap(113, 113, 113)
-                .addComponent(btnPrintRPFinance)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(btnRPFinance)
+                        .addGap(113, 113, 113)
+                        .addComponent(btnPrintRPFinance))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 857, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -129,11 +164,50 @@ public class fReportFinance extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnPrintRPFinance)
                             .addComponent(btnRPFinance))))
-                .addContainerGap(272, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    private void btnRPFinanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRPFinanceActionPerformed
+        // TODO add your handling code here:
+        String FromDate, ToDate;
+        if(jDChFromDateRPFinance.getDate() == null)
+            FromDate = "";
+        else
+            FromDate = formatter.format(jDChFromDateRPFinance.getDate());
+        if(jDChToDateRPFinance.getDate() == null)
+            ToDate = "";
+        else
+        ToDate = formatter.format(jDChToDateRPFinance.getDate());
+        
+        Date Today = new Date();
+        
+        txaRPFinance.setText("");
+        txaRPFinance.append("\t\t CÔ NHI VIỆN HƯỚNG DƯƠNG\n\n");
+        txaRPFinance.append("Địa chỉ: 184 Phan Văn Khỏe, Phường 5, Quận 1, TP Hồ Chí Minh\n");
+        txaRPFinance.append("Số điện thoại: (08) 3821 0199\n\n");
+        txaRPFinance.append("\t\t BÁO CÁO TÀI CHÍNH\n");
+        txaRPFinance.append("\t\t (Từ ngày " + FromDate + " đến ngày " + ToDate + ")\n\n");
+        txaRPFinance.append("Ngày lập báo cáo: " + formatter.format(Today) + "\n\n");
+        txaRPFinance.append("Tổng số tiền tài trợ: " + sponsorshipBLL.getTotalSponsorship(FromDate, ToDate) + "\n");
+        txaRPFinance.append("Tổng số tiền chi tiêu: " + expenseBLL.getTotalExpense(FromDate, ToDate) + "\n");
+        txaRPFinance.append("Tổng tiền quỹ hiện tại: " + expenseBLL.getFund());
+    }//GEN-LAST:event_btnRPFinanceActionPerformed
+
+    private void btnPrintRPFinanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintRPFinanceActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            txaRPFinance.print();
+        } catch (PrinterException ex) {
+            Logger.getLogger(fReportFinance.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnPrintRPFinanceActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -146,5 +220,7 @@ public class fReportFinance extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea txaRPFinance;
     // End of variables declaration//GEN-END:variables
 }

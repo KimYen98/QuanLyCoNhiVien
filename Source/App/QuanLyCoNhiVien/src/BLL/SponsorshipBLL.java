@@ -41,4 +41,9 @@ public class SponsorshipBLL {
     {
         return DAL.SearchSponsorShip(key);
     }
+    //Thống kê tiền tài trợ trong khoảng thời gian
+    public int getTotalSponsorship(String FromDate, String ToDate)
+    {
+        return DAL.getTotalSponsorship(FromDate, ToDate);
+    }
 }

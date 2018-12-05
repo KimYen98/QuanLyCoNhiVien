@@ -150,4 +150,124 @@ public class ChildDAL extends  DataAccessHelper{
         }
         return 0;
     }
+    //Báo cáo trẻ thêm mới
+    
+    public ArrayList<Child> RPNewChild(String FromDate, String ToDate)
+    {
+        ArrayList <Child> temp =new ArrayList<>();
+        String SQL = "EXEC SP_BaoCaoTreThemMoi '" + FromDate + "', '" + ToDate + "'";
+        try {
+            getConnect();
+            Statement st = conn.createStatement();
+            ResultSet rs=st.executeQuery(SQL);
+            if(rs!=null)
+                while(rs.next())
+                {
+                    Child child =new Child();
+                    child.setID(rs.getInt("MaTre"));
+                    child.setName(rs.getString("TenTre"));
+                     child.setBirthday(rs.getDate("NgaySinh"));
+                    child.setSex(rs.getString("GioiTinh"));
+                    child.setJoinDate(rs.getDate("NgayVao"));
+                    child.setSituation(rs.getString("HoanCanh"));
+                    child.setWhoBring(rs.getString("NguoiDuaTreVao"));
+                    child.setStatus(rs.getInt("TrangThai"));
+                    child.setNameStaff(rs.getString("TenNV"));
+                    temp.add(child);                   
+                }
+            getClose();
+        } catch (Exception e) {
+        }
+        return temp;
+    }
+    //Báo cáo trẻ được nhận nuôi
+    public ArrayList<Child> RPAdoptedChild(String FromDate, String ToDate)
+    {
+        ArrayList<Child> temp= new ArrayList<>();
+        String SQL = "EXEC SP_BaoCaoTreDuocNhanNuoi '" + FromDate + "', '" + ToDate + "'";
+        try {
+            getConnect();
+            Statement st = conn.createStatement();
+            ResultSet rs=st.executeQuery(SQL);
+            if(rs!=null)
+                while(rs.next())
+                {
+                    Child child =new Child();
+                    child.setID(rs.getInt("MaTre"));
+                    child.setName(rs.getString("TenTre"));
+                    child.setSex(rs.getString("GioiTinh"));
+                    child.setBirthday(rs.getDate("NgaySinh"));
+                    child.setJoinDate(rs.getDate("NgayVao"));
+                    child.setSituation(rs.getString("HoanCanh"));
+                    child.setWhoBring(rs.getString("NguoiDuaTreVao"));                
+                    child.setStatus(rs.getInt("TrangThai"));
+                    child.setNameStaff(rs.getString("TenNV"));
+                    temp.add(child);
+                    
+                }
+            getClose();
+        } catch (Exception e) {
+        }
+        return temp;
+    }
+    //Báo cáo trẻ đang ở cô nhi viện
+    public ArrayList<Child> RPNumOfChild(int FromAge, int ToAge)
+    {
+        ArrayList<Child> temp= new ArrayList<>();
+        String SQL = "EXEC SP_BaoCaoTreDangOCoNhiVien " + FromAge + ", " + ToAge;
+        try {
+            getConnect();
+            Statement st = conn.createStatement();
+            ResultSet rs=st.executeQuery(SQL);
+            if(rs!=null)
+                while(rs.next())
+                {
+                    Child child =new Child();
+                    child.setID(rs.getInt("MaTre"));
+                    child.setName(rs.getString("TenTre"));
+                    child.setSex(rs.getString("GioiTinh"));
+                    child.setBirthday(rs.getDate("NgaySinh"));
+                    child.setJoinDate(rs.getDate("NgayVao"));
+                    child.setSituation(rs.getString("HoanCanh"));
+                    child.setWhoBring(rs.getString("NguoiDuaTreVao"));                
+                    child.setStatus(rs.getInt("TrangThai"));
+                    child.setNameStaff(rs.getString("TenNV"));
+                    temp.add(child);
+                    
+                }
+            getClose();
+        } catch (Exception e) {
+        }
+        return temp;
+    }
+    //Thống kê số lượng trẻ nam đang ở cô nhi viện
+    public int getNumOfMaleChild()
+    {
+        String SQL = "EXEC SP_ThongKeTreNam";
+        try {
+            getConnect();
+            PreparedStatement ps = conn.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            if(rs != null && rs.next())
+                return rs.getInt("Nam");
+            getClose();
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+    //Thống kê số lượng trẻ nữ đang ở cô nhi viện
+    public int getNumOfFemaleChild()
+    {
+        String SQL = "EXEC SP_ThongKeTreNu";
+        try {
+            getConnect();
+            PreparedStatement ps = conn.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            if(rs != null && rs.next())
+                return rs.getInt("Nu");
+            getClose();
+        } catch (Exception e) {
+        }
+        return 0;
+    }
 }

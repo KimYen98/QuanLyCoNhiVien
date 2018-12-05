@@ -8,6 +8,8 @@ package Utilities;
 import Entity.AdoptInfo;
 import Entity.AdoptiveParent;
 import Entity.Child;
+import Entity.Expense;
+import Entity.ExpenseInfo;
 import Entity.Sponsor;
 import Entity.Sponsorship;
 import Entity.Staff;
@@ -182,6 +184,63 @@ public class ControlFormat {
             }
         };
         name.setModel(dtm);      
+    }
+    //Lấy dữ liệu ở bảng chi tiêu
+    public void bindingExpense(JTable name , ArrayList<Expense> arr)
+    {
+        Vector header =new Vector();
+        header.add("Mã chi tiêu");
+        header.add("Tên chi tiêu");
+        header.add("Ngày chi");
+        header.add("Tổng tiền");
+                
+        Vector data =new Vector();
+        for(Expense expense :arr)
+        {
+            Vector row =new Vector();
+            row.add(expense.getIDExpense());
+            row.add(expense.getNameExpense());
+            row.add(expense.getExpenseDate());
+            row.add(expense.getTotal());
+
+            
+            data.add(row);
+        }
+        DefaultTableModel dtm = new DefaultTableModel(data,header){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        name.setModel(dtm);      
+    }
+    //Lấy dữ liệu ở bảng chi tiết chi tiêu
+    public void bindingExpenseInfo(JTable name, ArrayList<ExpenseInfo> arr)
+    {
+        Vector header =new Vector();
+        header.add("Mã chi tiêu");
+        header.add("Mã chi tiết chi tiêu");
+        header.add("Tên chi tiêu");
+        header.add("Số tiền");
+                
+        Vector data =new Vector();
+        for(ExpenseInfo expenseInfo : arr)
+        {
+            Vector row =new Vector();
+            row.add(expenseInfo.getIDExpense());
+            row.add(expenseInfo.getIDExpenseInfo());
+            row.add(expenseInfo.getNameExpenseInfo());
+            row.add(expenseInfo.getMoney());
+            
+            data.add(row);
+        }
+        DefaultTableModel dtm = new DefaultTableModel(data,header){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        name.setModel(dtm);
     }
     //Lấy dữ liệu ở bảng người nhận trẻ
     public void bindingAdoptiveParent(JTable name ,ArrayList<AdoptiveParent> arr)

@@ -5,6 +5,12 @@
  */
 package GUI;
 
+import BLL.ExpenseBLL;
+import Utilities.ControlFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author STIREN
@@ -14,8 +20,14 @@ public class fExpense extends javax.swing.JInternalFrame {
     /**
      * Creates new form fExpense
      */
+    ControlFormat control = new ControlFormat();
+    ExpenseBLL expenseBLL = new ExpenseBLL();
+    int flag = 0;
+    
     public fExpense() {
         initComponents();
+        control.bindingExpense(jTableExpense, expenseBLL.LoadExpense());
+        jDChExpenseDate.setDate(new Date());
     }
 
     /**
@@ -43,14 +55,14 @@ public class fExpense extends javax.swing.JInternalFrame {
         txfIDExpense = new javax.swing.JTextField();
         txfNameExpense = new javax.swing.JTextField();
         jDChExpenseDate = new com.toedter.calendar.JDateChooser();
-        txfTatalExpense = new javax.swing.JTextField();
+        txfTotalExpense = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableExpense = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         btnAddExpense = new javax.swing.JButton();
         btnEditExpense = new javax.swing.JButton();
         btnDelExpense = new javax.swing.JButton();
         btnSaveExpense = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableExpense = new javax.swing.JTable();
 
         setClosable(true);
 
@@ -59,6 +71,11 @@ public class fExpense extends javax.swing.JInternalFrame {
 
         btnSearchExpense.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnSearchExpense.setText("TÌM KIẾM");
+        btnSearchExpense.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchExpenseActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel2.setText("Tìm thông tin chi tiêu theo thời gian");
@@ -133,10 +150,11 @@ public class fExpense extends javax.swing.JInternalFrame {
 
         txfNameExpense.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
+        jDChExpenseDate.setDateFormatString("dd-MM-yyyy");
         jDChExpenseDate.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
-        txfTatalExpense.setEditable(false);
-        txfTatalExpense.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        txfTotalExpense.setEditable(false);
+        txfTotalExpense.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -154,7 +172,7 @@ public class fExpense extends javax.swing.JInternalFrame {
                     .addComponent(txfIDExpense)
                     .addComponent(txfNameExpense)
                     .addComponent(jDChExpenseDate, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                    .addComponent(txfTatalExpense))
+                    .addComponent(txfTotalExpense))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -177,21 +195,59 @@ public class fExpense extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(txfTatalExpense, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txfTotalExpense, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
+        jTableExpense.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTableExpense.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableExpenseMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTableExpense);
+
         btnAddExpense.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnAddExpense.setText("THÊM");
+        btnAddExpense.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddExpenseActionPerformed(evt);
+            }
+        });
 
         btnEditExpense.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnEditExpense.setText("CẬP NHẬT");
+        btnEditExpense.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditExpenseActionPerformed(evt);
+            }
+        });
 
         btnDelExpense.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnDelExpense.setText("XÓA");
+        btnDelExpense.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelExpenseActionPerformed(evt);
+            }
+        });
 
         btnSaveExpense.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnSaveExpense.setText("LƯU");
+        btnSaveExpense.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveExpenseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -220,31 +276,21 @@ public class fExpense extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jTableExpense.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTableExpense);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
             .addGroup(layout.createSequentialGroup()
@@ -263,14 +309,174 @@ public class fExpense extends javax.swing.JInternalFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    //Xóa dữ liệu 
+    public void ClearText()
+    {
+        txfIDExpense.setText("");
+        txfNameExpense.setText("");
+        txfTotalExpense.setText("");
+    }
+    
+    //Thêm chi tiêu
+    public boolean InsertExpense()
+    {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        
+        String NameExpense = txfNameExpense.getText();
+        String ExpenseDate = formatter.format(jDChExpenseDate.getDate());
+        
+        if(NameExpense.equals("") || ExpenseDate.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Bạn chưa nhập đầy đủ thông tin");
+            return false;
+        }
+        else
+        {
+            if(expenseBLL.InsertExpense(NameExpense, ExpenseDate))
+            {
+                JOptionPane.showMessageDialog(this, "Thêm chi tiêu thành công");
+                return true;
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Thêm chi tiêu thất bại");
+                return false;
+            }
+        }
+    }
+    
+    public boolean UpdateExpense()
+    {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        
+        int IDExpense = Integer.parseInt(txfIDExpense.getText());
+        String NameExpense = txfNameExpense.getText();
+        String ExpenseDate = formatter.format(jDChExpenseDate.getDate());
+        
+        if(NameExpense.equals("") || ExpenseDate.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Bạn chưa nhập đầy đủ thông tin");
+            return false;
+        }
+        else
+        {
+            if(expenseBLL.UpdateExpense(IDExpense, NameExpense, ExpenseDate))
+            {
+                JOptionPane.showMessageDialog(this, "Cập nhật chi tiêu thành công");
+                return true;
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Cập nhật chi tiêu thất bại");
+                return false;
+            }
+        }
+    }
+    public void DeleteExpense()
+    {
+        int IDExpense = Integer.parseInt(txfIDExpense.getText());
+        if(expenseBLL.DeleteExpense(IDExpense))
+            JOptionPane.showMessageDialog(this, "Xóa chi tiêu thành công");
+        else
+            JOptionPane.showMessageDialog(this, "Xóa chi tiêu thất bại");
+    }
+    private void btnAddExpenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddExpenseActionPerformed
+        // TODO add your handling code here:
+        ClearText();
+        btnAddExpense.setEnabled(false);
+        btnEditExpense.setEnabled(false);
+        btnDelExpense.setEnabled(false);
+        btnSaveExpense.setEnabled(true);
+        flag = 1;
+    }//GEN-LAST:event_btnAddExpenseActionPerformed
+
+    private void btnEditExpenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditExpenseActionPerformed
+        // TODO add your handling code here:
+        btnAddExpense.setEnabled(false);
+        btnEditExpense.setEnabled(false);
+        btnDelExpense.setEnabled(false);
+        btnSaveExpense.setEnabled(true);
+        flag = 2;
+    }//GEN-LAST:event_btnEditExpenseActionPerformed
+
+    private void btnDelExpenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelExpenseActionPerformed
+        // TODO add your handling code here:
+        btnAddExpense.setEnabled(false);
+        btnEditExpense.setEnabled(false);
+        btnDelExpense.setEnabled(false);
+        btnSaveExpense.setEnabled(true);
+        flag = 3;
+    }//GEN-LAST:event_btnDelExpenseActionPerformed
+
+    private void btnSaveExpenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveExpenseActionPerformed
+        // TODO add your handling code here:
+        if(flag == 1)
+        {
+            if(InsertExpense())
+            {
+                btnAddExpense.setEnabled(true);
+                btnEditExpense.setEnabled(true);
+                btnDelExpense.setEnabled(true);
+                btnSaveExpense.setEnabled(false);
+                control.bindingExpense(jTableExpense, expenseBLL.LoadExpense());
+                ClearText();
+            }
+        }
+        if(flag == 2)
+        {
+            if(UpdateExpense())
+            {
+                btnAddExpense.setEnabled(true);
+                btnEditExpense.setEnabled(true);
+                btnDelExpense.setEnabled(true);
+                btnSaveExpense.setEnabled(false);
+                control.bindingExpense(jTableExpense, expenseBLL.LoadExpense());
+                ClearText();
+            }
+        }
+        if(flag == 3)
+        {
+            btnAddExpense.setEnabled(true);
+            btnEditExpense.setEnabled(true);
+            btnDelExpense.setEnabled(true);
+            btnSaveExpense.setEnabled(false);
+            control.bindingExpense(jTableExpense, expenseBLL.LoadExpense());
+            ClearText();
+        }
+    }//GEN-LAST:event_btnSaveExpenseActionPerformed
+
+    private void btnSearchExpenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchExpenseActionPerformed
+        // TODO add your handling code here:
+        int Month, Year;
+        if(cbMonthSearchExpense.getSelectedItem() == null)
+            Month = 0;
+        else Month = Integer.parseInt(cbMonthSearchExpense.getSelectedItem().toString()) ;
+        
+        if(txfYearSearchExpense.getText().equals(""))
+            Year = 0;
+        else Year = Integer.parseInt(txfYearSearchExpense.getText());
+        
+        control.bindingExpense(jTableExpense, expenseBLL.SearchExpense(Month, Year));
+        txfYearSearchExpense.setText("");
+    }//GEN-LAST:event_btnSearchExpenseActionPerformed
+
+    private void jTableExpenseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableExpenseMouseClicked
+        // TODO add your handling code here:
+        int row = jTableExpense.getSelectedRow();
+        txfIDExpense.setText(jTableExpense.getValueAt(row, 0).toString());
+        txfNameExpense.setText(jTableExpense.getValueAt(row, 1).toString());
+        jDChExpenseDate.setDate((Date) jTableExpense.getValueAt(row, 2));
+        txfTotalExpense.setText(jTableExpense.getValueAt(row, 3).toString());
+    }//GEN-LAST:event_jTableExpenseMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -296,7 +502,7 @@ public class fExpense extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTableExpense;
     private javax.swing.JTextField txfIDExpense;
     private javax.swing.JTextField txfNameExpense;
-    private javax.swing.JTextField txfTatalExpense;
+    private javax.swing.JTextField txfTotalExpense;
     private javax.swing.JTextField txfYearSearchExpense;
     // End of variables declaration//GEN-END:variables
 }

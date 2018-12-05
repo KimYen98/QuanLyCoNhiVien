@@ -6,6 +6,7 @@
 package DAL;
 
 import Entity.Sponsorship;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -113,5 +114,22 @@ public class SponsorshipDAL extends  DataAccessHelper{
         } catch (Exception e) {
         }
         return temp;
+    }
+    //Thống kê số tiền tài trợ trong khoảng thời gian
+
+    public int getTotalSponsorship(String FromDate, String ToDate)
+    {              
+        String SQL = "EXEC SP_ThongKeTaiTro '" + FromDate + "', '" + ToDate + "'";
+        
+        try {
+            getConnect();
+            PreparedStatement ps = conn.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            if(rs != null && rs.next())
+                return rs.getInt("TienTaiTro");               
+            getClose();
+        } catch (Exception e) {
+        }
+        return 0;
     }
 }

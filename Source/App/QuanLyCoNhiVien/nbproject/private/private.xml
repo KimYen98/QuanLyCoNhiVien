@@ -2,6 +2,24 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/QuanLyCoNhiVien/Source/App/QuanLyCoNhiVien/src/GUI/fSponsorship.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/QuanLyCoNhiVien/Source/App/QuanLyCoNhiVien/src/GUI/fReportNumOfChild.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/QuanLyCoNhiVien/Source/App/QuanLyCoNhiVien/src/GUI/fSponsor.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/QuanLyCoNhiVien/Source/App/QuanLyCoNhiVien/src/BLL/SponsorshipBLL.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/QuanLyCoNhiVien/Source/App/QuanLyCoNhiVien/src/Utilities/ControlFormat.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/QuanLyCoNhiVien/Source/App/QuanLyCoNhiVien/src/BLL/ChildBLL.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/QuanLyCoNhiVien/Source/App/QuanLyCoNhiVien/src/DAL/SponsorshipDAL.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/QuanLyCoNhiVien/Source/App/QuanLyCoNhiVien/src/GUI/fManagement.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/QuanLyCoNhiVien/Source/App/QuanLyCoNhiVien/src/DAL/ChildDAL.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/QuanLyCoNhiVien/Source/App/QuanLyCoNhiVien/src/GUI/fReportFinance.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/QuanLyCoNhiVien/Source/App/QuanLyCoNhiVien/src/Entity/Sponsorship.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/QuanLyCoNhiVien/Source/App/QuanLyCoNhiVien/src/GUI/fAdoptInfo.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/QuanLyCoNhiVien/Source/App/QuanLyCoNhiVien/src/GUI/fExpenseInfo.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/QuanLyCoNhiVien/Source/App/QuanLyCoNhiVien/src/GUI/fExpense.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/QuanLyCoNhiVien/Source/App/QuanLyCoNhiVien/src/GUI/fChild.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/QuanLyCoNhiVien/Source/App/QuanLyCoNhiVien/src/GUI/fLogin.java</file>
+            <file>file:/C:/Users/ADMIN/Documents/GitHub/QuanLyCoNhiVien/Source/App/QuanLyCoNhiVien/src/Entity/Child.java</file>
+        </group>
     </open-files>
 </project-private>

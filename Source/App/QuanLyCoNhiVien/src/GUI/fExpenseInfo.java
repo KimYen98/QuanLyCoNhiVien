@@ -6,6 +6,13 @@
 
 package GUI;
 
+import BLL.ExpenseBLL;
+import BLL.ExpenseInfoBLL;
+import Entity.Expense;
+import Utilities.ControlFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author STIREN
@@ -13,8 +20,19 @@ package GUI;
 public class fExpenseInfo extends javax.swing.JInternalFrame {
 
     /** Creates new form fExpenseInfo */
+    ControlFormat control = new ControlFormat();
+    ExpenseBLL expenseBLL = new ExpenseBLL();
+    ExpenseInfoBLL expenseInfoBLL = new ExpenseInfoBLL();
+    int flag = 0;
+    
     public fExpenseInfo() {
         initComponents();
+        cbIDExpenseExpenseInfo.removeAllItems();
+        
+        for(Expense expense : expenseBLL.LoadExpense())
+        {
+            cbIDExpenseExpenseInfo.addItem(String.valueOf(expense.getIDExpense()));
+        }
     }
 
     /** This method is called from within the constructor to
@@ -29,14 +47,14 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnSearchExpense = new javax.swing.JButton();
-        txfSearchExpenseInfo = new javax.swing.JTextField();
+        jDChSearchExpenseInfo = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         cbIDExpenseExpenseInfo = new javax.swing.JComboBox<>();
-        txfExpenseInfo = new javax.swing.JTextField();
+        txfIDExpenseInfo = new javax.swing.JTextField();
         txfNameExpenseInfo = new javax.swing.JTextField();
         txfMoneyExpenseInfo = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
@@ -54,8 +72,14 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
 
         btnSearchExpense.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnSearchExpense.setText("TÌM KIẾM");
+        btnSearchExpense.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchExpenseActionPerformed(evt);
+            }
+        });
 
-        txfSearchExpenseInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jDChSearchExpenseInfo.setDateFormatString("dd-MM-yyyy");
+        jDChSearchExpenseInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -63,7 +87,7 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txfSearchExpenseInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jDChSearchExpenseInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(btnSearchExpense)
                 .addGap(35, 35, 35))
@@ -72,8 +96,8 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txfSearchExpenseInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jDChSearchExpenseInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearchExpense))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -92,9 +116,14 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
 
         cbIDExpenseExpenseInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         cbIDExpenseExpenseInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbIDExpenseExpenseInfo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbIDExpenseExpenseInfoItemStateChanged(evt);
+            }
+        });
 
-        txfExpenseInfo.setEditable(false);
-        txfExpenseInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        txfIDExpenseInfo.setEditable(false);
+        txfIDExpenseInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         txfNameExpenseInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
@@ -114,7 +143,7 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cbIDExpenseExpenseInfo, 0, 227, Short.MAX_VALUE)
-                    .addComponent(txfExpenseInfo)
+                    .addComponent(txfIDExpenseInfo)
                     .addComponent(txfNameExpenseInfo)
                     .addComponent(txfMoneyExpenseInfo))
                 .addContainerGap(43, Short.MAX_VALUE))
@@ -130,7 +159,7 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
                             .addComponent(cbIDExpenseExpenseInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5))
-                    .addComponent(txfExpenseInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txfIDExpenseInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -144,15 +173,35 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
 
         btnAddExpenseInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnAddExpenseInfo.setText("THÊM");
+        btnAddExpenseInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddExpenseInfoActionPerformed(evt);
+            }
+        });
 
         btnEditExpenseInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnEditExpenseInfo.setText("CẬP NHẬT");
+        btnEditExpenseInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditExpenseInfoActionPerformed(evt);
+            }
+        });
 
         btnDelExpenseInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnDelExpenseInfo.setText("XÓA");
+        btnDelExpenseInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelExpenseInfoActionPerformed(evt);
+            }
+        });
 
         btnSaveExpenseInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         btnSaveExpenseInfo.setText("LƯU");
+        btnSaveExpenseInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveExpenseInfoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -192,6 +241,11 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableExpenseInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableExpenseInfoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableExpenseInfo);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -234,6 +288,193 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Thêm CTCT
+    public boolean InsertExpenseInfo()
+    {
+        int IDExpense;
+        if(cbIDExpenseExpenseInfo.getSelectedItem() == null)
+            IDExpense = 0;
+        else IDExpense = Integer.parseInt(cbIDExpenseExpenseInfo.getSelectedItem().toString());
+        String NameExpenseInfo = txfNameExpenseInfo.getText();
+        float Money;
+        if(txfMoneyExpenseInfo.getText().equals(""))
+            Money = 0;
+        else Money = Float.parseFloat(txfMoneyExpenseInfo.getText());
+        
+        if(NameExpenseInfo.equals("") || txfMoneyExpenseInfo.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Bạn chưa nhập đầy đủ thông tin");
+            return false;
+        }
+        else
+        {
+            if(expenseInfoBLL.InsertExpenseInfo(IDExpense, NameExpenseInfo, Money))
+            {
+                JOptionPane.showMessageDialog(this, "Thêm thành công chi tiết chi tiêu");
+                return true;
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Thêm thất bại chi tiết chi tiêu");
+                return false;
+            }
+        }
+    }
+    //Cập nhật CTCT
+    public boolean UpdateExpenseInfo()
+    {
+        int IDExpense;
+        if(cbIDExpenseExpenseInfo.getSelectedItem() == null)
+            IDExpense = 0;
+        else IDExpense = Integer.parseInt(cbIDExpenseExpenseInfo.getSelectedItem().toString());
+        
+        int IDExpenseInfo;
+        if(txfIDExpenseInfo.getText().equals(""))
+            IDExpenseInfo = 0;
+        else IDExpenseInfo = Integer.parseInt(txfIDExpenseInfo.getText());
+        
+        String NameExpenseInfo = txfNameExpenseInfo.getText();
+        
+        float Money;
+        if(txfMoneyExpenseInfo.getText().equals(""))
+            Money = 0;
+        else Money = Float.parseFloat(txfMoneyExpenseInfo.getText());
+        
+        if(NameExpenseInfo.equals("") || txfMoneyExpenseInfo.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Bạn chưa nhập đầy đủ thông tin");
+            return false;
+        }
+        else
+        {
+            if(expenseInfoBLL.UpdateExpenseInfo(IDExpense, IDExpenseInfo, NameExpenseInfo, Money))
+            {
+                JOptionPane.showMessageDialog(this, "Cập nhật thành công chi tiết chi tiêu");
+                return true;
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Cập nhật thất bại chi tiết chi tiêu");
+                return false;
+            }
+        }
+    }
+    //Xóa CTCT
+    public void DeleteExpenseInfo()
+    {
+        int IDExpense;
+        if(cbIDExpenseExpenseInfo.getSelectedItem() == null)
+            IDExpense = 0;
+        else IDExpense = Integer.parseInt(cbIDExpenseExpenseInfo.getSelectedItem().toString());
+        
+        int IDExpenseInfo;
+        if(txfIDExpenseInfo.getText().equals(""))
+            IDExpenseInfo = 0;
+        else IDExpenseInfo = Integer.parseInt(txfIDExpenseInfo.getText());
+        
+        if(expenseInfoBLL.DeleteExpenseInfo(IDExpense, IDExpenseInfo))
+            JOptionPane.showMessageDialog(this, "Xóa thành công chi tiết chi tiêu");
+        else
+            JOptionPane.showMessageDialog(this, "Xóa thất bại chi tiết chi tiêu");
+    }
+    // Xóa dữ liệu
+    public void ClearText()
+    {
+        txfIDExpenseInfo.setText("");
+        txfMoneyExpenseInfo.setText("");
+        txfNameExpenseInfo.setText("");
+    }
+    private void btnAddExpenseInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddExpenseInfoActionPerformed
+        // TODO add your handling code here:
+        ClearText();
+        btnAddExpenseInfo.setEnabled(false);
+        btnEditExpenseInfo.setEnabled(false);
+        btnDelExpenseInfo.setEnabled(false);
+        btnSaveExpenseInfo.setEnabled(true);
+        flag = 1;
+    }//GEN-LAST:event_btnAddExpenseInfoActionPerformed
+
+    private void btnEditExpenseInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditExpenseInfoActionPerformed
+        // TODO add your handling code here:
+        btnAddExpenseInfo.setEnabled(false);
+        btnEditExpenseInfo.setEnabled(false);
+        btnDelExpenseInfo.setEnabled(false);
+        btnSaveExpenseInfo.setEnabled(true);
+        flag = 2;
+    }//GEN-LAST:event_btnEditExpenseInfoActionPerformed
+
+    private void btnDelExpenseInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelExpenseInfoActionPerformed
+        // TODO add your handling code here:
+        btnAddExpenseInfo.setEnabled(false);
+        btnEditExpenseInfo.setEnabled(false);
+        btnDelExpenseInfo.setEnabled(false);
+        btnSaveExpenseInfo.setEnabled(true);
+        flag = 3;
+    }//GEN-LAST:event_btnDelExpenseInfoActionPerformed
+
+    private void btnSaveExpenseInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveExpenseInfoActionPerformed
+        // TODO add your handling code here:
+        int IDExpense = Integer.parseInt(cbIDExpenseExpenseInfo.getSelectedItem().toString());
+        if(flag == 1)
+        {
+            if(InsertExpenseInfo())
+            {
+                btnAddExpenseInfo.setEnabled(true);
+                btnEditExpenseInfo.setEnabled(true);
+                btnDelExpenseInfo.setEnabled(true);
+                btnSaveExpenseInfo.setEnabled(false);
+                control.bindingExpenseInfo(jTableExpenseInfo, expenseInfoBLL.LoadExpenseInfo(IDExpense));
+                ClearText();
+            }
+        }
+        if(flag == 2)
+        {
+            if(UpdateExpenseInfo())
+            {
+                btnAddExpenseInfo.setEnabled(true);
+                btnEditExpenseInfo.setEnabled(true);
+                btnDelExpenseInfo.setEnabled(true);
+                btnSaveExpenseInfo.setEnabled(false);
+                control.bindingExpenseInfo(jTableExpenseInfo, expenseInfoBLL.LoadExpenseInfo(IDExpense));
+                ClearText();
+            }
+        }
+        if(flag == 3)
+        {
+            DeleteExpenseInfo();
+            btnAddExpenseInfo.setEnabled(true);
+            btnEditExpenseInfo.setEnabled(true);
+            btnDelExpenseInfo.setEnabled(true);
+            btnSaveExpenseInfo.setEnabled(false);
+            control.bindingExpenseInfo(jTableExpenseInfo, expenseInfoBLL.LoadExpenseInfo(IDExpense));
+            ClearText();
+        }
+    }//GEN-LAST:event_btnSaveExpenseInfoActionPerformed
+
+    private void btnSearchExpenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchExpenseActionPerformed
+        // TODO add your handling code here:
+        control.bindingExpenseInfo(jTableExpenseInfo, expenseInfoBLL.SearchExpenseInfo(jDChSearchExpenseInfo.getDate().toString()));
+        jDChSearchExpenseInfo.setDate(new Date());
+    }//GEN-LAST:event_btnSearchExpenseActionPerformed
+
+    private void jTableExpenseInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableExpenseInfoMouseClicked
+        // TODO add your handling code here:
+        int row = jTableExpenseInfo.getSelectedRow();
+        cbIDExpenseExpenseInfo.setSelectedItem(jTableExpenseInfo.getValueAt(row, 0).toString());
+        txfIDExpenseInfo.setText(jTableExpenseInfo.getValueAt(row, 1).toString());
+        txfNameExpenseInfo.setText(jTableExpenseInfo.getValueAt(row, 2).toString());
+        txfMoneyExpenseInfo.setText(jTableExpenseInfo.getValueAt(row, 3).toString());
+    }//GEN-LAST:event_jTableExpenseInfoMouseClicked
+
+    private void cbIDExpenseExpenseInfoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbIDExpenseExpenseInfoItemStateChanged
+        // TODO add your handling code here:
+        int IDExpense;
+        if(cbIDExpenseExpenseInfo.getSelectedItem() == null)
+            IDExpense = 0;
+        else IDExpense = Integer.parseInt(cbIDExpenseExpenseInfo.getSelectedItem().toString());
+        control.bindingExpenseInfo(jTableExpenseInfo, expenseInfoBLL.LoadExpenseInfo(IDExpense));
+    }//GEN-LAST:event_cbIDExpenseExpenseInfoItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddExpenseInfo;
@@ -242,6 +483,7 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnSaveExpenseInfo;
     private javax.swing.JButton btnSearchExpense;
     private javax.swing.JComboBox<String> cbIDExpenseExpenseInfo;
+    private com.toedter.calendar.JDateChooser jDChSearchExpenseInfo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -252,10 +494,9 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableExpenseInfo;
-    private javax.swing.JTextField txfExpenseInfo;
+    private javax.swing.JTextField txfIDExpenseInfo;
     private javax.swing.JTextField txfMoneyExpenseInfo;
     private javax.swing.JTextField txfNameExpenseInfo;
-    private javax.swing.JTextField txfSearchExpenseInfo;
     // End of variables declaration//GEN-END:variables
 
 }

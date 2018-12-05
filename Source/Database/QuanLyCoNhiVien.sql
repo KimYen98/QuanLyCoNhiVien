@@ -882,3 +882,122 @@ begin
 	and [dbo].[GetUnsignString](TenNguoiNhan) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
 end
 go
+-- BÁO CÁO TRẺ THÊM MỚI
+alter PROC SP_BaoCaoTreThemMoi
+@TuNgay nvarchar(19), @DenNgay nvarchar(19)
+AS
+BEGIN
+	
+	DECLARE @TuNgay_ smalldatetime, @DenNgay_ smalldatetime
+	SET @TuNgay_ = CONVERT(smalldatetime, @TuNgay, 103)
+	SET @DenNgay_ = CONVERT(smalldatetime, @DenNgay, 103)
+
+	SELECT MaTre, TenTre, Tre.GioiTinh, Tre.NgaySinh, NgayVao, HoanCanh, NguoiDuaTreVao, Tre.TrangThai, TenNV 
+	FROM Tre, NhanVien
+	WHERE Tre.MaNV = NhanVien.MaNV AND NgayVao >= @TuNgay_ AND NgayVao <= @DenNgay_
+END
+
+exec SP_BaoCaoTreThemMoi '1-1-2017', '1-12-2018'
+
+GO
+-- BÁO CÁO TRẺ ĐƯỢC NHẬN NUÔI
+CREATE PROC SP_BaoCaoTreDuocNhanNuoi
+@TuNgay nvarchar(19), @DenNgay nvarchar(19)
+AS
+BEGIN
+	
+	DECLARE @TuNgay_ smalldatetime, @DenNgay_ smalldatetime
+	SET @TuNgay_ = CONVERT(smalldatetime, @TuNgay, 103)
+	SET @DenNgay_ = CONVERT(smalldatetime, @DenNgay, 103)
+
+	SELECT Tre.MaTre, TenTre, Tre.GioiTinh, Tre.NgaySinh, NgayVao, HoanCanh, NguoiDuaTreVao, Tre.TrangThai, TenNV 
+	FROM Tre, NhanVien, CT_NguoiNhanTre_Tre
+	WHERE Tre.MaNV = NhanVien.MaNV AND Tre.MaTre = CT_NguoiNhanTre_Tre.MaTre AND  NgayNhan >= @TuNgay_ AND NgayNhan <= @DenNgay_
+END
+GO
+--BÁO CÁO TRẺ ĐANG Ở CÔ NHI VIỆN
+alter PROC SP_BaoCaoTreDangOCoNhiVien
+@TuTuoi int, @DenTuoi int
+AS
+BEGIN
+	IF(@TuTuoi = 0 OR @DenTuoi = 0)
+	BEGIN
+		SELECT MaTre, TenTre, Tre.GioiTinh, Tre.NgaySinh, NgayVao, HoanCanh, NguoiDuaTreVao, Tre.TrangThai, TenNV 
+		FROM Tre, NhanVien
+		WHERE Tre.MaNV = NhanVien.MaNV AND Tre.TrangThai = 1
+	END
+	ELSE
+	BEGIN
+		SELECT MaTre, TenTre, Tre.GioiTinh, Tre.NgaySinh, NgayVao, HoanCanh, NguoiDuaTreVao, Tre.TrangThai, TenNV 
+		FROM Tre, NhanVien
+		WHERE Tre.MaNV = NhanVien.MaNV AND Tre.TrangThai = 1 AND (DATEDIFF(YEAR, Tre.NgaySinh, GETDATE()) >= @TuTuoi) AND (DATEDIFF(YEAR, Tre.NgaySinh, GETDATE()) <= @DenTuoi)
+	END	
+END
+GO
+-- THỐNG KÊ SỐ LƯỢNG TRẺ NAM ĐANG Ở CÔ NHI VIỆN
+CREATE PROC SP_ThongKeTreNam
+AS
+BEGIN
+	SELECT COUNT (*) AS Nam
+	FROM Tre
+	WHERE GioiTinh = 'Nam' AND TrangThai = 1
+END
+GO
+
+--THỐNG KÊ SỐ LƯỢNG TRẺ NỮ ĐANG Ở CÔ NHI VIỆN
+CREATE PROC SP_ThongKeTreNu
+AS
+BEGIN
+	SELECT COUNT (*) Nu
+	FROM Tre
+	WHERE GioiTinh = N'Nữ' AND TrangThai = 1
+END
+GO
+--THỐNG KÊ TỔNG TIỀN TÀI TRỢ TRONG KHOẢNG THỜI GIAN
+ALTER PROC SP_ThongKeTaiTro
+@TuNgay nvarchar(19), @DenNgay nvarchar(19)
+AS
+BEGIN
+	DECLARE @TuNgay_ smalldatetime, @DenNgay_ smalldatetime
+	SET @TuNgay_ = CONVERT(smalldatetime, @TuNgay, 103)
+	SET @DenNgay_ = CONVERT(smalldatetime, @DenNgay, 103)
+
+	SELECT SUM(SoTien) AS TienTaiTro
+	FROM TaiTro
+	WHERE @TuNgay_ <= NgayTaiTro AND NgayTaiTro <= @DenNgay_
+
+END
+exec SP_ThongKeTaiTro '1-1-2017', '5-12-2018'
+GO
+--THỐNG KÊ SỐ TIỀN CHI TIÊU TRONG KHOẢNG THỜI GIAN
+ALTER PROC SP_ThongKeChiTieu
+@TuNgay nvarchar(19), @DenNgay nvarchar(19)
+AS
+BEGIN
+	DECLARE @TuNgay_ smalldatetime, @DenNgay_ smalldatetime
+	SET @TuNgay_ = CONVERT(smalldatetime, @TuNgay, 103)
+	SET @DenNgay_ = CONVERT(smalldatetime, @DenNgay, 103)
+
+	SELECT SUM(TongSoTien) AS TienChiTieu
+	FROM ChiTieu
+	WHERE @TuNgay_ <= NgayChi AND NgayChi <= @DenNgay_
+
+END
+
+exec SP_ThongKeChiTieu '1-1-2017', '5-12-2018'
+
+GO
+--THỐNG KÊ QUỸ TIỀN CÒN LẠI
+ALTER PROC SP_ThongKeQuy
+AS
+BEGIN
+	DECLARE @TienTaiTro float, @TienChi float
+
+	SELECT @TienTaiTro = SUM(SoTien)
+	FROM TaiTro
+
+	SELECT @TienChi = SUM(TongSoTien)
+	FROM ChiTieu
+
+	SELECT (@TienTaiTro - @TienChi) AS Quy
+END

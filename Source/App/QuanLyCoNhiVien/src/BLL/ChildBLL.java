@@ -45,4 +45,29 @@ public class ChildBLL {
     {
         return DAL.getID(name);
     }
+    //Báo cáo trẻ thêm mới
+    public ArrayList<Child> RPNewChild(String FromDate, String ToDate)
+    {
+        return DAL.RPNewChild(FromDate, ToDate);
+    }
+    //Báo cáo trẻ được nhận nuôi
+    public ArrayList<Child> RPAdoptedChild(String FromDate, String ToDate)
+    {
+        return DAL.RPAdoptedChild(FromDate, ToDate);
+    }
+    //Báo cáo trẻ đang ở cô nhi viện
+    public ArrayList<Child> RPNumOfChild(int FromAge, int ToAge)
+    {
+        return DAL.RPNumOfChild(FromAge, ToAge);
+    }
+    //Thống kê số lượng trẻ nam đang ở cô nhi viện
+    public int getNumOfMaleChild()
+    {
+        return DAL.getNumOfMaleChild();
+    }
+    //Thống kê số lượng trẻ nữ đang ở cô nhi viện
+    public int getNumOfFemaleChild()
+    {
+        return DAL.getNumOfFemaleChild();
+    }
 }

@@ -80,7 +80,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txfSearchExpenseInfo" min="-2" pref="218" max="-2" attributes="0"/>
+                  <Component id="jDChSearchExpenseInfo" min="-2" pref="218" max="-2" attributes="0"/>
                   <EmptySpace pref="48" max="32767" attributes="0"/>
                   <Component id="btnSearchExpense" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
@@ -91,8 +91,8 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txfSearchExpenseInfo" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jDChSearchExpenseInfo" min="-2" max="-2" attributes="0"/>
                       <Component id="btnSearchExpense" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -108,9 +108,13 @@
             </Property>
             <Property name="text" type="java.lang.String" value="T&#xcc;M KI&#x1ebe;M"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchExpenseActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txfSearchExpenseInfo">
+        <Component class="com.toedter.calendar.JDateChooser" name="jDChSearchExpenseInfo">
           <Properties>
+            <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="15" style="0"/>
             </Property>
@@ -134,7 +138,7 @@
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="cbIDExpenseExpenseInfo" pref="227" max="32767" attributes="0"/>
-                      <Component id="txfExpenseInfo" max="32767" attributes="0"/>
+                      <Component id="txfIDExpenseInfo" max="32767" attributes="0"/>
                       <Component id="txfNameExpenseInfo" alignment="0" max="32767" attributes="0"/>
                       <Component id="txfMoneyExpenseInfo" max="32767" attributes="0"/>
                   </Group>
@@ -155,7 +159,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="txfExpenseInfo" min="-2" max="-2" attributes="0"/>
+                      <Component id="txfIDExpenseInfo" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -219,11 +223,14 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbIDExpenseExpenseInfoItemStateChanged"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="txfExpenseInfo">
+        <Component class="javax.swing.JTextField" name="txfIDExpenseInfo">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -288,6 +295,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="TH&#xca;M"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddExpenseInfoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnEditExpenseInfo">
           <Properties>
@@ -296,6 +306,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="C&#x1eac;P NH&#x1eac;T"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditExpenseInfoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnDelExpenseInfo">
           <Properties>
@@ -304,6 +317,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="X&#xd3;A"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDelExpenseInfoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnSaveExpenseInfo">
           <Properties>
@@ -312,6 +328,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="L&#x1af;U"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveExpenseInfoActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -333,6 +352,9 @@
               </Table>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableExpenseInfoMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
