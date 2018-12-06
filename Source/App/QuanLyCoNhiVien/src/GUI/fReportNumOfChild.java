@@ -73,6 +73,7 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         txaPRNewChild = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableNewChild = new javax.swing.JTable();
+        jLabel13 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -87,6 +88,7 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         jTableAdoptedChild = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
         txaRPAdoptedChild = new javax.swing.JTextArea();
+        jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -101,21 +103,32 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         jTableNumOfChild = new javax.swing.JTable();
         jScrollPane6 = new javax.swing.JScrollPane();
         txaRPNumOfChild = new javax.swing.JTextArea();
+        jLabel15 = new javax.swing.JLabel();
 
         setClosable(true);
 
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel5.setText("DANH SÁCH TRẺ THÊM MỚI");
+        jPanel1.setLayout(null);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel5.setText("DANH SÁCH TRẺ THÊM MỚI");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(408, 36, 420, 37);
+
+        jPanel4.setOpaque(false);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 153));
         jLabel2.setText("Thời gian thống kê");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 153));
         jLabel3.setText("Từ ngày");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 153));
         jLabel4.setText("Đến ngày");
 
         jDChFromDateNewChild.setDateFormatString("dd-MM-yyyy");
@@ -141,7 +154,7 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jDChFromDateNewChild, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jDChToDateNewChild, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE))))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,26 +173,38 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnRPNewChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jPanel1.add(jPanel4);
+        jPanel4.setBounds(10, 91, 328, 112);
+
+        btnRPNewChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnRPNewChild.setForeground(new java.awt.Color(0, 0, 153));
         btnRPNewChild.setText("THỐNG KÊ");
         btnRPNewChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRPNewChildActionPerformed(evt);
             }
         });
+        jPanel1.add(btnRPNewChild);
+        btnRPNewChild.setBounds(408, 135, 140, 25);
 
-        btnPrintRPNewChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnPrintRPNewChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnPrintRPNewChild.setForeground(new java.awt.Color(0, 0, 153));
         btnPrintRPNewChild.setText("IN BÁO CÁO");
         btnPrintRPNewChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrintRPNewChildActionPerformed(evt);
             }
         });
+        jPanel1.add(btnPrintRPNewChild);
+        btnPrintRPNewChild.setBounds(408, 180, 140, 25);
 
         txaPRNewChild.setColumns(20);
         txaPRNewChild.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         txaPRNewChild.setRows(5);
         jScrollPane3.setViewportView(txaPRNewChild);
+
+        jPanel1.add(jScrollPane3);
+        jScrollPane3.setBounds(1142, 36, 48, 56);
 
         jTableNewChild.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -194,62 +219,35 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTableNewChild);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnPrintRPNewChild)
-                            .addComponent(btnRPNewChild, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(113, 113, 113))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 91, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnRPNewChild)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnPrintRPNewChild)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
-        );
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(91, 276, 1108, 440);
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia6.jpg"))); // NOI18N
+        jPanel1.add(jLabel13);
+        jLabel13.setBounds(0, 0, 1370, 740);
 
         jTabbedPane1.addTab("Trẻ thêm mới", jPanel1);
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel9.setText("DANH SÁCH TRẺ ĐƯỢC NHẬN NUÔI");
+        jPanel2.setLayout(null);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel9.setText("DANH SÁCH TRẺ ĐƯỢC NHẬN NUÔI");
+        jPanel2.add(jLabel9);
+        jLabel9.setBounds(423, 38, 541, 37);
+
+        jPanel5.setOpaque(false);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 153));
         jLabel6.setText("Thời gian thống kê");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 153));
         jLabel7.setText("Từ ngày");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 153));
         jLabel8.setText("Đến ngày");
 
         jDChFromDateAdoptedChild.setDateFormatString("dd-MM-yyyy");
@@ -294,21 +292,30 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        btnRPAdoptedChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jPanel2.add(jPanel5);
+        jPanel5.setBounds(10, 86, 331, 131);
+
+        btnRPAdoptedChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnRPAdoptedChild.setForeground(new java.awt.Color(0, 0, 153));
         btnRPAdoptedChild.setText("THỐNG KÊ");
         btnRPAdoptedChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRPAdoptedChildActionPerformed(evt);
             }
         });
+        jPanel2.add(btnRPAdoptedChild);
+        btnRPAdoptedChild.setBounds(423, 116, 117, 25);
 
-        btnPrintRPAdoptedChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnPrintRPAdoptedChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnPrintRPAdoptedChild.setForeground(new java.awt.Color(0, 0, 153));
         btnPrintRPAdoptedChild.setText("IN BÁO CÁO");
         btnPrintRPAdoptedChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrintRPAdoptedChildActionPerformed(evt);
             }
         });
+        jPanel2.add(btnPrintRPAdoptedChild);
+        btnPrintRPAdoptedChild.setBounds(423, 159, 121, 25);
 
         jTableAdoptedChild.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -323,68 +330,43 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(jTableAdoptedChild);
 
+        jPanel2.add(jScrollPane2);
+        jScrollPane2.setBounds(100, 358, 1085, 307);
+
         txaRPAdoptedChild.setColumns(20);
         txaRPAdoptedChild.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         txaRPAdoptedChild.setRows(5);
         jScrollPane4.setViewportView(txaRPAdoptedChild);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(339, 339, 339))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnRPAdoptedChild, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnPrintRPAdoptedChild))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(275, 275, 275))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1085, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel9)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(btnRPAdoptedChild)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnPrintRPAdoptedChild))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
-        );
+        jPanel2.add(jScrollPane4);
+        jScrollPane4.setBounds(979, 86, 49, 39);
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia6.jpg"))); // NOI18N
+        jPanel2.add(jLabel14);
+        jLabel14.setBounds(0, 0, 1470, 720);
 
         jTabbedPane1.addTab("Trẻ được nhận nuôi", jPanel2);
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel10.setText("DANH SÁCH TRẺ ĐANG Ở CÔ NHI VIỆN");
+        jPanel3.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel10.setText("DANH SÁCH TRẺ ĐANG Ở CÔ NHI VIỆN");
+        jPanel3.add(jLabel10);
+        jLabel10.setBounds(426, 42, 588, 37);
+
+        jPanel6.setOpaque(false);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 153));
         jLabel1.setText("Độ tuổi");
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 153));
         jLabel11.setText("Từ");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 153));
         jLabel12.setText("Đến");
 
         cbFromAge.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -430,21 +412,30 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        btnRPNumOfChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jPanel3.add(jPanel6);
+        jPanel6.setBounds(221, 102, 238, 112);
+
+        btnRPNumOfChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnRPNumOfChild.setForeground(new java.awt.Color(0, 0, 153));
         btnRPNumOfChild.setText("THỐNG KÊ");
         btnRPNumOfChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRPNumOfChildActionPerformed(evt);
             }
         });
+        jPanel3.add(btnRPNumOfChild);
+        btnRPNumOfChild.setBounds(558, 113, 117, 25);
 
-        btnPrintRPNumOfChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnPrintRPNumOfChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnPrintRPNumOfChild.setForeground(new java.awt.Color(0, 0, 153));
         btnPrintRPNumOfChild.setText("IN BÁO CÁO");
         btnPrintRPNumOfChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrintRPNumOfChildActionPerformed(evt);
             }
         });
+        jPanel3.add(btnPrintRPNumOfChild);
+        btnPrintRPNumOfChild.setBounds(554, 172, 121, 25);
 
         jTableNumOfChild.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -459,59 +450,20 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         ));
         jScrollPane5.setViewportView(jTableNumOfChild);
 
+        jPanel3.add(jScrollPane5);
+        jScrollPane5.setBounds(75, 346, 1120, 313);
+
         txaRPNumOfChild.setColumns(20);
         txaRPNumOfChild.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         txaRPNumOfChild.setRows(5);
         jScrollPane6.setViewportView(txaRPNumOfChild);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel10)
-                        .addGap(289, 289, 289))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnPrintRPNumOfChild, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRPNumOfChild, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69))))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 95, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jLabel10)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(btnRPNumOfChild))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPrintRPNumOfChild)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
-        );
+        jPanel3.add(jScrollPane6);
+        jScrollPane6.setBounds(1177, 102, 57, 29);
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia6.jpg"))); // NOI18N
+        jPanel3.add(jLabel15);
+        jLabel15.setBounds(0, 0, 1430, 740);
 
         jTabbedPane1.addTab("Trẻ đang ở cô nhi viện", jPanel3);
 
@@ -519,7 +471,7 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1392, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -739,6 +691,9 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

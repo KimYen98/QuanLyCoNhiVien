@@ -96,34 +96,46 @@ public class fStaff extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         txfSearchStaff = new javax.swing.JTextField();
         btnSearchStaff = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
 
         setClosable(true);
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 153));
         jLabel1.setText("QUẢN LÝ NHÂN VIÊN");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(345, 31, 319, 37);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jPanel1.setOpaque(false);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 153));
         jLabel2.setText("Mã nhân viên");
 
         txfIDStaff.setEditable(false);
         txfIDStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 153));
         jLabel3.setText("Tên nhân viên");
 
         txfNameStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 153));
         jLabel4.setText("Ngày sinh");
 
         jDChBirthdayStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 153));
         jLabel6.setText("Địa chỉ");
 
         txfAddressStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 153));
         jLabel7.setText("Điện thoại");
 
         txfPhoneStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -133,19 +145,22 @@ public class fStaff extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 153));
         jLabel8.setText("Ngày vào làm");
 
         jDChStartStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 153));
         jLabel5.setText("Loại nhân viên");
 
         cbStaffCategogy.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         cbStaffCategogy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel9.setText("Ngày sinh");
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel9.setText("Giới tính");
 
         buttonGroup1.add(rbtnMale);
         rbtnMale.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -160,7 +175,8 @@ public class fStaff extends javax.swing.JInternalFrame {
         rbtnFemale.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtnFemale.setText("Nữ");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 153));
         jLabel10.setText("Trạng thái");
 
         cbStatus.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -172,12 +188,8 @@ public class fStaff extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                        .addComponent(txfPhoneStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
@@ -185,24 +197,24 @@ public class fStaff extends javax.swing.JInternalFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel6)
                             .addComponent(jLabel8)
-                            .addComponent(jLabel9))
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel10))
                         .addGap(49, 49, 49)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbStaffCategogy, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbStatus, 0, 334, Short.MAX_VALUE)
+                            .addComponent(txfPhoneStaff)
                             .addComponent(txfIDStaff)
                             .addComponent(txfNameStaff)
                             .addComponent(txfAddressStaff)
-                            .addComponent(jDChStartStaff, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                            .addComponent(jDChStartStaff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jDChBirthdayStaff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(rbtnMale)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(rbtnFemale))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                                .addComponent(rbtnFemale))
+                            .addComponent(cbStaffCategogy, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,7 +259,13 @@ public class fStaff extends javax.swing.JInternalFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        btnAddStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 198, 502, 347);
+
+        jPanel4.setOpaque(false);
+
+        btnAddStaff.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAddStaff.setForeground(new java.awt.Color(0, 0, 153));
         btnAddStaff.setText("THÊM");
         btnAddStaff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -255,7 +273,8 @@ public class fStaff extends javax.swing.JInternalFrame {
             }
         });
 
-        btnEditStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnEditStaff.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEditStaff.setForeground(new java.awt.Color(0, 0, 153));
         btnEditStaff.setText("CẬP NHẬT");
         btnEditStaff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,7 +282,8 @@ public class fStaff extends javax.swing.JInternalFrame {
             }
         });
 
-        btnDelStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnDelStaff.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDelStaff.setForeground(new java.awt.Color(0, 0, 153));
         btnDelStaff.setText("XÓA");
         btnDelStaff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -271,7 +291,8 @@ public class fStaff extends javax.swing.JInternalFrame {
             }
         });
 
-        btnSaveStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnSaveStaff.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSaveStaff.setForeground(new java.awt.Color(0, 0, 153));
         btnSaveStaff.setText("LƯU");
         btnSaveStaff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,7 +313,7 @@ public class fStaff extends javax.swing.JInternalFrame {
                 .addComponent(btnDelStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(btnSaveStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,6 +326,9 @@ public class fStaff extends javax.swing.JInternalFrame {
                     .addComponent(btnSaveStaff))
                 .addContainerGap())
         );
+
+        getContentPane().add(jPanel4);
+        jPanel4.setBounds(10, 580, 511, 47);
 
         jTableStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jTableStaff.setModel(new javax.swing.table.DefaultTableModel(
@@ -326,9 +350,15 @@ public class fStaff extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTableStaff);
 
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(527, 127, 920, 610);
+
+        jPanel2.setOpaque(false);
+
         txfSearchStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
-        btnSearchStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnSearchStaff.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSearchStaff.setForeground(new java.awt.Color(0, 0, 153));
         btnSearchStaff.setText("TÌM KIẾM");
         btnSearchStaff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -342,7 +372,7 @@ public class fStaff extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txfSearchStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txfSearchStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(btnSearchStaff)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -357,46 +387,12 @@ public class fStaff extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(345, 345, 345)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel1)
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
-        );
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(4, 112, 498, 54);
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia6.jpg"))); // NOI18N
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(0, 0, 1450, 760);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -634,6 +630,7 @@ public class fStaff extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDateChooser jDChStartStaff;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

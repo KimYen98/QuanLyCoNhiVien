@@ -55,16 +55,25 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         btnSaveStaffCategogy = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableStaffCategogy = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
 
         setClosable(true);
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 153));
         jLabel1.setText("QUẢN LÝ LOẠI NHÂN VIÊN");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(536, 22, 404, 37);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jPanel1.setOpaque(false);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 153));
         jLabel2.setText("Mã loại nhân viên");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 153));
         jLabel3.setText("Tên loại nhân viên");
 
         txfIDStaffCategogy.setEditable(false);
@@ -74,7 +83,8 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
 
         txfSearchStaffCategogy.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
-        btnSearchStaffCategogy.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnSearchStaffCategogy.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSearchStaffCategogy.setForeground(new java.awt.Color(0, 0, 153));
         btnSearchStaffCategogy.setText("TÌM KIẾM");
         btnSearchStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,7 +112,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
                         .addComponent(txfSearchStaffCategogy, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addComponent(btnSearchStaffCategogy)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,10 +129,16 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(txfNameStaffCategogy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        btnAddStaffCategogy.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(10, 90, 433, 193);
+
+        jPanel4.setOpaque(false);
+
+        btnAddStaffCategogy.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAddStaffCategogy.setForeground(new java.awt.Color(0, 0, 153));
         btnAddStaffCategogy.setText("THÊM");
         btnAddStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,7 +146,8 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
             }
         });
 
-        btnEditStaffCategogy.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnEditStaffCategogy.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEditStaffCategogy.setForeground(new java.awt.Color(0, 0, 153));
         btnEditStaffCategogy.setText("CẬP NHẬT");
         btnEditStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +155,8 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
             }
         });
 
-        btnDelStaffCategogy.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnDelStaffCategogy.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDelStaffCategogy.setForeground(new java.awt.Color(0, 0, 153));
         btnDelStaffCategogy.setText("XÓA");
         btnDelStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,7 +164,8 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
             }
         });
 
-        btnSaveStaffCategogy.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnSaveStaffCategogy.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSaveStaffCategogy.setForeground(new java.awt.Color(0, 0, 153));
         btnSaveStaffCategogy.setText("LƯU");
         btnSaveStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,7 +186,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
                 .addComponent(btnDelStaffCategogy, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSaveStaffCategogy, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,6 +199,9 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
                     .addComponent(btnSaveStaffCategogy))
                 .addContainerGap())
         );
+
+        getContentPane().add(jPanel4);
+        jPanel4.setBounds(10, 301, 469, 47);
 
         jTableStaffCategogy.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jTableStaffCategogy.setModel(new javax.swing.table.DefaultTableModel(
@@ -200,37 +222,12 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTableStaffCategogy);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(443, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(215, 215, 215))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1)
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(92, Short.MAX_VALUE))
-        );
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(485, 90, 660, 523);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia6.jpg"))); // NOI18N
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(0, 0, 1520, 740);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -395,6 +392,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;

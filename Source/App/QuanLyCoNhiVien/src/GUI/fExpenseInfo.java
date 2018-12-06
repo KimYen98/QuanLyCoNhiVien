@@ -10,6 +10,7 @@ import BLL.ExpenseBLL;
 import BLL.ExpenseInfoBLL;
 import Entity.Expense;
 import Utilities.ControlFormat;
+import java.awt.Toolkit;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -28,7 +29,9 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
     public fExpenseInfo() {
         initComponents();
         cbIDExpenseExpenseInfo.removeAllItems();
-        
+        Toolkit tk =Toolkit.getDefaultToolkit();
+        int x=(int) tk.getScreenSize().getWidth();
+        int y=(int)tk.getScreenSize().getHeight();  
         for(Expense expense : expenseBLL.LoadExpense())
         {
             cbIDExpenseExpenseInfo.addItem(String.valueOf(expense.getIDExpense()));
@@ -64,13 +67,21 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         btnSaveExpenseInfo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableExpenseInfo = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 0, 153));
         jLabel1.setText("QUẢN LÝ CHI TIẾT CHI TIÊU");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(355, 11, 429, 37);
 
-        btnSearchExpense.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jPanel1.setOpaque(false);
+
+        btnSearchExpense.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSearchExpense.setForeground(new java.awt.Color(51, 0, 153));
         btnSearchExpense.setText("TÌM KIẾM");
         btnSearchExpense.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,11 +97,11 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jDChSearchExpenseInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addContainerGap(44, Short.MAX_VALUE)
+                .addComponent(jDChSearchExpenseInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnSearchExpense)
-                .addGap(35, 35, 35))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,16 +113,25 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(22, 121, 475, 47);
+
+        jPanel2.setOpaque(false);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 0, 153));
         jLabel5.setText("Mã chi tiết chi tiêu");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(51, 0, 153));
         jLabel6.setText("Tên chi tiết chi tiêu");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(51, 0, 153));
         jLabel7.setText("Số tiền");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(51, 0, 153));
         jLabel8.setText("Mã chi tiêu");
 
         cbIDExpenseExpenseInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -141,12 +161,13 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
                 .addGap(27, 27, 27)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cbIDExpenseExpenseInfo, 0, 227, Short.MAX_VALUE)
-                    .addComponent(txfIDExpenseInfo)
-                    .addComponent(txfNameExpenseInfo)
-                    .addComponent(txfMoneyExpenseInfo))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txfNameExpenseInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                        .addComponent(txfMoneyExpenseInfo)
+                        .addComponent(txfIDExpenseInfo))
+                    .addComponent(cbIDExpenseExpenseInfo, 0, 314, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,7 +192,13 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        btnAddExpenseInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(22, 208, 490, 182);
+
+        jPanel4.setOpaque(false);
+
+        btnAddExpenseInfo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAddExpenseInfo.setForeground(new java.awt.Color(51, 0, 153));
         btnAddExpenseInfo.setText("THÊM");
         btnAddExpenseInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,7 +206,8 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
             }
         });
 
-        btnEditExpenseInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnEditExpenseInfo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEditExpenseInfo.setForeground(new java.awt.Color(51, 0, 153));
         btnEditExpenseInfo.setText("CẬP NHẬT");
         btnEditExpenseInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,7 +215,8 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
             }
         });
 
-        btnDelExpenseInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnDelExpenseInfo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDelExpenseInfo.setForeground(new java.awt.Color(51, 0, 153));
         btnDelExpenseInfo.setText("XÓA");
         btnDelExpenseInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,7 +224,8 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
             }
         });
 
-        btnSaveExpenseInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnSaveExpenseInfo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSaveExpenseInfo.setForeground(new java.awt.Color(51, 0, 153));
         btnSaveExpenseInfo.setText("LƯU");
         btnSaveExpenseInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,6 +260,9 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        getContentPane().add(jPanel4);
+        jPanel4.setBounds(33, 423, 500, 47);
+
         jTableExpenseInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -248,42 +281,12 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTableExpenseInfo);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(355, 355, 355)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
-        );
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(593, 111, 527, 460);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia6.jpg"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 1370, 800);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -485,6 +488,7 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cbIDExpenseExpenseInfo;
     private com.toedter.calendar.JDateChooser jDChSearchExpenseInfo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

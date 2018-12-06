@@ -55,15 +55,23 @@ public class fSponsor extends javax.swing.JInternalFrame {
         btnSaveSponsor = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableSponsor = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
 
         setClosable(true);
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 153));
         jLabel1.setText("QUẢN LÝ NHÀ TÀI TRỢ");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(374, 26, 348, 37);
+
+        jPanel1.setOpaque(false);
 
         txfSearchSponsor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
-        btnSearchSponsor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnSearchSponsor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSearchSponsor.setForeground(new java.awt.Color(0, 0, 153));
         btnSearchSponsor.setText("TÌM KIẾM");
         btnSearchSponsor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,11 +84,11 @@ public class fSponsor extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txfSearchSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addContainerGap(123, Short.MAX_VALUE)
+                .addComponent(txfSearchSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSearchSponsor)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addGap(28, 28, 28))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,16 +100,25 @@ public class fSponsor extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(10, 81, 501, 47);
+
+        jPanel2.setOpaque(false);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 153));
         jLabel2.setText("Mã nhà tài trợ");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 153));
         jLabel3.setText("Tên nhà tài trợ");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 153));
         jLabel4.setText("Số điện thoại");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 153));
         jLabel5.setText("Địa chỉ");
 
         txfIDSponsor.setEditable(false);
@@ -125,12 +142,12 @@ public class fSponsor extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
                 .addGap(23, 23, 23)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txfIDSponsor)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txfIDSponsor, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
                     .addComponent(txfNameSponsor)
                     .addComponent(txfPhoneSponsor)
-                    .addComponent(txfAddressSponsor, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))
-                .addContainerGap(54, Short.MAX_VALUE))
+                    .addComponent(txfAddressSponsor))
+                .addGap(19, 19, 19))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,7 +171,13 @@ public class fSponsor extends javax.swing.JInternalFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        btnAddSponsor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(10, 148, 485, 187);
+
+        jPanel4.setOpaque(false);
+
+        btnAddSponsor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAddSponsor.setForeground(new java.awt.Color(0, 0, 153));
         btnAddSponsor.setText("THÊM");
         btnAddSponsor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,7 +185,8 @@ public class fSponsor extends javax.swing.JInternalFrame {
             }
         });
 
-        btnEditSponsor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnEditSponsor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEditSponsor.setForeground(new java.awt.Color(0, 0, 153));
         btnEditSponsor.setText("CẬP NHẬT");
         btnEditSponsor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,7 +194,8 @@ public class fSponsor extends javax.swing.JInternalFrame {
             }
         });
 
-        btnDelSponsor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnDelSponsor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDelSponsor.setForeground(new java.awt.Color(0, 0, 153));
         btnDelSponsor.setText("XÓA");
         btnDelSponsor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,7 +203,8 @@ public class fSponsor extends javax.swing.JInternalFrame {
             }
         });
 
-        btnSaveSponsor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnSaveSponsor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSaveSponsor.setForeground(new java.awt.Color(0, 0, 153));
         btnSaveSponsor.setText("LƯU");
         btnSaveSponsor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,7 +225,7 @@ public class fSponsor extends javax.swing.JInternalFrame {
                 .addComponent(btnDelSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSaveSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,6 +238,9 @@ public class fSponsor extends javax.swing.JInternalFrame {
                     .addComponent(btnSaveSponsor))
                 .addContainerGap())
         );
+
+        getContentPane().add(jPanel4);
+        jPanel4.setBounds(34, 346, 461, 47);
 
         jTableSponsor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -231,41 +260,12 @@ public class fSponsor extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTableSponsor);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(374, 374, 374)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(38, 38, 38)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(35, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(75, Short.MAX_VALUE))
-        );
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(541, 81, 770, 630);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia6.jpg"))); // NOI18N
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(0, 0, 1470, 750);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -432,6 +432,7 @@ public class fSponsor extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;

@@ -51,19 +51,29 @@ public class fReportFinance extends javax.swing.JInternalFrame {
         btnPrintRPFinance = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txaRPFinance = new javax.swing.JTextArea();
+        jLabel5 = new javax.swing.JLabel();
 
         setClosable(true);
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 204));
         jLabel1.setText("BÁO CÁO TÌNH HÌNH TÀI CHÍNH");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(254, 29, 495, 37);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jPanel1.setOpaque(false);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 204));
         jLabel2.setText("Thời gian thống kê");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 204));
         jLabel3.setText("Từ ngày");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 204));
         jLabel4.setText("Đến ngày");
 
         jDChFromDateRPFinance.setDateFormatString("dd-MM-yyyy");
@@ -108,66 +118,42 @@ public class fReportFinance extends javax.swing.JInternalFrame {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        btnRPFinance.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(130, 90, 331, 131);
+
+        btnRPFinance.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnRPFinance.setForeground(new java.awt.Color(0, 0, 204));
         btnRPFinance.setText("THỐNG KÊ");
         btnRPFinance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRPFinanceActionPerformed(evt);
             }
         });
+        getContentPane().add(btnRPFinance);
+        btnRPFinance.setBounds(510, 130, 107, 25);
 
-        btnPrintRPFinance.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnPrintRPFinance.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnPrintRPFinance.setForeground(new java.awt.Color(0, 0, 204));
         btnPrintRPFinance.setText("IN BÁO CÁO");
         btnPrintRPFinance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrintRPFinanceActionPerformed(evt);
             }
         });
+        getContentPane().add(btnPrintRPFinance);
+        btnPrintRPFinance.setBounds(700, 130, 121, 25);
 
         txaRPFinance.setEditable(false);
         txaRPFinance.setColumns(20);
         txaRPFinance.setRows(5);
         jScrollPane1.setViewportView(txaRPFinance);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(254, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(232, 232, 232))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(btnRPFinance)
-                        .addGap(113, 113, 113)
-                        .addComponent(btnPrintRPFinance))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 857, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnPrintRPFinance)
-                            .addComponent(btnRPFinance))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(140, 220, 1080, 470);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia6.jpg"))); // NOI18N
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(0, 0, 1490, 760);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -219,6 +205,7 @@ public class fReportFinance extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txaRPFinance;
