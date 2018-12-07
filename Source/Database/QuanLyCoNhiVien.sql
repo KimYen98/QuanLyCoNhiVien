@@ -432,23 +432,26 @@ end
 go
 
 --LẤY THÔNG TIN CHI TIÊU
-CREATE PROC SP_LOADEXPENSE
+CREATE PROC SP_HienThiChiTieu
 AS
 BEGIN
 	SELECT * FROM ChiTieu
 END
 GO
 --THÊM CHI TIÊU
-create PROC SP_INSERTEXPENSE
+
+create PROC SP_ThemChiTieu
 @TenChiTieu nvarchar(100), @NgayChi nvarchar(19)
 AS
 BEGIN
 	DECLARE @NgayChi_ smalldatetime, @Max_MaChiTieu int, @i int
+
 	SET @NgayChi_ = CONVERT(smalldatetime, @NgayChi, 103)
 	SET @i = 1
 
 	SELECT @Max_MaChiTieu = MAX(MaChiTieu)
 	FROM CHITIEU
+
 	IF(@Max_MaChiTieu IS NULL)
 		INSERT INTO ChiTieu VALUES(@i, @TenChiTieu, @NgayChi_, 0)
 	ELSE
@@ -466,7 +469,8 @@ BEGIN
 END
 GO
 --CẬP NHẬT CHI TIÊU
-CREATE PROC SP_UPDATEEXPENSE
+
+CREATE PROC SP_CapNhatChiTieu
  @MaChiTieu int, @TenChiTieu nvarchar(100), @NgayChi nvarchar(19)
 AS
 BEGIN
@@ -479,7 +483,8 @@ BEGIN
 END
 GO
 -- XOÁ CHI TIÊU
-CREATE PROC SP_DELETEEXPENSE
+
+CREATE PROC SP_XoaChiTieu
 @MaChiTieu int
 AS
 BEGIN
@@ -488,7 +493,8 @@ BEGIN
 END
 GO
 --TÌM KIẾM CHI TIÊU THEO THỜI GIAN
-CREATE PROC SP_SEARCHEXPENSE
+
+CREATE PROC SP_TimChiTieu
 @Month int, @Year int
 AS
 BEGIN
@@ -498,7 +504,8 @@ BEGIN
 END
 GO
 -- LẤY THÔNG TIN CHI TIẾT CHI TIÊU
-CREATE PROC SP_LOADEXPENSEINFO
+
+CREATE PROC SP_HienThiCTCT
 @MaChiTieu int
 AS
 BEGIN
@@ -508,7 +515,8 @@ BEGIN
 END
 GO
 -- THÊM CHI TIẾT CHI TIÊU
-ALTER PROC SP_INSERTEXPENSEINFO
+
+ALTER PROC SP_ThemCTCT
 @MaChiTieu int, @TenCTChiTieu nvarchar(100), @SoTien float
 AS
 BEGIN
@@ -516,7 +524,7 @@ BEGIN
 
 	SELECT @Max_MaCT_ChiTieu = MAX(MaCT_ChiTieu)
 	FROM CT_ChiTieu
-	WHERE MaChiTieu=@MaChiTieu
+	WHERE MaChiTieu = @MaChiTieu
 	GROUP BY MaChiTieu
 	SET @i = 1
 
@@ -536,27 +544,31 @@ BEGIN
 	END
 END
 go
+
 -- CẬP NHẬT CT_CHITIEU
-CREATE PROC SP_UPDATEEXPENSEINFO
-@MaCT_ChiTieu int, @TenCTChiTieu nvarchar(100), @SoTien float
+
+ALTER PROC SP_CapNhatCTCT
+@MaChiTieu int, @MaCT_ChiTieu int, @TenCTChiTieu nvarchar(100), @SoTien float
 AS
 BEGIN
 	UPDATE CT_ChiTieu
 	SET TenCTChiTieu = @TenCTChiTieu, SoTien = @SoTien
-	WHERE MaCT_ChiTieu = @MaCT_ChiTieu
+	WHERE MaCT_ChiTieu = @MaCT_ChiTieu AND MaChiTieu = @MaChiTieu
 END
 GO
 -- XOÁ CT_CHITIEU
-CREATE PROC SP_DELETEEXPENSEINFO
-@MaCT_ChiTieu int
+
+ALTER PROC SP_XoaCTCT
+@MaChiTieu int, @MaCT_ChiTieu int
 AS
 BEGIN
 	DELETE FROM CT_ChiTieu
-	WHERE MaCT_ChiTieu = @MaCT_ChiTieu
+	WHERE MaCT_ChiTieu = @MaCT_ChiTieu AND MaChiTieu = @MaChiTieu
 END
 go
 -- TÌM KIẾM CT_CHITIEU THEO NGÀY
-create PROC SP_SEARCHEXPENSEINFO
+
+create PROC SP_TimKiemCTCT
 @Day nvarchar(19)
 AS
 BEGIN
