@@ -27,6 +27,7 @@ public class fExpense extends javax.swing.JInternalFrame {
     Toolkit tk =Toolkit.getDefaultToolkit();
     public fExpense() {
         initComponents();
+        btnSaveExpense.setEnabled(false);
         control.bindingExpense(jTableExpense, expenseBLL.LoadExpense());
         jDChExpenseDate.setDate(new Date());
         int x=(int) tk.getScreenSize().getWidth();

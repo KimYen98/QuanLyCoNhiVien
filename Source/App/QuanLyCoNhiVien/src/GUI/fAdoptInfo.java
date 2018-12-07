@@ -33,6 +33,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
     ChildBLL childBLL1=new ChildBLL();
     public fAdoptInfo() {
         initComponents();
+        btnSaveAdoptInfo.setEnabled(false);
         control.bindingAdoptInfo(jTableAdoptInfo, adoptInfoBLL.LoadAdoptInfo());
         cbNameAPaAdoptInfo.removeAllItems();
         cbNameChildAdoptInfo.removeAllItems();

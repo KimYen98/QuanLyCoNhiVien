@@ -76,6 +76,22 @@ public class ChildDAL extends  DataAccessHelper{
         }
         return false;
     }
+    //Xóa trẻ
+    public boolean DeleteChild(int id)
+    {
+        String SQL="Delete from Tre where MaTre='"+id+"'";
+        try {
+            getConnect();
+            Statement statement=conn.createStatement();
+            int rs=statement.executeUpdate(SQL);
+            if(rs>0)
+                return true;
+            getClose();
+        } catch (Exception e) {
+        }
+        return false;
+    }
+    
     //Tìm trẻ
     public ArrayList<Child> SearchChild(String key)
     {

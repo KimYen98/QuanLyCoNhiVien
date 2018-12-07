@@ -23,6 +23,7 @@ public class fSponsor extends javax.swing.JInternalFrame {
     private int flag=0;
     public fSponsor() {
         initComponents();
+        btnSaveSponsor.setEnabled(false);
         control.bindingSponsor(jTableSponsor, sponsorBLL.LoadSponsor());
     }
 

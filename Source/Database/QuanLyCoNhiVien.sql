@@ -57,7 +57,7 @@ create table TaiTro
 	MaNhaTaiTro int not null,
 	NgayTaiTro smalldatetime,
 	HinhThucTaiTro nvarchar(100) not null,
-	SoTien float not null default 0,
+	SoTien money not null default 0,
 	primary key(MaTaiTro, MaNhaTaiTro)
 )
 go
@@ -67,7 +67,7 @@ create table ChiTieu
 	MaChiTieu int,
 	TenChiTieu nvarchar(100) not null,
 	NgayChi smalldatetime not null,
-	TongSoTien float not null default 0,
+	TongSoTien money not null default 0,
 	primary key(MaChiTieu)
 )
 go
@@ -77,7 +77,7 @@ create table CT_ChiTieu
 	MaCT_ChiTieu int,
 	MaChiTieu int,
 	TenCTChiTieu nvarchar(100) not null,
-	SoTien float not null default 0,
+	SoTien money not null default 0,
 	primary key(MaCT_ChiTieu,MaChiTieu)
 )
 go
@@ -239,15 +239,6 @@ begin
 	where MaLoaiNV=@MaLoaiNV
 end
 go
---Xóa loại nhân viên
-create proc sp_XoaLoaiNhanVien
-@MaLoaiNV int
-as
-begin
-	delete from LoaiNhanVien
-	where MaLoaiNV=@MaLoaiNV
-end
-go
 -- Hàm chuyển sang tiếng Việt k dấu để tìm gần đúng
 CREATE FUNCTION [dbo].[GetUnsignString](@strInput NVARCHAR(4000)) 
 RETURNS NVARCHAR(4000)
@@ -293,7 +284,9 @@ create proc sp_TimLoaiNhanVien
 @key nvarchar(100)
 as
 begin
-	select * from LoaiNhanVien WHERE [dbo].[GetUnsignString](TenLoaiNV) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
+	select * 
+	from LoaiNhanVien
+	WHERE [dbo].[GetUnsignString](TenLoaiNV) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
 end
 go
 --Thêm nhân viên
@@ -333,15 +326,6 @@ begin
 	set @NgayVL_=CONVERT(smalldatetime,@NgayVL,103)
 	update NhanVien
 	set TenNV=@TenNV, GioiTinh=@GioiTinh,NgaySinh=@NgaySinh_,DiaChi=@DiaChi,SoDT=@SoDT,NgayVL=@NgayVL_,MaLoaiNV=@MaLoaiNV,TrangThai=@TrangThai
-	where MaNV=@MaNV
-end
-go
---Xóa nhân viên
-create proc sp_XoaNhanVien
-@MaNV int
-as
-begin
-	delete from NhanVien
 	where MaNV=@MaNV
 end
 go
@@ -414,7 +398,6 @@ end
 go
 exec sp_ThemTre 'a','Nam','1/1/2018','25/11/2018','a','a',1,1
 go
-select * from Tre
  --Cập nhật trẻ
  create proc sp_CapNhatTre
 @MaTre int, @TenTre nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19),@NgayVao nvarchar(19), @HoanCanh nvarchar(4000),@NguoiDuaTreVao nvarchar(100), @TrangThai int,@MaNV int
@@ -461,13 +444,11 @@ create PROC SP_INSERTEXPENSE
 AS
 BEGIN
 	DECLARE @NgayChi_ smalldatetime, @Max_MaChiTieu int, @i int
-
 	SET @NgayChi_ = CONVERT(smalldatetime, @NgayChi, 103)
 	SET @i = 1
 
 	SELECT @Max_MaChiTieu = MAX(MaChiTieu)
 	FROM CHITIEU
-
 	IF(@Max_MaChiTieu IS NULL)
 		INSERT INTO ChiTieu VALUES(@i, @TenChiTieu, @NgayChi_, 0)
 	ELSE
@@ -527,7 +508,7 @@ BEGIN
 END
 GO
 -- THÊM CHI TIẾT CHI TIÊU
-CREATE PROC SP_INSERTEXPENSEINFO
+ALTER PROC SP_INSERTEXPENSEINFO
 @MaChiTieu int, @TenCTChiTieu nvarchar(100), @SoTien float
 AS
 BEGIN
@@ -535,6 +516,8 @@ BEGIN
 
 	SELECT @Max_MaCT_ChiTieu = MAX(MaCT_ChiTieu)
 	FROM CT_ChiTieu
+	WHERE MaChiTieu=@MaChiTieu
+	GROUP BY MaChiTieu
 	SET @i = 1
 
 	IF(@Max_MaCT_ChiTieu IS NULL)
@@ -624,14 +607,7 @@ BEGIN
 	WHERE MaChiTieu = @MaChiTieu
 END
 go
---Hiện thi danh sách nhà tài trợ
-create proc sp_HienThiDanhSachNhaTaiTro
-as
-begin
-	select * from NhaTaiTro
-end
-go
---Thêm nhà tại trợ
+--Thêm nhà tài trợ
 create proc sp_ThemNhaTaiTro
 @TenNhaTaiTro nvarchar(100),@SoDT nvarchar(10), @DiaChi nvarchar(100)
 as
@@ -669,15 +645,6 @@ begin
 	where MaNhaTaiTro=@MaNhaTaiTro
 end
 go
---Xóa nhà tài trợ
-create proc sp_XoaNhaTaiTro
-@MaNhaTaiTro int
-as 
-begin
-	delete from NhaTaiTro
-	where MaNhaTaiTro=@MaNhaTaiTro
-end
-go
 --Tìm nhà tài trợ
 create proc sp_TimNhaTaiTro
 @key nvarchar(100)
@@ -711,7 +678,8 @@ begin
 	begin
 		set @MaTaiTro_Max=(select max(MaTaiTro)
 							from TaiTro
-							where MaNhaTaiTro=@MaNhaTaiTro)
+							where MaNhaTaiTro=@MaNhaTaiTro
+							group by MaNhaTaiTro)
 		if(@MaTaiTro_Max is null)
 			set @MaTaiTro=@i
 		else
@@ -733,6 +701,7 @@ begin
 	end
 end
 go
+exec sp_HienThiDanhSachTaiTro
 --Cập nhật tài trợ
 create proc sp_CapNhatTaiTro
 @MaTaiTro int,@MaNhaTaiTro int, @NgayTaiTro nvarchar(19),@HinhThuc nvarchar(100), @SoTien money
@@ -745,15 +714,6 @@ begin
 	where MaTaiTro=@MaTaiTro and MaNhaTaiTro=@MaNhaTaiTro
 end
 go
---Xóa tài trợ
-alter proc sp_XoaTaiTro
-@MaTaiTro int,@MaNhaTaiTro int
-as
-begin
-	delete from TaiTro
-	where MaTaiTro=@MaTaiTro and MaNhaTaiTro=@MaNhaTaiTro
-end
-go
 --Tìm tài trợ
 create proc sp_TimTaiTro
 @key nvarchar(100)
@@ -762,13 +722,6 @@ begin
 	select MaTaiTro, TenNhaTaiTro,NgayTaiTro,HinhThucTaiTro,SoTien
 	from TaiTro,NhaTaiTro
 	where TaiTro.MaNhaTaiTro=NhaTaiTro.MaNhaTaiTro and   [dbo].[GetUnsignString](TenNhaTaiTro) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
-end
-go
---Hiện thị danh sách người nhận trẻ
-create proc sp_HienThiDanhSachNguoiNhanTre
-as
-begin
-	select * from NguoiNhanTre
 end
 go
 -- Thêm người nhân nuôi trẻ
@@ -828,7 +781,7 @@ begin
 	where NguoiNhanTre.MaNguoiNhan=CT_NguoiNhanTre_Tre.MaNguoiNhan and Tre.MaTre=CT_NguoiNhanTre_Tre.MaTre
 end
 go
-exec sp_HienThiChiTietNguoiNhanTre
+
 --Thêm chi tiết người nhận trẻ
 alter proc sp_ThemChiTietNhanTre
 @MaNguoiNhan int, @MaTre int, @NgayNhan nvarchar(19)
@@ -849,15 +802,6 @@ begin
 	update CT_NguoiNhanTre_Tre
 	set NgayNhan=@NgayNhan_
 	where MaTre=@MaTre and MaNguoiNhan=@MaNguoiNhan
-end
-go
---Xóa chi tiết người nhận trẻ
-create proc sp_XoaChiTietNhanTre
-@MaNguoiNhan int, @MaTre int
-as
-begin
-	delete from CT_NguoiNhanTre_Tre
-	where MaNguoiNhan=@MaNguoiNhan and MaTre=@MaTre
 end
 go
 --Tìm chi tiết người nhận trẻ theo tên trẻ
@@ -883,7 +827,7 @@ begin
 end
 go
 -- BÁO CÁO TRẺ THÊM MỚI
-alter PROC SP_BaoCaoTreThemMoi
+create PROC SP_BaoCaoTreThemMoi
 @TuNgay nvarchar(19), @DenNgay nvarchar(19)
 AS
 BEGIN
@@ -896,9 +840,6 @@ BEGIN
 	FROM Tre, NhanVien
 	WHERE Tre.MaNV = NhanVien.MaNV AND NgayVao >= @TuNgay_ AND NgayVao <= @DenNgay_
 END
-
-exec SP_BaoCaoTreThemMoi '1-1-2017', '1-12-2018'
-
 GO
 -- BÁO CÁO TRẺ ĐƯỢC NHẬN NUÔI
 CREATE PROC SP_BaoCaoTreDuocNhanNuoi
@@ -916,7 +857,7 @@ BEGIN
 END
 GO
 --BÁO CÁO TRẺ ĐANG Ở CÔ NHI VIỆN
-alter PROC SP_BaoCaoTreDangOCoNhiVien
+create PROC SP_BaoCaoTreDangOCoNhiVien
 @TuTuoi int, @DenTuoi int
 AS
 BEGIN
@@ -954,7 +895,7 @@ BEGIN
 END
 GO
 --THỐNG KÊ TỔNG TIỀN TÀI TRỢ TRONG KHOẢNG THỜI GIAN
-ALTER PROC SP_ThongKeTaiTro
+CREATE PROC SP_ThongKeTaiTro
 @TuNgay nvarchar(19), @DenNgay nvarchar(19)
 AS
 BEGIN
@@ -967,10 +908,9 @@ BEGIN
 	WHERE @TuNgay_ <= NgayTaiTro AND NgayTaiTro <= @DenNgay_
 
 END
-exec SP_ThongKeTaiTro '1-1-2017', '5-12-2018'
 GO
 --THỐNG KÊ SỐ TIỀN CHI TIÊU TRONG KHOẢNG THỜI GIAN
-ALTER PROC SP_ThongKeChiTieu
+CREATE PROC SP_ThongKeChiTieu
 @TuNgay nvarchar(19), @DenNgay nvarchar(19)
 AS
 BEGIN
@@ -988,16 +928,15 @@ exec SP_ThongKeChiTieu '1-1-2017', '5-12-2018'
 
 GO
 --THỐNG KÊ QUỸ TIỀN CÒN LẠI
-ALTER PROC SP_ThongKeQuy
+CREATE PROC SP_ThongKeQuy
 AS
 BEGIN
 	DECLARE @TienTaiTro float, @TienChi float
 
 	SELECT @TienTaiTro = SUM(SoTien)
 	FROM TaiTro
-
 	SELECT @TienChi = SUM(TongSoTien)
 	FROM ChiTieu
-
 	SELECT (@TienTaiTro - @TienChi) AS Quy
 END
+GO

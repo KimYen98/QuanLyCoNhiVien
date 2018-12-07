@@ -20,7 +20,7 @@ public class SponsorDAL extends DataAccessHelper{
     public ArrayList<Sponsor> LoadSponsor ()
     {
         ArrayList<Sponsor> temp=new ArrayList<>();
-        String SQL="exec sp_HienThiDanhSachNhaTaiTro";
+        String SQL="select * from NhaTaiTro";
         try {
             getConnect();
             Statement st =conn.createStatement();
@@ -76,7 +76,7 @@ public class SponsorDAL extends DataAccessHelper{
     //Xóa nhà tài trợ
     public boolean  DeleteSponsor(int id)
     {
-        String SQL="exec sp_XoaNhaTaiTro '"+id+"'";
+        String SQL="delete from NhaTaiTro where MaNhaTaiTro'"+id+"'";
         try {
             getConnect();
             Statement st =conn.createStatement();

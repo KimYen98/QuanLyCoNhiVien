@@ -78,7 +78,7 @@ public class StaffDAL extends  DataAccessHelper{
     //Xóa nhân viên
     public boolean  DeleteStaff(int id)
     {
-        String SQL="exec sp_XoaNhanVien '"+id+"'";
+        String SQL="Delete from NhanVien where MaNV='"+id+"'";
         try {
             getConnect();
             Statement st =conn.createStatement();
