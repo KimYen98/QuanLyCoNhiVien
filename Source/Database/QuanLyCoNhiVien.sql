@@ -527,7 +527,7 @@ BEGIN
 END
 GO
 -- THÊM CHI TIẾT CHI TIÊU
-CREATE PROC SP_INSERTEXPENSEINFO
+ALTER PROC SP_ThemCTCT
 @MaChiTieu int, @TenCTChiTieu nvarchar(100), @SoTien float
 AS
 BEGIN
@@ -535,6 +535,8 @@ BEGIN
 
 	SELECT @Max_MaCT_ChiTieu = MAX(MaCT_ChiTieu)
 	FROM CT_ChiTieu
+	WHERE MaChiTieu = @MaChiTieu
+	GROUP BY MaChiTieu
 	SET @i = 1
 
 	IF(@Max_MaCT_ChiTieu IS NULL)
