@@ -22,6 +22,7 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
     AdoptiveParentBLL adoptiveParentBLL =new AdoptiveParentBLL();
     ControlFormat control =new ControlFormat();
     public fAdoptiveParent() {
+        btnSearchAPa.setEnabled(false);
         initComponents();
         control.bindingAdoptiveParent(jTableAPa, adoptiveParentBLL.LoadAdoptiveParent());
         
@@ -70,6 +71,7 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
         btnAddAPa = new javax.swing.JButton();
         btnEditAPa = new javax.swing.JButton();
         btnSaveAPa = new javax.swing.JButton();
+        btnDeleteAPa = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableAPa = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
@@ -225,6 +227,15 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
             }
         });
 
+        btnDeleteAPa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDeleteAPa.setForeground(new java.awt.Color(51, 0, 153));
+        btnDeleteAPa.setText("XÓA");
+        btnDeleteAPa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteAPaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -232,11 +243,13 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnAddAPa, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(40, 40, 40)
                 .addComponent(btnEditAPa)
-                .addGap(51, 51, 51)
+                .addGap(35, 35, 35)
+                .addComponent(btnDeleteAPa, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(btnSaveAPa, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,12 +258,13 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddAPa)
                     .addComponent(btnEditAPa)
-                    .addComponent(btnSaveAPa))
+                    .addComponent(btnSaveAPa)
+                    .addComponent(btnDeleteAPa))
                 .addContainerGap())
         );
 
         getContentPane().add(jPanel4);
-        jPanel4.setBounds(103, 377, 416, 47);
+        jPanel4.setBounds(20, 377, 496, 47);
 
         jTableAPa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -271,11 +285,11 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTableAPa);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(570, 130, 770, 570);
+        jScrollPane1.setBounds(567, 130, 770, 570);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia6.jpg"))); // NOI18N
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(-10, 0, 1440, 690);
+        jLabel6.setBounds(0, 0, 1350, 710);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -339,11 +353,26 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
             }
         }
     }
+    public boolean Delete()
+    {
+        int id=Integer.parseInt(txfIDAPa.getText().toString());
+        if(Delete())
+        {
+            JOptionPane.showMessageDialog(this, "Xóa thành công người nhận trẻ");
+            return true;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Xóa thất bại người nhận trẻ");
+            return false;
+        }
+    }
     private void btnAddAPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddAPaActionPerformed
         // TODO add your handling code here:
         ClearText();
         btnAddAPa.setEnabled(false);
         btnEditAPa.setEnabled(false);
+        btnDeleteAPa.setEnabled(false);
         btnSaveAPa.setEnabled(true);
         flag=1;
     }//GEN-LAST:event_btnAddAPaActionPerformed
@@ -352,6 +381,7 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
          btnAddAPa.setEnabled(false);
         btnEditAPa.setEnabled(false);
+        btnDeleteAPa.setEnabled(false);
         btnSaveAPa.setEnabled(true);
         flag=2;
     }//GEN-LAST:event_btnEditAPaActionPerformed
@@ -369,6 +399,7 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
             }
             btnAddAPa.setEnabled(true);
             btnEditAPa.setEnabled(true);
+            btnDeleteAPa.setEnabled(true);
         }
         if(flag==2)
         {
@@ -379,6 +410,18 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
             }
             btnAddAPa.setEnabled(true);
             btnEditAPa.setEnabled(true);
+        btnDeleteAPa.setEnabled(true);
+        }
+        if(flag==3)
+        {
+            if(Delete())
+            {
+                control.bindingAdoptiveParent(jTableAPa, adoptiveParentBLL.LoadAdoptiveParent());
+                btnSaveAPa.setEnabled(false);
+            }
+            btnAddAPa.setEnabled(true);
+            btnEditAPa.setEnabled(true);
+            btnDeleteAPa.setEnabled(true);
         }
     }//GEN-LAST:event_btnSaveAPaActionPerformed
 
@@ -405,9 +448,18 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
             evt.consume();
     }//GEN-LAST:event_txfPhoneAPaKeyTyped
 
+    private void btnDeleteAPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteAPaActionPerformed
+        // TODO add your handling code here:
+       btnAddAPa.setEnabled(false);
+       btnEditAPa.setEnabled(false);
+       btnDeleteAPa.setEnabled(false);
+       btnSaveAPa.setEnabled(true);
+    }//GEN-LAST:event_btnDeleteAPaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddAPa;
+    private javax.swing.JButton btnDeleteAPa;
     private javax.swing.JButton btnEditAPa;
     private javax.swing.JButton btnSaveAPa;
     private javax.swing.JButton btnSearchAPa;

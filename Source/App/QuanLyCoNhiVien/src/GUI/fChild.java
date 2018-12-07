@@ -28,6 +28,7 @@ public class fChild extends javax.swing.JInternalFrame {
     private int flag=0;
     public fChild() {
         initComponents();
+        btnSaveChild.setEnabled(false);
         cbNameStaffChild.removeAllItems();
         control.bindingChild(jTableChild, childBLL.LoadChild());
         for(Staff staff: staffBLL.LoadAnny())
@@ -69,6 +70,7 @@ public class fChild extends javax.swing.JInternalFrame {
         btnAddChild = new javax.swing.JButton();
         btnEditChild = new javax.swing.JButton();
         btnSaveChild = new javax.swing.JButton();
+        btnDeleteChild = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableChild = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
@@ -136,18 +138,29 @@ public class fChild extends javax.swing.JInternalFrame {
             }
         });
 
+        btnDeleteChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDeleteChild.setForeground(new java.awt.Color(51, 0, 153));
+        btnDeleteChild.setText("XÓA");
+        btnDeleteChild.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteChildActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
+                .addContainerGap()
                 .addComponent(btnAddChild, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addGap(41, 41, 41)
                 .addComponent(btnEditChild)
-                .addGap(51, 51, 51)
+                .addGap(41, 41, 41)
+                .addComponent(btnDeleteChild, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(btnSaveChild, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,12 +169,13 @@ public class fChild extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddChild)
                     .addComponent(btnEditChild)
-                    .addComponent(btnSaveChild))
+                    .addComponent(btnSaveChild)
+                    .addComponent(btnDeleteChild))
                 .addContainerGap())
         );
 
         getContentPane().add(jPanel4);
-        jPanel4.setBounds(95, 562, 504, 37);
+        jPanel4.setBounds(33, 562, 522, 37);
 
         jTableChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jTableChild.setModel(new javax.swing.table.DefaultTableModel(
@@ -405,7 +419,7 @@ public class fChild extends javax.swing.JInternalFrame {
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia6.jpg"))); // NOI18N
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(0, -20, 1390, 980);
+        jLabel10.setBounds(0, 0, 1410, 810);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -421,6 +435,20 @@ public class fChild extends javax.swing.JInternalFrame {
         jDChBirthdayChild.setDate(null);
         txfWhoBring.setText("");
         jDChJoinDateChild.setDate(new Date());
+    }
+    public boolean Delete()
+    {
+        int id=Integer.parseInt(txfIDChild.getText().toString());
+        if(childBLL.DeleteChild(id))
+        {
+            JOptionPane.showMessageDialog(this, "Xóa trẻ thành công");
+            return true;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Xóa trẻ thất bại");
+            return false;
+        }
     }
     public boolean  Insert()
     {
@@ -520,6 +548,7 @@ public class fChild extends javax.swing.JInternalFrame {
         btnAddChild.setEnabled(false);
         btnEditChild.setEnabled(false);
         btnSaveChild.setEnabled(true);
+        btnDeleteChild.setEnabled(false);
         flag=1;
     }//GEN-LAST:event_btnAddChildActionPerformed
 
@@ -528,6 +557,7 @@ public class fChild extends javax.swing.JInternalFrame {
         btnAddChild.setEnabled(false);
         btnEditChild.setEnabled(false);
         btnSaveChild.setEnabled(true);
+        btnDeleteChild.setEnabled(false);
         flag=2;
     }//GEN-LAST:event_btnEditChildActionPerformed
 
@@ -544,6 +574,7 @@ public class fChild extends javax.swing.JInternalFrame {
             }
             btnAddChild.setEnabled(true);
             btnEditChild.setEnabled(true);
+            btnDeleteChild.setEnabled(true);
         }
         if(flag==2)
         {
@@ -555,8 +586,20 @@ public class fChild extends javax.swing.JInternalFrame {
             }
             btnAddChild.setEnabled(true);
             btnEditChild.setEnabled(true);
+            btnDeleteChild.setEnabled(true);
         }
-        
+        if(flag==3)
+        {
+            if(Delete())
+            {
+                btnSaveChild.setEnabled(false);
+                control.bindingChild(jTableChild, childBLL.LoadChild());
+                ClearText();
+            }
+            btnAddChild.setEnabled(true);
+            btnEditChild.setEnabled(true);
+            btnDeleteChild.setEnabled(true);
+        }
     }//GEN-LAST:event_btnSaveChildActionPerformed
 
     private void btnSearchChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchChildActionPerformed
@@ -589,9 +632,19 @@ public class fChild extends javax.swing.JInternalFrame {
         cbNameStaffChild.setSelectedItem(namestaff);
     }//GEN-LAST:event_jTableChildMouseClicked
 
+    private void btnDeleteChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteChildActionPerformed
+        // TODO add your handling code here:
+        btnAddChild.setEnabled(false);
+        btnEditChild.setEnabled(false);
+        btnDeleteChild.setEnabled(false);
+        btnSaveChild.setEnabled(true);
+        flag=3;
+    }//GEN-LAST:event_btnDeleteChildActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddChild;
+    private javax.swing.JButton btnDeleteChild;
     private javax.swing.JButton btnEditChild;
     private javax.swing.JButton btnSaveChild;
     private javax.swing.JButton btnSearchChild;

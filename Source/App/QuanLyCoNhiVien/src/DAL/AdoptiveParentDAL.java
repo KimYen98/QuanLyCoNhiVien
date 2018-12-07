@@ -70,6 +70,21 @@ public class AdoptiveParentDAL extends  DataAccessHelper{
         }
         return false;
     }
+    //Xóa người nhận trẻ
+    public boolean DeleteAdoptiveParent(int id)
+    {
+        String SQL="Delete from NguoiNhanTre where MaNguoiNhan='"+id+"'";
+         try {
+            getConnect();
+            Statement  st =conn.createStatement();
+            int rs =st.executeUpdate(SQL);
+            if(rs>0)
+                return true;
+            getClose();
+        } catch (Exception e) {
+        }
+        return false;
+    }
     //Tra cứu người nhận trẻ
      public ArrayList<AdoptiveParent> SeacrchAdoptiveParent(String key)
     {

@@ -30,6 +30,11 @@ public class ChildBLL {
     {
         return DAL.UpdateChild(id, name, sex, birthday, joindate, situation, whobring, status, idstaff);
     }
+    //Xóa nhân viên
+    public boolean  DeleteChild(int id)
+    {
+        return DAL.DeleteChild(id);
+    }
     //Tìm trẻ
     public ArrayList<Child> SearchChild(String key)
     {
