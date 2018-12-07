@@ -28,7 +28,6 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
     
     public fExpenseInfo() {
         initComponents();
-        btnSaveExpenseInfo.setEnabled(false);
         cbIDExpenseExpenseInfo.removeAllItems();
         Toolkit tk =Toolkit.getDefaultToolkit();
         int x=(int) tk.getScreenSize().getWidth();

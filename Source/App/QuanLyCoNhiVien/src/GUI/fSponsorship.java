@@ -29,7 +29,6 @@ public class fSponsorship extends javax.swing.JInternalFrame {
     private int flag=0;
     public fSponsorship() {
         initComponents();
-        btnSaveSponsorship.setEnabled(false);
         cbNameSponsorSponsorship.removeAllItems();
         control.bindingSponsorship(jTableSponsorship, sponsorshipBLL.LoadSponsorship());
         for(Sponsor sponsor: sponsorBLL.LoadSponsor())

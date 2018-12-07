@@ -24,7 +24,7 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
     public fAdoptiveParent() {
         initComponents();
         control.bindingAdoptiveParent(jTableAPa, adoptiveParentBLL.LoadAdoptiveParent());
-        btnSaveAPa.setEnabled(false);
+        
     }
      //Hàm chuẩn hóa tên
     public String chuanHoa(String str) {
@@ -69,7 +69,6 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         btnAddAPa = new javax.swing.JButton();
         btnEditAPa = new javax.swing.JButton();
-        btnDeleteAPa = new javax.swing.JButton();
         btnSaveAPa = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableAPa = new javax.swing.JTable();
@@ -217,15 +216,6 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
             }
         });
 
-        btnDeleteAPa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnDeleteAPa.setForeground(new java.awt.Color(51, 0, 153));
-        btnDeleteAPa.setText("XÓA");
-        btnDeleteAPa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteAPaActionPerformed(evt);
-            }
-        });
-
         btnSaveAPa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSaveAPa.setForeground(new java.awt.Color(51, 0, 153));
         btnSaveAPa.setText("LƯU");
@@ -244,11 +234,9 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
                 .addComponent(btnAddAPa, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(btnEditAPa)
-                .addGap(38, 38, 38)
-                .addComponent(btnDeleteAPa, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(51, 51, 51)
                 .addComponent(btnSaveAPa, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,13 +245,12 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddAPa)
                     .addComponent(btnEditAPa)
-                    .addComponent(btnDeleteAPa)
                     .addComponent(btnSaveAPa))
                 .addContainerGap())
         );
 
         getContentPane().add(jPanel4);
-        jPanel4.setBounds(20, 377, 499, 47);
+        jPanel4.setBounds(103, 377, 416, 47);
 
         jTableAPa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -288,7 +275,7 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia6.jpg"))); // NOI18N
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(0, 0, 1350, 740);
+        jLabel6.setBounds(-10, 0, 1440, 690);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -352,26 +339,11 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
             }
         }
     }
-    public boolean Delete()
-    {
-        int id=Integer.parseInt(txfIDAPa.getText().toString());
-        if(adoptiveParentBLL.DeleteAdoptiveParent(id))
-        {
-            JOptionPane.showMessageDialog(this, "Xóa thành công người nhận trẻ");
-            return true;
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(this, "Xóa thất bại người nhận trẻ");
-            return false;
-        }
-    }
     private void btnAddAPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddAPaActionPerformed
         // TODO add your handling code here:
         ClearText();
         btnAddAPa.setEnabled(false);
         btnEditAPa.setEnabled(false);
-        btnDeleteAPa.setEnabled(false);
         btnSaveAPa.setEnabled(true);
         flag=1;
     }//GEN-LAST:event_btnAddAPaActionPerformed
@@ -380,42 +352,9 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
          btnAddAPa.setEnabled(false);
         btnEditAPa.setEnabled(false);
-        btnDeleteAPa.setEnabled(false);
         btnSaveAPa.setEnabled(true);
         flag=2;
     }//GEN-LAST:event_btnEditAPaActionPerformed
-
-    private void btnDeleteAPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteAPaActionPerformed
-        // TODO add your handling code here:
-        btnDeleteAPa.setEnabled(false);
-        btnEditAPa.setEnabled(false);
-        btnAddAPa.setEnabled(false);
-        btnSaveAPa.setEnabled(true);
-        flag=3;
-    }//GEN-LAST:event_btnDeleteAPaActionPerformed
-
-    private void btnSearchAPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAPaActionPerformed
-        // TODO add your handling code here:
-        String key =txfNameAPa.getText().toString();
-        control.bindingAdoptiveParent(jTableAPa, adoptiveParentBLL.SearchAdoptiveParent(key));
-        txfSearchAPa.setText("");
-    }//GEN-LAST:event_btnSearchAPaActionPerformed
-
-    private void jTableAPaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAPaMouseClicked
-        // TODO add your handling code here:
-        int row =jTableAPa.getSelectedRow();
-        txfIDAPa.setText(jTableAPa.getValueAt(row, 0).toString());
-        txfNameAPa.setText(jTableAPa.getValueAt(row, 1).toString());
-        txfAddressAPa.setText(jTableAPa.getValueAt(row, 2).toString());
-        txfPhoneAPa.setText(jTableAPa.getValueAt(row, 3).toString());
-    }//GEN-LAST:event_jTableAPaMouseClicked
-
-    private void txfPhoneAPaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfPhoneAPaKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (((c < '0') || (c > '9')) || txfPhoneAPa.getText().length() >= 10)
-            evt.consume();
-    }//GEN-LAST:event_txfPhoneAPaKeyTyped
 
     private void btnSaveAPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveAPaActionPerformed
         // TODO add your handling code here:
@@ -441,23 +380,34 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
             btnAddAPa.setEnabled(true);
             btnEditAPa.setEnabled(true);
         }
-        if(flag==3)
-        {
-            if(Delete())
-            {
-                control.bindingAdoptiveParent(jTableAPa, adoptiveParentBLL.LoadAdoptiveParent());
-               btnSaveAPa.setEnabled(false);
-            }
-            btnAddAPa.setEnabled(true);
-            btnEditAPa.setEnabled(true);
-            btnDeleteAPa.setEnabled(true);
-        }
     }//GEN-LAST:event_btnSaveAPaActionPerformed
+
+    private void btnSearchAPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAPaActionPerformed
+        // TODO add your handling code here:
+        String key =txfNameAPa.getText().toString();
+        control.bindingAdoptiveParent(jTableAPa, adoptiveParentBLL.SearchAdoptiveParent(key));
+        txfSearchAPa.setText("");
+    }//GEN-LAST:event_btnSearchAPaActionPerformed
+
+    private void jTableAPaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAPaMouseClicked
+        // TODO add your handling code here:
+        int row =jTableAPa.getSelectedRow();
+        txfIDAPa.setText(jTableAPa.getValueAt(row, 0).toString());
+        txfNameAPa.setText(jTableAPa.getValueAt(row, 1).toString());
+        txfAddressAPa.setText(jTableAPa.getValueAt(row, 2).toString());
+        txfPhoneAPa.setText(jTableAPa.getValueAt(row, 3).toString());
+    }//GEN-LAST:event_jTableAPaMouseClicked
+
+    private void txfPhoneAPaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfPhoneAPaKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (((c < '0') || (c > '9')) || txfPhoneAPa.getText().length() >= 10)
+            evt.consume();
+    }//GEN-LAST:event_txfPhoneAPaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddAPa;
-    private javax.swing.JButton btnDeleteAPa;
     private javax.swing.JButton btnEditAPa;
     private javax.swing.JButton btnSaveAPa;
     private javax.swing.JButton btnSearchAPa;

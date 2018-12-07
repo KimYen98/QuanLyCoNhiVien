@@ -19,7 +19,7 @@ public class AdoptiveParentDAL extends  DataAccessHelper{
     //lấy danh sách người nhận trẻ
     public ArrayList<AdoptiveParent> LoadAdoptiveParent()
     {
-        String SQL="select * from NguoiNhanTre";
+        String SQL="exec sp_HienThiDanhSachNguoiNhanTre";
         ArrayList<AdoptiveParent> temp =new ArrayList<>();
         try {
             getConnect();
@@ -63,21 +63,6 @@ public class AdoptiveParentDAL extends  DataAccessHelper{
             getConnect();
             Statement  st =conn.createStatement();
             int rs =st.executeUpdate(SQL);
-            if(rs>0)
-                return true;
-            getClose();
-        } catch (Exception e) {
-        }
-        return false;
-    }
-    //Xóa người nhận trẻ
-    public boolean DeleteAdoptiveParent(int id)
-    {
-        String SQL="Delete from NguoiNhanTre '"+id+"'";
-        try {
-            getConnect();
-            Statement st=conn.createStatement();
-            int rs=st.executeUpdate(SQL);
             if(rs>0)
                 return true;
             getClose();

@@ -23,7 +23,6 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
     private int flag=0;
     public fStaffCategogy() {
         initComponents();
-        btnSaveStaffCategogy.setEnabled(false);
         control.bindingStaffCategogy(jTableStaffCategogy, staffCategogyBLL.LoadStaffCategogy());
     }
     //Hàm chuẩn hóa tên

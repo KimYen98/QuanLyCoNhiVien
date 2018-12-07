@@ -30,11 +30,6 @@ public class AdoptiveParentBLL {
     {
         return DAL.UpdateAdoptiveParent(id, name, address, phonenumber);
     }
-    //Xóa người nhận trẻ
-    public boolean DeleteAdoptiveParent(int id)
-    {
-        return DAL.DeleteAdoptiveParent(id);
-    }   
     //Tra cứu người nhận trẻ
     public ArrayList<AdoptiveParent> SearchAdoptiveParent(String key)
     {

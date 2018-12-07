@@ -74,7 +74,7 @@ public class AdoptInfoDAL extends  DataAccessHelper{
     //Xóa chi tiết người nhận trẻ
     public boolean  DeleteAdoptInfo(int IdAdoptiveParent , int IdChild)
     {
-        String SQL="delete from CT_NguoiNhanTre_Tre where MaNguoiNhan='"+IdAdoptiveParent+"' and MaTre='"+IdChild+"'";
+        String SQL="exec sp_XoaChiTietNhanTre '"+IdAdoptiveParent+"','"+IdChild+"'";
         try {
             getConnect();
             Statement st =conn.createStatement();
