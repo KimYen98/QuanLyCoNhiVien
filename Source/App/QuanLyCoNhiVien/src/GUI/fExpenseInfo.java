@@ -73,7 +73,7 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("QUẢN LÝ CHI TIẾT CHI TIÊU");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(355, 11, 429, 37);
@@ -81,7 +81,6 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         jPanel1.setOpaque(false);
 
         btnSearchExpense.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSearchExpense.setForeground(new java.awt.Color(51, 0, 153));
         btnSearchExpense.setText("TÌM KIẾM");
         btnSearchExpense.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,19 +118,19 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         jPanel2.setOpaque(false);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Mã chi tiết chi tiêu");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Tên chi tiết chi tiêu");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Số tiền");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Mã chi tiêu");
 
         cbIDExpenseExpenseInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -198,7 +197,6 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         jPanel4.setOpaque(false);
 
         btnAddExpenseInfo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnAddExpenseInfo.setForeground(new java.awt.Color(51, 0, 153));
         btnAddExpenseInfo.setText("THÊM");
         btnAddExpenseInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,7 +205,6 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         });
 
         btnEditExpenseInfo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnEditExpenseInfo.setForeground(new java.awt.Color(51, 0, 153));
         btnEditExpenseInfo.setText("CẬP NHẬT");
         btnEditExpenseInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,7 +213,6 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         });
 
         btnDelExpenseInfo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnDelExpenseInfo.setForeground(new java.awt.Color(51, 0, 153));
         btnDelExpenseInfo.setText("XÓA");
         btnDelExpenseInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,7 +221,6 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         });
 
         btnSaveExpenseInfo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSaveExpenseInfo.setForeground(new java.awt.Color(51, 0, 153));
         btnSaveExpenseInfo.setText("LƯU");
         btnSaveExpenseInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -284,9 +279,9 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(593, 111, 527, 460);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia6.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia1.jpg"))); // NOI18N
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 1370, 800);
+        jLabel2.setBounds(0, -20, 1370, 800);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -104,7 +104,7 @@ public class fChild extends javax.swing.JInternalFrame {
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("QUẢN LÝ TRẺ");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(435, 11, 221, 37);
@@ -112,7 +112,6 @@ public class fChild extends javax.swing.JInternalFrame {
         jPanel4.setOpaque(false);
 
         btnAddChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnAddChild.setForeground(new java.awt.Color(51, 0, 153));
         btnAddChild.setText("THÊM");
         btnAddChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +120,6 @@ public class fChild extends javax.swing.JInternalFrame {
         });
 
         btnEditChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnEditChild.setForeground(new java.awt.Color(51, 0, 153));
         btnEditChild.setText("CẬP NHẬT");
         btnEditChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,7 +128,6 @@ public class fChild extends javax.swing.JInternalFrame {
         });
 
         btnSaveChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSaveChild.setForeground(new java.awt.Color(51, 0, 153));
         btnSaveChild.setText("LƯU");
         btnSaveChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,7 +136,6 @@ public class fChild extends javax.swing.JInternalFrame {
         });
 
         btnDeleteChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnDeleteChild.setForeground(new java.awt.Color(51, 0, 153));
         btnDeleteChild.setText("XÓA");
         btnDeleteChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,7 +200,7 @@ public class fChild extends javax.swing.JInternalFrame {
 
         txfSearchChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
-        btnSearchChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        btnSearchChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSearchChild.setText("TÌM KIẾM");
         btnSearchChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -221,7 +217,7 @@ public class fChild extends javax.swing.JInternalFrame {
                 .addComponent(txfSearchChild, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSearchChild)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,7 +226,7 @@ public class fChild extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txfSearchChild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearchChild))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3);
@@ -239,31 +235,31 @@ public class fChild extends javax.swing.JInternalFrame {
         jPanel1.setOpaque(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Mã trẻ");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tên trẻ");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Ngày sinh");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Giới tính");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Ngày vào");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Hoàn cảnh");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Người đưa trẻ vào");
 
         txfIDChild.setEditable(false);
@@ -316,14 +312,14 @@ public class fChild extends javax.swing.JInternalFrame {
         txfWhoBring.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Trạng thái");
 
         cbNameStaffChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         cbNameStaffChild.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Tên bảo mẫu");
 
         cbStatus.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -342,7 +338,9 @@ public class fChild extends javax.swing.JInternalFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel6)))
                         .addGap(101, 101, 101)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txfIDChild)
@@ -353,8 +351,7 @@ public class fChild extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7))
+                            .addComponent(jLabel8))
                         .addGap(45, 45, 45)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -387,7 +384,9 @@ public class fChild extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(10, 10, 10)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jDChJoinDateChild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -400,7 +399,7 @@ public class fChild extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txfWhoBring, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(18, 18, 18)
@@ -408,18 +407,18 @@ public class fChild extends javax.swing.JInternalFrame {
                     .addComponent(jLabel9)
                     .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(cbNameStaffChild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cbNameStaffChild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(46, 114, 553, 442);
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia6.jpg"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia1.jpg"))); // NOI18N
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(0, 0, 1410, 810);
+        jLabel10.setBounds(0, -50, 1410, 800);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
