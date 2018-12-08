@@ -40,6 +40,11 @@ public class ChildBLL {
     {
         return DAL.SearchChild(key);
     }
+    //Tìm trẻ còn ở cô nhi viện
+    public ArrayList<Child> SearchChildNow(String key)
+    {
+        return DAL.SearchChildNow(key);
+    }
     //Load trẻ hiện đang ở cô nhi viện
     public ArrayList <Child> LoadChildNow()
     {

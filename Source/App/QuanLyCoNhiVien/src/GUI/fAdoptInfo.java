@@ -304,7 +304,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(jTableAPa);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(960, 160, 390, 240);
+        jScrollPane2.setBounds(580, 160, 390, 240);
 
         jTableChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jTableChild.setModel(new javax.swing.table.DefaultTableModel(
@@ -327,7 +327,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         jScrollPane3.setViewportView(jTableChild);
 
         getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(580, 160, 360, 240);
+        jScrollPane3.setBounds(980, 160, 360, 240);
 
         jPanel3.setOpaque(false);
 
@@ -399,7 +399,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel5);
-        jPanel5.setBounds(950, 90, 411, 58);
+        jPanel5.setBounds(970, 90, 411, 58);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia1.jpg"))); // NOI18N
         getContentPane().add(jLabel7);
@@ -598,7 +598,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
     private void btnSearchChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchChildActionPerformed
         // TODO add your handling code here:
         String key =txfSearchChild.getText().toString();
-        control.bindingChild(jTableChild, childBLL.SearchChild(key));
+        control.bindingChild(jTableChild, childBLL.SearchChildNow(key));
         txfSearchChild.setText("");
     }//GEN-LAST:event_btnSearchChildActionPerformed
 

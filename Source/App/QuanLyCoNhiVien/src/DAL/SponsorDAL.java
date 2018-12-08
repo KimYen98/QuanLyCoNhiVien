@@ -20,7 +20,7 @@ public class SponsorDAL extends DataAccessHelper{
     public ArrayList<Sponsor> LoadSponsor ()
     {
         ArrayList<Sponsor> temp=new ArrayList<>();
-        String SQL="exec sp_HienThiDanhSachNhaTaiTro";
+        String SQL="select * from NhaTaiTro";
         try {
             getConnect();
             Statement st =conn.createStatement();
