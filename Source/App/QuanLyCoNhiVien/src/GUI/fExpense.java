@@ -73,7 +73,7 @@ public class fExpense extends javax.swing.JInternalFrame {
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("QUẢN LÝ CHI TIÊU");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(405, 46, 284, 37);
@@ -81,7 +81,6 @@ public class fExpense extends javax.swing.JInternalFrame {
         jPanel1.setOpaque(false);
 
         btnSearchExpense.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSearchExpense.setForeground(new java.awt.Color(51, 0, 153));
         btnSearchExpense.setText("TÌM KIẾM");
         btnSearchExpense.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,18 +89,18 @@ public class fExpense extends javax.swing.JInternalFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Tìm thông tin chi tiêu theo thời gian");
 
         cbMonthSearchExpense.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         cbMonthSearchExpense.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tháng");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Năm");
 
         txfYearSearchExpense.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -154,19 +153,19 @@ public class fExpense extends javax.swing.JInternalFrame {
         jPanel2.setOpaque(false);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Mã chi tiêu");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Tên chi tiêu");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Ngày chi");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Tổng tiền");
 
         txfIDExpense.setEditable(false);
@@ -250,7 +249,6 @@ public class fExpense extends javax.swing.JInternalFrame {
         jPanel4.setOpaque(false);
 
         btnAddExpense.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnAddExpense.setForeground(new java.awt.Color(51, 0, 153));
         btnAddExpense.setText("THÊM");
         btnAddExpense.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,7 +257,6 @@ public class fExpense extends javax.swing.JInternalFrame {
         });
 
         btnEditExpense.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnEditExpense.setForeground(new java.awt.Color(51, 0, 153));
         btnEditExpense.setText("CẬP NHẬT");
         btnEditExpense.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -268,7 +265,6 @@ public class fExpense extends javax.swing.JInternalFrame {
         });
 
         btnDelExpense.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnDelExpense.setForeground(new java.awt.Color(51, 0, 153));
         btnDelExpense.setText("XÓA");
         btnDelExpense.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,7 +273,6 @@ public class fExpense extends javax.swing.JInternalFrame {
         });
 
         btnSaveExpense.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSaveExpense.setForeground(new java.awt.Color(51, 0, 153));
         btnSaveExpense.setText("LƯU");
         btnSaveExpense.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -315,7 +310,8 @@ public class fExpense extends javax.swing.JInternalFrame {
         getContentPane().add(jPanel4);
         jPanel4.setBounds(22, 494, 503, 47);
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia6.jpg"))); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia1.jpg"))); // NOI18N
         getContentPane().add(jLabel9);
         jLabel9.setBounds(0, 0, 1270, 670);
 

@@ -75,7 +75,7 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("QUẢN LÝ CHƯƠNG TRÌNH TÀI TRỢ");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(268, 22, 528, 37);
@@ -85,7 +85,6 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         txfSearchSponsorship.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         btnSearchSponsorship.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSearchSponsorship.setForeground(new java.awt.Color(0, 0, 153));
         btnSearchSponsorship.setText("TÌM KIẾM");
         btnSearchSponsorship.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,23 +119,23 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         jPanel2.setOpaque(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Mã tài trợ");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tên nhà tài trợ");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Ngày tài trợ");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Hình thức tài trợ");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Số tiền tài trợ");
 
         txfIDSponsorship.setEditable(false);
@@ -213,7 +212,6 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         jPanel4.setOpaque(false);
 
         btnAddSponsorship.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnAddSponsorship.setForeground(new java.awt.Color(0, 0, 153));
         btnAddSponsorship.setText("THÊM");
         btnAddSponsorship.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,7 +220,6 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         });
 
         btnEditSponsorship.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnEditSponsorship.setForeground(new java.awt.Color(0, 0, 153));
         btnEditSponsorship.setText("CẬP NHẬT");
         btnEditSponsorship.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,7 +228,6 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         });
 
         btnDelSponsorship.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnDelSponsorship.setForeground(new java.awt.Color(0, 0, 153));
         btnDelSponsorship.setText("XÓA");
         btnDelSponsorship.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,7 +236,6 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         });
 
         btnSaveSponsorship.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSaveSponsorship.setForeground(new java.awt.Color(0, 0, 153));
         btnSaveSponsorship.setText("LƯU");
         btnSaveSponsorship.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -299,7 +294,7 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(610, 90, 735, 620);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia6.jpg"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia1.jpg"))); // NOI18N
         getContentPane().add(jLabel7);
         jLabel7.setBounds(0, 0, 1490, 770);
 

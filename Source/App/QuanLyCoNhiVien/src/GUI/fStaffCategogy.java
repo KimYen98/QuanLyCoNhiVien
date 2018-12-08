@@ -61,7 +61,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("QUẢN LÝ LOẠI NHÂN VIÊN");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(536, 22, 404, 37);
@@ -69,11 +69,11 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         jPanel1.setOpaque(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Mã loại nhân viên");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tên loại nhân viên");
 
         txfIDStaffCategogy.setEditable(false);
@@ -84,7 +84,6 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         txfSearchStaffCategogy.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         btnSearchStaffCategogy.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSearchStaffCategogy.setForeground(new java.awt.Color(0, 0, 153));
         btnSearchStaffCategogy.setText("TÌM KIẾM");
         btnSearchStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +137,6 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         jPanel4.setOpaque(false);
 
         btnAddStaffCategogy.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnAddStaffCategogy.setForeground(new java.awt.Color(0, 0, 153));
         btnAddStaffCategogy.setText("THÊM");
         btnAddStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +145,6 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         });
 
         btnEditStaffCategogy.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnEditStaffCategogy.setForeground(new java.awt.Color(0, 0, 153));
         btnEditStaffCategogy.setText("CẬP NHẬT");
         btnEditStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,7 +153,6 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         });
 
         btnDelStaffCategogy.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnDelStaffCategogy.setForeground(new java.awt.Color(0, 0, 153));
         btnDelStaffCategogy.setText("XÓA");
         btnDelStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +161,6 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         });
 
         btnSaveStaffCategogy.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSaveStaffCategogy.setForeground(new java.awt.Color(0, 0, 153));
         btnSaveStaffCategogy.setText("LƯU");
         btnSaveStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,7 +220,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(485, 90, 660, 523);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia6.jpg"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia1.jpg"))); // NOI18N
         getContentPane().add(jLabel4);
         jLabel4.setBounds(0, 0, 1520, 740);
 

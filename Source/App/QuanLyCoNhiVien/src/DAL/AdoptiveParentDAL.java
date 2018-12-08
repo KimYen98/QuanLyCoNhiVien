@@ -98,8 +98,8 @@ public class AdoptiveParentDAL extends  DataAccessHelper{
                 while(rs.next())
                 {
                     AdoptiveParent adoptiveParent=new AdoptiveParent();
-                    adoptiveParent.setID(rs.getInt("MaNguoiNhanTre"));
-                    adoptiveParent.setName(rs.getString("TenNguoiNhanTre"));
+                    adoptiveParent.setID(rs.getInt("MaNguoiNhan"));
+                    adoptiveParent.setName(rs.getString("TenNguoiNhan"));
                     adoptiveParent.setAddress(rs.getString("DiaChi"));
                     adoptiveParent.setPhoneNumber(rs.getString("SoDT"));
                     temp.add(adoptiveParent);

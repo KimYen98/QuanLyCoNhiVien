@@ -34,16 +34,8 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
     public fAdoptInfo() {
         initComponents();
         control.bindingAdoptInfo(jTableAdoptInfo, adoptInfoBLL.LoadAdoptInfo());
-        cbNameAPaAdoptInfo.removeAllItems();
-        cbNameChildAdoptInfo.removeAllItems();
-        for(Child child: childBLL.LoadChild())
-        {
-            cbNameChildAdoptInfo.addItem(child.getName());
-        }
-        for(AdoptiveParent adoptiveParent: adoptiveParentBLL.LoadAdoptiveParent())
-        {
-            cbNameAPaAdoptInfo.addItem(adoptiveParent.getName());
-        }
+        control.bindingAdoptiveParent(jTableAPa, adoptiveParentBLL.LoadAdoptiveParent());
+        control.bindingChild(jTableChild,childBLL.LoadChildNow());
         jDChAdoptDate.setDate(new Date());
     }
 
@@ -66,9 +58,9 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        cbNameAPaAdoptInfo = new javax.swing.JComboBox<>();
-        cbNameChildAdoptInfo = new javax.swing.JComboBox<>();
         jDChAdoptDate = new com.toedter.calendar.JDateChooser();
+        txfNameAdoptiveParent = new javax.swing.JTextField();
+        txfNameChild = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableAdoptInfo = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
@@ -76,13 +68,23 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         btnEditAdoptInfo = new javax.swing.JButton();
         btnDelAdoptInfo = new javax.swing.JButton();
         btnSaveAdoptInfo = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableAPa = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableChild = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        txfSearchAPa = new javax.swing.JTextField();
+        btnSearchAPa = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        txfSearchChild = new javax.swing.JTextField();
+        btnSearchChild = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setClosable(true);
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("QUẢN LÝ VIỆC NHẬN NUÔI TRẺ");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(348, 37, 475, 37);
@@ -90,13 +92,12 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         jPanel1.setOpaque(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Tìm theo tên của:");
 
         txfSearchAdoptInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         btnSearchAdoptInfo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSearchAdoptInfo.setForeground(new java.awt.Color(51, 0, 153));
         btnSearchAdoptInfo.setText("TÌM KIẾM");
         btnSearchAdoptInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,8 +117,8 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txfSearchAdoptInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                    .addComponent(cbSearchAdoptInfo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txfSearchAdoptInfo)
+                    .addComponent(cbSearchAdoptInfo, 0, 205, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(btnSearchAdoptInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -142,26 +143,24 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         jPanel2.setOpaque(false);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tên người nhận nuôi");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Tên trẻ");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Ngày nhận");
-
-        cbNameAPaAdoptInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        cbNameAPaAdoptInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbNameChildAdoptInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        cbNameChildAdoptInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jDChAdoptDate.setDateFormatString("dd-MM-yyyy");
         jDChAdoptDate.setFocusable(false);
         jDChAdoptDate.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+
+        txfNameAdoptiveParent.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+
+        txfNameChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -175,9 +174,9 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cbNameChildAdoptInfo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jDChAdoptDate, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
-                    .addComponent(cbNameAPaAdoptInfo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txfNameAdoptiveParent)
+                    .addComponent(txfNameChild))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -186,12 +185,12 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(cbNameAPaAdoptInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                    .addComponent(txfNameAdoptiveParent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNameChildAdoptInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                    .addComponent(jLabel4)
+                    .addComponent(txfNameChild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jDChAdoptDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -220,12 +219,11 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTableAdoptInfo);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(578, 134, 690, 558);
+        jScrollPane1.setBounds(578, 422, 770, 270);
 
         jPanel4.setOpaque(false);
 
         btnAddAdoptInfo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnAddAdoptInfo.setForeground(new java.awt.Color(51, 0, 153));
         btnAddAdoptInfo.setText("THÊM");
         btnAddAdoptInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,7 +232,6 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         });
 
         btnEditAdoptInfo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnEditAdoptInfo.setForeground(new java.awt.Color(51, 0, 153));
         btnEditAdoptInfo.setText("CẬP NHẬT");
         btnEditAdoptInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,7 +240,6 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         });
 
         btnDelAdoptInfo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnDelAdoptInfo.setForeground(new java.awt.Color(51, 0, 153));
         btnDelAdoptInfo.setText("XÓA");
         btnDelAdoptInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -252,7 +248,6 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         });
 
         btnSaveAdoptInfo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSaveAdoptInfo.setForeground(new java.awt.Color(51, 0, 153));
         btnSaveAdoptInfo.setText("LƯU");
         btnSaveAdoptInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -290,23 +285,139 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         getContentPane().add(jPanel4);
         jPanel4.setBounds(90, 430, 480, 47);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia6.jpg"))); // NOI18N
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(0, 0, 1400, 760);
+        jTableAPa.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTableAPa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableAPaMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTableAPa);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(960, 160, 390, 240);
+
+        jTableChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jTableChild.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTableChild.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTableChild.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableChildMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTableChild);
+
+        getContentPane().add(jScrollPane3);
+        jScrollPane3.setBounds(580, 160, 360, 240);
+
+        jPanel3.setOpaque(false);
+
+        txfSearchAPa.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+
+        btnSearchAPa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSearchAPa.setText("TÌM KIẾM");
+        btnSearchAPa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchAPaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txfSearchAPa, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSearchAPa)
+                .addGap(19, 19, 19))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txfSearchAPa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchAPa))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel3);
+        jPanel3.setBounds(570, 100, 351, 47);
+
+        jPanel5.setOpaque(false);
+
+        txfSearchChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+
+        btnSearchChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSearchChild.setText("TÌM KIẾM");
+        btnSearchChild.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchChildActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txfSearchChild, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSearchChild)
+                .addContainerGap(51, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txfSearchChild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchChild))
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel5);
+        jPanel5.setBounds(950, 90, 411, 58);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia1.jpg"))); // NOI18N
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(0, 0, 1370, 730);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     public void ClearText()
     {
-       cbNameAPaAdoptInfo.setSelectedItem(null);
-       cbNameChildAdoptInfo.setSelectedItem(null);
+       txfNameAdoptiveParent.setText("");
+       txfNameChild.setText("");
        jDChAdoptDate.setDate(new Date());
     }
     public boolean  Insert()
     {
-        String nameadopt =cbNameAPaAdoptInfo.getSelectedItem().toString();
+        String nameadopt =txfNameAdoptiveParent.getText().toString();
         int idadopt =adoptiveParentBLL.getID(nameadopt);
-        String namechild =cbNameChildAdoptInfo.getSelectedItem().toString();
+        String namechild =txfNameChild.getText().toString();
         int idchild=childBLL.getID(namechild);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date adoptdate =jDChAdoptDate.getDate();
@@ -332,9 +443,9 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
     }
     public boolean  Update()
     {
-        String nameadopt =cbNameAPaAdoptInfo.getSelectedItem().toString();
+        String nameadopt =txfNameAdoptiveParent.getText().toString();
         int idadopt =adoptiveParentBLL.getID(nameadopt);
-        String namechild =cbNameChildAdoptInfo.getSelectedItem().toString();
+        String namechild =txfNameChild.getText().toString();
         int idchild=childBLL.getID(namechild);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date adoptdate =jDChAdoptDate.getDate();
@@ -360,9 +471,9 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
     }
     public boolean Delete()
     {
-        String nameadopt =cbNameAPaAdoptInfo.getSelectedItem().toString();
+        String nameadopt =txfNameAdoptiveParent.getText().toString();
         int idadopt =adoptiveParentBLL.getID(nameadopt);
-        String namechild =cbNameChildAdoptInfo.getSelectedItem().toString();
+        String namechild =txfNameChild.getText().toString();
         int idchild=childBLL.getID(namechild);
         if(adoptInfoBLL.DeleteAdoptInfo(idadopt, idchild))
             {
@@ -462,13 +573,34 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         int row =jTableAdoptInfo.getSelectedRow();
         String nameadopt =jTableAdoptInfo.getValueAt(row, 0).toString();
-        String namechild=jTableAdoptInfo.getValueAt(row, 1).toString();
-        if(jTableAdoptInfo.getValueAt(row, 0).toString().equals(nameadopt))
-            cbNameAPaAdoptInfo.setSelectedItem(nameadopt);
-        if(jTableAdoptInfo.getValueAt(row, 1).toString().equals(namechild))
-            cbNameChildAdoptInfo.setSelectedItem(namechild);
-        jDChAdoptDate.setDate((Date)jTableAdoptInfo.getModel().getValueAt(row, 2));
+        
     }//GEN-LAST:event_jTableAdoptInfoMouseClicked
+
+    private void jTableAPaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAPaMouseClicked
+        // TODO add your handling code here:
+        int row =jTableAPa.getSelectedRow();
+        txfNameAdoptiveParent.setText(jTableAPa.getValueAt(row, 1).toString());
+    }//GEN-LAST:event_jTableAPaMouseClicked
+
+    private void jTableChildMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableChildMouseClicked
+        // TODO add your handling code here:
+        int row= jTableChild.getSelectedRow();
+        txfNameChild.setText(jTableChild.getValueAt(row, 1).toString());
+    }//GEN-LAST:event_jTableChildMouseClicked
+
+    private void btnSearchAPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAPaActionPerformed
+        // TODO add your handling code here:
+        String key =txfSearchAPa.getText().toString();
+        control.bindingAdoptiveParent(jTableAPa, adoptiveParentBLL.SearchAdoptiveParent(key));
+        txfSearchAPa.setText("");
+    }//GEN-LAST:event_btnSearchAPaActionPerformed
+
+    private void btnSearchChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchChildActionPerformed
+        // TODO add your handling code here:
+        String key =txfSearchChild.getText().toString();
+        control.bindingChild(jTableChild, childBLL.SearchChild(key));
+        txfSearchChild.setText("");
+    }//GEN-LAST:event_btnSearchChildActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -476,9 +608,9 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnDelAdoptInfo;
     private javax.swing.JButton btnEditAdoptInfo;
     private javax.swing.JButton btnSaveAdoptInfo;
+    private javax.swing.JButton btnSearchAPa;
     private javax.swing.JButton btnSearchAdoptInfo;
-    private javax.swing.JComboBox<String> cbNameAPaAdoptInfo;
-    private javax.swing.JComboBox<String> cbNameChildAdoptInfo;
+    private javax.swing.JButton btnSearchChild;
     private javax.swing.JComboBox<String> cbSearchAdoptInfo;
     private com.toedter.calendar.JDateChooser jDChAdoptDate;
     private javax.swing.JLabel jLabel1;
@@ -486,12 +618,22 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTableAPa;
     private javax.swing.JTable jTableAdoptInfo;
+    private javax.swing.JTable jTableChild;
+    private javax.swing.JTextField txfNameAdoptiveParent;
+    private javax.swing.JTextField txfNameChild;
+    private javax.swing.JTextField txfSearchAPa;
     private javax.swing.JTextField txfSearchAdoptInfo;
+    private javax.swing.JTextField txfSearchChild;
     // End of variables declaration//GEN-END:variables
 }

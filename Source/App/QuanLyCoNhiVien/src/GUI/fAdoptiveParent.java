@@ -22,8 +22,8 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
     AdoptiveParentBLL adoptiveParentBLL =new AdoptiveParentBLL();
     ControlFormat control =new ControlFormat();
     public fAdoptiveParent() {
-        btnSearchAPa.setEnabled(false);
         initComponents();
+        btnSaveAPa.setEnabled(false);
         control.bindingAdoptiveParent(jTableAPa, adoptiveParentBLL.LoadAdoptiveParent());
         
     }
@@ -80,7 +80,7 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("QUẢN LÝ NGƯỜI NHẬN NUÔI TRẺ");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(463, 33, 511, 37);
@@ -90,7 +90,6 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
         txfSearchAPa.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         btnSearchAPa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSearchAPa.setForeground(new java.awt.Color(51, 0, 153));
         btnSearchAPa.setText("TÌM KIẾM");
         btnSearchAPa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,19 +124,19 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
         jPanel2.setOpaque(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Mã người nhận");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tên người nhận");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Địa chỉ");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Số điện thoại");
 
         txfIDAPa.setEditable(false);
@@ -201,7 +200,6 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
         jPanel4.setOpaque(false);
 
         btnAddAPa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnAddAPa.setForeground(new java.awt.Color(51, 0, 153));
         btnAddAPa.setText("THÊM");
         btnAddAPa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,7 +208,6 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
         });
 
         btnEditAPa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnEditAPa.setForeground(new java.awt.Color(51, 0, 153));
         btnEditAPa.setText("CẬP NHẬT");
         btnEditAPa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,7 +216,6 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
         });
 
         btnSaveAPa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnSaveAPa.setForeground(new java.awt.Color(51, 0, 153));
         btnSaveAPa.setText("LƯU");
         btnSaveAPa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,7 +224,6 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
         });
 
         btnDeleteAPa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnDeleteAPa.setForeground(new java.awt.Color(51, 0, 153));
         btnDeleteAPa.setText("XÓA");
         btnDeleteAPa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -287,7 +282,7 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(567, 130, 770, 570);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia6.jpg"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia1.jpg"))); // NOI18N
         getContentPane().add(jLabel6);
         jLabel6.setBounds(0, 0, 1350, 710);
 
@@ -427,7 +422,7 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
 
     private void btnSearchAPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAPaActionPerformed
         // TODO add your handling code here:
-        String key =txfNameAPa.getText().toString();
+        String key =txfSearchAPa.getText().toString();
         control.bindingAdoptiveParent(jTableAPa, adoptiveParentBLL.SearchAdoptiveParent(key));
         txfSearchAPa.setText("");
     }//GEN-LAST:event_btnSearchAPaActionPerformed

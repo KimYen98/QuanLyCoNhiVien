@@ -112,7 +112,7 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         jPanel1.setLayout(null);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("DANH SÁCH TRẺ THÊM MỚI");
         jPanel1.add(jLabel5);
         jLabel5.setBounds(408, 36, 420, 37);
@@ -120,15 +120,15 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         jPanel4.setOpaque(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Thời gian thống kê");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Từ ngày");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Đến ngày");
 
         jDChFromDateNewChild.setDateFormatString("dd-MM-yyyy");
@@ -177,7 +177,6 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         jPanel4.setBounds(10, 91, 328, 112);
 
         btnRPNewChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnRPNewChild.setForeground(new java.awt.Color(0, 0, 153));
         btnRPNewChild.setText("THỐNG KÊ");
         btnRPNewChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,7 +187,6 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         btnRPNewChild.setBounds(408, 135, 140, 25);
 
         btnPrintRPNewChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnPrintRPNewChild.setForeground(new java.awt.Color(0, 0, 153));
         btnPrintRPNewChild.setText("IN BÁO CÁO");
         btnPrintRPNewChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,7 +220,7 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(91, 276, 1108, 440);
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia6.jpg"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia1.jpg"))); // NOI18N
         jPanel1.add(jLabel13);
         jLabel13.setBounds(0, 0, 1370, 740);
 
@@ -231,7 +229,7 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         jPanel2.setLayout(null);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("DANH SÁCH TRẺ ĐƯỢC NHẬN NUÔI");
         jPanel2.add(jLabel9);
         jLabel9.setBounds(423, 38, 541, 37);
@@ -239,15 +237,15 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         jPanel5.setOpaque(false);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Thời gian thống kê");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Từ ngày");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Đến ngày");
 
         jDChFromDateAdoptedChild.setDateFormatString("dd-MM-yyyy");
@@ -296,7 +294,6 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         jPanel5.setBounds(10, 86, 331, 131);
 
         btnRPAdoptedChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnRPAdoptedChild.setForeground(new java.awt.Color(0, 0, 153));
         btnRPAdoptedChild.setText("THỐNG KÊ");
         btnRPAdoptedChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -307,7 +304,6 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         btnRPAdoptedChild.setBounds(423, 116, 117, 25);
 
         btnPrintRPAdoptedChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnPrintRPAdoptedChild.setForeground(new java.awt.Color(0, 0, 153));
         btnPrintRPAdoptedChild.setText("IN BÁO CÁO");
         btnPrintRPAdoptedChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -341,7 +337,7 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         jPanel2.add(jScrollPane4);
         jScrollPane4.setBounds(979, 86, 49, 39);
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia6.jpg"))); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia1.jpg"))); // NOI18N
         jPanel2.add(jLabel14);
         jLabel14.setBounds(0, 0, 1470, 720);
 
@@ -350,7 +346,7 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         jPanel3.setLayout(null);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("DANH SÁCH TRẺ ĐANG Ở CÔ NHI VIỆN");
         jPanel3.add(jLabel10);
         jLabel10.setBounds(426, 42, 588, 37);
@@ -358,15 +354,15 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         jPanel6.setOpaque(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Độ tuổi");
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Từ");
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Đến");
 
         cbFromAge.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -416,7 +412,6 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         jPanel6.setBounds(221, 102, 238, 112);
 
         btnRPNumOfChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnRPNumOfChild.setForeground(new java.awt.Color(0, 0, 153));
         btnRPNumOfChild.setText("THỐNG KÊ");
         btnRPNumOfChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -427,7 +422,6 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         btnRPNumOfChild.setBounds(558, 113, 117, 25);
 
         btnPrintRPNumOfChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnPrintRPNumOfChild.setForeground(new java.awt.Color(0, 0, 153));
         btnPrintRPNumOfChild.setText("IN BÁO CÁO");
         btnPrintRPNumOfChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -461,7 +455,7 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         jPanel3.add(jScrollPane6);
         jScrollPane6.setBounds(1177, 102, 57, 29);
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia6.jpg"))); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia1.jpg"))); // NOI18N
         jPanel3.add(jLabel15);
         jLabel15.setBounds(0, 0, 1430, 740);
 
@@ -475,7 +469,7 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
         );
 
         pack();
