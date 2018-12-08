@@ -291,7 +291,8 @@ end
 go
 --Thêm nhân viên
 create proc sp_ThemNhanVien
-@TenNV nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19), @DiaChi nvarchar(100), @SoDT nvarchar(10), @NgayVL nvarchar(19), @MaLoaiNV int,@TrangThai int
+@TenNV nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19), @DiaChi nvarchar(100), 
+@SoDT nvarchar(10), @NgayVL nvarchar(19), @MaLoaiNV int,@TrangThai int
 as
 begin
 	declare @NgaySinh_ smalldatetime,@NgayVL_ smalldatetime, @MaNV int, @MaNV_Max int,@i int =1
@@ -318,7 +319,8 @@ end
 go
 --Cập nhật nhân viên
 create proc sp_CapNhatNhanVien
-@MaNV int,@TenNV nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19), @DiaChi nvarchar(100), @SoDT nvarchar(10), @NgayVL nvarchar(19), @MaLoaiNV int,@TrangThai int
+@MaNV int,@TenNV nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19), @DiaChi nvarchar(100), @SoDT nvarchar(10), 
+@NgayVL nvarchar(19), @MaLoaiNV int,@TrangThai int
 as
 begin
 	declare @NgaySinh_ smalldatetime,@NgayVL_ smalldatetime
@@ -329,7 +331,7 @@ begin
 	where MaNV=@MaNV
 end
 go
---Hiện thi danh sách nhân viên
+--Hiển thị danh sách nhân viên
 create proc sp_HienThiDanhSachNhanVien
 as
 begin
@@ -348,8 +350,8 @@ begin
 	WHERE NhanVien.MaLoaiNV=LoaiNhanVien.MaLoaiNV and [dbo].[GetUnsignString](TenNV) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
 end
 go
---Hiện thị danh sách trẻ
-alter proc sp_HienThiDanhSachTre
+--Hiển thị danh sách trẻ
+create proc sp_HienThiDanhSachTre
 as 
 begin
 	select MaTre,TenTre,Tre.NgaySinh,Tre.GioiTinh,NgayVao,HoanCanh,NguoiDuaTreVao,Tre.TrangThai,TenNV
@@ -357,7 +359,7 @@ begin
 	where Tre.MaNV=NhanVien.MaNV 
 end
 go
---Hiện thị danh sách trẻ hiện ở cô nhi viện
+--Hiển thị danh sách trẻ hiện ở cô nhi viện
 create proc sp_HienThiDanhSachTreHienOCoNhiVien
 as 
 begin
@@ -368,7 +370,8 @@ end
 go
 --Thêm trẻ
 create proc sp_ThemTre
-@TenTre nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19),@NgayVao nvarchar(19), @HoanCanh nvarchar(4000),@NguoiDuaTreVao nvarchar(100), @TrangThai int,@MaNV int
+@TenTre nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19),@NgayVao nvarchar(19), @HoanCanh nvarchar(4000),
+@NguoiDuaTreVao nvarchar(100), @TrangThai int,@MaNV int
 as
 begin
 	declare @MaTre int, @MaTre_Max int, @i int =1
@@ -400,7 +403,8 @@ exec sp_ThemTre 'a','Nam','1/1/2018','25/11/2018','a','a',1,1
 go
  --Cập nhật trẻ
  create proc sp_CapNhatTre
-@MaTre int, @TenTre nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19),@NgayVao nvarchar(19), @HoanCanh nvarchar(4000),@NguoiDuaTreVao nvarchar(100), @TrangThai int,@MaNV int
+@MaTre int, @TenTre nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19),@NgayVao nvarchar(19), @HoanCanh nvarchar(4000),@NguoiDuaTreVao nvarchar(100), 
+@TrangThai int,@MaNV int
 as
 begin
 	declare @NgaySinh_ smalldatetime,@NgayVao_ smalldatetime
@@ -409,7 +413,7 @@ begin
 	update Tre
 	set TenTre=@TenTre,GioiTinh=@GioiTinh,NgaySinh=@NgaySinh_,NgayVao=@NgayVao_,HoanCanh=@HoanCanh,NguoiDuaTreVao=@NguoiDuaTreVao,TrangThai=@TrangThai,MaNV=@MaNV
 	where MaTre=@MaTre
-	end
+end
 go
 --Tìm trẻ
 create proc sp_TimTre
@@ -421,7 +425,7 @@ begin
 	where Tre.MaNV=NhanVien.MaNV and [dbo].[GetUnsignString](TenTre) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
 end
 go
---Hiện thi danh sách nhân viên là bảo mẫu hiện đang làm việc
+--Hiển thi danh sách nhân viên là bảo mẫu hiện đang làm việc
 alter proc sp_HienThiDanhSachBaoMau
 as
 begin
@@ -438,8 +442,7 @@ BEGIN
 	SELECT * FROM ChiTieu
 END
 GO
---THÊM CHI TIÊU
-
+--Thêm chi tiêu
 create PROC SP_ThemChiTieu
 @TenChiTieu nvarchar(100), @NgayChi nvarchar(19)
 AS
@@ -468,8 +471,7 @@ BEGIN
 	END
 END
 GO
---CẬP NHẬT CHI TIÊU
-
+--Cập nhật chi tiêu
 CREATE PROC SP_CapNhatChiTieu
  @MaChiTieu int, @TenChiTieu nvarchar(100), @NgayChi nvarchar(19)
 AS
@@ -514,10 +516,9 @@ BEGIN
 	WHERE MaChiTieu = @MaChiTieu
 END
 GO
--- THÊM CHI TIẾT CHI TIÊU
-
-ALTER PROC SP_ThemCTCT
-@MaChiTieu int, @TenCTChiTieu nvarchar(100), @SoTien float
+-- Thêm chi tiết chi tiêu
+CREATE PROC SP_ThemCTCT
+@MaChiTieu int, @TenCTChiTieu nvarchar(100), @SoTien money
 AS
 BEGIN
 	DECLARE @Max_MaCT_ChiTieu int, @i int
