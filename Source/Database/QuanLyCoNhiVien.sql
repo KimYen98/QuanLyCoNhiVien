@@ -568,7 +568,7 @@ BEGIN
 END
 go
 -- TÌM KIẾM CT_CHITIEU THEO NGÀY
-
+-- Tra cứu chi tiết chi tiêu theo ngày
 create PROC SP_TimKiemCTCT
 @Day nvarchar(19)
 AS
@@ -737,7 +737,7 @@ begin
 	where TaiTro.MaNhaTaiTro=NhaTaiTro.MaNhaTaiTro and   [dbo].[GetUnsignString](TenNhaTaiTro) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
 end
 go
--- Thêm người nhân nuôi trẻ
+-- Thêm người nhận nuôi trẻ
 create proc sp_ThemNguoiNhanTre
 @TenNguoiNhan nvarchar(100), @DiaChi nvarchar(100), @SoDT nvarchar(10)
 as
@@ -785,7 +785,7 @@ begin
 
 end
 go
---Hiện thị chi tiết người nhận trẻ 
+--Hiện thị chi tiết nhận trẻ 
 create proc sp_HienThiChiTietNguoiNhanTre
 as
 begin
@@ -795,8 +795,8 @@ begin
 end
 go
 
---Thêm chi tiết người nhận trẻ
-alter proc sp_ThemChiTietNhanTre
+--Thêm chi tiết nhận trẻ
+create proc sp_ThemChiTietNhanTre
 @MaNguoiNhan int, @MaTre int, @NgayNhan nvarchar(19)
 as
 begin
@@ -805,8 +805,8 @@ begin
 	insert into CT_NguoiNhanTre_Tre values(@MaNguoiNhan,@MaTre,@NgayNhan_)
 end
 go
---Cập nhật chi tiết người nhận trẻ
-alter proc sp_CapNhatChiTietNhanTre
+--Cập nhật chi tiết nhận trẻ
+create proc sp_CapNhatChiTietNhanTre
 @MaNguoiNhan int, @MaTre int, @NgayNhan nvarchar(19)
 as
 begin
@@ -817,7 +817,7 @@ begin
 	where MaTre=@MaTre and MaNguoiNhan=@MaNguoiNhan
 end
 go
---Tìm chi tiết người nhận trẻ theo tên trẻ
+--Tìm chi tiết nhận trẻ theo tên trẻ
 create proc sp_TraCuuChiTietNguoiNhanTreTheoTenTre
 @key nvarchar(100)
 as
@@ -828,7 +828,7 @@ begin
 	and [dbo].[GetUnsignString](TenTre) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
 end
 go
---Tìm chi tiết người nhận trẻ theo tên người nhận
+--Tìm chi tiết nhận trẻ theo tên người nhận
 create proc sp_TimChiTietNguoiNhanTreTheoTenNguoiNhan
 @key nvarchar(100)
 as
@@ -839,7 +839,8 @@ begin
 	and [dbo].[GetUnsignString](TenNguoiNhan) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
 end
 go
--- BÁO CÁO TRẺ THÊM MỚI
+
+-- Báo cáo trẻ thêm mới
 create PROC SP_BaoCaoTreThemMoi
 @TuNgay nvarchar(19), @DenNgay nvarchar(19)
 AS
@@ -854,7 +855,7 @@ BEGIN
 	WHERE Tre.MaNV = NhanVien.MaNV AND NgayVao >= @TuNgay_ AND NgayVao <= @DenNgay_
 END
 GO
--- BÁO CÁO TRẺ ĐƯỢC NHẬN NUÔI
+-- Báo cáo trẻ được nhận nuôi
 CREATE PROC SP_BaoCaoTreDuocNhanNuoi
 @TuNgay nvarchar(19), @DenNgay nvarchar(19)
 AS
@@ -869,7 +870,8 @@ BEGIN
 	WHERE Tre.MaNV = NhanVien.MaNV AND Tre.MaTre = CT_NguoiNhanTre_Tre.MaTre AND  NgayNhan >= @TuNgay_ AND NgayNhan <= @DenNgay_
 END
 GO
---BÁO CÁO TRẺ ĐANG Ở CÔ NHI VIỆN
+
+-- Báo cáo trẻ đang ở cô nhi viện
 create PROC SP_BaoCaoTreDangOCoNhiVien
 @TuTuoi int, @DenTuoi int
 AS
@@ -884,7 +886,8 @@ BEGIN
 	BEGIN
 		SELECT MaTre, TenTre, Tre.GioiTinh, Tre.NgaySinh, NgayVao, HoanCanh, NguoiDuaTreVao, Tre.TrangThai, TenNV 
 		FROM Tre, NhanVien
-		WHERE Tre.MaNV = NhanVien.MaNV AND Tre.TrangThai = 1 AND (DATEDIFF(YEAR, Tre.NgaySinh, GETDATE()) >= @TuTuoi) AND (DATEDIFF(YEAR, Tre.NgaySinh, GETDATE()) <= @DenTuoi)
+		WHERE Tre.MaNV = NhanVien.MaNV AND Tre.TrangThai = 1 AND (DATEDIFF(YEAR, Tre.NgaySinh, GETDATE()) >= @TuTuoi) 
+			  AND (DATEDIFF(YEAR, Tre.NgaySinh, GETDATE()) <= @DenTuoi)
 	END	
 END
 GO
@@ -907,7 +910,8 @@ BEGIN
 	WHERE GioiTinh = N'Nữ' AND TrangThai = 1
 END
 GO
---THỐNG KÊ TỔNG TIỀN TÀI TRỢ TRONG KHOẢNG THỜI GIAN
+
+--Thống kê tổng tiền tài trợ trong khoảng thời gian
 CREATE PROC SP_ThongKeTaiTro
 @TuNgay nvarchar(19), @DenNgay nvarchar(19)
 AS
@@ -922,7 +926,8 @@ BEGIN
 
 END
 GO
---THỐNG KÊ SỐ TIỀN CHI TIÊU TRONG KHOẢNG THỜI GIAN
+
+--Thống kê số tiền chi tiêu trong khoảng thời gian
 CREATE PROC SP_ThongKeChiTieu
 @TuNgay nvarchar(19), @DenNgay nvarchar(19)
 AS
@@ -940,7 +945,8 @@ END
 exec SP_ThongKeChiTieu '1-1-2017', '5-12-2018'
 
 GO
---THỐNG KÊ QUỸ TIỀN CÒN LẠI
+
+--Thống kê quỹ tiền còn lại
 CREATE PROC SP_ThongKeQuy
 AS
 BEGIN
