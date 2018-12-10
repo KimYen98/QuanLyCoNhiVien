@@ -29,12 +29,9 @@ public class fSponsorship extends javax.swing.JInternalFrame {
     private int flag=0;
     public fSponsorship() {
         initComponents();
-        cbNameSponsorSponsorship.removeAllItems();
+        btnSaveSponsorship.setEnabled(false);
         control.bindingSponsorship(jTableSponsorship, sponsorshipBLL.LoadSponsorship());
-        for(Sponsor sponsor: sponsorBLL.LoadSponsor())
-        {
-            cbNameSponsorSponsorship.addItem(sponsor.getName());
-        }
+        control.bindingSponsor(jTableSponsor, sponsorBLL.LoadSponsor());
         jDChSponsorshipDate.setDate(new Date());
     }
 
@@ -58,10 +55,10 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txfIDSponsorship = new javax.swing.JTextField();
-        cbNameSponsorSponsorship = new javax.swing.JComboBox<>();
         jDChSponsorshipDate = new com.toedter.calendar.JDateChooser();
         cbFormSponsorship = new javax.swing.JComboBox<>();
         txfMoneySponsorship = new javax.swing.JTextField();
+        txfNameSponsor = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         btnAddSponsorship = new javax.swing.JButton();
         btnEditSponsorship = new javax.swing.JButton();
@@ -69,6 +66,11 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         btnSaveSponsorship = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableSponsorship = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableSponsor = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        txfSearchSponsor = new javax.swing.JTextField();
+        btnSearchSponsor = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -114,7 +116,7 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(10, 82, 434, 61);
+        jPanel1.setBounds(610, 70, 434, 61);
 
         jPanel2.setOpaque(false);
 
@@ -141,9 +143,6 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         txfIDSponsorship.setEditable(false);
         txfIDSponsorship.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
-        cbNameSponsorSponsorship.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        cbNameSponsorSponsorship.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jDChSponsorshipDate.setDateFormatString("dd-MM-yyyy");
 
         cbFormSponsorship.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -151,6 +150,9 @@ public class fSponsorship extends javax.swing.JInternalFrame {
 
         txfMoneySponsorship.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         txfMoneySponsorship.setText("0");
+
+        txfNameSponsor.setEditable(false);
+        txfNameSponsor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -167,8 +169,8 @@ public class fSponsorship extends javax.swing.JInternalFrame {
                         .addGap(27, 27, 27)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txfIDSponsorship)
-                            .addComponent(cbNameSponsorSponsorship, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jDChSponsorshipDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jDChSponsorshipDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txfNameSponsor)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
@@ -191,7 +193,7 @@ public class fSponsorship extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(cbNameSponsorSponsorship, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txfNameSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4))
                     .addComponent(jDChSponsorshipDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -292,25 +294,82 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTableSponsorship);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(610, 90, 735, 620);
+        jScrollPane1.setBounds(610, 420, 735, 290);
+
+        jTableSponsor.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTableSponsor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableSponsorMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTableSponsor);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(610, 140, 720, 260);
+
+        jPanel3.setOpaque(false);
+
+        txfSearchSponsor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+
+        btnSearchSponsor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSearchSponsor.setText("TÌM KIẾM");
+        btnSearchSponsor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchSponsorActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(123, Short.MAX_VALUE)
+                .addComponent(txfSearchSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSearchSponsor)
+                .addGap(28, 28, 28))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txfSearchSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearchSponsor))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel3);
+        jPanel3.setBounds(10, 81, 501, 47);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia1.jpg"))); // NOI18N
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(0, 0, 1490, 770);
+        jLabel7.setBounds(0, 0, 1420, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     public void ClearText()
     {
         txfIDSponsorship.setText("");
-        cbNameSponsorSponsorship.getItemAt(0);
+        txfNameSponsor.setText("");
         jDChSponsorshipDate.setDate(new Date());
         cbFormSponsorship.getItemAt(0);
         txfMoneySponsorship.setText("0");
     }
     public boolean Insert()
     {
-        String namesponsor =cbNameSponsorSponsorship.getSelectedItem().toString();
+        String namesponsor =txfNameSponsor.getText().toString();
         int idsponsor=sponsorBLL.getIdSponsor(namesponsor);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date date =jDChSponsorshipDate.getDate();
@@ -344,7 +403,7 @@ public class fSponsorship extends javax.swing.JInternalFrame {
     public boolean Update()
     {
         int id =Integer.parseInt(txfIDSponsorship.getText().toString());
-        String namesponsor =cbNameSponsorSponsorship.getSelectedItem().toString();
+        String namesponsor =txfNameSponsor.getText().toString();
         int idsponsor=sponsorBLL.getIdSponsor(namesponsor);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date date =jDChSponsorshipDate.getDate();
@@ -373,7 +432,7 @@ public class fSponsorship extends javax.swing.JInternalFrame {
     public boolean Delete()
     {
         int idsponsorship=Integer.parseInt(txfIDSponsorship.getText().toString());
-        String namesponsor =cbNameSponsorSponsorship.getSelectedItem().toString();
+        String namesponsor =txfNameSponsor.getText().toString();
         int idsponsor=sponsorBLL.getIdSponsor(namesponsor);
         if(sponsorshipBLL.Delete(idsponsorship,idsponsor))
         {
@@ -467,9 +526,7 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         int row=jTableSponsorship.getSelectedRow();
         txfIDSponsorship.setText(jTableSponsorship.getValueAt(row, 0).toString());
-        String namesponsor=jTableSponsorship.getValueAt(row, 1).toString();
-        if(jTableSponsorship.getValueAt(row, 1).toString().equals(namesponsor))
-            cbNameSponsorSponsorship.setSelectedItem(namesponsor);
+        txfNameSponsor.setText(jTableSponsorship.getValueAt(row, 1).toString());
         jDChSponsorshipDate.setDate((Date)jTableSponsorship.getModel().getValueAt(row, 2));
         String format =jTableSponsorship.getValueAt(row, 3).toString();
         if(jTableSponsorship.getValueAt(row,3).toString().equals(format))
@@ -478,15 +535,29 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jTableSponsorshipMouseClicked
 
+    private void jTableSponsorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableSponsorMouseClicked
+        // TODO add your handling code here:
+        int row=jTableSponsor.getSelectedRow();
+        txfNameSponsor.setText(jTableSponsor.getValueAt(row, 1).toString());
+        
+    }//GEN-LAST:event_jTableSponsorMouseClicked
+
+    private void btnSearchSponsorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchSponsorActionPerformed
+        // TODO add your handling code here:
+        String key =txfSearchSponsor.getText().toString();
+        control.bindingSponsor(jTableSponsor, sponsorBLL.SearchSponsor(key));
+        txfSearchSponsor.setText("");
+    }//GEN-LAST:event_btnSearchSponsorActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddSponsorship;
     private javax.swing.JButton btnDelSponsorship;
     private javax.swing.JButton btnEditSponsorship;
     private javax.swing.JButton btnSaveSponsorship;
+    private javax.swing.JButton btnSearchSponsor;
     private javax.swing.JButton btnSearchSponsorship;
     private javax.swing.JComboBox<String> cbFormSponsorship;
-    private javax.swing.JComboBox<String> cbNameSponsorSponsorship;
     private com.toedter.calendar.JDateChooser jDChSponsorshipDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -497,11 +568,16 @@ public class fSponsorship extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTableSponsor;
     private javax.swing.JTable jTableSponsorship;
     private javax.swing.JTextField txfIDSponsorship;
     private javax.swing.JTextField txfMoneySponsorship;
+    private javax.swing.JTextField txfNameSponsor;
+    private javax.swing.JTextField txfSearchSponsor;
     private javax.swing.JTextField txfSearchSponsorship;
     // End of variables declaration//GEN-END:variables
 }

@@ -118,6 +118,37 @@ public class ChildDAL extends  DataAccessHelper{
         }
         return temp;
     }
+    //Tìm trẻ hiện tại còn ở cô nhi viện
+    public ArrayList<Child> SearchChildNow(String key)
+    {
+        ArrayList<Child> temp= new ArrayList<>();
+        String SQL="exec sp_TimTreConOCoNhiVien N'"+key+"'";
+        try {
+            getConnect();
+            Statement st = conn.createStatement();
+            ResultSet rs=st.executeQuery(SQL);
+            if(rs!=null)
+                while(rs.next())
+                {
+                    Child child =new Child();
+                    child.setID(rs.getInt("MaTre"));
+                    child.setName(rs.getString("TenTre"));
+                    child.setSex(rs.getString("GioiTinh"));
+                    child.setBirthday(rs.getDate("NgaySinh"));
+                    child.setJoinDate(rs.getDate("NgayVao"));
+                    child.setSituation(rs.getString("HoanCanh"));
+                    child.setWhoBring(rs.getString("NguoiDuaTreVao"));
+                    child.setStatus(rs.getInt("TrangThai"));
+                    child.setNameStaff(rs.getString("TenNV"));
+                    temp.add(child);
+                    getClose();
+                }
+        } catch (Exception e) {
+        }
+        return temp;
+    }
+    
+    
     //Load trẻ hiện đang ở cô nhi viện
     public ArrayList< Child> LoadChildNow ()
     {

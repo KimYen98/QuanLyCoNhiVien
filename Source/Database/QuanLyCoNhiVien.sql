@@ -959,3 +959,13 @@ BEGIN
 	SELECT (@TienTaiTro - @TienChi) AS Quy
 END
 GO
+--Tìm trẻ còn ở cô nhi viện
+create proc sp_TimTreConOCoNhiVien
+@key nvarchar(100)
+as
+begin
+	select MaTre,TenTre,Tre.GioiTinh,Tre.NgaySinh,NgayVao,HoanCanh,NguoiDuaTreVao,Tre.TrangThai,TenNV
+	from Tre,NhanVien
+	where Tre.MaNV=NhanVien.MaNV and Tre.TrangThai=1 and [dbo].[GetUnsignString](TenTre) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
+end
+go
