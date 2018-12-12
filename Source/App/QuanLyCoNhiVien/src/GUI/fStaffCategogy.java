@@ -61,7 +61,6 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("QUẢN LÝ LOẠI NHÂN VIÊN");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(536, 22, 404, 37);
@@ -69,11 +68,9 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         jPanel1.setOpaque(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Mã loại nhân viên");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tên loại nhân viên");
 
         txfIDStaffCategogy.setEditable(false);
@@ -218,9 +215,9 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTableStaffCategogy);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(485, 90, 660, 523);
+        jScrollPane1.setBounds(485, 90, 740, 550);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia1.jpg"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia2.png"))); // NOI18N
         getContentPane().add(jLabel4);
         jLabel4.setBounds(0, 0, 1520, 740);
 

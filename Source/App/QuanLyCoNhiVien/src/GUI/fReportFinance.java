@@ -57,7 +57,6 @@ public class fReportFinance extends javax.swing.JInternalFrame {
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("BÁO CÁO TÌNH HÌNH TÀI CHÍNH");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(254, 29, 495, 37);
@@ -65,15 +64,12 @@ public class fReportFinance extends javax.swing.JInternalFrame {
         jPanel1.setOpaque(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Thời gian thống kê");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Từ ngày");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Đến ngày");
 
         jDChFromDateRPFinance.setDateFormatString("dd-MM-yyyy");
@@ -149,7 +145,7 @@ public class fReportFinance extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(140, 220, 1080, 470);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia1.jpg"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia2.png"))); // NOI18N
         getContentPane().add(jLabel5);
         jLabel5.setBounds(0, 0, 1490, 760);
 

@@ -102,40 +102,34 @@ public class fStaff extends javax.swing.JInternalFrame {
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("QUẢN LÝ NHÂN VIÊN");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(345, 31, 319, 37);
+        jLabel1.setBounds(460, 30, 319, 37);
 
         jPanel1.setOpaque(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Mã nhân viên");
 
         txfIDStaff.setEditable(false);
         txfIDStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tên nhân viên");
 
         txfNameStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Ngày sinh");
 
         jDChBirthdayStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Địa chỉ");
 
         txfAddressStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Điện thoại");
 
         txfPhoneStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -146,25 +140,23 @@ public class fStaff extends javax.swing.JInternalFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Ngày vào làm");
 
         jDChStartStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Loại nhân viên");
 
         cbStaffCategogy.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         cbStaffCategogy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Giới tính");
 
         buttonGroup1.add(rbtnMale);
         rbtnMale.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtnMale.setText("Nam");
+        rbtnMale.setOpaque(false);
         rbtnMale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtnMaleActionPerformed(evt);
@@ -174,9 +166,9 @@ public class fStaff extends javax.swing.JInternalFrame {
         buttonGroup1.add(rbtnFemale);
         rbtnFemale.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtnFemale.setText("Nữ");
+        rbtnFemale.setOpaque(false);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Trạng thái");
 
         cbStatus.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -385,7 +377,7 @@ public class fStaff extends javax.swing.JInternalFrame {
         getContentPane().add(jPanel2);
         jPanel2.setBounds(4, 112, 498, 54);
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia1.jpg"))); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia2.png"))); // NOI18N
         getContentPane().add(jLabel11);
         jLabel11.setBounds(0, 0, 1450, 760);
 

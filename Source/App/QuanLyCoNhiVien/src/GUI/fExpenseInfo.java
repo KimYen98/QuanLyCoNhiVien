@@ -73,10 +73,9 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("QUẢN LÝ CHI TIẾT CHI TIÊU");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(355, 11, 429, 37);
+        jLabel1.setBounds(470, 30, 429, 37);
 
         jPanel1.setOpaque(false);
 
@@ -118,19 +117,15 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         jPanel2.setOpaque(false);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Mã chi tiết chi tiêu");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Tên chi tiết chi tiêu");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Số tiền");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Mã chi tiêu");
 
         cbIDExpenseExpenseInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -277,9 +272,9 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTableExpenseInfo);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(593, 111, 527, 460);
+        jScrollPane1.setBounds(593, 111, 730, 600);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia1.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia2.png"))); // NOI18N
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, -20, 1370, 800);
 

@@ -84,15 +84,13 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("QUẢN LÝ VIỆC NHẬN NUÔI TRẺ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(348, 37, 475, 37);
+        jLabel1.setBounds(420, 30, 475, 37);
 
         jPanel1.setOpaque(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Tìm theo tên của:");
 
         txfSearchAdoptInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -143,15 +141,12 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         jPanel2.setOpaque(false);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tên người nhận nuôi");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Tên trẻ");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Ngày nhận");
 
         jDChAdoptDate.setDateFormatString("dd-MM-yyyy");
@@ -401,7 +396,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         getContentPane().add(jPanel5);
         jPanel5.setBounds(970, 90, 411, 58);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia1.jpg"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia2.png"))); // NOI18N
         getContentPane().add(jLabel7);
         jLabel7.setBounds(0, 0, 1370, 730);
 
