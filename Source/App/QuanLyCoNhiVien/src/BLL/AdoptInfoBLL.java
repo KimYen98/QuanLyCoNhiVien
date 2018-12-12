@@ -7,6 +7,7 @@ package BLL;
 
 import DAL.AdoptInfoDAL;
 import Entity.AdoptInfo;
+import java.sql.Date;
 import java.util.ArrayList;
 
 /**
@@ -19,11 +20,11 @@ public class AdoptInfoBLL {
     {
         return  DAL.LoadAdoptInfo();
     }
-    public boolean  InsertAdoptInfo(int IdAdoptiveParent, int IdChild , String AdoptDate)
+    public boolean  InsertAdoptInfo(int IdAdoptiveParent, int IdChild , Date AdoptDate)
     {
         return DAL.InsertAdoptInfo(IdAdoptiveParent, IdChild, AdoptDate);
     }
-    public boolean  UpdateAdoptInfo(int IdAdoptiveParent, int IdChild , String AdoptDate)
+    public boolean  UpdateAdoptInfo(int IdAdoptiveParent, int IdChild , Date AdoptDate)
     {
         return DAL.UpdateAdoptInfo(IdAdoptiveParent, IdChild, AdoptDate);
     }

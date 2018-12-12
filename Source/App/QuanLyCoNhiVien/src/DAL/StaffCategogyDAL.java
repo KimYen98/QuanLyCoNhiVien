@@ -57,7 +57,7 @@ public class StaffCategogyDAL extends  DataAccessHelper{
     //Cập nhật loại nhân viên
     public boolean  UpdateStaffCtegogy(int id, String name)
     {
-        String SQL="exec sp_CapNhatLoaiNhanVien '"+id+"',N'"+name+"'";
+        String SQL="Update LoaiNhanVien set TenLoaiNV= N'"+name+"' where MaLoaiNV='"+id+"'";
         try {
             getConnect();
             Statement st =conn.createStatement();

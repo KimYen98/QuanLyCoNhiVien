@@ -229,16 +229,6 @@ begin
 		end
 end
 go
---Cập nhật loại nhân viên
-create proc sp_CapNhatLoaiNhanVien
-@MaLoaiNV int, @TenLoaiNV nvarchar(100)
-as
-begin
-	update LoaiNhanVien
-	set TenLoaiNV=@TenLoaiNV
-	where MaLoaiNV=@MaLoaiNV
-end
-go
 -- Hàm chuyển sang tiếng Việt k dấu để tìm gần đúng
 CREATE FUNCTION [dbo].[GetUnsignString](@strInput NVARCHAR(4000)) 
 RETURNS NVARCHAR(4000)
@@ -290,7 +280,7 @@ begin
 end
 go
 --Thêm nhân viên
-alter proc sp_ThemNhanVien
+create proc sp_ThemNhanVien
 @TenNV nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh smalldatetime, @DiaChi nvarchar(100), 
 @SoDT nvarchar(10), @NgayVL smalldatetime, @MaLoaiNV int,@TrangThai int
 as
@@ -316,7 +306,7 @@ begin
 end
 go
 --Cập nhật nhân viên
-alter proc sp_CapNhatNhanVien
+create proc sp_CapNhatNhanVien
 @MaNV int,@TenNV nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh smalldatetime, @DiaChi nvarchar(100), @SoDT nvarchar(10), 
 @NgayVL smalldatetime, @MaLoaiNV int,@TrangThai int
 as
@@ -364,7 +354,7 @@ begin
 end
 go
 --Thêm trẻ
-alter proc sp_ThemTre
+create proc sp_ThemTre
 @TenTre nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh smalldatetime,@NgayVao smalldatetime, @HoanCanh nvarchar(4000),
 @NguoiDuaTreVao nvarchar(100), @TrangThai int,@MaNV int
 as
@@ -394,13 +384,15 @@ go
 exec sp_ThemTre 'a','Nam','1/1/2018','25/11/2018','a','a',1,1
 go
  --Cập nhật trẻ
- alter proc sp_CapNhatTre
-@MaTre int, @TenTre nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh smalldatetime,@NgayVao smalldatetime, @HoanCanh nvarchar(4000),@NguoiDuaTreVao nvarchar(100), 
+ create proc sp_CapNhatTre
+@MaTre int, @TenTre nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh smalldatetime,@NgayVao smalldatetime, @HoanCanh nvarchar(4000),
+@NguoiDuaTreVao nvarchar(100), 
 @TrangThai int,@MaNV int
 as
 begin
 	update Tre
-	set TenTre=@TenTre,GioiTinh=@GioiTinh,NgaySinh=@NgaySinh,NgayVao=@NgayVao,HoanCanh=@HoanCanh,NguoiDuaTreVao=@NguoiDuaTreVao,TrangThai=@TrangThai,MaNV=@MaNV
+	set TenTre=@TenTre,GioiTinh=@GioiTinh,NgaySinh=@NgaySinh,NgayVao=@NgayVao,HoanCanh=@HoanCanh,NguoiDuaTreVao=@NguoiDuaTreVao,
+	TrangThai=@TrangThai,MaNV=@MaNV
 	where MaTre=@MaTre
 end
 go
@@ -667,7 +659,7 @@ begin
 end
 go
 --Thêm tài trợ
-alter proc sp_ThemTaiTro
+create proc sp_ThemTaiTro
 @MaNhaTaiTro int, @NgayTaiTro smalldatetime,@HinhThuc nvarchar(100), @SoTien money
 as
 begin
@@ -703,8 +695,9 @@ begin
 end
 go
 exec sp_HienThiDanhSachTaiTro
+go
 --Cập nhật tài trợ
-alter proc sp_CapNhatTaiTro
+create proc sp_CapNhatTaiTro
 @MaTaiTro int,@MaNhaTaiTro int, @NgayTaiTro smalldatetime,@HinhThuc nvarchar(100), @SoTien money
 as
 begin
@@ -778,29 +771,6 @@ begin
 	select TenNguoiNhan ,TenTre ,NgayNhan
 	from NguoiNhanTre,CT_NguoiNhanTre_Tre,Tre
 	where NguoiNhanTre.MaNguoiNhan=CT_NguoiNhanTre_Tre.MaNguoiNhan and Tre.MaTre=CT_NguoiNhanTre_Tre.MaTre
-end
-go
-
---Thêm chi tiết nhận trẻ
-create proc sp_ThemChiTietNhanTre
-@MaNguoiNhan int, @MaTre int, @NgayNhan nvarchar(19)
-as
-begin
-	declare @NgayNhan_ smalldatetime
-	set @NgayNhan_=CONVERT(smalldatetime,@NgayNhan,103)
-	insert into CT_NguoiNhanTre_Tre values(@MaNguoiNhan,@MaTre,@NgayNhan_)
-end
-go
---Cập nhật chi tiết nhận trẻ
-create proc sp_CapNhatChiTietNhanTre
-@MaNguoiNhan int, @MaTre int, @NgayNhan nvarchar(19)
-as
-begin
-	declare @NgayNhan_ smalldatetime
-	set @NgayNhan_=CONVERT(smalldatetime,@NgayNhan,103)
-	update CT_NguoiNhanTre_Tre
-	set NgayNhan=@NgayNhan_
-	where MaTre=@MaTre and MaNguoiNhan=@MaNguoiNhan
 end
 go
 --Tìm chi tiết nhận trẻ theo tên trẻ

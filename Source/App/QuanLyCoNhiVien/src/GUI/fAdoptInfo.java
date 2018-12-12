@@ -420,8 +420,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         String namechild =txfNameChild.getText().toString();
         int idchild=childBLL.getID(namechild);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date adoptdate =jDChAdoptDate.getDate();
-        String str_adoptdate =formatter.format(adoptdate);
+        java.sql.Date  adoptdate=new java.sql.Date( jDChAdoptDate.getDate().getTime());
         if(nameadopt.equals("")|| namechild.equals("") ||adoptdate.equals(null))
         {
             JOptionPane.showMessageDialog(this, "Bạn chưa nhập thông tin đầy đủ");
@@ -429,7 +428,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         }
         else
         {
-            if(adoptInfoBLL.InsertAdoptInfo(idadopt, idchild, str_adoptdate))
+            if(adoptInfoBLL.InsertAdoptInfo(idadopt, idchild, adoptdate))
             {
                 JOptionPane.showMessageDialog(this, "Thêm thành công chi tiết nhận trẻ");
                 return true;
@@ -448,8 +447,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         String namechild =txfNameChild.getText().toString();
         int idchild=childBLL.getID(namechild);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date adoptdate =jDChAdoptDate.getDate();
-        String str_adoptdate =formatter.format(adoptdate);
+        java.sql.Date  adoptdate=new java.sql.Date( jDChAdoptDate.getDate().getTime());
         if(nameadopt.equals("")|| namechild.equals("") ||adoptdate.equals(null))
         {
             JOptionPane.showMessageDialog(this, "Bạn chưa nhập thông tin đầy đủ");
@@ -457,7 +455,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         }
         else
         {
-            if(adoptInfoBLL.UpdateAdoptInfo(idadopt, idchild, str_adoptdate))
+            if(adoptInfoBLL.UpdateAdoptInfo(idadopt, idchild, adoptdate))
             {
                 JOptionPane.showMessageDialog(this, "Cập nhật thành công chi tiết nhận trẻ");
                 return true;
@@ -572,7 +570,9 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
     private void jTableAdoptInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAdoptInfoMouseClicked
         // TODO add your handling code here:
         int row =jTableAdoptInfo.getSelectedRow();
-        String nameadopt =jTableAdoptInfo.getValueAt(row, 0).toString();
+        txfNameAdoptiveParent.setText(jTableAdoptInfo.getValueAt(row, 0).toString());
+        txfNameChild.setText(jTableAdoptInfo.getValueAt(row, 1).toString());
+        jDChAdoptDate.setDate((Date)jTableAdoptInfo.getModel().getValueAt(row, 2));
         
     }//GEN-LAST:event_jTableAdoptInfoMouseClicked
 

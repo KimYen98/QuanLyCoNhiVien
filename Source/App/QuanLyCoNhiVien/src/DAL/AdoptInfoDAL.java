@@ -6,6 +6,7 @@
 package DAL;
 
 import Entity.AdoptInfo;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Struct;
@@ -42,9 +43,9 @@ public class AdoptInfoDAL extends  DataAccessHelper{
         return temp;
     }
     //Thêm chi tiết người nhận trẻ
-    public boolean  InsertAdoptInfo(int IdAdoptiveParent ,int IdChild , String AdoptDate)
+    public boolean  InsertAdoptInfo(int IdAdoptiveParent ,int IdChild , Date AdoptDate)
     {
-        String SQL="exec sp_ThemChiTietNhanTre '"+IdAdoptiveParent+"','"+IdChild+"','"+AdoptDate+"'";
+        String SQL="insert into CT_NguoiNhanTre_Tre values('"+IdAdoptiveParent+"','"+IdChild+"','"+AdoptDate+"')";
         try {
             getConnect();
             Statement st =conn.createStatement();
@@ -57,9 +58,9 @@ public class AdoptInfoDAL extends  DataAccessHelper{
         return false;
     }
     //Cập nhật chi tiết người nhận trẻ
-    public boolean  UpdateAdoptInfo(int IdAdoptiveParent, int IdChild , String AdoptDate)
+    public boolean  UpdateAdoptInfo(int IdAdoptiveParent, int IdChild , Date AdoptDate)
     {
-        String SQL="exec sp_CapNhatChiTietNhanTre '"+IdAdoptiveParent+"','"+IdChild+"','"+AdoptDate+"'";
+        String SQL="update from  CT_NguoiNhanTre_Tre set NgayNhan='"+AdoptDate+"' where MaNguoiNhan= '"+IdAdoptiveParent+"'and MaTre='"+IdChild+"'";
         try {
             getConnect();
             Statement st =conn.createStatement();
@@ -74,7 +75,7 @@ public class AdoptInfoDAL extends  DataAccessHelper{
     //Xóa chi tiết người nhận trẻ
     public boolean  DeleteAdoptInfo(int IdAdoptiveParent , int IdChild)
     {
-        String SQL="exec sp_XoaChiTietNhanTre '"+IdAdoptiveParent+"','"+IdChild+"'";
+        String SQL=" delete from CT_NguoiNhanTre_Tre where MaNguoiNhan='"+IdAdoptiveParent+"' and MaTre'"+IdChild+"'";
         try {
             getConnect();
             Statement st =conn.createStatement();
