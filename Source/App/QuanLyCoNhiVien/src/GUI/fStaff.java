@@ -500,13 +500,11 @@ public class fStaff extends javax.swing.JInternalFrame {
         String name =txfNameStaff.getText().toString();
         name=chuanHoaDanhTuRieng(name);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date birthday =jDChBirthdayStaff.getDate();
-        String strbirthday =formatter.format(birthday);
+        java.sql.Date  birthday =new java.sql.Date( jDChBirthdayStaff.getDate().getTime());
         String address =txfAddressStaff.getText().toString();
         address=chuanHoa(address);
         String phonenumber =txfPhoneStaff.getText().toString();
-        Date startwork =jDChStartStaff.getDate();
-        String strstartwork =formatter.format(startwork);
+        java.sql.Date  startwork =new java.sql.Date(jDChStartStaff.getDate().getTime());
         String namecategogy =cbStaffCategogy.getSelectedItem().toString();
         String  status=cbStatus.getSelectedItem().toString();
         int status_ = 1;
@@ -520,14 +518,14 @@ public class fStaff extends javax.swing.JInternalFrame {
             sex="Nam";
         if(rbtnFemale.isSelected())
             sex="Nữ";
-        if(name.equals("")|| strbirthday.equals("")|| strstartwork.equals("")||address.equals("")||phonenumber.equals("")||namecategogy.equals("") || sex.equals("")||status.equals(""))
+        if(name.equals("")|| birthday.equals("")|| startwork.equals("")||address.equals("")||phonenumber.equals("")||namecategogy.equals("") || sex.equals("")||status.equals(""))
         {
             JOptionPane.showMessageDialog(this, "Bạn chưa nhập đầy đủ thông tin");
             return false;
         }
         else
         {
-            if(staffBLL.InsertStaff(name, sex, strbirthday, address, phonenumber, strstartwork, idcategogy,status_))
+            if(staffBLL.InsertStaff(name, sex, birthday, address, phonenumber, startwork, idcategogy,status_))
             {
                 JOptionPane.showMessageDialog(this, "Thêm thành công nhân viên");
                 return true;
@@ -545,13 +543,11 @@ public class fStaff extends javax.swing.JInternalFrame {
         String name =txfNameStaff.getText().toString();
         name=chuanHoaDanhTuRieng(name);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date birthday =jDChBirthdayStaff.getDate();
-        String strbirthday =formatter.format(birthday);
+        java.sql.Date  birthday =new java.sql.Date( jDChBirthdayStaff.getDate().getTime());
         String address =txfAddressStaff.getText().toString();
         address=chuanHoa(address);
         String phonenumber =txfPhoneStaff.getText().toString();
-        Date startwork =jDChStartStaff.getDate();
-        String strstartwork =formatter.format(startwork);
+        java.sql.Date  startwork =new java.sql.Date( jDChStartStaff.getDate().getTime());
         String namecategogy =cbStaffCategogy.getSelectedItem().toString();
         int idcategogy =staffCategogyBLL.getID(namecategogy);
          String  status=cbStatus.getSelectedItem().toString();
@@ -565,14 +561,14 @@ public class fStaff extends javax.swing.JInternalFrame {
             sex="Nam";
         if(rbtnFemale.isSelected())
             sex="Nữ";
-        if(name.equals("")|| strbirthday.equals("")|| strstartwork.equals("")||address.equals("")||phonenumber.equals("")||namecategogy.equals("") || sex.equals("")|| status.equals(""))
+        if(name.equals("")|| birthday.equals("")|| startwork.equals("")||address.equals("")||phonenumber.equals("")||namecategogy.equals("") || sex.equals("")|| status.equals(""))
         {
             JOptionPane.showMessageDialog(this, "Bạn chưa nhập đầy đủ thông tin");
             return false;
         }
         else
         {
-            if(staffBLL.UpdateStaff(id, name, sex, strbirthday, address, phonenumber, strstartwork, idcategogy,status_))
+            if(staffBLL.UpdateStaff(id, name, sex, birthday, address, phonenumber, startwork, idcategogy,status_))
             {
                 JOptionPane.showMessageDialog(this, "Cập nhật thành công nhân viên");
                 return true;

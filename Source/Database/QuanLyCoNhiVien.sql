@@ -290,14 +290,12 @@ begin
 end
 go
 --Thêm nhân viên
-create proc sp_ThemNhanVien
-@TenNV nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19), @DiaChi nvarchar(100), 
-@SoDT nvarchar(10), @NgayVL nvarchar(19), @MaLoaiNV int,@TrangThai int
+alter proc sp_ThemNhanVien
+@TenNV nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh smalldatetime, @DiaChi nvarchar(100), 
+@SoDT nvarchar(10), @NgayVL smalldatetime, @MaLoaiNV int,@TrangThai int
 as
 begin
-	declare @NgaySinh_ smalldatetime,@NgayVL_ smalldatetime, @MaNV int, @MaNV_Max int,@i int =1
-	set @NgaySinh_=CONVERT(smalldatetime,@NgaySinh,103)
-	set @NgayVL_=CONVERT(smalldatetime,@NgayVL,103)
+	declare  @MaNV int, @MaNV_Max int,@i int =1
 	select @MaNV_Max=max(MaNV)
 	from NhanVien
 	if(@MaNV_Max is null)
@@ -314,20 +312,17 @@ begin
 					end
 				set @i=@i+1
 			end
-	insert into NhanVien values (@MaNV,@TenNV,@GioiTinh,@NgaySinh_,@DiaChi,@SoDT,@NgayVL_,@MaLoaiNV,@TrangThai)
+	insert into NhanVien values (@MaNV,@TenNV,@GioiTinh,@NgaySinh,@DiaChi,@SoDT,@NgayVL,@MaLoaiNV,@TrangThai)
 end
 go
 --Cập nhật nhân viên
-create proc sp_CapNhatNhanVien
-@MaNV int,@TenNV nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19), @DiaChi nvarchar(100), @SoDT nvarchar(10), 
-@NgayVL nvarchar(19), @MaLoaiNV int,@TrangThai int
+alter proc sp_CapNhatNhanVien
+@MaNV int,@TenNV nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh smalldatetime, @DiaChi nvarchar(100), @SoDT nvarchar(10), 
+@NgayVL smalldatetime, @MaLoaiNV int,@TrangThai int
 as
 begin
-	declare @NgaySinh_ smalldatetime,@NgayVL_ smalldatetime
-	set @NgaySinh_=CONVERT(smalldatetime,@NgaySinh,103)
-	set @NgayVL_=CONVERT(smalldatetime,@NgayVL,103)
 	update NhanVien
-	set TenNV=@TenNV, GioiTinh=@GioiTinh,NgaySinh=@NgaySinh_,DiaChi=@DiaChi,SoDT=@SoDT,NgayVL=@NgayVL_,MaLoaiNV=@MaLoaiNV,TrangThai=@TrangThai
+	set TenNV=@TenNV, GioiTinh=@GioiTinh,NgaySinh=@NgaySinh,DiaChi=@DiaChi,SoDT=@SoDT,NgayVL=@NgayVL,MaLoaiNV=@MaLoaiNV,TrangThai=@TrangThai
 	where MaNV=@MaNV
 end
 go
@@ -369,15 +364,12 @@ begin
 end
 go
 --Thêm trẻ
-create proc sp_ThemTre
-@TenTre nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19),@NgayVao nvarchar(19), @HoanCanh nvarchar(4000),
+alter proc sp_ThemTre
+@TenTre nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh smalldatetime,@NgayVao smalldatetime, @HoanCanh nvarchar(4000),
 @NguoiDuaTreVao nvarchar(100), @TrangThai int,@MaNV int
 as
 begin
 	declare @MaTre int, @MaTre_Max int, @i int =1
-	declare @NgaySinh_ smalldatetime,@NgayVao_ smalldatetime
-	set @NgaySinh_=CONVERT(smalldatetime,@NgaySinh,103)
-	set @NgayVao_=CONVERT(smalldatetime,@NgayVao,103)
 	set @MaTre_Max=(select max(MaTre)
 					from Tre)
 	if(@MaTre_Max is null)
@@ -396,22 +388,19 @@ begin
 			set @i=@i+1
 			end
 	end
-	insert into Tre values(@MaTre,@TenTre,@GioiTinh,@NgaySinh_,@NgayVao_,@HoanCanh,@NguoiDuaTreVao,@TrangThai,@MaNV)
+	insert into Tre values(@MaTre,@TenTre,@GioiTinh,@NgaySinh,@NgayVao,@HoanCanh,@NguoiDuaTreVao,@TrangThai,@MaNV)
 end
 go
 exec sp_ThemTre 'a','Nam','1/1/2018','25/11/2018','a','a',1,1
 go
  --Cập nhật trẻ
- create proc sp_CapNhatTre
-@MaTre int, @TenTre nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh nvarchar(19),@NgayVao nvarchar(19), @HoanCanh nvarchar(4000),@NguoiDuaTreVao nvarchar(100), 
+ alter proc sp_CapNhatTre
+@MaTre int, @TenTre nvarchar(100), @GioiTinh nvarchar(100), @NgaySinh smalldatetime,@NgayVao smalldatetime, @HoanCanh nvarchar(4000),@NguoiDuaTreVao nvarchar(100), 
 @TrangThai int,@MaNV int
 as
 begin
-	declare @NgaySinh_ smalldatetime,@NgayVao_ smalldatetime
-	set @NgaySinh_=CONVERT(smalldatetime,@NgaySinh,103)
-	set @NgayVao_=CONVERT(smalldatetime,@NgayVao,103)
 	update Tre
-	set TenTre=@TenTre,GioiTinh=@GioiTinh,NgaySinh=@NgaySinh_,NgayVao=@NgayVao_,HoanCanh=@HoanCanh,NguoiDuaTreVao=@NguoiDuaTreVao,TrangThai=@TrangThai,MaNV=@MaNV
+	set TenTre=@TenTre,GioiTinh=@GioiTinh,NgaySinh=@NgaySinh,NgayVao=@NgayVao,HoanCanh=@HoanCanh,NguoiDuaTreVao=@NguoiDuaTreVao,TrangThai=@TrangThai,MaNV=@MaNV
 	where MaTre=@MaTre
 end
 go
@@ -679,10 +668,10 @@ end
 go
 --Thêm tài trợ
 alter proc sp_ThemTaiTro
-@MaNhaTaiTro int, @NgayTaiTro nvarchar(19),@HinhThuc nvarchar(100), @SoTien money
+@MaNhaTaiTro int, @NgayTaiTro smalldatetime,@HinhThuc nvarchar(100), @SoTien money
 as
 begin
-	declare @MaTaiTro int,@MaTaiTro_Max int,@i int=1, @NgayTaiTro_ smalldatetime
+	declare @MaTaiTro int,@MaTaiTro_Max int,@i int=1
 	if(select count(*)
 		from NhaTaiTro
 		where MaNhaTaiTro=@MaNhaTaiTro)=0
@@ -709,21 +698,18 @@ begin
 					set @i=@i+1
 				end
 			end
-		set @NgayTaiTro_=CONVERT(smalldatetime,@NgayTaiTro,103)
-		insert into TaiTro values(@MaTaiTro,@MaNhaTaiTro,@NgayTaiTro_,@HinhThuc,@SoTien)
+		insert into TaiTro values(@MaTaiTro,@MaNhaTaiTro,@NgayTaiTro,@HinhThuc,@SoTien)
 	end
 end
 go
 exec sp_HienThiDanhSachTaiTro
 --Cập nhật tài trợ
-create proc sp_CapNhatTaiTro
-@MaTaiTro int,@MaNhaTaiTro int, @NgayTaiTro nvarchar(19),@HinhThuc nvarchar(100), @SoTien money
+alter proc sp_CapNhatTaiTro
+@MaTaiTro int,@MaNhaTaiTro int, @NgayTaiTro smalldatetime,@HinhThuc nvarchar(100), @SoTien money
 as
 begin
-	declare @NgayTaiTro_ smalldatetime
-	set @NgayTaiTro_=CONVERT(smalldatetime,@NgayTaiTro,103)
 	update TaiTro
-	set NgayTaiTro=@NgayTaiTro_,HinhThucTaiTro=@HinhThuc,SoTien=@SoTien
+	set NgayTaiTro=@NgayTaiTro,HinhThucTaiTro=@HinhThuc,SoTien=@SoTien
 	where MaTaiTro=@MaTaiTro and MaNhaTaiTro=@MaNhaTaiTro
 end
 go

@@ -9,6 +9,7 @@ import BLL.ChildBLL;
 import BLL.StaffBLL;
 import Entity.Staff;
 import Utilities.ControlFormat;
+import com.toedter.calendar.JDateChooser;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -453,15 +454,13 @@ public class fChild extends javax.swing.JInternalFrame {
     {
         String name =txfNameChild.getText().toString();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date birthday =jDChBirthdayChild.getDate();
-        String strbirthday =formatter.format(birthday);
+        java.sql.Date  birthday =new java.sql.Date( jDChBirthdayChild.getDate().getTime());
         String sex ="";
         if(rbMale.isSelected())
             sex="Nam";
         if(rbFeMale.isSelected())
             sex="Nữ";
-        Date joindate =jDChJoinDateChild.getDate();
-        String strjoindate =formatter.format(joindate);
+        java.sql.Date  joindate=new java.sql.Date( jDChJoinDateChild.getDate().getTime());
         String situation =txaSituation.getText().toString();
         String whobring =txfWhoBring.getText().toString();
         String status =cbStatus.getSelectedItem().toString();
@@ -475,14 +474,14 @@ public class fChild extends javax.swing.JInternalFrame {
         name=chuanHoaDanhTuRieng(name);
         situation=chuanHoa(situation);
         whobring=chuanHoaDanhTuRieng(whobring);
-        if(name.equals("")|| strbirthday.equals("")|| sex.equals("")|| strjoindate.equals("")|| situation.equals("") || whobring.equals("")||
+        if(name.equals("")|| birthday.equals("")|| sex.equals("")|| joindate.equals("")|| situation.equals("") || whobring.equals("")||
                 status.equals("")|| namestaff.equals(""))
         {
             JOptionPane.showMessageDialog(this, "Bạn chưa nhập đầy đủ thông tin");
             return false;
         }
         else{
-            if(childBLL.InsertChild(name, sex, strbirthday, strjoindate, situation, whobring, status_, id))
+            if(childBLL.InsertChild(name, sex, birthday,joindate, situation, whobring, status_, id))
             {
                 JOptionPane.showMessageDialog(this, "Thêm trẻ thành công");
                 return true;
@@ -499,15 +498,13 @@ public class fChild extends javax.swing.JInternalFrame {
         int id =Integer.parseInt(txfIDChild.getText().toString());
         String name =txfNameChild.getText().toString();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date birthday =jDChBirthdayChild.getDate();
-        String strbirthday =formatter.format(birthday);
+        java.sql.Date  birthday =new java.sql.Date( jDChBirthdayChild.getDate().getTime());
         String sex ="";
         if(rbMale.isSelected())
             sex="Nam";
         if(rbFeMale.isSelected())
             sex="Nữ";
-        Date joindate =jDChJoinDateChild.getDate();
-        String strjoindate =formatter.format(joindate);
+        java.sql.Date  joindate=new java.sql.Date( jDChJoinDateChild.getDate().getTime());
         String situation =txaSituation.getText().toString();
         String whobring =txfWhoBring.getText().toString();
         String status =cbStatus.getSelectedItem().toString();
@@ -521,14 +518,14 @@ public class fChild extends javax.swing.JInternalFrame {
         whobring=chuanHoaDanhTuRieng(whobring);
         String namestaff =cbNameStaffChild.getSelectedItem().toString();
         int idstaff=staffBLL.getID(namestaff);
-        if(name.equals("")|| strbirthday.equals("")|| sex.equals("")|| strjoindate.equals("")|| situation.equals("") || whobring.equals("")||
+        if(name.equals("")|| birthday.equals("")|| sex.equals("")|| joindate.equals("")|| situation.equals("") || whobring.equals("")||
                 status.equals("")|| namestaff.equals(""))
         {
             JOptionPane.showMessageDialog(this, "Bạn chưa nhập đầy đủ thông tin");
             return false;
         }
         else{
-            if(childBLL.UpdateChild(id, name, sex, strbirthday, strjoindate, situation, whobring, status_, idstaff))
+            if(childBLL.UpdateChild(id, name, sex, birthday, joindate, situation, whobring, status_, idstaff))
             {
                 JOptionPane.showMessageDialog(this, "Cập nhật trẻ thành công");
                 return true;

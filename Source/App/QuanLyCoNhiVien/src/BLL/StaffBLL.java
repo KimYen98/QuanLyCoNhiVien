@@ -7,6 +7,7 @@ package BLL;
 
 import DAL.StaffDAL;
 import Entity.Staff;
+import java.sql.Date;
 import java.util.ArrayList;
 
 /**
@@ -21,12 +22,12 @@ public class StaffBLL {
         return DAL.LoadStaff();
     }
     //thêm nhân viên
-    public boolean InsertStaff(String name , String sex ,String birthday ,String address ,String phonenumber , String startwork ,int idstaffcategogy,int status)
+    public boolean InsertStaff(String name , String sex ,Date birthday ,String address ,String phonenumber , Date startwork ,int idstaffcategogy,int status)
     {
         return DAL.InertStaff(name, sex, birthday, address, phonenumber, startwork, idstaffcategogy,status);
     }
     //cập nhật nhân viên
-    public boolean UpdateStaff(int id,String name , String sex ,String birthday ,String address ,String phonenumber , String startwork ,int idstaffcategogy,int status)
+    public boolean UpdateStaff(int id,String name , String sex ,Date birthday ,String address ,String phonenumber , Date startwork ,int idstaffcategogy,int status)
     {
         return DAL.UpdateStaff(id, name, sex, birthday, address, phonenumber, startwork, idstaffcategogy,status);
     }

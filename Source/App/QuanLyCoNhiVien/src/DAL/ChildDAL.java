@@ -6,6 +6,7 @@
 package DAL;
 
 import Entity.Child;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -47,7 +48,7 @@ public class ChildDAL extends  DataAccessHelper{
         return temp;
     }
     //Thêm trẻ
-    public boolean InsertChild(String name , String sex , String birthday , String joindate , String situation ,String whobring ,int status , int idstaff  )
+    public boolean InsertChild(String name , String sex , Date birthday , Date joindate , String situation ,String whobring ,int status , int idstaff  )
     {
         String SQL="exec sp_ThemTre N'"+name+"',N'"+sex+"',N'"+birthday+"',N'"+joindate+"',N'"+situation+"',N'"+whobring+"','"+status+"','"+idstaff+"'";
         try {
@@ -62,7 +63,7 @@ public class ChildDAL extends  DataAccessHelper{
         return false;
     }
     //Cập nhật trẻ
-    public boolean UpdateChild(int id,String name , String sex , String birthday , String joindate , String situation ,String whobring ,int status , int idstaff  )
+    public boolean UpdateChild(int id,String name , String sex , Date birthday , Date joindate , String situation ,String whobring ,int status , int idstaff  )
     {
         String SQL="exec sp_CapNhatTre '"+id+"',N'"+name+"',N'"+sex+"',N'"+birthday+"',N'"+joindate+"',N'"+situation+"',N'"+whobring+"','"+status+"','"+idstaff+"'";
         try {

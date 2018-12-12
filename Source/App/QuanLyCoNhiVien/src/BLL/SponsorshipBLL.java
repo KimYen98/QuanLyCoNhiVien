@@ -8,6 +8,7 @@ package BLL;
 import DAL.SponsorDAL;
 import DAL.SponsorshipDAL;
 import Entity.Sponsorship;
+import java.sql.Date;
 import java.util.ArrayList;
 
 /**
@@ -22,12 +23,12 @@ public class SponsorshipBLL {
         return DAL.LoadSponsorship();
     }
     //Thêm tài trợ
-    public boolean Insert(int idsponsor , String date ,String format , float money)
+    public boolean Insert(int idsponsor , Date date ,String format , float money)
     {
         return DAL.Insert(idsponsor, date, format, money);
     }
     //Cập nhật tài trợ
-    public  boolean  Update (int id , int idsponsor ,String date ,String format ,float money)
+    public  boolean  Update (int id , int idsponsor ,Date date ,String format ,float money)
     {
         return DAL.Update(id, idsponsor,date, format, money);
     }

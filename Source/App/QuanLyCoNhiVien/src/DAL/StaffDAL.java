@@ -6,10 +6,12 @@
 package DAL;
 
 import Entity.Staff;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 
 /**
  *
@@ -46,7 +48,7 @@ public class StaffDAL extends  DataAccessHelper{
         return temp;
     }
     //Thêm nhân viên
-    public boolean InertStaff(String name , String sex ,String birthday ,String address ,String phonenumber , String startwork ,int idstaffcategogy ,int status)
+    public boolean InertStaff(String name , String sex ,Date birthday ,String address ,String phonenumber , Date startwork ,int idstaffcategogy ,int status)
     {
         String SQL="exec sp_ThemNhanVien N'"+name+"',N'"+sex+"',N'"+birthday+"','"+address+"',N'"+phonenumber+"',N'"+startwork+"','"+idstaffcategogy+"','"+status+"'";
         try {
@@ -61,7 +63,7 @@ public class StaffDAL extends  DataAccessHelper{
         return false;
     }
     //Cập nhật nhân viên
-    public boolean  UpdateStaff(int id,String name , String sex ,String birthday ,String address ,String phonenumber , String startwork ,int idstaffcategogy, int status)
+    public boolean  UpdateStaff(int id,String name , String sex ,Date birthday ,String address ,String phonenumber , Date startwork ,int idstaffcategogy, int status)
     {
         String SQL="exec sp_CapNhatNhanVien '"+id+"', N'"+name+"',N'"+sex+"',N'"+birthday+"','"+address+"',N'"+phonenumber+"',N'"+startwork+"','"+idstaffcategogy+"','"+status+"'";
         try {

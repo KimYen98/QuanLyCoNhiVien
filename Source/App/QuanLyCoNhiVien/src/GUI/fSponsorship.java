@@ -372,22 +372,21 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         String namesponsor =txfNameSponsor.getText().toString();
         int idsponsor=sponsorBLL.getIdSponsor(namesponsor);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date date =jDChSponsorshipDate.getDate();
-        String strdate =formatter.format(date);
+        java.sql.Date  date =new java.sql.Date( jDChSponsorshipDate.getDate().getTime());
         String format =cbFormSponsorship.getSelectedItem().toString();
         float money;
         if(format.equals("Tiền mặt") || format.equals("Chuyển khoản"))
             money =Float.parseFloat(txfMoneySponsorship.getText().toString());
         else
             money =0;
-        if(namesponsor.equals("") || strdate.equals("") || txfMoneySponsorship.equals(""))
+        if(namesponsor.equals("") || date.equals("") || txfMoneySponsorship.equals(""))
         {
             JOptionPane.showMessageDialog(this, "Bạn nhập thông tin chưa đầy đủ");
             return false;
         }
         else
         {
-            if(sponsorshipBLL.Insert(idsponsor, strdate, format, money))
+            if(sponsorshipBLL.Insert(idsponsor, date, format, money))
             {
                 JOptionPane.showMessageDialog(this, "Thêm tài trợ thành công");
                 return true;
@@ -406,18 +405,17 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         String namesponsor =txfNameSponsor.getText().toString();
         int idsponsor=sponsorBLL.getIdSponsor(namesponsor);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date date =jDChSponsorshipDate.getDate();
-        String strdate =formatter.format(date);
+        java.sql.Date  date =new java.sql.Date( jDChSponsorshipDate.getDate().getTime());
         String format =cbFormSponsorship.getSelectedItem().toString();
         float money =Float.parseFloat(txfMoneySponsorship.getText().toString());
-        if(namesponsor.equals("") || strdate.equals("") || txfMoneySponsorship.equals(""))
+        if(namesponsor.equals("") || date.equals("") || txfMoneySponsorship.equals(""))
         {
             JOptionPane.showMessageDialog(this, "Bạn nhập thông tin chưa đầy đủ");
             return false;
         }
         else
         {
-            if(sponsorshipBLL.Update(id, idsponsor, strdate,format, money))
+            if(sponsorshipBLL.Update(id, idsponsor, date,format, money))
             {
                 JOptionPane.showMessageDialog(this, "Cập nhật tài trợ thành công");
                 return true;

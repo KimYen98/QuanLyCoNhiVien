@@ -6,6 +6,7 @@
 package DAL;
 
 import Entity.Sponsorship;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -44,7 +45,7 @@ public class SponsorshipDAL extends  DataAccessHelper{
         return temp;
     }
     //Thêm tài trợ
-    public boolean  Insert(int idsponsor , String sponsorshipdate ,String formatsponsorship ,float money)
+    public boolean  Insert(int idsponsor , Date sponsorshipdate ,String formatsponsorship ,float money)
     {
         String SQL="exec sp_ThemTaiTro '"+idsponsor+"',N'"+sponsorshipdate+"',N'"+formatsponsorship+"','"+money+"'";
         try {
@@ -59,7 +60,7 @@ public class SponsorshipDAL extends  DataAccessHelper{
         return false;
     }
     //Cập nhật nhà tài trợ
-    public boolean  Update (int idsponsorship,int idsponsor  ,String sponsorshipdate ,String formatsponsorship,float money)
+    public boolean  Update (int idsponsorship,int idsponsor  ,Date sponsorshipdate ,String formatsponsorship,float money)
     {
          String SQL="exec sp_CapNhatTaiTro '"+idsponsorship+"','"+idsponsor+"',N'"+sponsorshipdate+"',N'"+formatsponsorship+"','"+money+"'";
         try {

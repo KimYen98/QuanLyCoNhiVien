@@ -7,6 +7,7 @@ package BLL;
 
 import DAL.ChildDAL;
 import Entity.Child;
+import java.sql.Date;
 import java.util.ArrayList;
 
 /**
@@ -21,12 +22,12 @@ public class ChildBLL {
         return DAL.LoadChild();
     }
     //Thêm trẻ
-    public boolean  InsertChild(String name , String sex , String birthday , String joindate , String situation ,String whobring ,int status , int idstaff  )
+    public boolean  InsertChild(String name , String sex ,Date birthday , Date joindate , String situation ,String whobring ,int status , int idstaff  )
     {
         return DAL.InsertChild(name, sex, birthday, joindate, situation, whobring, status, idstaff);
     }
     //Cập nhật trẻ
-    public boolean UpdateChild(int id,String name , String sex , String birthday , String joindate , String situation ,String whobring ,int status , int idstaff  )
+    public boolean UpdateChild(int id,String name , String sex , Date birthday , Date joindate , String situation ,String whobring ,int status , int idstaff  )
     {
         return DAL.UpdateChild(id, name, sex, birthday, joindate, situation, whobring, status, idstaff);
     }
