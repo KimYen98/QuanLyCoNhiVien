@@ -80,6 +80,7 @@ public class fManagement extends javax.swing.JFrame {
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
 
         jMenu1.setForeground(new java.awt.Color(0, 0, 204));
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tre.png"))); // NOI18N
         jMenu1.setText("Trẻ");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
@@ -96,6 +97,7 @@ public class fManagement extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setForeground(new java.awt.Color(0, 0, 204));
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/staff.png"))); // NOI18N
         jMenu2.setText("Nhân viên");
         jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
@@ -122,6 +124,7 @@ public class fManagement extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setForeground(new java.awt.Color(0, 0, 204));
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/_0009_Add.png"))); // NOI18N
         jMenu3.setText("Tài trợ");
         jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
@@ -148,6 +151,7 @@ public class fManagement extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         jMenu4.setForeground(new java.awt.Color(0, 0, 204));
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/_0008_Minus.png"))); // NOI18N
         jMenu4.setText("Chi tiêu");
         jMenu4.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
@@ -174,6 +178,7 @@ public class fManagement extends javax.swing.JFrame {
         jMenuBar1.add(jMenu4);
 
         jMenu5.setForeground(new java.awt.Color(0, 0, 204));
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/infoAccount.png"))); // NOI18N
         jMenu5.setText("Nhận trẻ");
         jMenu5.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
@@ -200,6 +205,7 @@ public class fManagement extends javax.swing.JFrame {
         jMenuBar1.add(jMenu5);
 
         jMenu7.setForeground(new java.awt.Color(0, 0, 204));
+        jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/report.png"))); // NOI18N
         jMenu7.setText("Báo cáo");
         jMenu7.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
@@ -226,6 +232,7 @@ public class fManagement extends javax.swing.JFrame {
         jMenuBar1.add(jMenu7);
 
         jMenu6.setForeground(new java.awt.Color(0, 0, 204));
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/user2.png"))); // NOI18N
         jMenu6.setText("Tài khoản");
         jMenu6.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
@@ -251,7 +258,7 @@ public class fManagement extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
         );
 
         pack();

@@ -173,6 +173,7 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         jPanel5.setBounds(10, 86, 331, 131);
 
         btnRPAdoptedChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnRPAdoptedChild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/rpwahouse.png"))); // NOI18N
         btnRPAdoptedChild.setText("THỐNG KÊ");
         btnRPAdoptedChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,9 +181,10 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(btnRPAdoptedChild);
-        btnRPAdoptedChild.setBounds(423, 116, 117, 25);
+        btnRPAdoptedChild.setBounds(420, 100, 160, 41);
 
         btnPrintRPAdoptedChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnPrintRPAdoptedChild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/print.png"))); // NOI18N
         btnPrintRPAdoptedChild.setText("IN BÁO CÁO");
         btnPrintRPAdoptedChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,7 +192,7 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
             }
         });
         jPanel2.add(btnPrintRPAdoptedChild);
-        btnPrintRPAdoptedChild.setBounds(423, 159, 121, 25);
+        btnPrintRPAdoptedChild.setBounds(420, 150, 160, 41);
 
         jTableAdoptedChild.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -287,6 +289,7 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         jPanel6.setBounds(221, 102, 238, 112);
 
         btnRPNumOfChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnRPNumOfChild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/rpwahouse.png"))); // NOI18N
         btnRPNumOfChild.setText("THỐNG KÊ");
         btnRPNumOfChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -294,9 +297,10 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
             }
         });
         jPanel3.add(btnRPNumOfChild);
-        btnRPNumOfChild.setBounds(558, 113, 117, 25);
+        btnRPNumOfChild.setBounds(558, 113, 150, 41);
 
         btnPrintRPNumOfChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnPrintRPNumOfChild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/print.png"))); // NOI18N
         btnPrintRPNumOfChild.setText("IN BÁO CÁO");
         btnPrintRPNumOfChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -304,7 +308,7 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
             }
         });
         jPanel3.add(btnPrintRPNumOfChild);
-        btnPrintRPNumOfChild.setBounds(554, 172, 121, 25);
+        btnPrintRPNumOfChild.setBounds(554, 172, 160, 41);
 
         jTableNumOfChild.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -400,6 +404,7 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         jPanel4.setBounds(10, 91, 328, 112);
 
         btnRPNewChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnRPNewChild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/rpwahouse.png"))); // NOI18N
         btnRPNewChild.setText("THỐNG KÊ");
         btnRPNewChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -407,9 +412,10 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(btnRPNewChild);
-        btnRPNewChild.setBounds(408, 135, 140, 25);
+        btnRPNewChild.setBounds(410, 120, 150, 40);
 
         btnPrintRPNewChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnPrintRPNewChild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/print.png"))); // NOI18N
         btnPrintRPNewChild.setText("IN BÁO CÁO");
         btnPrintRPNewChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -417,7 +423,7 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(btnPrintRPNewChild);
-        btnPrintRPNewChild.setBounds(408, 180, 140, 25);
+        btnPrintRPNewChild.setBounds(410, 170, 160, 40);
 
         txaPRNewChild.setColumns(20);
         txaPRNewChild.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
@@ -441,7 +447,7 @@ public class fReportNumOfChild extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTableNewChild);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(70, 190, 1108, 440);
+        jScrollPane1.setBounds(70, 220, 1108, 440);
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia2.png"))); // NOI18N
         jPanel1.add(jLabel16);

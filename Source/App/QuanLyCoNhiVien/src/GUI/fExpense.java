@@ -80,6 +80,7 @@ public class fExpense extends javax.swing.JInternalFrame {
         jPanel1.setOpaque(false);
 
         btnSearchExpense.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSearchExpense.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/search.png"))); // NOI18N
         btnSearchExpense.setText("TÌM KIẾM");
         btnSearchExpense.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,7 +121,7 @@ public class fExpense extends javax.swing.JInternalFrame {
                             .addComponent(cbMonthSearchExpense, 0, 111, Short.MAX_VALUE))
                         .addGap(78, 78, 78)
                         .addComponent(btnSearchExpense)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,7 +145,7 @@ public class fExpense extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(41, 113, 409, 154);
+        jPanel1.setBounds(41, 113, 423, 154);
 
         jPanel2.setOpaque(false);
 
@@ -241,6 +242,7 @@ public class fExpense extends javax.swing.JInternalFrame {
         jPanel4.setOpaque(false);
 
         btnAddExpense.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAddExpense.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add.png"))); // NOI18N
         btnAddExpense.setText("THÊM");
         btnAddExpense.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -249,6 +251,7 @@ public class fExpense extends javax.swing.JInternalFrame {
         });
 
         btnEditExpense.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEditExpense.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tools.png"))); // NOI18N
         btnEditExpense.setText("CẬP NHẬT");
         btnEditExpense.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,6 +260,7 @@ public class fExpense extends javax.swing.JInternalFrame {
         });
 
         btnDelExpense.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDelExpense.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/rubbish-bin.png"))); // NOI18N
         btnDelExpense.setText("XÓA");
         btnDelExpense.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,6 +269,7 @@ public class fExpense extends javax.swing.JInternalFrame {
         });
 
         btnSaveExpense.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSaveExpense.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/folder.png"))); // NOI18N
         btnSaveExpense.setText("LƯU");
         btnSaveExpense.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -278,14 +283,13 @@ public class fExpense extends javax.swing.JInternalFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnAddExpense, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(btnAddExpense, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEditExpense)
-                .addGap(30, 30, 30)
-                .addComponent(btnDelExpense, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(btnSaveExpense, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnDelExpense, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSaveExpense, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,7 +304,7 @@ public class fExpense extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel4);
-        jPanel4.setBounds(22, 494, 503, 47);
+        jPanel4.setBounds(5, 494, 520, 63);
 
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia2.png"))); // NOI18N

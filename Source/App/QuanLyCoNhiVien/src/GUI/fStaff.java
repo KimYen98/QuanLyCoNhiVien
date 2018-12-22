@@ -257,6 +257,7 @@ public class fStaff extends javax.swing.JInternalFrame {
         jPanel4.setOpaque(false);
 
         btnAddStaff.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAddStaff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add.png"))); // NOI18N
         btnAddStaff.setText("THÊM");
         btnAddStaff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,6 +266,7 @@ public class fStaff extends javax.swing.JInternalFrame {
         });
 
         btnEditStaff.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEditStaff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tools.png"))); // NOI18N
         btnEditStaff.setText("CẬP NHẬT");
         btnEditStaff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -273,6 +275,7 @@ public class fStaff extends javax.swing.JInternalFrame {
         });
 
         btnDelStaff.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDelStaff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/rubbish-bin.png"))); // NOI18N
         btnDelStaff.setText("XÓA");
         btnDelStaff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -281,6 +284,7 @@ public class fStaff extends javax.swing.JInternalFrame {
         });
 
         btnSaveStaff.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSaveStaff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/folder.png"))); // NOI18N
         btnSaveStaff.setText("LƯU");
         btnSaveStaff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -294,14 +298,14 @@ public class fStaff extends javax.swing.JInternalFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnAddStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(btnAddStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnEditStaff)
-                .addGap(26, 26, 26)
-                .addComponent(btnDelStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(btnSaveStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnDelStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSaveStaff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,7 +320,7 @@ public class fStaff extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel4);
-        jPanel4.setBounds(10, 580, 511, 47);
+        jPanel4.setBounds(10, 580, 522, 80);
 
         jTableStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jTableStaff.setModel(new javax.swing.table.DefaultTableModel(
@@ -346,6 +350,7 @@ public class fStaff extends javax.swing.JInternalFrame {
         txfSearchStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         btnSearchStaff.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSearchStaff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/search.png"))); // NOI18N
         btnSearchStaff.setText("TÌM KIẾM");
         btnSearchStaff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -367,7 +372,7 @@ public class fStaff extends javax.swing.JInternalFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txfSearchStaff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearchStaff))
@@ -375,7 +380,7 @@ public class fStaff extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(4, 112, 498, 54);
+        jPanel2.setBounds(0, 110, 534, 70);
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia2.png"))); // NOI18N
         getContentPane().add(jLabel11);

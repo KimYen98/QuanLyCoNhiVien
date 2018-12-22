@@ -118,6 +118,7 @@ public class fReportFinance extends javax.swing.JInternalFrame {
         jPanel1.setBounds(130, 90, 331, 131);
 
         btnRPFinance.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnRPFinance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/rpDoanhThu.png"))); // NOI18N
         btnRPFinance.setText("THỐNG KÊ");
         btnRPFinance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,9 +126,10 @@ public class fReportFinance extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(btnRPFinance);
-        btnRPFinance.setBounds(510, 130, 107, 25);
+        btnRPFinance.setBounds(510, 130, 150, 41);
 
         btnPrintRPFinance.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnPrintRPFinance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/print.png"))); // NOI18N
         btnPrintRPFinance.setText("IN BÁO CÁO");
         btnPrintRPFinance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,7 +137,7 @@ public class fReportFinance extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(btnPrintRPFinance);
-        btnPrintRPFinance.setBounds(700, 130, 121, 25);
+        btnPrintRPFinance.setBounds(700, 130, 157, 40);
 
         txaRPFinance.setEditable(false);
         txaRPFinance.setColumns(20);

@@ -171,6 +171,9 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="1"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Image/rpwahouse.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="TH&#x1ed0;NG K&#xca;"/>
               </Properties>
               <Events>
@@ -178,7 +181,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="423" y="116" width="117" height="-1"/>
+                  <AbsoluteConstraints x="420" y="100" width="160" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -187,6 +190,9 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="1"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Image/print.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="IN B&#xc1;O C&#xc1;O"/>
               </Properties>
               <Events>
@@ -194,7 +200,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="423" y="159" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="420" y="150" width="160" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -413,6 +419,9 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="1"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Image/rpwahouse.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="TH&#x1ed0;NG K&#xca;"/>
               </Properties>
               <Events>
@@ -420,7 +429,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="558" y="113" width="117" height="-1"/>
+                  <AbsoluteConstraints x="558" y="113" width="150" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -429,6 +438,9 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="1"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Image/print.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="IN B&#xc1;O C&#xc1;O"/>
               </Properties>
               <Events>
@@ -436,7 +448,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="554" y="172" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="554" y="172" width="160" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -633,6 +645,9 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="1"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Image/rpwahouse.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="TH&#x1ed0;NG K&#xca;"/>
               </Properties>
               <Events>
@@ -640,7 +655,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="408" y="135" width="140" height="-1"/>
+                  <AbsoluteConstraints x="410" y="120" width="150" height="40"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -649,6 +664,9 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="1"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Image/print.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="IN B&#xc1;O C&#xc1;O"/>
               </Properties>
               <Events>
@@ -656,7 +674,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="408" y="180" width="140" height="-1"/>
+                  <AbsoluteConstraints x="410" y="170" width="160" height="40"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -689,7 +707,7 @@
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="70" y="190" width="1108" height="440"/>
+                  <AbsoluteConstraints x="70" y="220" width="1108" height="440"/>
                 </Constraint>
               </Constraints>
 

@@ -70,6 +70,7 @@ public class fSponsor extends javax.swing.JInternalFrame {
         txfSearchSponsor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         btnSearchSponsor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSearchSponsor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/search.png"))); // NOI18N
         btnSearchSponsor.setText("TÌM KIẾM");
         btnSearchSponsor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,7 +83,7 @@ public class fSponsor extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(123, Short.MAX_VALUE)
+                .addContainerGap(87, Short.MAX_VALUE)
                 .addComponent(txfSearchSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSearchSponsor)
@@ -99,7 +100,7 @@ public class fSponsor extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(10, 81, 501, 47);
+        jPanel1.setBounds(10, 81, 501, 60);
 
         jPanel2.setOpaque(false);
 
@@ -171,6 +172,7 @@ public class fSponsor extends javax.swing.JInternalFrame {
         jPanel4.setOpaque(false);
 
         btnAddSponsor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAddSponsor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add.png"))); // NOI18N
         btnAddSponsor.setText("THÊM");
         btnAddSponsor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,6 +181,7 @@ public class fSponsor extends javax.swing.JInternalFrame {
         });
 
         btnEditSponsor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEditSponsor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tools.png"))); // NOI18N
         btnEditSponsor.setText("CẬP NHẬT");
         btnEditSponsor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,6 +190,7 @@ public class fSponsor extends javax.swing.JInternalFrame {
         });
 
         btnDelSponsor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDelSponsor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/rubbish-bin.png"))); // NOI18N
         btnDelSponsor.setText("XÓA");
         btnDelSponsor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,6 +199,7 @@ public class fSponsor extends javax.swing.JInternalFrame {
         });
 
         btnSaveSponsor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSaveSponsor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/folder.png"))); // NOI18N
         btnSaveSponsor.setText("LƯU");
         btnSaveSponsor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,15 +212,14 @@ public class fSponsor extends javax.swing.JInternalFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnAddSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(btnAddSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEditSponsor)
-                .addGap(26, 26, 26)
-                .addComponent(btnDelSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnDelSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnSaveSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(btnSaveSponsor, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,7 +234,7 @@ public class fSponsor extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel4);
-        jPanel4.setBounds(34, 346, 461, 47);
+        jPanel4.setBounds(15, 346, 540, 70);
 
         jTableSponsor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -251,7 +255,7 @@ public class fSponsor extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTableSponsor);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(541, 81, 770, 630);
+        jScrollPane1.setBounds(561, 81, 750, 630);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia2.png"))); // NOI18N
         getContentPane().add(jLabel6);

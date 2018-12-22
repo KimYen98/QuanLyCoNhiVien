@@ -96,6 +96,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         txfSearchAdoptInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         btnSearchAdoptInfo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSearchAdoptInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/search.png"))); // NOI18N
         btnSearchAdoptInfo.setText("TÌM KIẾM");
         btnSearchAdoptInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,8 +119,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
                     .addComponent(txfSearchAdoptInfo)
                     .addComponent(cbSearchAdoptInfo, 0, 205, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(btnSearchAdoptInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(btnSearchAdoptInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,7 +132,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSearchAdoptInfo)
                     .addComponent(txfSearchAdoptInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
@@ -219,6 +219,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         jPanel4.setOpaque(false);
 
         btnAddAdoptInfo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAddAdoptInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add.png"))); // NOI18N
         btnAddAdoptInfo.setText("THÊM");
         btnAddAdoptInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,6 +228,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         });
 
         btnEditAdoptInfo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEditAdoptInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tools.png"))); // NOI18N
         btnEditAdoptInfo.setText("CẬP NHẬT");
         btnEditAdoptInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,6 +237,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         });
 
         btnDelAdoptInfo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDelAdoptInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/rubbish-bin.png"))); // NOI18N
         btnDelAdoptInfo.setText("XÓA");
         btnDelAdoptInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,6 +246,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         });
 
         btnSaveAdoptInfo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSaveAdoptInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/folder.png"))); // NOI18N
         btnSaveAdoptInfo.setText("LƯU");
         btnSaveAdoptInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -255,15 +259,14 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnAddAdoptInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(btnAddAdoptInfo)
+                .addGap(16, 16, 16)
                 .addComponent(btnEditAdoptInfo)
-                .addGap(26, 26, 26)
-                .addComponent(btnDelAdoptInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(btnSaveAdoptInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnDelAdoptInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSaveAdoptInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,7 +281,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel4);
-        jPanel4.setBounds(90, 430, 480, 47);
+        jPanel4.setBounds(20, 430, 550, 63);
 
         jTableAPa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -329,6 +332,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         txfSearchAPa.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         btnSearchAPa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSearchAPa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/search.png"))); // NOI18N
         btnSearchAPa.setText("TÌM KIẾM");
         btnSearchAPa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -358,13 +362,14 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel3);
-        jPanel3.setBounds(570, 100, 351, 47);
+        jPanel3.setBounds(570, 100, 387, 63);
 
         jPanel5.setOpaque(false);
 
         txfSearchChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         btnSearchChild.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSearchChild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/search.png"))); // NOI18N
         btnSearchChild.setText("TÌM KIẾM");
         btnSearchChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -381,7 +386,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
                 .addComponent(txfSearchChild, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSearchChild)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -390,11 +395,11 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txfSearchChild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearchChild))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel5);
-        jPanel5.setBounds(970, 90, 411, 58);
+        jPanel5.setBounds(970, 90, 411, 72);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia2.png"))); // NOI18N
         getContentPane().add(jLabel7);

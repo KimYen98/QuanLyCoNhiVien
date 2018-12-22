@@ -81,6 +81,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         txfSearchStaffCategogy.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         btnSearchStaffCategogy.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSearchStaffCategogy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/search.png"))); // NOI18N
         btnSearchStaffCategogy.setText("TÌM KIẾM");
         btnSearchStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,7 +109,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
                         .addComponent(txfSearchStaffCategogy, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addComponent(btnSearchStaffCategogy)))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +126,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(txfNameStaffCategogy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
@@ -134,6 +135,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         jPanel4.setOpaque(false);
 
         btnAddStaffCategogy.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAddStaffCategogy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add.png"))); // NOI18N
         btnAddStaffCategogy.setText("THÊM");
         btnAddStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,6 +144,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         });
 
         btnEditStaffCategogy.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEditStaffCategogy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tools.png"))); // NOI18N
         btnEditStaffCategogy.setText("CẬP NHẬT");
         btnEditStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,6 +153,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         });
 
         btnDelStaffCategogy.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDelStaffCategogy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/rubbish-bin.png"))); // NOI18N
         btnDelStaffCategogy.setText("XÓA");
         btnDelStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,6 +162,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         });
 
         btnSaveStaffCategogy.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSaveStaffCategogy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/folder.png"))); // NOI18N
         btnSaveStaffCategogy.setText("LƯU");
         btnSaveStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,14 +176,13 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnAddStaffCategogy, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(btnAddStaffCategogy, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEditStaffCategogy)
-                .addGap(26, 26, 26)
-                .addComponent(btnDelStaffCategogy, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSaveStaffCategogy, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnDelStaffCategogy, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSaveStaffCategogy, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,7 +197,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel4);
-        jPanel4.setBounds(10, 301, 469, 47);
+        jPanel4.setBounds(10, 301, 490, 80);
 
         jTableStaffCategogy.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jTableStaffCategogy.setModel(new javax.swing.table.DefaultTableModel(
@@ -215,7 +219,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTableStaffCategogy);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(485, 90, 740, 550);
+        jScrollPane1.setBounds(515, 90, 710, 550);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia2.png"))); // NOI18N
         getContentPane().add(jLabel4);
