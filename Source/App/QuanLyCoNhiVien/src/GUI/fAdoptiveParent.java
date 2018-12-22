@@ -26,6 +26,7 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
         btnSaveAPa.setEnabled(false);
         control.bindingAdoptiveParent(jTableAPa, adoptiveParentBLL.LoadAdoptiveParent());
         
+        
     }
      //Hàm chuẩn hóa tên
     public String chuanHoa(String str) {
@@ -261,6 +262,7 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
         getContentPane().add(jPanel4);
         jPanel4.setBounds(20, 377, 520, 63);
 
+        jTableAPa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTableAPa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -272,6 +274,7 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableAPa.setAutoscrolls(false);
         jTableAPa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableAPaMouseClicked(evt);

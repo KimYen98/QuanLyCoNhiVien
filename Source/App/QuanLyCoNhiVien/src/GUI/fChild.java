@@ -32,6 +32,15 @@ public class fChild extends javax.swing.JInternalFrame {
         btnSaveChild.setEnabled(false);
         cbNameStaffChild.removeAllItems();
         control.bindingChild(jTableChild, childBLL.LoadChild());
+        jTableChild.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jTableChild.getColumnModel().getColumn(1).setPreferredWidth(200);
+        jTableChild.getColumnModel().getColumn(2).setPreferredWidth(100);
+        jTableChild.getColumnModel().getColumn(3).setPreferredWidth(70);
+        jTableChild.getColumnModel().getColumn(4).setPreferredWidth(150);
+        jTableChild.getColumnModel().getColumn(5).setPreferredWidth(150);
+        jTableChild.getColumnModel().getColumn(6).setPreferredWidth(150);
+        jTableChild.getColumnModel().getColumn(7).setPreferredWidth(200);
+        jTableChild.getColumnModel().getColumn(8).setPreferredWidth(200);
         for(Staff staff: staffBLL.LoadAnny())
         {
             cbNameStaffChild.addItem(staff.getName());
@@ -176,19 +185,25 @@ public class fChild extends javax.swing.JInternalFrame {
         getContentPane().add(jPanel4);
         jPanel4.setBounds(20, 540, 590, 60);
 
-        jTableChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane2.setAutoscrolls(true);
+
+        jTableChild.setAutoCreateRowSorter(true);
+        jTableChild.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTableChild.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã trẻ", "Tên trẻ", "Ngày sinh", "Giới tính", "Ngày vào", "Hoàn cảnh", "Người đưa trẻ vào", "Trạng thái", "Tên bảo mẫu"
             }
         ));
         jTableChild.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTableChild.setAutoscrolls(false);
         jTableChild.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableChildMouseClicked(evt);
@@ -197,7 +212,7 @@ public class fChild extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(jTableChild);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(615, 114, 750, 681);
+        jScrollPane2.setBounds(620, 120, 730, 520);
 
         jPanel3.setOpaque(false);
 
@@ -403,11 +418,11 @@ public class fChild extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(cbNameStaffChild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(46, 114, 560, 424);
+        jPanel1.setBounds(46, 108, 560, 430);
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bia2.png"))); // NOI18N
         getContentPane().add(jLabel10);

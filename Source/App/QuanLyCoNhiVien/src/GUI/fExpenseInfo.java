@@ -258,6 +258,7 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         getContentPane().add(jPanel4);
         jPanel4.setBounds(33, 423, 540, 60);
 
+        jTableExpenseInfo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTableExpenseInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

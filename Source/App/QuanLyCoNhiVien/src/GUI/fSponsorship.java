@@ -274,6 +274,7 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         getContentPane().add(jPanel4);
         jPanel4.setBounds(5, 380, 580, 90);
 
+        jTableSponsorship.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTableSponsorship.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -295,6 +296,7 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(610, 420, 735, 290);
 
+        jTableSponsor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTableSponsor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

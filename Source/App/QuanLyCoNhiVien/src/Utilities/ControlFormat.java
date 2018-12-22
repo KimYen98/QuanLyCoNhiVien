@@ -52,7 +52,7 @@ public class ControlFormat {
     public void bindingStaff(JTable name , ArrayList<Staff> arr)
     {
         Vector header =new Vector();
-        header.add("Mã nhân viên");
+        header.add("Mã NV");
         header.add("Tên nhân viên");
         header.add("Giới tính");
         header.add("Ngày sinh");

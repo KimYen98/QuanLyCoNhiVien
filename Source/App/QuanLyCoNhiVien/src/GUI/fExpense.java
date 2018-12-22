@@ -218,6 +218,7 @@ public class fExpense extends javax.swing.JInternalFrame {
         getContentPane().add(jPanel2);
         jPanel2.setBounds(41, 295, 448, 181);
 
+        jTableExpense.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTableExpense.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

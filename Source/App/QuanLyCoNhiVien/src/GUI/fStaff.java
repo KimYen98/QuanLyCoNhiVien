@@ -30,6 +30,15 @@ public class fStaff extends javax.swing.JInternalFrame {
         initComponents();
         cbStaffCategogy.removeAllItems();
         control.bindingStaff(jTableStaff, staffBLL.LoadStaff());
+        jTableStaff.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jTableStaff.getColumnModel().getColumn(1).setPreferredWidth(150);
+        jTableStaff.getColumnModel().getColumn(2).setPreferredWidth(150);
+        jTableStaff.getColumnModel().getColumn(3).setPreferredWidth(150);
+        jTableStaff.getColumnModel().getColumn(4).setPreferredWidth(150);
+        jTableStaff.getColumnModel().getColumn(5).setPreferredWidth(150);
+        jTableStaff.getColumnModel().getColumn(6).setPreferredWidth(150);
+        jTableStaff.getColumnModel().getColumn(7).setPreferredWidth(150);
+        jTableStaff.getColumnModel().getColumn(8).setPreferredWidth(150); 
         for(StaffCategogy   staffCategogy: staffCategogyBLL.LoadStaffCategogy())
         {
             cbStaffCategogy.addItem(staffCategogy.getName());
@@ -248,11 +257,11 @@ public class fStaff extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 198, 502, 347);
+        jPanel1.setBounds(0, 198, 502, 380);
 
         jPanel4.setOpaque(false);
 
@@ -320,9 +329,9 @@ public class fStaff extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel4);
-        jPanel4.setBounds(10, 580, 522, 80);
+        jPanel4.setBounds(10, 570, 522, 60);
 
-        jTableStaff.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jTableStaff.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTableStaff.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
@@ -335,6 +344,7 @@ public class fStaff extends javax.swing.JInternalFrame {
             }
         ));
         jTableStaff.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTableStaff.setAutoscrolls(false);
         jTableStaff.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableStaffMouseClicked(evt);
@@ -343,7 +353,7 @@ public class fStaff extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTableStaff);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(527, 127, 920, 610);
+        jScrollPane1.setBounds(530, 130, 780, 510);
 
         jPanel2.setOpaque(false);
 

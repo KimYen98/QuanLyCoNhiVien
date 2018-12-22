@@ -36,6 +36,20 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         control.bindingAdoptInfo(jTableAdoptInfo, adoptInfoBLL.LoadAdoptInfo());
         control.bindingAdoptiveParent(jTableAPa, adoptiveParentBLL.LoadAdoptiveParent());
         control.bindingChild(jTableChild,childBLL.LoadChildNow());
+        jTableChild.getColumnModel().getColumn(0).setPreferredWidth(50);
+        jTableChild.getColumnModel().getColumn(1).setPreferredWidth(200);
+        jTableChild.getColumnModel().getColumn(2).setPreferredWidth(100);
+        jTableChild.getColumnModel().getColumn(3).setPreferredWidth(70);
+        jTableChild.getColumnModel().getColumn(4).setPreferredWidth(150);
+        jTableChild.getColumnModel().getColumn(5).setPreferredWidth(150);
+        jTableChild.getColumnModel().getColumn(6).setPreferredWidth(150);
+        jTableChild.getColumnModel().getColumn(7).setPreferredWidth(200);
+        jTableChild.getColumnModel().getColumn(8).setPreferredWidth(200);
+        jTableAPa.getColumnModel().getColumn(0).setPreferredWidth(70);
+        jTableAPa.getColumnModel().getColumn(1).setPreferredWidth(150);
+        jTableAPa.getColumnModel().getColumn(2).setPreferredWidth(150);
+        jTableAPa.getColumnModel().getColumn(3).setPreferredWidth(150);
+        
         jDChAdoptDate.setDate(new Date());
     }
 
@@ -195,6 +209,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         getContentPane().add(jPanel2);
         jPanel2.setBounds(20, 250, 539, 160);
 
+        jTableAdoptInfo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTableAdoptInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -206,6 +221,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableAdoptInfo.setAutoscrolls(false);
         jTableAdoptInfo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableAdoptInfoMouseClicked(evt);
@@ -283,6 +299,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         getContentPane().add(jPanel4);
         jPanel4.setBounds(20, 430, 550, 63);
 
+        jTableAPa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTableAPa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -294,6 +311,8 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableAPa.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTableAPa.setAutoscrolls(false);
         jTableAPa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableAPaMouseClicked(evt);
@@ -304,7 +323,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(580, 160, 390, 240);
 
-        jTableChild.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jTableChild.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTableChild.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -317,6 +336,7 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
             }
         ));
         jTableChild.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTableChild.setAutoscrolls(false);
         jTableChild.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableChildMouseClicked(evt);
@@ -384,9 +404,9 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txfSearchChild, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSearchChild)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -236,6 +236,7 @@ public class fSponsor extends javax.swing.JInternalFrame {
         getContentPane().add(jPanel4);
         jPanel4.setBounds(15, 346, 540, 70);
 
+        jTableSponsor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTableSponsor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
