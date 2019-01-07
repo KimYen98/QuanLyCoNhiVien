@@ -11,6 +11,7 @@ import BLL.ExpenseInfoBLL;
 import Entity.Expense;
 import Utilities.ControlFormat;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -36,6 +37,9 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         {
             cbIDExpenseExpenseInfo.addItem(String.valueOf(expense.getIDExpense()));
         }
+        txfMoneyExpenseInfo.setEnabled(false);
+        txfNameExpenseInfo.setEnabled(false);
+        cbIDExpenseExpenseInfo.setEnabled(false);
     }
 
     /** This method is called from within the constructor to
@@ -143,6 +147,11 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         txfNameExpenseInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         txfMoneyExpenseInfo.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        txfMoneyExpenseInfo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfMoneyExpenseInfoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -391,6 +400,9 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         btnDelExpenseInfo.setEnabled(false);
         btnSaveExpenseInfo.setEnabled(true);
         flag = 1;
+        txfMoneyExpenseInfo.setEnabled(true);
+        txfNameExpenseInfo.setEnabled(true);
+        cbIDExpenseExpenseInfo.setEnabled(true);
     }//GEN-LAST:event_btnAddExpenseInfoActionPerformed
 
     private void btnEditExpenseInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditExpenseInfoActionPerformed
@@ -400,6 +412,9 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         btnDelExpenseInfo.setEnabled(false);
         btnSaveExpenseInfo.setEnabled(true);
         flag = 2;
+        txfMoneyExpenseInfo.setEnabled(true);
+        txfNameExpenseInfo.setEnabled(true);
+        cbIDExpenseExpenseInfo.setEnabled(true);
     }//GEN-LAST:event_btnEditExpenseInfoActionPerformed
 
     private void btnDelExpenseInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelExpenseInfoActionPerformed
@@ -409,6 +424,9 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         btnDelExpenseInfo.setEnabled(false);
         btnSaveExpenseInfo.setEnabled(true);
         flag = 3;
+        txfMoneyExpenseInfo.setEnabled(true);
+        txfNameExpenseInfo.setEnabled(true);
+        cbIDExpenseExpenseInfo.setEnabled(true);
     }//GEN-LAST:event_btnDelExpenseInfoActionPerformed
 
     private void btnSaveExpenseInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveExpenseInfoActionPerformed
@@ -424,6 +442,9 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
                 btnSaveExpenseInfo.setEnabled(false);
                 control.bindingExpenseInfo(jTableExpenseInfo, expenseInfoBLL.LoadExpenseInfo(IDExpense));
                 ClearText();
+                txfMoneyExpenseInfo.setEnabled(false);
+        txfNameExpenseInfo.setEnabled(false);
+        cbIDExpenseExpenseInfo.setEnabled(false);
             }
         }
         if(flag == 2)
@@ -436,6 +457,9 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
                 btnSaveExpenseInfo.setEnabled(false);
                 control.bindingExpenseInfo(jTableExpenseInfo, expenseInfoBLL.LoadExpenseInfo(IDExpense));
                 ClearText();
+               txfMoneyExpenseInfo.setEnabled(false);
+        txfNameExpenseInfo.setEnabled(false);
+        cbIDExpenseExpenseInfo.setEnabled(false);
             }
         }
         if(flag == 3)
@@ -447,6 +471,9 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
             btnSaveExpenseInfo.setEnabled(false);
             control.bindingExpenseInfo(jTableExpenseInfo, expenseInfoBLL.LoadExpenseInfo(IDExpense));
             ClearText();
+            txfMoneyExpenseInfo.setEnabled(false);
+        txfNameExpenseInfo.setEnabled(false);
+        cbIDExpenseExpenseInfo.setEnabled(false);
         }
     }//GEN-LAST:event_btnSaveExpenseInfoActionPerformed
 
@@ -473,6 +500,23 @@ public class fExpenseInfo extends javax.swing.JInternalFrame {
         else IDExpense = Integer.parseInt(cbIDExpenseExpenseInfo.getSelectedItem().toString());
         control.bindingExpenseInfo(jTableExpenseInfo, expenseInfoBLL.LoadExpenseInfo(IDExpense));
     }//GEN-LAST:event_cbIDExpenseExpenseInfoItemStateChanged
+    boolean dot = false;
+    private void txfMoneyExpenseInfoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfMoneyExpenseInfoKeyTyped
+        // TODO add your handling code here:
+        char vChar = evt.getKeyChar();
+        if (txfMoneyExpenseInfo.getText().equals(""))
+            dot = false;
+        if (dot == false){
+            if (vChar == '.') 
+                dot = true;
+            else if (!(Character.isDigit(vChar)|| (vChar == KeyEvent.VK_BACK_SPACE)|| (vChar == KeyEvent.VK_DELETE))) 
+                evt.consume();
+        } 
+        else {
+            if (!(Character.isDigit(vChar)|| (vChar == KeyEvent.VK_BACK_SPACE)|| (vChar == KeyEvent.VK_DELETE)))
+                evt.consume();
+        }
+    }//GEN-LAST:event_txfMoneyExpenseInfoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

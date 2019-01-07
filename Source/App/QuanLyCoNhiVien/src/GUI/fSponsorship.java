@@ -10,6 +10,7 @@ import BLL.SponsorshipBLL;
 import Entity.Sponsor;
 import Entity.Sponsorship;
 import Utilities.ControlFormat;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -33,6 +34,10 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         control.bindingSponsorship(jTableSponsorship, sponsorshipBLL.LoadSponsorship());
         control.bindingSponsor(jTableSponsor, sponsorBLL.LoadSponsor());
         jDChSponsorshipDate.setDate(new Date());
+        txfNameSponsor.setEnabled(false);
+        txfMoneySponsorship.setEnabled(false);
+        jDChSponsorshipDate.setEnabled(false);
+        cbFormSponsorship.setEnabled(false);
     }
 
     /**
@@ -145,6 +150,11 @@ public class fSponsorship extends javax.swing.JInternalFrame {
 
         txfMoneySponsorship.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         txfMoneySponsorship.setText("0");
+        txfMoneySponsorship.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfMoneySponsorshipKeyTyped(evt);
+            }
+        });
 
         txfNameSponsor.setEditable(false);
         txfNameSponsor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -455,6 +465,10 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         btnDelSponsorship.setEnabled(false);
         btnSaveSponsorship.setEnabled(true);
         flag=1;
+        txfNameSponsor.setEnabled(true);
+        txfMoneySponsorship.setEnabled(true);
+        jDChSponsorshipDate.setEnabled(true);
+        cbFormSponsorship.setEnabled(true);
     }//GEN-LAST:event_btnAddSponsorshipActionPerformed
 
     private void btnEditSponsorshipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditSponsorshipActionPerformed
@@ -464,6 +478,10 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         btnDelSponsorship.setEnabled(false);
         btnSaveSponsorship.setEnabled(true);
         flag=2;
+         txfNameSponsor.setEnabled(true);
+        txfMoneySponsorship.setEnabled(true);
+        jDChSponsorshipDate.setEnabled(true);
+        cbFormSponsorship.setEnabled(true);
     }//GEN-LAST:event_btnEditSponsorshipActionPerformed
 
     private void btnDelSponsorshipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelSponsorshipActionPerformed
@@ -473,6 +491,10 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         btnDelSponsorship.setEnabled(false);
         btnSaveSponsorship.setEnabled(true);
         flag=3;
+         txfNameSponsor.setEnabled(true);
+        txfMoneySponsorship.setEnabled(true);
+        jDChSponsorshipDate.setEnabled(true);
+        cbFormSponsorship.setEnabled(true);
     }//GEN-LAST:event_btnDelSponsorshipActionPerformed
 
     private void btnSaveSponsorshipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveSponsorshipActionPerformed
@@ -484,6 +506,10 @@ public class fSponsorship extends javax.swing.JInternalFrame {
                 btnSaveSponsorship.setEnabled(false);
                 control.bindingSponsorship(jTableSponsorship, sponsorshipBLL.LoadSponsorship());
                 ClearText();
+                txfNameSponsor.setEnabled(false);
+        txfMoneySponsorship.setEnabled(false);
+        jDChSponsorshipDate.setEnabled(false);
+        cbFormSponsorship.setEnabled(false);
             }
             btnAddSponsorship.setEnabled(true);
             btnEditSponsorship.setEnabled(true);
@@ -496,6 +522,10 @@ public class fSponsorship extends javax.swing.JInternalFrame {
                 btnSaveSponsorship.setEnabled(false);
                 control.bindingSponsorship(jTableSponsorship, sponsorshipBLL.LoadSponsorship());
                 ClearText();
+                txfNameSponsor.setEnabled(false);
+        txfMoneySponsorship.setEnabled(false);
+        jDChSponsorshipDate.setEnabled(false);
+        cbFormSponsorship.setEnabled(false);
             }
             btnAddSponsorship.setEnabled(true);
             btnEditSponsorship.setEnabled(true);
@@ -508,6 +538,10 @@ public class fSponsorship extends javax.swing.JInternalFrame {
                 btnSaveSponsorship.setEnabled(false);
                 control.bindingSponsorship(jTableSponsorship, sponsorshipBLL.LoadSponsorship());
                 ClearText();
+                txfNameSponsor.setEnabled(false);
+        txfMoneySponsorship.setEnabled(false);
+        jDChSponsorshipDate.setEnabled(false);
+        cbFormSponsorship.setEnabled(false);
             }
             btnAddSponsorship.setEnabled(true);
             btnEditSponsorship.setEnabled(true);
@@ -548,6 +582,23 @@ public class fSponsorship extends javax.swing.JInternalFrame {
         control.bindingSponsor(jTableSponsor, sponsorBLL.SearchSponsor(key));
         txfSearchSponsor.setText("");
     }//GEN-LAST:event_btnSearchSponsorActionPerformed
+    boolean dot = false;
+    private void txfMoneySponsorshipKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfMoneySponsorshipKeyTyped
+        // TODO add your handling code here:
+         char vChar = evt.getKeyChar();
+        if (txfMoneySponsorship.getText().equals(""))
+            dot = false;
+        if (dot == false){
+            if (vChar == '.') 
+                dot = true;
+            else if (!(Character.isDigit(vChar)|| (vChar == KeyEvent.VK_BACK_SPACE)|| (vChar == KeyEvent.VK_DELETE))) 
+                evt.consume();
+        } 
+        else {
+            if (!(Character.isDigit(vChar)|| (vChar == KeyEvent.VK_BACK_SPACE)|| (vChar == KeyEvent.VK_DELETE)))
+                evt.consume();
+        }
+    }//GEN-LAST:event_txfMoneySponsorshipKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

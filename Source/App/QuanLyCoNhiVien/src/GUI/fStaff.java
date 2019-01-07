@@ -44,6 +44,13 @@ public class fStaff extends javax.swing.JInternalFrame {
             cbStaffCategogy.addItem(staffCategogy.getName());
         }
         jDChStartStaff.setDate(new Date());
+        txfNameStaff.setEnabled(false);
+        txfAddressStaff.setEnabled(false);
+        txfPhoneStaff.setEnabled(false);
+        jDChBirthdayStaff.setEnabled(false);
+        jDChStartStaff.setEnabled(false);
+        cbStaffCategogy.setEnabled(false);
+        cbStatus.setEnabled(false);
     }
     //Hàm chuẩn hóa tên
     public String chuanHoa(String str) {
@@ -414,6 +421,13 @@ public class fStaff extends javax.swing.JInternalFrame {
         btnDelStaff.setEnabled(false);
         btnSaveStaff.setEnabled(true);
         flag=1;
+        txfNameStaff.setEnabled(true);
+        txfAddressStaff.setEnabled(true);
+        txfPhoneStaff.setEnabled(true);
+        jDChBirthdayStaff.setEnabled(true);
+        jDChStartStaff.setEnabled(true);
+        cbStaffCategogy.setEnabled(true);
+        cbStatus.setEnabled(true);
     }//GEN-LAST:event_btnAddStaffActionPerformed
 
     private void btnEditStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditStaffActionPerformed
@@ -423,6 +437,13 @@ public class fStaff extends javax.swing.JInternalFrame {
         btnDelStaff.setEnabled(false);
         btnSaveStaff.setEnabled(true);
         flag=2;
+        txfNameStaff.setEnabled(true);
+        txfAddressStaff.setEnabled(true);
+        txfPhoneStaff.setEnabled(true);
+        jDChBirthdayStaff.setEnabled(true);
+        jDChStartStaff.setEnabled(true);
+        cbStaffCategogy.setEnabled(true);
+        cbStatus.setEnabled(true);
     }//GEN-LAST:event_btnEditStaffActionPerformed
 
     private void btnDelStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelStaffActionPerformed
@@ -432,6 +453,13 @@ public class fStaff extends javax.swing.JInternalFrame {
         btnDelStaff.setEnabled(false);
         btnSaveStaff.setEnabled(true);
         flag=3;
+        txfNameStaff.setEnabled(true);
+        txfAddressStaff.setEnabled(true);
+        txfPhoneStaff.setEnabled(true);
+        jDChBirthdayStaff.setEnabled(true);
+        jDChStartStaff.setEnabled(true);
+        cbStaffCategogy.setEnabled(true);
+        cbStatus.setEnabled(true);
     }//GEN-LAST:event_btnDelStaffActionPerformed
 
     private void btnSaveStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveStaffActionPerformed
@@ -443,6 +471,14 @@ public class fStaff extends javax.swing.JInternalFrame {
                 btnSaveStaff.setEnabled(false);
                 control.bindingStaff(jTableStaff, staffBLL.LoadStaff());
                 ClearText();
+                jDChStartStaff.setDate(new Date());
+        txfNameStaff.setEnabled(false);
+        txfAddressStaff.setEnabled(false);
+        txfPhoneStaff.setEnabled(false);
+        jDChBirthdayStaff.setEnabled(false);
+        jDChStartStaff.setEnabled(false);
+        cbStaffCategogy.setEnabled(false);
+        cbStatus.setEnabled(false);
             }
             btnAddStaff.setEnabled(true);
             btnEditStaff.setEnabled(true);
@@ -455,6 +491,14 @@ public class fStaff extends javax.swing.JInternalFrame {
                 btnSaveStaff.setEnabled(false);
                 control.bindingStaff(jTableStaff, staffBLL.LoadStaff());
                 ClearText();
+                jDChStartStaff.setDate(new Date());
+        txfNameStaff.setEnabled(false);
+        txfAddressStaff.setEnabled(false);
+        txfPhoneStaff.setEnabled(false);
+        jDChBirthdayStaff.setEnabled(false);
+        jDChStartStaff.setEnabled(false);
+        cbStaffCategogy.setEnabled(false);
+        cbStatus.setEnabled(false);
             }
             btnAddStaff.setEnabled(true);
             btnEditStaff.setEnabled(true);
@@ -467,6 +511,14 @@ public class fStaff extends javax.swing.JInternalFrame {
                 btnSaveStaff.setEnabled(false);
                 control.bindingStaff(jTableStaff, staffBLL.LoadStaff());
                 ClearText();
+                jDChStartStaff.setDate(new Date());
+        txfNameStaff.setEnabled(false);
+        txfAddressStaff.setEnabled(false);
+        txfPhoneStaff.setEnabled(false);
+        jDChBirthdayStaff.setEnabled(false);
+        jDChStartStaff.setEnabled(false);
+        cbStaffCategogy.setEnabled(false);
+        cbStatus.setEnabled(false);
             }
             btnAddStaff.setEnabled(true);
             btnEditStaff.setEnabled(true);

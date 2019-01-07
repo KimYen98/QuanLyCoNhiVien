@@ -46,6 +46,15 @@ public class fChild extends javax.swing.JInternalFrame {
             cbNameStaffChild.addItem(staff.getName());
         }
         jDChJoinDateChild.setDate(new Date());
+        txfNameChild.setEnabled(false);
+        txfWhoBring.setEnabled(false);
+        rbFeMale.setEnabled(false);
+        rbMale.setEnabled(false);
+        jDChBirthdayChild.setEnabled(false);
+        jDChJoinDateChild.setEnabled(false);
+        cbNameStaffChild.setEnabled(false);
+        cbStatus.setEnabled(false);
+        txaSituation.setEnabled(false);
     }
      //Hàm chuẩn hóa tên
     public String chuanHoa(String str) {
@@ -553,6 +562,15 @@ public class fChild extends javax.swing.JInternalFrame {
         btnSaveChild.setEnabled(true);
         btnDeleteChild.setEnabled(false);
         flag=1;
+        txfNameChild.setEnabled(true);
+        txfWhoBring.setEnabled(true);
+        rbFeMale.setEnabled(true);
+        rbMale.setEnabled(true);
+        jDChBirthdayChild.setEnabled(true);
+        jDChJoinDateChild.setEnabled(true);
+        cbNameStaffChild.setEnabled(true);
+        cbStatus.setEnabled(true);
+        txaSituation.setEnabled(true);
     }//GEN-LAST:event_btnAddChildActionPerformed
 
     private void btnEditChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditChildActionPerformed
@@ -562,6 +580,15 @@ public class fChild extends javax.swing.JInternalFrame {
         btnSaveChild.setEnabled(true);
         btnDeleteChild.setEnabled(false);
         flag=2;
+        txfNameChild.setEnabled(true);
+        txfWhoBring.setEnabled(true);
+        rbFeMale.setEnabled(true);
+        rbMale.setEnabled(true);
+        jDChBirthdayChild.setEnabled(true);
+        jDChJoinDateChild.setEnabled(true);
+        cbNameStaffChild.setEnabled(true);
+        cbStatus.setEnabled(true);
+        txaSituation.setEnabled(true);
     }//GEN-LAST:event_btnEditChildActionPerformed
 
     private void btnSaveChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveChildActionPerformed
@@ -573,7 +600,15 @@ public class fChild extends javax.swing.JInternalFrame {
                 btnSaveChild.setEnabled(false);
                 control.bindingChild(jTableChild, childBLL.LoadChild());
                 ClearText();
-               
+               txfNameChild.setEnabled(false);
+        txfWhoBring.setEnabled(false);
+        rbFeMale.setEnabled(false);
+        rbMale.setEnabled(false);
+        jDChBirthdayChild.setEnabled(false);
+        jDChJoinDateChild.setEnabled(false);
+        cbNameStaffChild.setEnabled(false);
+        cbStatus.setEnabled(false);
+        txaSituation.setEnabled(false);
             }
             btnAddChild.setEnabled(true);
             btnEditChild.setEnabled(true);
@@ -585,6 +620,15 @@ public class fChild extends javax.swing.JInternalFrame {
             {
                 btnSaveChild.setEnabled(false);
                 control.bindingChild(jTableChild, childBLL.LoadChild());
+                txfNameChild.setEnabled(false);
+        txfWhoBring.setEnabled(false);
+        rbFeMale.setEnabled(false);
+        rbMale.setEnabled(false);
+        jDChBirthdayChild.setEnabled(false);
+        jDChJoinDateChild.setEnabled(false);
+        cbNameStaffChild.setEnabled(false);
+        cbStatus.setEnabled(false);
+        txaSituation.setEnabled(false);
                 ClearText();
             }
             btnAddChild.setEnabled(true);
@@ -597,6 +641,15 @@ public class fChild extends javax.swing.JInternalFrame {
             {
                 btnSaveChild.setEnabled(false);
                 control.bindingChild(jTableChild, childBLL.LoadChild());
+                txfNameChild.setEnabled(false);
+        txfWhoBring.setEnabled(false);
+        rbFeMale.setEnabled(false);
+        rbMale.setEnabled(false);
+        jDChBirthdayChild.setEnabled(false);
+        jDChJoinDateChild.setEnabled(false);
+        cbNameStaffChild.setEnabled(false);
+        cbStatus.setEnabled(false);
+        txaSituation.setEnabled(false);
                 ClearText();
             }
             btnAddChild.setEnabled(true);
@@ -642,6 +695,15 @@ public class fChild extends javax.swing.JInternalFrame {
         btnDeleteChild.setEnabled(false);
         btnSaveChild.setEnabled(true);
         flag=3;
+        txfNameChild.setEnabled(true);
+        txfWhoBring.setEnabled(true);
+        rbFeMale.setEnabled(true);
+        rbMale.setEnabled(true);
+        jDChBirthdayChild.setEnabled(true);
+        jDChJoinDateChild.setEnabled(true);
+        cbNameStaffChild.setEnabled(true);
+        cbStatus.setEnabled(true);
+        txaSituation.setEnabled(true);
     }//GEN-LAST:event_btnDeleteChildActionPerformed
 
 

@@ -25,7 +25,9 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
         initComponents();
         btnSaveAPa.setEnabled(false);
         control.bindingAdoptiveParent(jTableAPa, adoptiveParentBLL.LoadAdoptiveParent());
-        
+        txfNameAPa.setEnabled(false);
+        txfAddressAPa.setEnabled(false);
+        txfPhoneAPa.setEnabled(false);
         
     }
      //Hàm chuẩn hóa tên
@@ -373,6 +375,9 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
         btnDeleteAPa.setEnabled(false);
         btnSaveAPa.setEnabled(true);
         flag=1;
+        txfNameAPa.setEnabled(true);
+        txfAddressAPa.setEnabled(true);
+        txfPhoneAPa.setEnabled(true);
     }//GEN-LAST:event_btnAddAPaActionPerformed
 
     private void btnEditAPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditAPaActionPerformed
@@ -382,6 +387,9 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
         btnDeleteAPa.setEnabled(false);
         btnSaveAPa.setEnabled(true);
         flag=2;
+        txfNameAPa.setEnabled(true);
+        txfAddressAPa.setEnabled(true);
+        txfPhoneAPa.setEnabled(true);
     }//GEN-LAST:event_btnEditAPaActionPerformed
 
     private void btnSaveAPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveAPaActionPerformed
@@ -394,6 +402,9 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
                 control.bindingAdoptiveParent(jTableAPa, adoptiveParentBLL.LoadAdoptiveParent());
                 btnSaveAPa.setEnabled(false);
                 ClearText();
+                txfNameAPa.setEnabled(false);
+        txfAddressAPa.setEnabled(false);
+        txfPhoneAPa.setEnabled(false);
             }
             btnAddAPa.setEnabled(true);
             btnEditAPa.setEnabled(true);
@@ -405,6 +416,9 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
             {
                 control.bindingAdoptiveParent(jTableAPa, adoptiveParentBLL.LoadAdoptiveParent());
                 btnSaveAPa.setEnabled(false);
+                txfNameAPa.setEnabled(false);
+        txfAddressAPa.setEnabled(false);
+        txfPhoneAPa.setEnabled(false);
             }
             btnAddAPa.setEnabled(true);
             btnEditAPa.setEnabled(true);
@@ -416,6 +430,9 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
             {
                 control.bindingAdoptiveParent(jTableAPa, adoptiveParentBLL.LoadAdoptiveParent());
                 btnSaveAPa.setEnabled(false);
+                txfNameAPa.setEnabled(false);
+        txfAddressAPa.setEnabled(false);
+        txfPhoneAPa.setEnabled(false);
             }
             btnAddAPa.setEnabled(true);
             btnEditAPa.setEnabled(true);
@@ -452,6 +469,9 @@ public class fAdoptiveParent extends javax.swing.JInternalFrame {
        btnEditAPa.setEnabled(false);
        btnDeleteAPa.setEnabled(false);
        btnSaveAPa.setEnabled(true);
+       txfNameAPa.setEnabled(true);
+        txfAddressAPa.setEnabled(true);
+        txfPhoneAPa.setEnabled(true);
     }//GEN-LAST:event_btnDeleteAPaActionPerformed
 
 

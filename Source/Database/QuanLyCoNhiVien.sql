@@ -1,4 +1,4 @@
-﻿create database QuanLyCoNhiVien
+﻿fcreate database QuanLyCoNhiVien
 go
 use QuanLyCoNhiVien
 go
@@ -109,6 +109,8 @@ create table TaiKhoan
 	primary key(TenDangNhap)
 )
 go
+insert into TaiKhoan values('admin','123','ADMIN')
+go
 --Tạo khóa ngoại
 alter table NhanVien add constraint fk_NhanVien_LoaiNhanVien foreign key(MaLoaiNV) references LoaiNhanVien(MaLoaiNV)
 go
@@ -136,18 +138,45 @@ go
 alter table NhanVien add constraint TrangThai_NhanVien check(TrangThai in(0,1))
 go
 --Tuổi nhân viên phải lớn hơn bằng 18 tuổi
-alter table NhanVien add constraint Tuoi_NhanVien check((getDate()-year(NgaySinh))>=18)
+create trigger ins_up_NgaySinhNhanVien on NhanVien
+for insert, update
+as
+begin
+	declare @MaNV int, @NgaySinh smalldatetime
+	select @MaNV=MaNV, @NgaySinh=NgaySinh
+	from inserted
+	if(year(getdate())-year(@NgaySinh)<18)
+		begin
+			print N'Tuổi của nhân viên phải lớn hơn bằng 18'
+			rollback tran
+		end
+end
 go
+update NhanVien
+set NgaySinh='1/1/2002'
+where MaNV=1
 --Hình thức tài trợ trong bảng tài trợ là 'Tiền mặt', 'Chuyển khoản','Hiện vật'
 alter table TaiTro add constraint HinhThucTaiTro check (HinhThucTaiTro in(N'Tiền mặt',N'Chuyển khoản',N'Hiện vật'))
 go
+update TaiTro
+set HinhThucTaiTro=N'Quyên góp'
+where MaTaiTro=1 and MaNhaTaiTro=1
+select * from TaiTro
 --Ràng buộc liên thuộc tính
 --Ngày sinh của trẻ phải nhỏ hơn hoặc bằng ngày trẻ vào
 alter table Tre add constraint KT_NgaySinh_NgayVao check (NgaySinh<=NgayVao)
 go
+update Tre
+set NgaySinh='30/12/2018'
+where MaTre=1
+select * from Tre
 --Ngày sinh của nhân viên phải nhỏ hơn vào ngày vào làm của nhân viên
 alter table NhanVien add constraint KT_NgaySinh_NgayVL check(NgaySinh<NgayVL)
 go
+update NhanVien
+set NgayVL='1/1/1970'
+where MaNV=1
+GO
 -- Trigger cập nhật trạng thái của trẻ có người nhận trẻ
 alter trigger trg_ins_CT_NguoiNhanTre_Tre on CT_NguoiNhanTre_Tre
 for insert
@@ -361,7 +390,7 @@ as
 begin
 	declare @MaTre int, @MaTre_Max int, @i int =1
 	set @MaTre_Max=(select max(MaTre)
-					from Tre)
+					from Tre with(holdlock,updlock))
 	if(@MaTre_Max is null)
 		set @MaTre=@i
 	else
@@ -369,7 +398,7 @@ begin
 		while(@i<=@MaTre_Max+1)
 			begin
 				if(select count(*)
-					from Tre
+					from Tre with(holdlock,updlock)
 					where MaTre=@i)=0
 					begin
 						set @MaTre=@i
@@ -378,7 +407,8 @@ begin
 			set @i=@i+1
 			end
 	end
-	insert into Tre values(@MaTre,@TenTre,@GioiTinh,@NgaySinh,@NgayVao,@HoanCanh,@NguoiDuaTreVao,@TrangThai,@MaNV)
+	waitfor delay '00:00:10'
+	insert into Tre with (holdlock,updlock) values(@MaTre,@TenTre,@GioiTinh,@NgaySinh,@NgayVao,@HoanCanh,@NguoiDuaTreVao,@TrangThai,@MaNV)
 end
 go
 exec sp_ThemTre 'a','Nam','1/1/2018','25/11/2018','a','a',1,1
@@ -416,13 +446,8 @@ begin
 end
 go
 
---LẤY THÔNG TIN CHI TIÊU
-CREATE PROC SP_HienThiChiTieu
-AS
-BEGIN
-	SELECT * FROM ChiTieu
-END
-GO
+
+
 --Thêm chi tiêu
 create PROC SP_ThemChiTieu
 @TenChiTieu nvarchar(100), @NgayChi nvarchar(19)
@@ -497,8 +522,10 @@ BEGIN
 	WHERE MaChiTieu = @MaChiTieu
 END
 GO
+select * from CT_ChiTieu
 -- Thêm chi tiết chi tiêu
-CREATE PROC SP_ThemCTCT
+exec SP_ThemCTCT 1, 'a',1
+alter PROC SP_ThemCTCT
 @MaChiTieu int, @TenCTChiTieu nvarchar(100), @SoTien money
 AS
 BEGIN
@@ -511,14 +538,14 @@ BEGIN
 	SET @i = 1
 
 	IF(@Max_MaCT_ChiTieu IS NULL)
-		INSERT INTO CT_ChiTieu VALUES(@i, @TenCTChiTieu, @SoTien, @MaChiTieu)
+		INSERT INTO CT_ChiTieu VALUES(@i,@MaChiTieu, @TenCTChiTieu, @SoTien)
 	ELSE
 	BEGIN
 		WHILE(@i <= @Max_MaCT_ChiTieu + 1)
 		BEGIN
 			IF((SELECT COUNT(*) FROM CT_ChiTieu WHERE MaCT_ChiTieu = @i) < 1)
 			BEGIN
-				INSERT INTO CT_ChiTieu VALUES(@i, @TenCTChiTieu, @SoTien, @MaChiTieu)
+				INSERT INTO CT_ChiTieu VALUES(@i,@MaChiTieu, @TenCTChiTieu, @SoTien)
 				BREAK
 			END
 			SET @i = @i + 1
@@ -529,7 +556,7 @@ go
 
 -- CẬP NHẬT CT_CHITIEU
 
-ALTER PROC SP_CapNhatCTCT
+CREATE PROC SP_CapNhatCTCT
 @MaChiTieu int, @MaCT_ChiTieu int, @TenCTChiTieu nvarchar(100), @SoTien float
 AS
 BEGIN
@@ -540,7 +567,7 @@ END
 GO
 -- XOÁ CT_CHITIEU
 
-ALTER PROC SP_XoaCTCT
+CREATE PROC SP_XoaCTCT
 @MaChiTieu int, @MaCT_ChiTieu int
 AS
 BEGIN
@@ -581,6 +608,7 @@ BEGIN
 	SET TongSoTien = @TongSoTien
 	WHERE MaChiTieu = @MaChiTieu
 END
+GO
 --TRIGGER KHI XOÁ CT_CHITIEU
 create TRIGGER TRG_DELETE_CT_CHITIEU ON CT_CHITIEU
 FOR DELETE
@@ -607,8 +635,8 @@ create proc sp_ThemNhaTaiTro
 as
 begin
 	declare @MaNhaTaiTro int, @MaNhaTaiTro_Max int ,@i int=1
-	set @MaNhaTaiTro_Max=(select Max(MaNhaTaiTro)
-							from NhaTaiTro)
+	set @MaNhaTaiTro_Max=(select Max(MaNhaTaiTro) 
+							from NhaTaiTro with(holdlock,updlock))
 	if(@MaNhaTaiTro_Max is null)
 		set @MaNhaTaiTro=@i
 	else
@@ -616,7 +644,7 @@ begin
 		while(@i<=@MaNhaTaiTro_Max+1)
 			begin
 				if(select count(*)
-					from NhaTaiTro
+					from NhaTaiTro with(holdlock,updlock)
 					where MaNhaTaiTro=@i)=0
 					begin
 						set @MaNhaTaiTro=@i
@@ -626,7 +654,8 @@ begin
 			end
 
 		end
-	insert into NhaTaiTro values(@MaNhaTaiTro,@TenNhaTaiTro,@SoDT,@DiaChi)
+	waitfor delay '00:00:10'
+	insert into NhaTaiTro with(holdlock,updlock) values(@MaNhaTaiTro,@TenNhaTaiTro,@SoDT,@DiaChi)
 end
 go
 --Cập nhật nhà tài trợ
@@ -925,3 +954,12 @@ begin
 	where Tre.MaNV=NhanVien.MaNV and Tre.TrangThai=1 and [dbo].[GetUnsignString](TenTre) LIKE N'%' + [dbo].[GetUnsignString](@key) + '%'
 end
 go
+--Đăng nhập
+create proc sp_DangNhap
+@TenDangNhap nvarchar(100), @MatKhau nvarchar(100)
+as
+begin
+	SELECT *
+	FROM TaiKhoan
+	WHERE TenDangNhap=@TenDangNhap and MatKhau=@MatKhau
+end

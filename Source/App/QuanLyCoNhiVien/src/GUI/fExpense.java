@@ -8,6 +8,7 @@ package GUI;
 import BLL.ExpenseBLL;
 import Utilities.ControlFormat;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -32,6 +33,10 @@ public class fExpense extends javax.swing.JInternalFrame {
         int x=(int) tk.getScreenSize().getWidth();
         int y=(int)tk.getScreenSize().getHeight();  
         jLabel9.setSize(x, y);
+        txfNameExpense.setEnabled(false);
+        txfTotalExpense.setEnabled(false);
+        jDChExpenseDate.setEnabled(false);
+        
     }
 
     /**
@@ -101,6 +106,11 @@ public class fExpense extends javax.swing.JInternalFrame {
         jLabel4.setText("Năm");
 
         txfYearSearchExpense.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        txfYearSearchExpense.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfYearSearchExpenseKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -171,6 +181,11 @@ public class fExpense extends javax.swing.JInternalFrame {
 
         txfTotalExpense.setEditable(false);
         txfTotalExpense.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        txfTotalExpense.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfTotalExpenseKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -394,6 +409,9 @@ public class fExpense extends javax.swing.JInternalFrame {
         btnDelExpense.setEnabled(false);
         btnSaveExpense.setEnabled(true);
         flag = 1;
+        txfNameExpense.setEnabled(true);
+        txfTotalExpense.setEnabled(true);
+        jDChExpenseDate.setEnabled(true);
     }//GEN-LAST:event_btnAddExpenseActionPerformed
 
     private void btnEditExpenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditExpenseActionPerformed
@@ -403,6 +421,9 @@ public class fExpense extends javax.swing.JInternalFrame {
         btnDelExpense.setEnabled(false);
         btnSaveExpense.setEnabled(true);
         flag = 2;
+         txfNameExpense.setEnabled(true);
+        txfTotalExpense.setEnabled(true);
+        jDChExpenseDate.setEnabled(true);
     }//GEN-LAST:event_btnEditExpenseActionPerformed
 
     private void btnDelExpenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelExpenseActionPerformed
@@ -412,6 +433,9 @@ public class fExpense extends javax.swing.JInternalFrame {
         btnDelExpense.setEnabled(false);
         btnSaveExpense.setEnabled(true);
         flag = 3;
+         txfNameExpense.setEnabled(true);
+        txfTotalExpense.setEnabled(true);
+        jDChExpenseDate.setEnabled(true);
     }//GEN-LAST:event_btnDelExpenseActionPerformed
 
     private void btnSaveExpenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveExpenseActionPerformed
@@ -426,6 +450,9 @@ public class fExpense extends javax.swing.JInternalFrame {
                 btnSaveExpense.setEnabled(false);
                 control.bindingExpense(jTableExpense, expenseBLL.LoadExpense());
                 ClearText();
+                txfNameExpense.setEnabled(false);
+        txfTotalExpense.setEnabled(false);
+        jDChExpenseDate.setEnabled(false);
             }
         }
         if(flag == 2)
@@ -438,6 +465,9 @@ public class fExpense extends javax.swing.JInternalFrame {
                 btnSaveExpense.setEnabled(false);
                 control.bindingExpense(jTableExpense, expenseBLL.LoadExpense());
                 ClearText();
+                txfNameExpense.setEnabled(false);
+        txfTotalExpense.setEnabled(false);
+        jDChExpenseDate.setEnabled(false);
             }
         }
         if(flag == 3)
@@ -448,6 +478,9 @@ public class fExpense extends javax.swing.JInternalFrame {
             btnSaveExpense.setEnabled(false);
             control.bindingExpense(jTableExpense, expenseBLL.LoadExpense());
             ClearText();
+            txfNameExpense.setEnabled(false);
+        txfTotalExpense.setEnabled(false);
+        jDChExpenseDate.setEnabled(false);
         }
     }//GEN-LAST:event_btnSaveExpenseActionPerformed
 
@@ -474,6 +507,40 @@ public class fExpense extends javax.swing.JInternalFrame {
         jDChExpenseDate.setDate((Date) jTableExpense.getValueAt(row, 2));
         txfTotalExpense.setText(jTableExpense.getValueAt(row, 3).toString());
     }//GEN-LAST:event_jTableExpenseMouseClicked
+    boolean dot = false;
+    private void txfTotalExpenseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfTotalExpenseKeyTyped
+        // TODO add your handling code here:
+        char vChar = evt.getKeyChar();
+        if (txfTotalExpense.getText().equals(""))
+            dot = false;
+        if (dot == false){
+            if (vChar == '.') 
+                dot = true;
+            else if (!(Character.isDigit(vChar)|| (vChar == KeyEvent.VK_BACK_SPACE)|| (vChar == KeyEvent.VK_DELETE))) 
+                evt.consume();
+        } 
+        else {
+            if (!(Character.isDigit(vChar)|| (vChar == KeyEvent.VK_BACK_SPACE)|| (vChar == KeyEvent.VK_DELETE)))
+                evt.consume();
+        }
+    }//GEN-LAST:event_txfTotalExpenseKeyTyped
+
+    private void txfYearSearchExpenseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfYearSearchExpenseKeyTyped
+        // TODO add your handling code here:
+      char vChar = evt.getKeyChar();
+        if (txfYearSearchExpense.getText().equals(""))
+            dot = false;
+        if (dot == false){
+            if (vChar == '.') 
+                dot = true;
+            else if (!(Character.isDigit(vChar)|| (vChar == KeyEvent.VK_BACK_SPACE)|| (vChar == KeyEvent.VK_DELETE))) 
+                evt.consume();
+        } 
+        else {
+            if (!(Character.isDigit(vChar)|| (vChar == KeyEvent.VK_BACK_SPACE)|| (vChar == KeyEvent.VK_DELETE)))
+                evt.consume();
+        }
+    }//GEN-LAST:event_txfYearSearchExpenseKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

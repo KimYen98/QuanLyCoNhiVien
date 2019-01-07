@@ -24,6 +24,9 @@ public class fSponsor extends javax.swing.JInternalFrame {
     public fSponsor() {
         initComponents();
         control.bindingSponsor(jTableSponsor, sponsorBLL.LoadSponsor());
+        txfNameSponsor.setEnabled(false);
+        txfPhoneSponsor.setEnabled(false);
+        txfAddressSponsor.setEnabled(false);
     }
 
     /**
@@ -122,6 +125,11 @@ public class fSponsor extends javax.swing.JInternalFrame {
         txfNameSponsor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
         txfPhoneSponsor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        txfPhoneSponsor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txfPhoneSponsorKeyTyped(evt);
+            }
+        });
 
         txfAddressSponsor.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
@@ -338,6 +346,9 @@ public class fSponsor extends javax.swing.JInternalFrame {
         btnDelSponsor.setEnabled(false);
         btnSaveSponsor.setEnabled(true);
         flag=1;
+        txfNameSponsor.setEnabled(true);
+        txfPhoneSponsor.setEnabled(true);
+        txfAddressSponsor.setEnabled(true);
     }//GEN-LAST:event_btnAddSponsorActionPerformed
     
     private void btnEditSponsorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditSponsorActionPerformed
@@ -347,6 +358,9 @@ public class fSponsor extends javax.swing.JInternalFrame {
         btnDelSponsor.setEnabled(false);
         btnSaveSponsor.setEnabled(true);
         flag=2;
+        txfNameSponsor.setEnabled(true);
+        txfPhoneSponsor.setEnabled(true);
+        txfAddressSponsor.setEnabled(true);
     }//GEN-LAST:event_btnEditSponsorActionPerformed
 
     private void btnDelSponsorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelSponsorActionPerformed
@@ -356,6 +370,9 @@ public class fSponsor extends javax.swing.JInternalFrame {
         btnDelSponsor.setEnabled(false);
         btnSaveSponsor.setEnabled(true);
         flag=3;
+        txfNameSponsor.setEnabled(true);
+        txfPhoneSponsor.setEnabled(true);
+        txfAddressSponsor.setEnabled(true);
     }//GEN-LAST:event_btnDelSponsorActionPerformed
 
     private void btnSaveSponsorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveSponsorActionPerformed
@@ -367,6 +384,9 @@ public class fSponsor extends javax.swing.JInternalFrame {
                 btnSaveSponsor.setEnabled(false);
                 control.bindingSponsor(jTableSponsor, sponsorBLL.LoadSponsor());
                 ClearText();
+                txfNameSponsor.setEnabled(false);
+        txfPhoneSponsor.setEnabled(false);
+        txfAddressSponsor.setEnabled(false);
             }
             btnAddSponsor.setEnabled(true);
             btnEditSponsor.setEnabled(true);
@@ -380,6 +400,9 @@ public class fSponsor extends javax.swing.JInternalFrame {
                  btnSaveSponsor.setEnabled(false);
                 control.bindingSponsor(jTableSponsor, sponsorBLL.LoadSponsor());
                 ClearText();
+                txfNameSponsor.setEnabled(false);
+        txfPhoneSponsor.setEnabled(false);
+        txfAddressSponsor.setEnabled(false);
             }
             btnAddSponsor.setEnabled(true);
             btnEditSponsor.setEnabled(true);
@@ -392,6 +415,9 @@ public class fSponsor extends javax.swing.JInternalFrame {
                  btnSaveSponsor.setEnabled(false);
                 control.bindingSponsor(jTableSponsor, sponsorBLL.LoadSponsor());
                 ClearText();
+                txfNameSponsor.setEnabled(false);
+        txfPhoneSponsor.setEnabled(false);
+        txfAddressSponsor.setEnabled(false);
             }
             btnAddSponsor.setEnabled(true);
             btnEditSponsor.setEnabled(true);
@@ -414,6 +440,13 @@ public class fSponsor extends javax.swing.JInternalFrame {
         txfPhoneSponsor.setText(jTableSponsor.getValueAt(row, 2).toString());
         txfAddressSponsor.setText(jTableSponsor.getValueAt(row, 3).toString());
     }//GEN-LAST:event_jTableSponsorMouseClicked
+
+    private void txfPhoneSponsorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfPhoneSponsorKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if (((c < '0') || (c > '9')) || txfPhoneSponsor.getText().length() >= 10)
+            evt.consume();
+    }//GEN-LAST:event_txfPhoneSponsorKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

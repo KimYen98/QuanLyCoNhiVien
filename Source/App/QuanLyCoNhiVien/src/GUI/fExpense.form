@@ -172,6 +172,9 @@
               <Font name="Tahoma" size="15" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txfYearSearchExpenseKeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -302,6 +305,9 @@
               <Font name="Tahoma" size="15" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txfTotalExpenseKeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

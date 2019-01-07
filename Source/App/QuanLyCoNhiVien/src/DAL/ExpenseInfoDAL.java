@@ -19,7 +19,7 @@ public class ExpenseInfoDAL extends DataAccessHelper{
     public ArrayList<ExpenseInfo> LoadExpenseInfo(int IDExpense)
     {
         ArrayList<ExpenseInfo> temp = new ArrayList<>();
-        String SQL = "SP_HienThiCTCT " + IDExpense;
+        String SQL = "exec SP_HienThiCTCT '"+IDExpense+"'";
         try {
             getConnect();
             Statement st = conn.createStatement();
@@ -42,7 +42,7 @@ public class ExpenseInfoDAL extends DataAccessHelper{
     //Thêm chi tiết chi tiêu
     public boolean InsertExpenseInfo(int IDExpense, String NameExpenseInfo, float Money)
     {
-        String SQL = "SP_ThemCTCT " + IDExpense + ", N'" + NameExpenseInfo + "', " + Money;
+        String SQL = "exec  SP_ThemCTCT '"+IDExpense+"', N'"+NameExpenseInfo+"','"+Money+"'";
         try {
             getConnect();
             Statement st =conn.createStatement();
@@ -57,7 +57,7 @@ public class ExpenseInfoDAL extends DataAccessHelper{
     //Cập nhật chi tiết chi tiêu
     public boolean UpdateExpenseInfo(int IDExpense, int IDExpenseIfo, String NameExpenseInfo, float Money)
     {
-        String SQL = "SP_CapNhatCTCT " + IDExpense + ", " + IDExpenseIfo + ", N'" + NameExpenseInfo + "', " + Money;
+        String SQL = "exec SP_CapNhatCTCT '" + IDExpense + "', " + IDExpenseIfo + ", N'" + NameExpenseInfo + "', " + Money;
         try {
             getConnect();
             Statement st =conn.createStatement();
@@ -72,7 +72,7 @@ public class ExpenseInfoDAL extends DataAccessHelper{
     //Xóa chi tiết chi tiêu
     public boolean DeleteExpenseInfo(int IDExpense, int IDExpenseIfo)
     {
-        String SQL = "SP_XoaCTCT " + IDExpense + ", " + IDExpenseIfo;
+        String SQL = "exec SP_XoaCTCT " + IDExpense + ", " + IDExpenseIfo;
         try {
             getConnect();
             Statement st =conn.createStatement();
@@ -88,7 +88,7 @@ public class ExpenseInfoDAL extends DataAccessHelper{
     public ArrayList<ExpenseInfo> SearchExpenseInfo(String day)
     {
         ArrayList<ExpenseInfo> temp =new ArrayList<>();
-        String SQL = "SP_TimKiemCTCT " + day;
+        String SQL = "exec SP_TimKiemCTCT " + day;
         try {
             getConnect();
             Statement st =conn.createStatement();

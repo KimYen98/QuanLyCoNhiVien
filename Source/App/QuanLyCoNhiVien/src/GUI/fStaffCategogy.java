@@ -24,6 +24,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
     public fStaffCategogy() {
         initComponents();
         control.bindingStaffCategogy(jTableStaffCategogy, staffCategogyBLL.LoadStaffCategogy());
+        txfNameStaffCategogy.setEnabled(false);
     }
     //Hàm chuẩn hóa tên
     public String chuanHoa(String str) {
@@ -242,6 +243,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         btnDelStaffCategogy.setEnabled(false);
         btnSaveStaffCategogy.setEnabled(true);
         flag=1;
+        txfNameStaffCategogy.setEnabled(true);
     }//GEN-LAST:event_btnAddStaffCategogyActionPerformed
 
     private void btnEditStaffCategogyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditStaffCategogyActionPerformed
@@ -251,6 +253,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         btnDelStaffCategogy.setEnabled(false);
         btnSaveStaffCategogy.setEnabled(true);
         flag=2;
+        txfNameStaffCategogy.setEnabled(true);
     }//GEN-LAST:event_btnEditStaffCategogyActionPerformed
 
     private void btnDelStaffCategogyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelStaffCategogyActionPerformed
@@ -260,6 +263,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
         btnDelStaffCategogy.setEnabled(false);
         btnSaveStaffCategogy.setEnabled(true);
         flag=3;
+        txfNameStaffCategogy.setEnabled(true);
     }//GEN-LAST:event_btnDelStaffCategogyActionPerformed
 
     private void btnSaveStaffCategogyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveStaffCategogyActionPerformed
@@ -271,6 +275,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
                 btnSaveStaffCategogy.setEnabled(false);
                 control.bindingStaffCategogy(jTableStaffCategogy, staffCategogyBLL.LoadStaffCategogy());
                 ClearText();
+                txfNameStaffCategogy.setEnabled(false);
             }
             btnAddStaffCategogy.setEnabled(true);
             btnEditStaffCategogy.setEnabled(true);
@@ -283,6 +288,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
                 btnSaveStaffCategogy.setEnabled(false);
                 control.bindingStaffCategogy(jTableStaffCategogy, staffCategogyBLL.LoadStaffCategogy());
                 ClearText();
+                txfNameStaffCategogy.setEnabled(false);
             }
             btnAddStaffCategogy.setEnabled(true);
             btnEditStaffCategogy.setEnabled(true);
@@ -295,6 +301,7 @@ public class fStaffCategogy extends javax.swing.JInternalFrame {
                 btnSaveStaffCategogy.setEnabled(false);
                 control.bindingStaffCategogy(jTableStaffCategogy, staffCategogyBLL.LoadStaffCategogy());
                 ClearText();
+                txfNameStaffCategogy.setEnabled(false);
             }
             btnAddStaffCategogy.setEnabled(true);
             btnEditStaffCategogy.setEnabled(true);

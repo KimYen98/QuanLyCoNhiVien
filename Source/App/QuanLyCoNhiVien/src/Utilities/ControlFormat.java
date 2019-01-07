@@ -14,6 +14,7 @@ import Entity.Sponsor;
 import Entity.Sponsorship;
 import Entity.Staff;
 import Entity.StaffCategogy;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JTable;
@@ -47,6 +48,8 @@ public class ControlFormat {
             }
         };
         name.setModel(dtm); 
+        name.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));
+        name.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));
     }
     //Lấy dữ liệu bảng nhân viên
     public void bindingStaff(JTable name , ArrayList<Staff> arr)
@@ -87,6 +90,8 @@ public class ControlFormat {
             }
         };
         name.setModel(dtm); 
+        name.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));
+        name.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));
     }
     //Lấy dữ liệu ở bảng trẻ
     public void bindingChild(JTable name ,ArrayList<Child> arr)
@@ -127,6 +132,8 @@ public class ControlFormat {
             }
         };
         name.setModel(dtm); 
+        name.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));
+        name.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));
     }
     
     //Lấy dữ liệu ở bàng nhà tài trợ
@@ -154,7 +161,9 @@ public class ControlFormat {
                 return false;
             }
         };
-        name.setModel(dtm);      
+        name.setModel(dtm);  
+        name.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));
+        name.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));
     }
     //Lấy dữ liệu ở bảng tài trợ
     public void bindingSponsorship(JTable name , ArrayList<Sponsorship> arr)
@@ -183,7 +192,9 @@ public class ControlFormat {
                 return false;
             }
         };
-        name.setModel(dtm);      
+        name.setModel(dtm);  
+        name.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));
+        name.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));
     }
     //Lấy dữ liệu ở bảng chi tiêu
     public void bindingExpense(JTable name , ArrayList<Expense> arr)
@@ -212,7 +223,9 @@ public class ControlFormat {
                 return false;
             }
         };
-        name.setModel(dtm);      
+        name.setModel(dtm); 
+        name.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));
+        name.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));
     }
     //Lấy dữ liệu ở bảng chi tiết chi tiêu
     public void bindingExpenseInfo(JTable name, ArrayList<ExpenseInfo> arr)
@@ -241,6 +254,8 @@ public class ControlFormat {
             }
         };
         name.setModel(dtm);
+        name.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));
+        name.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));
     }
     //Lấy dữ liệu ở bảng người nhận trẻ
     public void bindingAdoptiveParent(JTable name ,ArrayList<AdoptiveParent> arr)
@@ -268,6 +283,8 @@ public class ControlFormat {
             }
         };
         name.setModel(dtm);  
+        name.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));
+        name.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));
     }
     //Lấy dữ liệu ở bảng chi tiết nhận trẻ
     public void bindingAdoptInfo(JTable name ,ArrayList<AdoptInfo> arr)
@@ -293,5 +310,7 @@ public class ControlFormat {
             }
         };
         name.setModel(dtm);  
+        name.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));
+        name.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));
     }
 }

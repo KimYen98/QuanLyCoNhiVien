@@ -60,7 +60,7 @@ public class AdoptInfoDAL extends  DataAccessHelper{
     //Cập nhật chi tiết người nhận trẻ
     public boolean  UpdateAdoptInfo(int IdAdoptiveParent, int IdChild , Date AdoptDate)
     {
-        String SQL="update from  CT_NguoiNhanTre_Tre set NgayNhan='"+AdoptDate+"' where MaNguoiNhan= '"+IdAdoptiveParent+"'and MaTre='"+IdChild+"'";
+        String SQL="update CT_NguoiNhanTre_Tre set NgayNhan='"+AdoptDate+"' where MaNguoiNhan= '"+IdAdoptiveParent+"'and MaTre='"+IdChild+"'";
         try {
             getConnect();
             Statement st =conn.createStatement();
@@ -75,7 +75,7 @@ public class AdoptInfoDAL extends  DataAccessHelper{
     //Xóa chi tiết người nhận trẻ
     public boolean  DeleteAdoptInfo(int IdAdoptiveParent , int IdChild)
     {
-        String SQL=" delete from CT_NguoiNhanTre_Tre where MaNguoiNhan='"+IdAdoptiveParent+"' and MaTre'"+IdChild+"'";
+        String SQL="delete from CT_NguoiNhanTre_Tre where MaNguoiNhan='"+IdAdoptiveParent+"' and MaTre='"+IdChild+"'";
         try {
             getConnect();
             Statement st =conn.createStatement();

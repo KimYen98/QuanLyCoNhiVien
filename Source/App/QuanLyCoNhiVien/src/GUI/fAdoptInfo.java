@@ -51,6 +51,9 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         jTableAPa.getColumnModel().getColumn(3).setPreferredWidth(150);
         
         jDChAdoptDate.setDate(new Date());
+        txfNameAdoptiveParent.setEnabled(false);
+        txfNameChild.setEnabled(false);
+        jDChAdoptDate.setEnabled(false);
     }
 
     /**
@@ -512,6 +515,9 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         btnDelAdoptInfo.setEnabled(false);
         btnSaveAdoptInfo.setEnabled(true);
         flag=1;
+        txfNameAdoptiveParent.setEnabled(true);
+        txfNameChild.setEnabled(true);
+        jDChAdoptDate.setEnabled(true);
     }//GEN-LAST:event_btnAddAdoptInfoActionPerformed
 
     private void btnEditAdoptInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditAdoptInfoActionPerformed
@@ -521,6 +527,9 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         btnDelAdoptInfo.setEnabled(false);
         btnSaveAdoptInfo.setEnabled(true);
         flag=2;
+        txfNameAdoptiveParent.setEnabled(true);
+        txfNameChild.setEnabled(true);
+        jDChAdoptDate.setEnabled(true);
     }//GEN-LAST:event_btnEditAdoptInfoActionPerformed
 
     private void btnDelAdoptInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelAdoptInfoActionPerformed
@@ -530,6 +539,9 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
         btnDelAdoptInfo.setEnabled(false);
         btnSaveAdoptInfo.setEnabled(true);
         flag=3;
+        txfNameAdoptiveParent.setEnabled(true);
+        txfNameChild.setEnabled(true);
+        jDChAdoptDate.setEnabled(true);
     }//GEN-LAST:event_btnDelAdoptInfoActionPerformed
 
     private void btnSaveAdoptInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveAdoptInfoActionPerformed
@@ -539,8 +551,12 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
             if(Insert())
             {
                 control.bindingAdoptInfo(jTableAdoptInfo, adoptInfoBLL.LoadAdoptInfo());
+                control.bindingChild(jTableChild,childBLL.LoadChildNow());
                 ClearText();
                 btnSaveAdoptInfo.setEnabled(false);
+                txfNameAdoptiveParent.setEnabled(false);
+                txfNameChild.setEnabled(false);
+                jDChAdoptDate.setEnabled(false);
             }
             btnEditAdoptInfo.setEnabled(true);
             btnAddAdoptInfo.setEnabled(true);
@@ -551,8 +567,12 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
             if(Update())
             {
                 control.bindingAdoptInfo(jTableAdoptInfo, adoptInfoBLL.LoadAdoptInfo());
+                control.bindingChild(jTableChild,childBLL.LoadChildNow());
                 ClearText();
                 btnSaveAdoptInfo.setEnabled(false);
+                txfNameAdoptiveParent.setEnabled(false);
+                txfNameChild.setEnabled(false);
+                jDChAdoptDate.setEnabled(false);
             }
             btnEditAdoptInfo.setEnabled(true);
             btnAddAdoptInfo.setEnabled(true);
@@ -563,8 +583,12 @@ public class fAdoptInfo extends javax.swing.JInternalFrame {
             if(Delete())
             {
                 control.bindingAdoptInfo(jTableAdoptInfo, adoptInfoBLL.LoadAdoptInfo());
+                control.bindingChild(jTableChild,childBLL.LoadChildNow());
                 ClearText();
                 btnSaveAdoptInfo.setEnabled(false);
+                txfNameAdoptiveParent.setEnabled(false);
+        txfNameChild.setEnabled(false);
+        jDChAdoptDate.setEnabled(false);
             }
             btnEditAdoptInfo.setEnabled(true);
             btnAddAdoptInfo.setEnabled(true);

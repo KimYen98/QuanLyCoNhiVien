@@ -67,8 +67,6 @@ public class fManagement extends javax.swing.JFrame {
         jMenu7 = new javax.swing.JMenu();
         jMenuItemReportNumOfChild = new javax.swing.JMenuItem();
         jMenuItemReportFinance = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
-        jMenuItemAccount = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("PHẦN MỀM QUẢN LÝ CÔ NHI VIỆN");
@@ -79,13 +77,11 @@ public class fManagement extends javax.swing.JFrame {
 
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
 
-        jMenu1.setForeground(new java.awt.Color(0, 0, 204));
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/tre.png"))); // NOI18N
         jMenu1.setText("Trẻ");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
         jMenuItemChild.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jMenuItemChild.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemChild.setText("Trẻ");
         jMenuItemChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,13 +92,11 @@ public class fManagement extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setForeground(new java.awt.Color(0, 0, 204));
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/staff.png"))); // NOI18N
         jMenu2.setText("Nhân viên");
         jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
         jMenuItemStaffCategogy.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jMenuItemStaffCategogy.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemStaffCategogy.setText("Loại nhân viên");
         jMenuItemStaffCategogy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +106,6 @@ public class fManagement extends javax.swing.JFrame {
         jMenu2.add(jMenuItemStaffCategogy);
 
         jMenuItemStaff.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jMenuItemStaff.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemStaff.setText("Nhân viên");
         jMenuItemStaff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,13 +116,11 @@ public class fManagement extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setForeground(new java.awt.Color(0, 0, 204));
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/_0009_Add.png"))); // NOI18N
         jMenu3.setText("Tài trợ");
         jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
         jMenuItemSponsor.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jMenuItemSponsor.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemSponsor.setText("Nhà tài trợ");
         jMenuItemSponsor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,7 +130,6 @@ public class fManagement extends javax.swing.JFrame {
         jMenu3.add(jMenuItemSponsor);
 
         jMenuItemSponsorship.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jMenuItemSponsorship.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemSponsorship.setText("Chương trình tài trợ");
         jMenuItemSponsorship.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,13 +140,11 @@ public class fManagement extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setForeground(new java.awt.Color(0, 0, 204));
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/_0008_Minus.png"))); // NOI18N
         jMenu4.setText("Chi tiêu");
         jMenu4.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
         jMenuItemExpense.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jMenuItemExpense.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemExpense.setText("Chi tiêu");
         jMenuItemExpense.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,7 +154,6 @@ public class fManagement extends javax.swing.JFrame {
         jMenu4.add(jMenuItemExpense);
 
         jMenuItemExpenseInfo.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jMenuItemExpenseInfo.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemExpenseInfo.setText("Chi tiết chi tiêu");
         jMenuItemExpenseInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,13 +164,11 @@ public class fManagement extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu5.setForeground(new java.awt.Color(0, 0, 204));
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/infoAccount.png"))); // NOI18N
         jMenu5.setText("Nhận trẻ");
         jMenu5.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
         jMenuItemAdoptiveParent.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jMenuItemAdoptiveParent.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemAdoptiveParent.setText("Người nhận trẻ");
         jMenuItemAdoptiveParent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,7 +178,6 @@ public class fManagement extends javax.swing.JFrame {
         jMenu5.add(jMenuItemAdoptiveParent);
 
         jMenuItemAdoptInfo.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jMenuItemAdoptInfo.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemAdoptInfo.setText("Chi tiết việc nhận trẻ");
         jMenuItemAdoptInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,13 +188,11 @@ public class fManagement extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
-        jMenu7.setForeground(new java.awt.Color(0, 0, 204));
         jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/report.png"))); // NOI18N
         jMenu7.setText("Báo cáo");
         jMenu7.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
 
         jMenuItemReportNumOfChild.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jMenuItemReportNumOfChild.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemReportNumOfChild.setText("Báo cáo sỉ số trẻ");
         jMenuItemReportNumOfChild.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,7 +202,6 @@ public class fManagement extends javax.swing.JFrame {
         jMenu7.add(jMenuItemReportNumOfChild);
 
         jMenuItemReportFinance.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jMenuItemReportFinance.setForeground(new java.awt.Color(0, 0, 204));
         jMenuItemReportFinance.setText("Báo cáo tài chính");
         jMenuItemReportFinance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,23 +211,6 @@ public class fManagement extends javax.swing.JFrame {
         jMenu7.add(jMenuItemReportFinance);
 
         jMenuBar1.add(jMenu7);
-
-        jMenu6.setForeground(new java.awt.Color(0, 0, 204));
-        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/user2.png"))); // NOI18N
-        jMenu6.setText("Tài khoản");
-        jMenu6.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-
-        jMenuItemAccount.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jMenuItemAccount.setForeground(new java.awt.Color(0, 0, 204));
-        jMenuItemAccount.setText("Tài khoản");
-        jMenuItemAccount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemAccountActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItemAccount);
-
-        jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
 
@@ -352,14 +316,6 @@ public class fManagement extends javax.swing.JFrame {
         f.setVisible(true);
     }//GEN-LAST:event_jMenuItemReportFinanceActionPerformed
 
-    private void jMenuItemAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAccountActionPerformed
-        // TODO add your handling code here:
-        fAccount f = new fAccount();
-         f.setSize(this.getSizeX(), this.getSizeY());
-        this.jDesktopPane1.add(f);
-        f.setVisible(true);
-    }//GEN-LAST:event_jMenuItemAccountActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -403,10 +359,8 @@ public class fManagement extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItemAccount;
     private javax.swing.JMenuItem jMenuItemAdoptInfo;
     private javax.swing.JMenuItem jMenuItemAdoptiveParent;
     private javax.swing.JMenuItem jMenuItemChild;
